@@ -1,9 +1,7 @@
 from pylab import *
 
-# bisogna sicuramente cambiare i nomi e gli indirizzi quaggiù
-
 import getpass
-users={"alessandro": "/home/alessandro/Documents/Università/3°anno/Laboratorio3/Lab3/",
+users={"candi": "C:\\Users\\alessandro\\Documents\\GitHub\\Lab3.2\\",
 "silvanamorreale":"C:\\Users\\silvanamorreale\\Documents\\GitHub\\Lab3.2\\" ,
 "Studenti": "C:\\Users\\Studenti\\Desktop\\Lab3\\",
 "User":"C:\\Users\\User\\Documents\\GitHub\\Lab3.2\\"
@@ -11,7 +9,7 @@ users={"alessandro": "/home/alessandro/Documents/Università/3°anno/Laboratorio
 try:
     user=getpass.getuser()
     path=users[user]
-    print("buongiono ", user, "!!!")
+    print("buongiorno ", user, "!!!")
 except:
     raise Error("unknown user, please specify it and the path in the file Esercitazione*.py")
 

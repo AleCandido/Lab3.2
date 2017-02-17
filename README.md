@@ -24,3 +24,16 @@ ___Meglio fare anche un po' di discussione sugli strumenti (scelte strategiche s
 ## 17 Feb
 
 Buon inizio semetre di Lab, e io sono già in ritardo alla prima lezione! ^^
+
+I compiti sono stati divisi in base ai punti della scheda:
+
+- 1-5 Fabrizio
+- 6-8 e 10 Alessandro
+- 9 e 11 Andrea
+
+> __lab.py__: questo script va modificato il meno possibile, in modo da restare allineati alla versione di Jack e lasciare a lui la manutenzione, se lo modifichiamo bisognerebbe farlo direttamente sul suo repo.
+> Per l'appunto bisognerebbe completare il dizionario degli errori dell'oscilloscopio, riga 587 (e magari rinominarlo "osc", piuttosto che "oscil")
+
+__BuzzLightyear.py__:
+
+- a occhio mi sembra non ci siano problemi, ma va testato
