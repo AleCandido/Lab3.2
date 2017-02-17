@@ -5,10 +5,12 @@ from pylab import *
 import getpass
 if getpass.getuser() == "alessandro"
     path = "/home/alessandro/Documents/Università/3°anno/Laboratorio3/Lab3/"
-elif getpass.getuser() == "Roberto"
+elif getpass.getuser() == "silvanomorreale"
     path = "C:\\Users\\Roberto\\Documents\\GitHub\\Lab3\\"
 elif getpass.getuser() == "Studenti"
     path = "C:\\Users\\Studenti\\Desktop\\Lab3\\"
+elif getpass.getuser() == "User"
+    path = "C:\\Users\\User\\Documents\\GitHub\\Lab3.2"
 else
     raise Error("unknown user, please specify it and the path in the file Esercitazione*.py")
 sys.path = sys.path + [path]
