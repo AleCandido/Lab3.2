@@ -3,16 +3,19 @@ from pylab import *
 # bisogna sicuramente cambiare i nomi e gli indirizzi quaggiù
 
 import getpass
-if getpass.getuser() == "alessandro"
-    path = "/home/alessandro/Documents/Università/3°anno/Laboratorio3/Lab3/"
-elif getpass.getuser() == "silvanomorreale"
-    path = "C:\\Users\\Roberto\\Documents\\GitHub\\Lab3\\"
-elif getpass.getuser() == "Studenti"
-    path = "C:\\Users\\Studenti\\Desktop\\Lab3\\"
-elif getpass.getuser() == "User"
-    path = "C:\\Users\\User\\Documents\\GitHub\\Lab3.2"
-else
+users={"alessandro": "/home/alessandro/Documents/Università/3°anno/Laboratorio3/Lab3/",
+"silvanamorreale":"C:\\Users\\silvanamorreale\\Documents\\GitHub\\Lab3.2\\" ,
+"Studenti": "C:\\Users\\Studenti\\Desktop\\Lab3\\",
+"User":"C:\\Users\\User\\Documents\\GitHub\\Lab3.2\\"
+}
+try:
+    user=getpass.getuser()
+    path=users[user]
+    print("buongiono ", user, "!!!")
+except:
     raise Error("unknown user, please specify it and the path in the file Esercitazione*.py")
+
+
 sys.path = sys.path + [path]
 dir= path + "Esercitazione/"
 
