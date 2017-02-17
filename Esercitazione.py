@@ -19,7 +19,7 @@ except:
 sys.path = sys.path + [path]
 dir= path + "Esercitazione/"
 
-from BuzzLightyear.py import * 
+from BuzzLightyear import * 
 import uncertainties
 ###########################################################################
 
