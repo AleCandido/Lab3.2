@@ -9,26 +9,84 @@
 \begin{document}
 
 \maketitle
-
+% DA AGGIUSTARE
 %\begin{abstract}
-%Lo scopo di questa esperienza è di
+%Lo scopo di questa esperienza è di verificare la struttura discreta dei livelli energetici degll'atomo di neon e di stimare la sua energia di eccitazione.
 %\end{abstract}
 
-\section{Scopo e Strumentazione}
-La strumentazione è quella presente sul banco di lavoro.
-
-\subsection{Errori sistematici}
-
+\section{Strumentazione }%Scopo e..
+%La strumentazione è quella presente sul banco di lavoro.
 \begin{itemize}
-
  \item Oscilloscopio digitale Tektronix TDS 1012. \newline
- 		Lo strumento è affetto da erorre sistematico del 3 \% sulle scale di tensione utilizzate, e di 100 ppm sulle scale di tempo utilizzate.
- \item Tester digitale Konig KDM-350CTF. \newline con errore sistematico del 0.5 \% sulle scale di tensione, 0.8\% su tutte le scale di resistenza utilizzate. Per quanto riguarda l'errore sistematico relativo alle capacità è del 4\%.
+ 		%Lo strumento è affetto da errore sistematico del 3 \% sulle scale di tensione utilizzate, e di 100 ppm sulle scale di tempo utilizzate.
+ \item Tetrodo a gas neon ELWE U8482230
+ \item Sistema di alimentazione e lettura di corrente ELWE
 
 \end{itemize}
 
-\section{}
+\section{Osservazione degli effetti degli urti anelastici elettrone-neon}
 
+Dopo aver eseguito la procedura di accensione suggerita per l'apparato schematizzato in figura \ref{circuito},si è osservata la struttura luminosa nel tetrodo a gas al variare delle tensioni $U_{A}$ e $U_{G}$. Come ci si aspetta, mantenendo fisso $U_{G}$ e aumentando la tensione anodica si osserva la comparsa di bande luminose nella parte arancione dello spettro. Viceversa fissata la tensione anodica e diminuendo $U_{G}$ si ottengono gli stessi risultati, infatti ciò che conta per accelerare gli elettroni e permettergli di fare urti anelastici con il neon(cioè per far si che l'energia degli elettroni sia superiore alla differenza di energia tra due livelli energetici) è la differenza di potenziale $(U_{A}-U_{G})$. La presenza della griglia di controllo non è strettamente necessaria per osservare le bande, ma permette di definire una superficie equipotenziale, così è come se gli elettroni venissero accelerati all'interno di un condensatore a facce piane parallele. \newline
+Si è fissato $U_{G} = 3.8 \pm ??? V$, $U_{F}=8.0 \pm ??? V$, $U_{E} = 10.6 \pm ??? V$(la tensione frenante è irrilevante perchè la misura è stata effettuata con il sistema di alimentazione e non con l'oscilloscopio) e si sono cercate le tensioni $U_{A}$ per le quali compare nelle immediate vicinanze della griglia anodica la prima banda luminosa, la seconda, etc. La comparsa delle bande corrisponde ai valori massimi della corrente $I_{C}$. Poichè le misure sono state effettuate ad occhio nudo, si sono stimati gli errori su di esse valutando la tensione minima e massima per cui si vedeva la comparsa di una banda. I risultati sono riportati in tab \ref{massimi}.
+
+\begin{table}[h!]
+\centering
+\begin{tabular}{c|c|c|c|c}
+\hline
+Banda &1&2&3&4\\
+\hline 
+$U_{A} (V)$ & 22.5$\pm$1.5 & 41.0$\pm$1.5 & 54.5 $\pm$1.0 & 72.0$\pm$4.0  \\ 
+\hline
+\end{tabular}
+\label{massimi}
+\caption{Tensioni $U_{A}$ a fissato $U_{G}$ per cui si osservano le varie bande luminose nelle immediate vicinanze della griglia anodica.} 
+\end{table}
+
+
+%In prima approssimazione ci si aspetta che 
+%\begin{equation}
+%\frac{(U^{i+1}_{A}-U^{i}_{A})}{i} - U_{G} \approx E_{1}
+% \end{equation}
+%(i=1,2,3) cioè la differenza di potenziale tra le due griglie è circa uguale all'energia del primo livello energetico del neon.
+
+%NON SO SE SCRIVERE QUESTA COSA DATO CHE NON è VERA, RAPPRESENTA SOLO UNA STIMA GREZZA, SI DOVREBBE CONFRONTARE CON I RISULTATI DELL'ANALISI DEI DATI E POI MOTIVARE LA DISCREPANZA.
+
+In secondo luogo si è attivato il generatore di rampa per $U_{A}$ e si è posto l'oscilloscopio in modalità X-Y (con X = $U_{G}/10$, Y $\propto) I_{C}$) per osservare la curva $I_{C}$ vs $U_{A}$ facendo attenzione a regolare il guadagno dell'opamp in modo da non saturarne l'uscita. Tuttavia poichè il programma non riusciva a prendere foto dall'oscilloscopio (uscivano sfocate), si è deciso di acquisire le immagini in modalità normale, in quanto in un canale si vede la rampa, mentre nell'altro si osserva la stessa curva che si ha in modalità X-Y.
+%questa cosa si deve dire ma i correttori possono fare storie.
+L'andamento è mostrato in figura \ref{andamento}.
+All'aumentare di $U_{A}$, la corrente $I_{C}$ cresce fino a raggiungere un massimo quando l'energia degli elettroni è in grado di eccitare gli atomi di neon(comparsa della prima banda). La presenza del campo frenante dovuto al potenziale $U_{E}$ non permette a questi elettroni, che hanno perso energia in seguito all'urto, di arrivare all'anodo e quindi la corrente registrata diminuisce. la corrente $I_{C}$ ha un minimo quando la banda luminosa si distacca dalla griglia anodica, segno del fatto che gli elettroni hanno perso troppa energia per eccitare di nuovo il neon.
+Aumentando ancora $U_{A}$ la corrente reinizia ad aumentare fino a raggiungere un nuovo massimo(comparsa della seconda banda) e così via.
+Agendo sulla manopola del potenziale $U_{E}$ si è osservato il variare della curva $I_{C}$ vs $U_{A}$ al variare di $U_{E}$ ottenendo come risultati curve simili alla figura \ref{andamento}, come ad esempio quella mostrata in figura \ref{task5}. All'aumentare di $U_{E}$ anche parte degli elettroni che fanno urti elastici con gli atomi di neon non giungono sull'anodo..%da finire
+  
+%ok, ma perchè abbiamo correnti negative? inoltre mi sembra che la discesa dopo il terzo massimo sia molto più lunga e la risalita molto più breve di quelle con Ue più piccolo.
+%\\FINE PUNTO 5
+
+ \subsection{}
+
+\section{Grafici e Circuiti}
+
+\begin{figure}[h!]
+	\centering
+		\includegraphics[width=0.80\textwidth]{C:/Users/User/Documents/GitHub/Lab3.2/1_Franck_Hertz/grafici/schema_apparato.png}
+	\caption{Schema dell'apparato utilizzato nell'esperienza.}
+	\label{circuito}
+\end{figure}
+
+
+\begin{figure}[h!]
+	\centering
+		\includegraphics[width=0.80\textwidth]{C:/Users/User/Documents/GitHub/Lab3.2/1_Franck_Hertz/oscilloscopio/correnteanodicatempo1.png}
+	\caption{Curva $I_{C} - U_{A}$ con rampa per il potenziale $U_{A}$. I valori dei potenziali sono: $U_{F}=8V$, $U_{E}=9.6V$, $U_{G}=3.9V$.}
+	\label{andamento}
+\end{figure}
+
+
+\begin{figure}[h!]
+	\centering
+		\includegraphics[width=0.80\textwidth]{C:/Users/User/Documents/GitHub/Lab3.2/1_Franck_Hertz/oscilloscopio/task5.png}
+	\caption{Curva $I_{C} - U_{A}$ per $U_{E}=11.9V$.}
+	\label{task5}
+\end{figure}
 
 
 \end{document}
