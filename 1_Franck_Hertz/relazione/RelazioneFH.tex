@@ -1,8 +1,39 @@
-\documentclass[a4paper,10pt]{article}
+\documentclass[10pt,a4paper]{article}
+
 \usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}	
+\usepackage[italian]{babel}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
 \usepackage{graphicx}
+
+\usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
+\geometry{a4paper}
+
+\usepackage{booktabs} % for much better looking tables
 \usepackage{verbatim}
-%opening
+\usepackage{subfig} % make it possible to include more than one captioned figure/table in a single 
+
+\usepackage{fancyhdr} % This should be set AFTER setting up the page geometry
+\pagestyle{fancy} % options: empty , plain , fancy
+\renewcommand{\headrulewidth}{0pt} % customise the layout...
+\lhead{}\chead{}\rhead{}
+\lfoot{}\cfoot{\thepage}\rfoot{}
+
+%%% SECTION TITLE APPEARANCE
+\usepackage{sectsty}
+%\allsectionsfont{\sffamily\mdseries\upshape} % (See the fntguide.pdf for font help)
+% (This matches ConTeXt defaults)
+
+% pacchetti che mi fanno schifo ma uso lo stesso (Bob è scemo, ma anche Ale...)
+\usepackage[cdot, thickqspace, squaren]{SIunits}
+% il miglior pacchetto che potessi desiderare
+\usepackage{float}
+% macro che mi piacciono
+\def\code#1{\texttt{#1}}
+
+
 \title{Esperienza di Franck Hertz}
 \author{Gruppo BL \\ Candido Alessandro, Luzio Andrea, Mazziotti Fabrizio}
 
@@ -16,8 +47,9 @@
 
 \section{Strumentazione }%Scopo e..
 %La strumentazione è quella presente sul banco di lavoro.
+%	questa frase torna utile, ma non in questo caso, dato che non abbiamo utilizzato basette, resistenze, capacità, tester, generatore, etc. ma solo gli oggetti dopo descritti. Quando leggi questa frase cancella questa e la precedente
 \begin{itemize}
- \item Oscilloscopio digitale Tektronix TDS 1012. \newline
+ \item Oscilloscopio digitale Tektronix TDS 1012.
  		%Lo strumento è affetto da errore sistematico del 3 \% sulle scale di tensione utilizzate, e di 100 ppm sulle scale di tempo utilizzate.
  \item Tetrodo a gas neon ELWE U8482230
  \item Sistema di alimentazione e lettura di corrente ELWE
@@ -25,9 +57,15 @@
 \end{itemize}
 
 \section{Osservazione degli effetti degli urti anelastici elettrone-neon}
+% usare la forma $\unit{9.95 \pm 0.9}{k\ohm}$ per le grandezze
 
-Dopo aver eseguito la procedura di accensione suggerita per l'apparato schematizzato in figura \ref{circuito},si è osservata la struttura luminosa nel tetrodo a gas al variare delle tensioni $U_{A}$ e $U_{G}$. Come ci si aspetta, mantenendo fisso $U_{G}$ e aumentando la tensione anodica si osserva la comparsa di bande luminose nella parte arancione dello spettro. Viceversa fissata la tensione anodica e diminuendo $U_{G}$ si ottengono gli stessi risultati, infatti ciò che conta per accelerare gli elettroni e permettergli di fare urti anelastici con il neon(cioè per far si che l'energia degli elettroni sia superiore alla differenza di energia tra due livelli energetici) è la differenza di potenziale $(U_{A}-U_{G})$. La presenza della griglia di controllo non è strettamente necessaria per osservare le bande, ma permette di definire una superficie equipotenziale, così è come se gli elettroni venissero accelerati all'interno di un condensatore a facce piane parallele. \newline
-Si è fissato $U_{G} = 3.8 \pm ??? V$, $U_{F}=8.0 \pm ??? V$, $U_{E} = 10.6 \pm ??? V$(la tensione frenante è irrilevante perchè la misura è stata effettuata con il sistema di alimentazione e non con l'oscilloscopio) e si sono cercate le tensioni $U_{A}$ per le quali compare nelle immediate vicinanze della griglia anodica la prima banda luminosa, la seconda, etc. La comparsa delle bande corrisponde ai valori massimi della corrente $I_{C}$. Poichè le misure sono state effettuate ad occhio nudo, si sono stimati gli errori su di esse valutando la tensione minima e massima per cui si vedeva la comparsa di una banda. I risultati sono riportati in tab \ref{massimi}.
+Dopo aver eseguito la procedura di accensione suggerita per l'apparato schematizzato in \figurename{~\ref{fig:circuito}},si è osservata la struttura luminosa nel tetrodo a gas al variare delle tensioni $U_{A}$ e $U_{G}$.
+Come ci si aspetta, mantenendo fisso $U_{G}$ e aumentando la tensione anodica si osserva la comparsa di bande luminose nella parte arancione dello spettro.
+Viceversa fissata la tensione anodica e diminuendo $U_{G}$ si ottengono gli stessi risultati, infatti ciò che conta per accelerare gli elettroni e permettergli di fare urti anelastici con il neon (cioè per far si che l'energia degli elettroni sia superiore alla differenza di energia tra due livelli energetici) è la differenza di potenziale $(U_{A}-U_{G})$.
+% attento qui, per te quale è la griglia di controllo? quella per l'estrazione? se sì, forse andrebbe menzionato che le bande venivano molto distorte dall'azione di questa griglia
+La presenza della griglia di controllo non è strettamente necessaria per osservare le bande, ma permette di definire una superficie equipotenziale, così è come se gli elettroni venissero accelerati all'interno di un condensatore a facce piane parallele.
+
+Si è fissato $U_{G} = 3.8 \pm ??? V$, $U_{F}=8.0 \pm ??? V$, $U_{E} = 10.6 \pm ??? V$(la tensione frenante è irrilevante perchè la misura è stata effettuata con il sistema di alimentazione e non con l'oscilloscopio) e si sono cercate le tensioni $U_{A}$ per le quali compare nelle immediate vicinanze della griglia anodica la prima banda luminosa, la seconda, etc. La comparsa delle bande corrisponde ai valori massimi della corrente $I_{C}$. Poichè le misure sono state effettuate ad occhio nudo, si sono stimati gli errori su di esse valutando la tensione minima e massima per cui si vedeva la comparsa di una banda. I risultati sono riportati in \tablename{~\ref{tab:massimi}}.
 
 \begin{table}[h!]
 \centering
@@ -38,8 +76,8 @@ Banda &1&2&3&4\\
 $U_{A} (V)$ & 22.5$\pm$1.5 & 41.0$\pm$1.5 & 54.5 $\pm$1.0 & 72.0$\pm$4.0  \\ 
 \hline
 \end{tabular}
-\label{massimi}
-\caption{Tensioni $U_{A}$ a fissato $U_{G}$ per cui si osservano le varie bande luminose nelle immediate vicinanze della griglia anodica.} 
+\captionof{table}{Tensioni $U_{A}$ a fissato $U_{G}$ per cui si osservano le varie bande luminose nelle immediate vicinanze della griglia anodica.}
+\label{tab:massimi}
 \end{table}
 
 
@@ -53,10 +91,11 @@ $U_{A} (V)$ & 22.5$\pm$1.5 & 41.0$\pm$1.5 & 54.5 $\pm$1.0 & 72.0$\pm$4.0  \\
 
 In secondo luogo si è attivato il generatore di rampa per $U_{A}$ e si è posto l'oscilloscopio in modalità X-Y (con X = $U_{G}/10$, Y $\propto) I_{C}$) per osservare la curva $I_{C}$ vs $U_{A}$ facendo attenzione a regolare il guadagno dell'opamp in modo da non saturarne l'uscita. Tuttavia poichè il programma non riusciva a prendere foto dall'oscilloscopio (uscivano sfocate), si è deciso di acquisire le immagini in modalità normale, in quanto in un canale si vede la rampa, mentre nell'altro si osserva la stessa curva che si ha in modalità X-Y.
 %questa cosa si deve dire ma i correttori possono fare storie.
-L'andamento è mostrato in figura \ref{andamento}.
+%io quasi quasi non la direi, nessuno ci costringe a mettere una foto in modalità X-Y, possiamo far finta di nulla
+L'andamento è mostrato in figura~\ref{andamento}.
 All'aumentare di $U_{A}$, la corrente $I_{C}$ cresce fino a raggiungere un massimo quando l'energia degli elettroni è in grado di eccitare gli atomi di neon(comparsa della prima banda). La presenza del campo frenante dovuto al potenziale $U_{E}$ non permette a questi elettroni, che hanno perso energia in seguito all'urto, di arrivare all'anodo e quindi la corrente registrata diminuisce. la corrente $I_{C}$ ha un minimo quando la banda luminosa si distacca dalla griglia anodica, segno del fatto che gli elettroni hanno perso troppa energia per eccitare di nuovo il neon.
 Aumentando ancora $U_{A}$ la corrente reinizia ad aumentare fino a raggiungere un nuovo massimo(comparsa della seconda banda) e così via.
-Agendo sulla manopola del potenziale $U_{E}$ si è osservato il variare della curva $I_{C}$ vs $U_{A}$ al variare di $U_{E}$ ottenendo come risultati curve simili alla figura \ref{andamento}, come ad esempio quella mostrata in figura \ref{task5}. All'aumentare di $U_{E}$ anche parte degli elettroni che fanno urti elastici con gli atomi di neon non giungono sull'anodo..%da finire
+Agendo sulla manopola del potenziale $U_{E}$ si è osservato il variare della curva $I_{C}$ vs $U_{A}$ al variare di $U_{E}$ ottenendo come risultati curve simili alla figura~\ref{andamento}, come ad esempio quella mostrata in figura~\ref{task5}. All'aumentare di $U_{E}$ anche parte degli elettroni che fanno urti elastici con gli atomi di neon non giungono sull'anodo..%da finire
   
 %ok, ma perchè abbiamo correnti negative? inoltre mi sembra che la discesa dopo il terzo massimo sia molto più lunga e la risalita molto più breve di quelle con Ue più piccolo.
 %\\FINE PUNTO 5
@@ -65,17 +104,21 @@ Agendo sulla manopola del potenziale $U_{E}$ si è osservato il variare della cu
 
 \section{Grafici e Circuiti}
 
+% un paio di note qui:
+% - io metterei in linea di massima i grafici vicino al testo relativo, in questo modo si spezza anche un po' e risulta di più facile lettura
+% - più sostanziale: devi usare un percorso relativo per le immagini (ad esempio ../ oppure ./) altrimenti il tex compila solo sul tuo computer e non sui nostri
+
 \begin{figure}[h!]
 	\centering
-		\includegraphics[width=0.80\textwidth]{C:/Users/User/Documents/GitHub/Lab3.2/1_Franck_Hertz/grafici/schema_apparato.png}
+		\includegraphics[width=0.80\textwidth]{../grafici/schema_apparato.png}
 	\caption{Schema dell'apparato utilizzato nell'esperienza.}
-	\label{circuito}
+	\label{fig:circuito}
 \end{figure}
 
 
 \begin{figure}[h!]
 	\centering
-		\includegraphics[width=0.80\textwidth]{C:/Users/User/Documents/GitHub/Lab3.2/1_Franck_Hertz/oscilloscopio/correnteanodicatempo1.png}
+		\includegraphics[width=0.80\textwidth]{../oscilloscopio/correnteanodicatempo1.png}
 	\caption{Curva $I_{C} - U_{A}$ con rampa per il potenziale $U_{A}$. I valori dei potenziali sono: $U_{F}=8V$, $U_{E}=9.6V$, $U_{G}=3.9V$.}
 	\label{andamento}
 \end{figure}
@@ -83,7 +126,7 @@ Agendo sulla manopola del potenziale $U_{E}$ si è osservato il variare della cu
 
 \begin{figure}[h!]
 	\centering
-		\includegraphics[width=0.80\textwidth]{C:/Users/User/Documents/GitHub/Lab3.2/1_Franck_Hertz/oscilloscopio/task5.png}
+		\includegraphics[width=0.80\textwidth]{../oscilloscopio/task5.png}
 	\caption{Curva $I_{C} - U_{A}$ per $U_{E}=11.9V$.}
 	\label{task5}
 \end{figure}
