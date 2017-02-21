@@ -33,6 +33,7 @@
 \begin{abstract}
 Lo scopo di questa esperienza è di verificare la struttura discreta dei livelli energetici degll'atomo di neon e di stimare la sua energia di eccitazione mediante lo studio degli effetti dissipativi negli urti anelastici di elettroni su atomi di neon.
 \end{abstract}
+%Devo dire che forse preferivo la sezione Scopo piuttosto che questo Sommario: non mi sembra di scrivere un riassunto in questa parte, è più una dichiarazione d'intenti
 
 \section{Strumentazione }
 
@@ -56,12 +57,18 @@ Dopo aver eseguito la procedura di accensione suggerita per l'apparato schematiz
 \end{figure}
 
 Come ci si aspetta, mantenendo fisso $U_{G}$ e aumentando la tensione anodica si osserva la comparsa di bande luminose nella parte arancione dello spettro.
-Viceversa fissata la tensione anodica e diminuendo $U_{G}$ si ottengono gli stessi risultati, infatti ciò che conta per accelerare gli elettroni e permettergli di fare urti anelastici con il neon (cioè per far si che l'energia degli elettroni sia superiore alla differenza di energia tra due livelli energetici) è la differenza di potenziale $(U_{A}-U_{G})$.
+Viceversa fissata la tensione anodica e diminuendo $U_{G}$ si ottengono gli stessi risultati (ma l'intervallo su cui è possibile far variare $U_{G}$ è più ristretto). Infatti ciò che conta per accelerare gli elettroni e permettergli di fare urti anelastici con il neon (cioè per far si che l'energia degli elettroni sia superiore alla differenza di energia tra due livelli energetici) è la differenza di potenziale $(U_{A}-U_{G})$.
+% Non so se questo sia il posto più adatto per fare osservazioni, ma è solo un fatto di stile, l'osservzione in sè va bene
+
 La presenza della griglia di controllo permette di definire una superficie equipotenziale, così è come se gli elettroni venissero accelerati all'interno di un condensatore a facce piane parallele. Si può notare che diminuendo la tensione ai capi di questa griglia fino a 0, ad un certo punto le bande risultano distorte, in particolare diventando più spesse al centro del tetrodo. Questo è dovuto al fatto che in assenza di potenziale sulla griglia di controllo, il campo elettrico non è proprio uniforme in tutta la regione, tranne al più nella zona centrale, e quindi la maggior parte degli elettroni che non urtano con le pareti laterali del tetrodo saranno proprio quelli accelerati nella zona centrale.
+% è vero che noi ce lo spieghiamo così, è anche vero che questa osservazione non è richiesta, quindi prima di inserire cose sbagliate non richieste io ci penserei bene: non abbiamo la certezza che sia giusta, potremmo anche non scrivercela affatto
 
 % i potenziali U_G ecc li mettiamo senza errore o il manuale dice qualcosa in merito?
+% l'errore ci va necessariamente, dobbiamo solo capire come individuarlo
 
-Si è fissato $U_{G} = \unit{3.8 \pm ???}{V}$, $U_{F}=\unit{8.0 \pm ???}{V}$, $U_{E} = \unit{10.6 \pm ???}{V}$(la tensione frenante è irrilevante perchè la misura è stata effettuata con il sistema di alimentazione e non con l'oscilloscopio) e si sono cercate le tensioni $U_{A}$ per le quali compare nelle immediate vicinanze della griglia anodica la prima banda luminosa, la seconda, etc. La comparsa delle bande corrisponde ai valori massimi della corrente $I_{C}$. Poichè le misure sono state effettuate ad occhio nudo, si sono stimati gli errori su di esse valutando la tensione minima e massima per cui si vedeva la comparsa di una banda. I risultati sono riportati in \tablename{~\ref{tab:massimi}}.
+Si è fissato $U_{G} = \unit{3.8 \pm ???}{V}$, $U_{F}=\unit{8.0 \pm ???}{V}$, $U_{E} = \unit{10.6 \pm ???}{V}$(la tensione frenante è irrilevante perchè la misura è stata effettuata con il sistema di alimentazione e non con l'oscilloscopio) 
+% io direi che è irrilevante perché rilevavamo la presenza di bande con i nostri occhi piuttosto che con l'oscilloscopio, quale misuratore di tensione legga le nostre U a questo livello non è rilevante
+e si sono cercate le tensioni $U_{A}$ per le quali compare nelle immediate vicinanze della griglia anodica la prima banda luminosa, la seconda, etc. La comparsa delle bande corrisponde ai valori massimi della corrente $I_{C}$. Poichè le misure sono state effettuate ad occhio nudo, si sono stimati gli errori su di esse valutando la tensione minima e massima per cui si vedeva la comparsa di una banda. I risultati sono riportati in \tablename{~\ref{tab:massimi}}.
 
 \begin{table}[h!]
 \centering
@@ -69,10 +76,10 @@ Si è fissato $U_{G} = \unit{3.8 \pm ???}{V}$, $U_{F}=\unit{8.0 \pm ???}{V}$, $U
 \hline
 Banda &1&2&3&4\\
 \hline 
-$U_{A} (V)$ & 22.5$\pm$1.5 & 41.0$\pm$1.5 & 54.5 $\pm$1.0 & 72.0$\pm$4.0  \\ 
+$U_{A} \unit{}{(\volt)}$ & 22.5$\pm$1.5 & 41.0$\pm$1.5 & 54.5$\pm$1.0 & 72.0$\pm$4.0  \\ 
 \hline
 \end{tabular}
-\captionof{table}{Tensioni $U_{A}$ a fissato $U_{G}$ per cui si osservano le varie bande luminose nelle immediate vicinanze della griglia anodica.}
+\captionof{table}{Tensioni $U_{A}$ a fissato $U_{G}$ per cui si osservano comparire le varie bande luminose nelle immediate vicinanze della griglia anodica.}
 \label{tab:massimi}
 \end{table}
 
@@ -85,7 +92,7 @@ $U_{A} (V)$ & 22.5$\pm$1.5 & 41.0$\pm$1.5 & 54.5 $\pm$1.0 & 72.0$\pm$4.0  \\
 
 %non so se scrivere questa cosa dato che non è vera, rappresenta solo una stima grezza, si dovrebbe confrontare con i risultati dell'analisi dei dati e poi motivare la discrepanza.
 
-In secondo luogo si è attivato il generatore di rampa per $U_{A}$ e si è posto l'oscilloscopio in modalità normale  per osservare la curva $I_{C}$ vs $U_{A}$ (la stessa curva si può osservare in modalità X-Y, dove X = $U_{G}$/10 e Y $\propto I_{C}$) e la rampa, facendo attenzione a regolare il guadagno dell'opamp in modo da non saturarne l'uscita. L'andamento è mostrato in figura~\ref{andamento}.
+Si è dunque attivato il generatore di rampa per $U_{A}$ e si è posto l'oscilloscopio nel dominio dei tempi per osservare la curva $I_{C}$ vs $U_{A}$ (la stessa curva che si può osservare in modalità X-Y, dove X = $U_{G}$/10 e Y $\propto I_{C}$, data la linearità della rampa) e la rampa stessa, facendo attenzione a regolare il guadagno dell'OpAmp in modo da non saturarne l'uscita. L'andamento è mostrato in \figurename{~\ref{andamento}}.
 
 \begin{figure}[h!]
 	\centering
@@ -97,7 +104,8 @@ In secondo luogo si è attivato il generatore di rampa per $U_{A}$ e si è posto
 
 All'aumentare di $U_{A}$, la corrente $I_{C}$ cresce fino a raggiungere un massimo quando l'energia degli elettroni è in grado di eccitare gli atomi di neon(comparsa della prima banda). La presenza del campo frenante dovuto al potenziale $U_{E}$ non permette a questi elettroni, che hanno perso energia in seguito all'urto, di arrivare all'anodo e quindi la corrente registrata diminuisce. la corrente $I_{C}$ ha un minimo quando la banda luminosa si distacca dalla griglia anodica, segno del fatto che gli elettroni hanno perso troppa energia per eccitare di nuovo il neon.
 Aumentando ancora $U_{A}$ la corrente reinizia ad aumentare fino a raggiungere un nuovo massimo(comparsa della seconda banda) e così via.
-Agendo sulla manopola del potenziale $U_{E}$ si è osservato il variare della curva $I_{C}$ vs $U_{A}$ al variare di $U_{E}$ ottenendo come risultati curve simili alla figura~\ref{andamento}, come ad esempio quella mostrata in figura~\ref{task5}.
+
+Agendo sulla manopola del potenziale $U_{E}$ si è osservato il variare della curva $I_{C}$ vs $U_{A}$ al variare di $U_{E}$ ottenendo come risultati curve simili alla \figurename{~\ref{andamento}}, come ad esempio quella mostrata in \figurename{~\ref{task5}}.
 
 
 \begin{figure}[h!]
@@ -106,15 +114,16 @@ Agendo sulla manopola del potenziale $U_{E}$ si è osservato il variare della cu
 	\caption{Curva $I_{C} - U_{A}$ per $U_{E}=\unit{11.9}{V}$.}
 	\label{task5}
 \end{figure}
-
+%bisogna cambiare figura, come scritto sotto
 
 
 All'aumentare di $U_{E}$ anche parte degli elettroni che fanno urti elastici con gli atomi di neon non giungono sull'anodo..%da finire
   
 %ok, ma perchè abbiamo correnti negative? inoltre mi sembra che la discesa dopo il terzo massimo sia molto più lunga e la risalita molto più breve di quelle con Ue più piccolo.
+%c'è da considerare però che questo fatto è esplicitamente non richiesto: loro ci dicono di partire dal più alto U_E per cui i minimi non sono negativi e di scendere fino a U_E = 0, quindi ci dicono esplicitamente di non esplorare la regione a tensioni negative... forse ci conviene non mettere nessun grafico su questa parte e seguire scrupolosamente il testo (se vogliamo fare qualcosa in più e provare a rispondere a questa domanda direi comunque di inserirla in un'appendice)
 %\\FINE PUNTO 5
 
- \subsection{}
+
 
 
 \end{document}
