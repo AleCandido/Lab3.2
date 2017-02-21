@@ -97,7 +97,7 @@ Si è dunque attivato il generatore di rampa per $U_{A}$ e si è posto l'oscillo
 \begin{figure}[h!]
 	\centering
 		\includegraphics[width=0.80\textwidth]{../oscilloscopio/correnteanodicatempo1.png}
-	\caption{Curva $I_{C} - U_{A}$ con rampa per il potenziale $U_{A}$. I valori dei potenziali sono: $U_{F}=\unit{8}{V}$, $U_{E}=\unit{9.6}{V}$, $U_{G}=\unit{3.9}{V}$.}
+	\caption{Curva $I_{C} - t$ con rampa per il potenziale $U_{A}$. I valori dei potenziali sono: $U_{F}=\unit{8}{V}$, $U_{E}=\unit{9.6}{V}$, $U_{G}=\unit{3.9}{V}$.}
 	\label{andamento}
 \end{figure}
 
@@ -111,11 +111,12 @@ Agendo sulla manopola del potenziale $U_{E}$ si è osservato il variare della cu
 \begin{figure}[h!]
 	\centering
 		\includegraphics[width=0.80\textwidth]{../oscilloscopio/task5.png}
-	\caption{Curva $I_{C} - U_{A}$ per $U_{E}=\unit{11.9}{V}$.}
+	\caption{Curva $I_{C} - t$ per $U_{E}=\unit{11.9}{\volt}$.}
 	\label{task5}
 \end{figure}
 %bisogna cambiare figura, come scritto sotto
 
+\emph{Gli errori sulle tensioni vanno inserite ovunque, anche nelle caption!}
 
 All'aumentare di $U_{E}$ anche parte degli elettroni che fanno urti elastici con gli atomi di neon non giungono sull'anodo..%da finire
   
@@ -123,7 +124,21 @@ All'aumentare di $U_{E}$ anche parte degli elettroni che fanno urti elastici con
 %c'è da considerare però che questo fatto è esplicitamente non richiesto: loro ci dicono di partire dal più alto U_E per cui i minimi non sono negativi e di scendere fino a U_E = 0, quindi ci dicono esplicitamente di non esplorare la regione a tensioni negative... forse ci conviene non mettere nessun grafico su questa parte e seguire scrupolosamente il testo (se vogliamo fare qualcosa in più e provare a rispondere a questa domanda direi comunque di inserirla in un'appendice)
 %\\FINE PUNTO 5
 
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.80\textwidth]{../oscilloscopio/Task6_3.png}
+	\caption{Curva $I_{C} - t$ per $U_{E}=\unit{9.7}{\volt}$ e .$U_{G}=\unit{3.5}{\volt}$}
+	\label{task6.3}
+\end{figure}
 
+In \figurename{\ref{task6.3}} è mostrato il grafico della curva $I_{C} - U_{A}$ con valori di $U_E$ e $U_G$ tali per cui i minimi sono pressoché allineati sull'asse $I_C = 0$.
+
+Il valore minimo di $U_A$ non è fortemente rilevante, in quanto c'è una zona abbastanza ampia per basse $U_A$ (cioè per tempi piccoli a partire dall'istante di trigger) in cui la curva è piuttosto piatta, mentre per la tensione massima di rampa si è potuto scegliere il massimo fornito dall'alimentatore, che consente di osservare il quarto massimo, ma non manda in saturazione l'amplificatore opportunamente regolato (si veda ancora \figurename{\ref{task6.3}}).
+
+%per proseguire da qui in poi servono i valori trovati da Andre (punti 10 e 11)
+%si può inserire qualche foto per il punto 9, ma suggerirei di non inerire tutte e 9 quelle buone, ne scegliamo alcune e le affianchiamo
+%TODO: si deve inserire gli errori per le tensioni, eliminare la parte per correnti negative, eliminare opportunamente le figure inutili e riagganciare le reference alle nuove figure
+%ALTRO: decidere le sorti dell'abstract e del commento sulla sensibilità, prendere una decisione su ogni nota che compare
 
 
 \end{document}
