@@ -19,6 +19,7 @@ def tryparse(s):
         return s
 
 class OscilloscopeData():
+    number=0
 
     def __init__(self,filename, verbose=True, graphicose=True, getall=False):
         self.source=filename
@@ -63,13 +64,19 @@ class OscilloscopeData():
         except Exception as e:
             self.dCH2=np.ones(self.CH2.shape)*np.mean(self.CH2)
             print(e)
-    
-    def plot(self):
-        pylab.figure(0)
+        self.idx=OscilloscopeData.number
+        OscilloscopeData.number+=1
+        
+    def plot(self, freeze=False):
+        '''
+        se freeze è true allora blocca il programma, altrimenti per visualizare il grafico è da chiamare pylab.show()
+        '''
+        pylab.figure(self.idx*2)
         pylab.errorbar(self.T1, self.CH1, self.dCH1)
-        pylab.figure(1)
+        pylab.figure(self.idx*2+1)
         pylab.errorbar(self.T2, self.CH2, self.dCH2)
-        pylab.show()
+        if(freeze):
+            pylab.show()
         
         
 

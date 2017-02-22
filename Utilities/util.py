@@ -3,7 +3,12 @@ import lab
 import uncertainties
 from operator import *
 
+
+
+
+
 defoult_hwindow=30
+
 
 
 def findLocal(data, hwindow, f1, f2, f3):
@@ -36,12 +41,16 @@ def BetterFindLocal(ydata, dydata, hwindow, f1, f2):
     candidati=f1(ydata, hwindow)
     p=lambda x, A, B, C: A*x**2+B*x+C
     for i in candidati:
-        par, covs = lab.curve_fit(p, np.array(range(-hwindow, hwindow)), ydata[i-hwindow: i+hwindow], sigma=dydata)
-        corpar=uncertainties.correlated_values(par, covs)
-        A, B, C=corpar
-        if(f2(A, 0)):
-            print("Warning!!!")
-        massimi.append((i,ydata[i], par, covs, -B/2*A, -B**2/(4*A)+C))
+        try:
+            par, covs = lab.curve_fit(p, np.array(range(-hwindow, hwindow)), ydata[i-hwindow: i+hwindow], sigma=dydata)
+            corpar=uncertainties.correlated_values(par, covs)
+            A, B, C=corpar
+            if(f2(A, 0)):
+                print("Warning!!!")
+            massimi.append((i,ydata[i], par, covs, -B/2*A, -B**2/(4*A)+C))
+        except Exception as e:
+            print(e)
+            massimi.append(e)
     return massimi
 
 
