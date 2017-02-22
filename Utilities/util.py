@@ -56,18 +56,24 @@ findLocalMins.__doc__= '''
     '''
 
 
-def BetterFindLocalMax(ydata, dydata, hwindow=5):
+def BetterFindLocal(ydata, dydata, hwindow=5, f1, f2):
     '''approssima i massimi come parabole e con questo cerca il vero massimo. Se fornita degli errori sulle y fa un lavoretto migliore....'''
     massimi=[]
-    candidati=findLocalMaxs(ydata, hwindow)
+    candidati=f1(ydata, hwindow)
     for i in candidati:
         par, covs = lab.curve_fit(lambda x, A, B, C: A*x**2+B*x+C, np.array(range(-hwindow, hwindow)), ydata[i-hwindow: i+hwindow], sigma=dydata)
         corpar=uncertainties.correlated_values(par, covs)
         A, B, C=corpar
-        if(A>0):
+        if(f2(A, 0)):
             print("Warning!!!")
         massimi.append((i,ydata[i], par, covs, -B/2*A, -B**2/(4*A)+C))
     return massimi
+
+BetterFindLocalMaxs=lambda ydata, dydata, hwindow=5: BetterFindLocal(ydata, dydata, hwindow, findLocalMaxs, ge)
+BetterFindLocalMins=lambda ydata, dydata, hwindow=5: BetterFindLocal(ydata, dydata, hwindow, findLocalMins, le)
+
+
+
 
 
     
