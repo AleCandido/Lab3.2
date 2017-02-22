@@ -53,8 +53,16 @@ class OscilloscopeData():
         self.T2=np.array(t2)
         self.CH1=np.array(ch1)
         self.CH2=np.array(ch2)
-        self.dCH1=mme(np.amax(np.abs(self.CH1)), "volt", "oscil")
-        self.dCH2=mme(np.amax(np.abs(self.CH2)), "volt", "oscil")
+        try:
+            self.dCH1=mme(np.amax(np.abs(self.CH1)), "volt", "oscil")
+        except Exception as e:
+            self.dCH1=np.ones(self.CH1.shape)*np.mean(self.CH1)
+            print(e)
+        try:
+            self.dCH2=mme(np.amax(np.abs(self.CH2)), "volt", "oscil")
+        except Exception as e:
+            self.dCH2=np.ones(self.CH2.shape)*np.mean(self.CH2)
+            print(e)
     
     def plot(self):
         pylab.figure(0)
