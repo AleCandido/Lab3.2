@@ -2,13 +2,13 @@ import numpy as np
 import lab
 import uncertainties
 from operator import *
+import pylab
 
 
+__all__=["defoult_hwindow", "debug", "BetterFindLocalMaxs", "BetterFindLocalMins"]
 
-
-
-defoult_hwindow=30
-
+defoult_hwindow=50
+debug=1
 
 
 def findLocal(data, hwindow, f1, f2, f3):
@@ -42,15 +42,31 @@ def BetterFindLocal(ydata, dydata, hwindow, f1, f2):
     p=lambda x, A, B, C: A*x**2+B*x+C
     for i in candidati:
         try:
-            par, covs = lab.curve_fit(p, np.array(range(-hwindow, hwindow)), ydata[i-hwindow: i+hwindow], sigma=dydata)
+            domain=np.array(range(-hwindow, hwindow))
+            par, covs = lab.curve_fit(p, domain, ydata[i-hwindow: i+hwindow], sigma=dydata)
             corpar=uncertainties.correlated_values(par, covs)
             A, B, C=corpar
             if(f2(A, 0)):
                 print("Warning!!!")
             massimi.append((i,ydata[i], par, covs, -B/2*A, -B**2/(4*A)+C))
+            if(debug>=2):
+                print("start BetterFindLocal debug...")
+                pylab.figure(0)
+                pylab.plot(domain, ydata[i-hwindow: i+hwindow])
+                pylab.plot(domain, p(domain, *par))
+                pylab.show()
+                print("...end BetterFindLocal debug")
         except Exception as e:
             print(e)
             massimi.append(e)
+    if(debug>=1):
+        pylab.figure(0)
+        pylab.plot(range(len(ydata)), ydata)
+        for i in massimi:
+            domain=np.array(range(-hwindow, hwindow))
+            idomain=np.array(range(-hwindow+i[0], hwindow+i[0]))
+            pylab.plot(idomain,p(domain,*i[2]))
+        pylab.show()
     return massimi
 
 
