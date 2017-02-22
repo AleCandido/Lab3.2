@@ -19,7 +19,7 @@ dir= path + "1_Franck_Hertz\\"
 
 from BuzzLightyear import * 
 import uncertainties
-from util import *
+import util
 from Oscillografo import *
 
 for i in range(0, 10):
