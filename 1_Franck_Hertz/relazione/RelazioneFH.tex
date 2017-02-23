@@ -51,7 +51,7 @@ Dopo aver eseguito la procedura di accensione suggerita per l'apparato schematiz
 
 \begin{figure}[h!]
 	\centering
-	\includegraphics[width=0.80\textwidth]{../grafici/schema_apparato.png}
+	\includegraphics[width=0.75\textwidth]{../grafici/schema_apparato.png}
 	\caption{Schema dell'apparato utilizzato nell'esperienza.}
 	\label{fig:circuito}
 \end{figure}
@@ -93,7 +93,6 @@ $U_{A} \unit{}{(\volt)}$ & 22.5 $\pm$ 1.5 & 41.0 $\pm$ 1.5 & 54.5 $\pm$ 1.0 & 72
 \end{table}
 
 La compatibilità fra loro non è ottima, ma non merita ulteriore indagine, infatti la definizione di \emph{comparsa di una banda} è abbastanza ambigua relativamente al fenomeno in esame, per cui gli errori considerati sono evidentemente sottostimati.
-%da confrontare con dati andre e valore atteso
 
 \begin{figure}[h!]
 	\centering
@@ -123,28 +122,76 @@ Il valore minimo di $U_A$ non è particolarmente rilevante per la ricerca dei ma
 	\label{task6.3}
 \end{figure}
 
-\paragraph{}Per ottenere i dati relativi ai massimi si è scelto di acquisire i due canali per mezzo del computer. Si sono ripetute diverse misure per diversi valori delle tensioni frenanti $U_C$. Dalle curve digitalizzate si sono poi estratti massimi e minimi con un opportuno script.L'algoritmo è abbastanza semplice: una finestra scorrevole per l'individuazione grezza di massimi e minimi, poi un fit ad una parabola per ogni punto estremale trovato. Un tipico esempio di minimo minimo fittato è in figura 
+
+\subsection{Individuazione dei massimi in funzione di $U_E$}
+
+Si è proceduto come descritto sulla scheda: una volta trovato il valore di $U_E$ per cui tutti i massimi si allineavano sullo 0 si è diminuita la tensione $U_E$ gradualmente fino a 0, acquisendo di volta in volta i dati relativi alla curva $I_{C} - U_{A}$ e il valore corrispondente della tensione $U_E$.
+
+Si riportano in \figurename{~\ref{fig:UEex1}-~\ref{fig:UEex2}-~\ref{fig:UEex3}} tre grafici, relativi ad alcune tensioni rappresentative degli andamenti dei massimi.
+Si è scelto di procedere con una spaziatura di $\sim \unit{1}{\volt}$ in $U_E$, tranne vicino a 0 in cui si è aumentato il passo a $\sim \unit{1.5}{\volt}$ dato che il comportamento diventava sempre più banalmente monotono.
+
+\begin{figure}[H]
+	\centering
+	\begin{minipage}{0.49\textwidth}
+		\centering
+		\includegraphics[width=0.95\textwidth]{../oscilloscopio/Task9_9.png}
+		\caption{Curva $I_{C} - U_{A}$, con $U_E = \unit{10.0 \pm 0.1}{\volt}$}
+		\label{fig:UEex1}
+	\end{minipage}
+	\begin{minipage}{0.49\textwidth}
+		\centering
+		\includegraphics[width=0.95\textwidth]{../oscilloscopio/Task9_5.png}
+		\caption{Curva $I_{C} - U_{A}$, con $U_E = \unit{6.0 \pm 0.1}{\volt}$}
+		\label{fig:UEex2}
+	\end{minipage}
+	\begin{minipage}{0.55\textwidth}
+		\centering
+		\includegraphics[width=0.95\textwidth]{../oscilloscopio/Task9_0.png}
+		\caption{Curva $I_{C} - U_{A}$, con $U_E = \unit{0.3 \pm 0.1}{\volt}$}
+		\label{fig:UEex3}
+	\end{minipage}
+\end{figure}
+
+Si riporta quindi la \tablename{~\ref{tab:maxfit}}, contenente i valori dei massimi individuati per i 10 valori di $U_E$ esaminati.
+
+\begin{table}[h!]
+	\centering
+	\begin{tabular}{c|c|c|c}
+		\hline
+		$U_E \unit{}{(\volt)}$ & 1 & 2 & 3 \\
+		\hline 
+		0.3 $\pm$ 0.1 & * & * & * \\
+		1.5 $\pm$ 0.1 & 20.065912181026825 $\pm$ 6.e-12 & * & *  \\
+		3.0 $\pm$ 0.1 & 18.180105600033844 $\pm$ 1.6e-12 & 35.480132102176825 $\pm$ 1.4e-12 & *  \\
+		4.0 $\pm$ 0.1 & 18.287762310420632  $\pm$ 1.5e-12 & 35.56243494429923 $\pm$ 9.6e-13 & *  \\
+		5.0 $\pm$ 0.1 & 18.051815714315318  $\pm$ 8.1e-13 & 35.49168824230213 $\pm$ 7.e-13& 68.79959929414346 $\pm$ 1.8e-11 \\
+		6.0 $\pm$ 0.1 & 17.84856829877407   $\pm$ 4.4e-13 & 35.6722840495447 $\pm$ 4.7e-13 & 56.19769987201788 $\pm$ 3.4e-13\\
+		7.0 $\pm$ 0.1 &18.33203126115184 $\pm$ 5.6e-13 & 35.793169756694 $\pm$ 3.5e-13 & 56.40857843207049 $\pm$ 2.2e-13 \\
+		8.0 $\pm$ 0.1 & 18.165680576428752 $\pm$ 7.e-13 & 35.515109603773624$\pm$ 5.2e-13 & 55.76852031379927 $\pm$ 3.5e-13 \\
+		9.0 $\pm$ 0.1 & 18.582315564995 $\pm$  4.e-13 & 35.97854084257551 $\pm$ 2.7e-13& 56.56157463003832 $\pm$ 2.2e-13 \\
+		10.0 $\pm$ 0.1 & 18.827216231727 $\pm$ 3.2e-13 & 36.376256518495374 $\pm$ 1.8e-13& 56.69422853493564 $\pm$ 2.2e-13 \\
+		\hline
+	\end{tabular}
+	\captionof{table}{Tabella dei valori dei massimi della curva $I_{C} - U_{A}$ in funzione di $U_E$. Si sono indicati con * i massimi assenti}
+	\label{tab:maxfit}
+\end{table}
+
+Ci si attende che la spaziatura fra due massimi successivi sia pressoché costante \footnote{A meno di effetti dovuti al cammino libero medio, trascurabili in prima approssimazione}.
+
+%Se vuoi qui puoi riportare la tabella delle differenze
+
+Si riporta infine in \figurename{~\ref{fig:final}} il grafico dell'andamento dei massimi di corrente anodica in funzione della tensione frenante $U_E$.
 
 \begin{figure}[h!]
 	\centering
-	\includegraphics[width=0.80\textwidth]{../grafici/massimo.png}
-	\caption{Massimo trovato trovato dal programma. In azzurro parabola fittata dallo stesso.}
-	\label{task6.3}
+%	\includegraphics[width=0.80\textwidth]{../oscilloscopio/}
+	\caption{Andamento della tensione $U_A$ corrispondente ai massimi di $I_C$, in funzione di $U_E$}
+	\label{fig:final}
 \end{figure}
 
-Questo ha permesso l'individuazione (temporale) dei massimi con una precisione maggiore del singolo campionamento. L'errore fornito dal programma, stimato grazie al fit delle parabole, è sicuramente sottostimato. Non si è infatti svolto alcun tipo di test del $\chi^2$ su tali parabole in quanto...
-
-Si è visto inoltre che la rampa generata dal ELWE è compatibile con una retta. Si è dunque deciso di fittarla per ottenere una stima migliore della tensione $U_A$ nei punti di minimo e massimo. \\
-Valori tipici della pendenza della rampa e della tensione base sono: \\ 
-$m=0.037418\pm 0.000007 V/u.a.$\\
-$q=7.527 \pm 0.007 V$\\
-dove $V/u.a.$(unità arbitrarie) è la differenza di potenziale fra due acquisizioni contigue.
-Sia su $q$ che su $m$ c'è un incertezza di calibrazione del 3\% da aggiungere ai risultati.\\
-
-
- 
-
-
+\emph{\LARGE Andre io il grafico non lo vedo, quindi queste osservazioni devi farle necessariamente tu ---> Falle! \\	
+E scrivi esplicitamente il confronto con le tensioni trovate ad occhio e riportate in \tablename{~\ref{tab:massimi}} \\
+Ovviamente quando hai fatto cancella questo commento}
 
 \section{Note}
 
@@ -154,12 +201,15 @@ Si è ritenuto che l'errore da assumere su tali misure fosse un errore massimo d
 
 Infatti la lettura dei valori era stabile nel tempo, e anche osservando i valori di $U_{A, min}$ e $U_{A, max}$ con l'oscilloscopio (inizio e fine rampa) si ha che le fluttuazioni sono dominate dalla discretizzazione.
 
-\subsection{}
+\subsection{Sulla stima degli errori sulle tensioni relative ai massimi di corrente anodica}
 
-%per proseguire da qui in poi servono i valori trovati da Andre (punti 10 e 11)
-%si può inserire qualche foto per il punto 9, ma suggerirei di non inerire tutte e 9 quelle buone, ne scegliamo alcune e le affianchiamo
-%TODO: si deve inserire gli errori per le tensioni si grafici, cammino libero medio, cose in giro
-%ALTRO: decidere le sorti dell'abstract e del commento sulla sensibilità, prendere una decisione su ogni nota che compare
+\emph{\LARGE Scrivi qui come hai deciso alla fine di valutare l'errore}
 
+%TODO: cammino libero medio
+
+\section{Conclusioni}
+L'interpretazione dei fatti sperimentali qui osservati è già riportata nella scheda relativa all'esperienza, che è da considerarsi come un allegato a questo documento.
+
+Si può affermare che il comportamento osservato è compatibile con l'eccitazione del primo gruppo di livelli del neon, $\sim \unit{16.7}{e\volt}$ sopra il fondamentale, dovuta agli urti anelastici con gli elettroni accelerati dalla d.d.p sulle due griglie.
 
 \end{document}

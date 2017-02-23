@@ -46,10 +46,9 @@ def diffe(l):
         j+=1
         
 util.defoult_hwindow=20
-util.debug=1
 results={}
 for i in range(0, 10):
-    results[i]=[None,None]
+    results[i]=[None,None, None, None]
     base=300
     fine=2200
     
@@ -72,8 +71,11 @@ for i in range(0, 10):
     print("M={}, Q={}".format(m, q))
     print("è da aggiungere unn errore sistematrico di 0.4 volt a Q")
     
-    #costruiamo i dati da far mangiare alla routine di trova massimi....    
+    #costruiamo i dati da far mangiare alla routine di trova massimi....   
+    util.debug=1 
     maxs=util.BetterFindLocalMaxs(o.CH2[base: fine], o.dCH2[base: fine])
+    util.debug=0
+
     vets=[]
     maxs=sorted(maxs, key=lambda x: x[0])
     for max in maxs: 
@@ -84,8 +86,11 @@ for i in range(0, 10):
     if(len(diffs)>0):
         if(rdatas[len(rdatas)-1]>0.4375):
             diffs.pop(len(diffs)-1)
+           # vets.pop(len(vets)-1)
     print(diffs)
-    results[i][0]=diffs #attenzione, l'ultima differenza è sempre da buttare...
+    results[i][0]=diffs
+    results[i][1]=vets
+     #attenzione, l'ultima differenza è sempre da buttare...
     
     maxs=util.BetterFindLocalMins(o.CH2[base: fine], o.dCH2[base: fine])
     maxs=sorted(maxs, key=lambda x: x[0])
@@ -95,7 +100,9 @@ for i in range(0, 10):
     #print(vets)
     diffs=list(diffe(vets))
     print(diffs)
-    results[i][1]=diffs #attenzione, l'ultima differenza è spesso da buttare...
+    results[i][2]=diffs
+    results[i][3]=vets
+     #attenzione, l'ultima differenza è spesso da buttare...
     
 f=open(dir+"results.txt", "w")
 for i in results:
