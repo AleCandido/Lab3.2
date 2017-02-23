@@ -3,20 +3,59 @@ import lab
 import uncertainties
 from operator import *
 import pylab
+import math
 
-
-__all__=["defoult_hwindow", "debug", "BetterFindLocalMaxs", "BetterFindLocalMins"]
+__all__=["defoult_hwindow", "debug", "BetterFindLocalMaxs", "BetterFindLocalMins", "baseplot"]
 
 defoult_hwindow=50
 debug=1
 
+baseplot=1000
+plotnum=[0]
 
-def findLocal(data, hwindow, f1, f2, f3):
+
+
+def findLocalLX(data, hwindow, f1, f2, f3):
     maxs=[]
     for i in range(hwindow, len(data)-hwindow):
         if(f2(data[i], f1(data[i-hwindow: i])) and f3(data[i],f1(data[i+1: i+hwindow+1]))):
            maxs.append(i)
     return maxs
+
+def findLocalDX(data, hwindow, f1, f2, f3):
+    maxs=[]
+    for i in reversed(range(hwindow, len(data)-hwindow)):
+        if(f3(data[i], f1(data[i-hwindow: i])) and f2(data[i],f1(data[i+1: i+hwindow+1]))):
+           maxs.append(i)
+    return maxs
+
+
+
+def findLocal(data, hwindow, f1, f2, f3):
+    lmaxs=findLocalLX(data, hwindow, f1, f2, f3)
+    rmaxs=list(reversed(findLocalDX(data, hwindow, f1, f2, f3)))
+    print(lmaxs)
+    print(len(lmaxs))
+    print(rmaxs)
+    print(len(rmaxs))
+    d={}
+    for l in lmaxs:
+        if(data[l] in d.keys()):
+            d[data[l]].append(l)
+        else:
+            d[data[l]]=[l]
+    for l in rmaxs:
+        if(data[l] in d.keys()):
+            d[data[l]].append(l)
+        else:
+            d[data[l]]=[l]
+    ret=[]
+    for l in d.keys():
+        if(len(d[l])>1):
+            ret.append(math.ceil((d[l][0]+d[l][1])/2))
+    return ret
+
+
 
 findLocalMaxs=(lambda x: lambda data, hwindow: x(data, hwindow, np.amax, gt, ge))(findLocal) #si mi piace supercazzolare, e si, è diverso...
 findLocalMaxs.__doc__=    '''
@@ -51,7 +90,8 @@ def BetterFindLocal(ydata, dydata, hwindow, f1, f2):
             massimi.append((i,ydata[i], par, covs, -B/2*A, -B**2/(4*A)+C))
             if(debug>=2):
                 print("start BetterFindLocal debug...")
-                pylab.figure(0)
+                pylab.figure(baseplot+plotnum[0])
+                plotnum[0]+=1
                 pylab.plot(domain, ydata[i-hwindow: i+hwindow])
                 pylab.plot(domain, p(domain, *par))
                 pylab.show()
@@ -60,7 +100,8 @@ def BetterFindLocal(ydata, dydata, hwindow, f1, f2):
             print(e)
             massimi.append(e)
     if(debug>=1):
-        pylab.figure(0)
+        pylab.figure(baseplot+plotnum[0])
+        plotnum[0]+=1
         pylab.plot(range(len(ydata)), ydata)
         for i in massimi:
             domain=np.array(range(-hwindow, hwindow))
