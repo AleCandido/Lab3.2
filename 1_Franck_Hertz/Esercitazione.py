@@ -75,21 +75,30 @@ for i in range(0, 10):
     #costruiamo i dati da far mangiare alla routine di trova massimi....    
     maxs=util.BetterFindLocalMaxs(o.CH2[base: fine], o.dCH2[base: fine])
     vets=[]
+    maxs=sorted(maxs, key=lambda x: x[0])
     for max in maxs: 
         vets.append(retta(max[0]+max[4] ,mm , qq)) #chiaramente quì all'errore su qq non deve essere aggiunto l'errore sistematico....
-    print(vets)
+    #print(vets)
     diffs=list(diffe(vets))
+    #se l'amplificatore va in clipping allora l'ultimo massimo è finto...
+    if(len(diffs)>0):
+        if(rdatas[len(rdatas)-1]>0.4375):
+            diffs.pop(len(diffs)-1)
     print(diffs)
     results[i][0]=diffs #attenzione, l'ultima differenza è sempre da buttare...
     
     maxs=util.BetterFindLocalMins(o.CH2[base: fine], o.dCH2[base: fine])
+    maxs=sorted(maxs, key=lambda x: x[0])
     vets=[]
     for max in maxs: 
         vets.append(retta(max[0]+max[4] ,mm , qq)) #chiaramente quì all'errore su qq non deve essere aggiunto l'errore sistematico....
-    print(vets)
+    #print(vets)
     diffs=list(diffe(vets))
     print(diffs)
-    results[i][1]=diffs #attenzione, l'ultima differenza è sempre da buttare...
+    results[i][1]=diffs #attenzione, l'ultima differenza è spesso da buttare...
     
-    
-    
+f=open(dir+"results.txt", "w")
+for i in results:
+    f.write(str(i)+"    --->    "+str(results[i])+"\n\r")
+
+f.close()
