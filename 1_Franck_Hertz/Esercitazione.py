@@ -43,9 +43,8 @@ for i in range(5, 6):
     rdatas=o.CH1[o.CH1>0]
     ddatas=o.dCH1[o.CH1>0]
     rdatas=rdatas[0: len(rdatas)-1]
-    ddatas=ddatas[0: len(rdatas)]
     print(ddatas)
-    par, covs=lab.fit_affine_xerr(rdatas, range(rdatas),[0.4])    
+    par, covs=lab.fit_affine_xerr(rdatas, range(len(rdatas)),[0.4])    
     print(par, covs)
     m, q=uncertainties.correlated_values(par, covs)
     M=1/m
