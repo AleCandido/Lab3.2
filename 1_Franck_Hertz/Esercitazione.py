@@ -21,6 +21,7 @@ from BuzzLightyear import *
 import uncertainties
 import util
 from Oscillografo import *
+import lab
 
 
 #non è proprio la cosa giusta, ma basta mettere il giusto g...
@@ -33,45 +34,62 @@ def diffe(l, g=lambda x: x[4]):
 
 
 
+def diffe(l):
+    j=0
+    la=None
+    for i in l:
+        if(j==0):
+            pass
+        else:
+            yield i-la
+        la=i
+        j+=1
+        
 
-
-for i in range(5, 6):
+util.debug=1
+results={}
+for i in range(0, 10):
+    results[i]=[None,None]
+    base=300
+    fine=2200
+    
     file=dir+"csv\\Task9.{}.csv".format(i)
     o=OscilloscopeData(file)
     
-    #fittiamo la retta...
-    rdatas=o.CH1[o.CH1>0]
-    ddatas=o.dCH1[o.CH1>0]
-    rdatas=rdatas[0: len(rdatas)-1]
-    print(ddatas)
-    par, covs=lab.fit_affine_xerr(rdatas, range(len(rdatas)),[0.4])    
+    
+    retta=lambda x, mm, qq: mm*x+qq
+    rdatas=o.CH1[base: fine] #scusate
+    dom=np.array(range(len(rdatas)))
+    par, covs=lab.curve_fit(retta,dom, rdatas)    
     print(par, covs)
     m, q=uncertainties.correlated_values(par, covs)
-    M=1/m
-    Q=-q/m
-    
-    print(M)
-    print(Q)
-    mm=M.n
-    qq=Q.n
-    dom=np.array(range(len(rdatas)))
+    mm=m.n
+    qq=q.n
     pylab.figure(0)
     pylab.plot(dom, rdatas)
-    pylab.plot(dom, (lambda x: mm*x+qq)(dom))
+    pylab.plot(dom, retta(dom, mm, qq))
     
+    print("M={}, Q={}".format(m, q))
+    print("è da aggiungere unn errore sistematrico di 0.4 volt a Q")
     
-    maxs=util.BetterFindLocalMaxs(o.CH2, o.dCH2)#, o.dCH2)#
+    #costruiamo i dati da far mangiare alla routine di trova massimi....    
+    maxs=util.BetterFindLocalMaxs(o.CH2[base: fine], o.dCH2[base: fine])
+    vets=[]
     for max in maxs: 
-        print((max[4], max[5]))
+        vets.append(retta(max[0]+max[4] ,mm , qq)) #chiaramente quì all'errore su qq non deve essere aggiunto l'errore sistematico....
+    print(vets)
+    diffs=list(diffe(vets))
+    print(diffs)
+    results[i][0]=diffs #attenzione, l'ultima differenza è sempre da buttare...
     
-   
-   
-   #  
-   #  diffe1=list(diffe(maxs))
-   #  print(diffe1)
-   #  mins=util.BetterFindLocalMins(o.CH2, o.dCH2)
-   #  print(mins)
-   #  diffe2=list(diffe(mins))
-   #  print("maxsl={}, minl={}".format(len(maxs), len(mins)))
-   #  for i in range(4):
-   #      print("\n\r")
+    maxs=util.BetterFindLocalMins(o.CH2[base: fine], o.dCH2[base: fine])
+    vets=[]
+    for max in maxs: 
+        vets.append(retta(max[0]+max[4] ,mm , qq)) #chiaramente quì all'errore su qq non deve essere aggiunto l'errore sistematico....
+    print(vets)
+    diffs=list(diffe(vets))
+    print(diffs)
+    results[i][1]=diffs #attenzione, l'ultima differenza è sempre da buttare...
+    
+    
+    
