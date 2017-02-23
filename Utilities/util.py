@@ -43,7 +43,7 @@ def BetterFindLocal(ydata, dydata, hwindow, f1, f2):
     for i in candidati:
         try:
             domain=np.array(range(-hwindow, hwindow))
-            par, covs = lab.curve_fit(p, domain, ydata[i-hwindow: i+hwindow], sigma=dydata)
+            par, covs = lab.curve_fit(p, domain, ydata[i-hwindow: i+hwindow], sigma=dydata[i-hwindow: i+hwindow])
             corpar=uncertainties.correlated_values(par, covs)
             A, B, C=corpar
             if(f2(A, 0)):

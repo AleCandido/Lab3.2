@@ -55,12 +55,12 @@ class OscilloscopeData():
         self.CH1=np.array(ch1)
         self.CH2=np.array(ch2)
         try:
-            self.dCH1=mme(np.amax(np.abs(self.CH1)), "volt", "oscil")
+            self.dCH1=np.ones(self.CH1.shape)*mme(np.amax(np.abs(self.CH1)), "volt", "oscil")
         except Exception as e:
             self.dCH1=np.ones(self.CH1.shape)*np.mean(self.CH1)
             print(e)
         try:
-            self.dCH2=mme(np.amax(np.abs(self.CH2)), "volt", "oscil")
+            self.dCH2=np.ones(self.CH2.shape)*mme(np.amax(np.abs(self.CH2)), "volt", "oscil")
         except Exception as e:
             self.dCH2=np.ones(self.CH2.shape)*np.mean(self.CH2)
             print(e)
