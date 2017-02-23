@@ -49,7 +49,7 @@ def diffe(l):
 util.debug=1
 results={}
 for i in range(0, 10):
-    
+    results[i]=[None,None]
     base=300
     fine=2200
     
@@ -80,8 +80,16 @@ for i in range(0, 10):
     print(vets)
     diffs=list(diffe(vets))
     print(diffs)
-    results[i]=diffs #attenzione, l'ultima differenza è sempre da buttare...
+    results[i][0]=diffs #attenzione, l'ultima differenza è sempre da buttare...
     
+    maxs=util.BetterFindLocalMins(o.CH2[base: fine], o.dCH2[base: fine])
+    vets=[]
+    for max in maxs: 
+        vets.append(retta(max[0]+max[4] ,mm , qq)) #chiaramente quì all'errore su qq non deve essere aggiunto l'errore sistematico....
+    print(vets)
+    diffs=list(diffe(vets))
+    print(diffs)
+    results[i][1]=diffs #attenzione, l'ultima differenza è sempre da buttare...
     
     
     
