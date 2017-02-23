@@ -82,15 +82,15 @@ In prima approssimazione ci si aspetta che la differenza fra le tensioni $U_A$ r
 %da confrontare con dati andre e valore atteso
 
 
-Si è dunque attivato il generatore di rampa per $U_{A}$ e si è posto l'oscilloscopio in modalità Y-t per osservare la curva $I_{C}$ vs $U_{A}$ (la stessa curva si può osservare in modalità X-Y, dove X = $U_{G}$/10 e Y $\propto I_{C}$, data la linearità della rampa) e la rampa stessa, facendo attenzione a regolare il guadagno dell'OpAmp in modo da non saturarne l'uscita. L'andamento è mostrato in \figurename{~\ref{andamento}}.
-
 \begin{figure}[h!]
 	\centering
-		\includegraphics[width=0.80\textwidth]{../oscilloscopio/CorrenteAnodicaTempo1.png}
-	\caption{Curva $I_{C} - t$ con rampa per il potenziale $U_{A}$. I valori dei potenziali sono: $U_{F}=\unit{8}{V}$, $U_{E}=\unit{9.6}{V}$, $U_{G}=\unit{3.9}{V}$.}
+	\includegraphics[width=0.80\textwidth]{../oscilloscopio/CorrenteAnodicaTempo1.png}
+	\caption{Curva $I_{C} - t$ con rampa per il potenziale $U_{A}$. I valori dei potenziali sono: $U_{F}=\unit{8.0 \pm 0.1}{V}$, $U_{E}=\unit{9.6 \pm 0.1}{V}$, $U_{G}=\unit{3.9 \pm 0.1}{V}$.}
 	\label{andamento}
 \end{figure}
 
+
+\paragraph{} Si è dunque attivato il generatore di rampa per $U_{A}$ e si è posto l'oscilloscopio in modalità Y-t per osservare la curva $I_{C}$ vs $U_{A}$ (la stessa curva si può osservare in modalità X-Y, dove X = $U_{G}$/10 e Y $\propto I_{C}$, data la linearità della rampa) e la rampa stessa, facendo attenzione a regolare il guadagno dell'OpAmp in modo da non saturarne l'uscita. L'andamento è mostrato in \figurename{~\ref{andamento}}.
 
 All'aumentare di $U_{A}$, la corrente $I_{C}$ cresce fino a raggiungere un massimo quando l'energia degli elettroni è in grado di eccitare gli atomi di neon(comparsa della prima banda). La presenza del campo frenante dovuto al potenziale $U_{E}$ non permette a questi elettroni, che hanno perso energia in seguito all'urto, di arrivare all'anodo e quindi la corrente registrata diminuisce. la corrente $I_{C}$ ha un minimo quando la banda luminosa si distacca dalla griglia anodica, segno del fatto che gli elettroni hanno perso troppa energia per eccitare di nuovo il neon.
 Aumentando ancora $U_{A}$ la corrente reinizia ad aumentare fino a raggiungere un nuovo massimo(comparsa della seconda banda) e così via.
@@ -112,7 +112,6 @@ Ci si può aspettare che ci sia una certa distribuzione sull'energia degli elett
 
 In \figurename{\ref{task6.3}} il grafico mostrato è proprio quello della curva $I_{C} - U_{A}$ con valori di $U_E$ e $U_G$ tali per cui i minimi sono pressoché allineati sull'asse $I_C = 0$.
 
-%piccola modifica a ciò che hai scritto, tutto sommato andava bene anche cosi
 Il valore minimo di $U_A$ non è particolarmente rilevante per la ricerca dei massimi, in quanto c'è una zona abbastanza ampia per basse $U_A$ in cui la curva $I_{C} - U_{A}$ è piuttosto piatta, mentre per la tensione massima della rampa si è potuto scegliere il massimo fornito dall'alimentatore, che consente di osservare il quarto massimo, ma non manda in saturazione l'amplificatore opportunamente regolato (si veda ancora \figurename{\ref{task6.3}}).
 
 %per proseguire da qui in poi servono i valori trovati da Andre (punti 10 e 11)
