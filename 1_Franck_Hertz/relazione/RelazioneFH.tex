@@ -123,6 +123,28 @@ Il valore minimo di $U_A$ non è particolarmente rilevante per la ricerca dei ma
 	\label{task6.3}
 \end{figure}
 
+\paragraph{}Per ottenere i dati relativi ai massimi si è scelto di acquisire i due canali per mezzo del computer. Si sono ripetute diverse misure per diversi valori delle tensioni frenanti $U_C$. Dalle curve digitalizzate si sono poi estratti massimi e minimi con un opportuno script.L'algoritmo è abbastanza semplice: una finestra scorrevole per l'individuazione grezza di massimi e minimi, poi un fit ad una parabola per ogni punto estremale trovato. Un tipico esempio di minimo minimo fittato è in figura 
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.80\textwidth]{../grafici/massimo.png}
+	\caption{Massimo trovato trovato dal programma. In azzurro parabola fittata dallo stesso.}
+	\label{task6.3}
+\end{figure}
+
+
+Si è visto inoltre che la rampa generata dal ELWE è compatibile con una retta. Si è dunque deciso di fittarla per ottenere una stima migliore della tensione $U_A$ nei punti di minimo e massimo. \\
+Valori tipici della pendenza della rampa e della tensione base sono: \\ 
+$m=0.037418\pm 0.000007 V/u.a.$\\
+$q=7.527 \pm 0.007 V$\\
+dove $V/u.a.$(unità arbitrarie) è la differenza di potenziale fra due acquisizioni contigue.
+Sia su $q$ che su $m$ c'è un incertezza di calibrazione del 3\% da aggiungere ai risultati.\\
+
+
+ 
+
+
+
 \section{Note}
 
 \subsection{Sulla stima degli errori del sistema di lettura di corrente ELWE}

@@ -45,7 +45,7 @@ def diffe(l):
         la=i
         j+=1
         
-
+util.defoult_hwindow=20
 util.debug=1
 results={}
 for i in range(0, 10):
@@ -99,6 +99,6 @@ for i in range(0, 10):
     
 f=open(dir+"results.txt", "w")
 for i in results:
-    f.write(str(i)+"    --->    "+str(results[i])+"\n\r")
+    f.write(str(i)+"    --->    "+str(results[i])+"    --->    "+ str(m)+" "+str(q) +"\n\r")
 
 f.close()
