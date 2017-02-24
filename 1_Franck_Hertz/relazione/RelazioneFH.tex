@@ -161,37 +161,58 @@ Si riporta quindi la \tablename{~\ref{tab:maxfit}}, contenente i valori dei mass
 		$U_E \unit{}{(\volt)}$ & 1 & 2 & 3 \\
 		\hline 
 		0.3 $\pm$ 0.1 & * & * & * \\
-		1.5 $\pm$ 0.1 & 20.1 $\pm$ 0.6 & * & *  \\
-		3.0 $\pm$ 0.1 & 18.2 $\pm$ 0.6 & 35.5 $\pm$ 0.8 & *  \\
-		4.0 $\pm$ 0.1 & 18.3  $\pm$ 0.6 & 35.6 $\pm$ 0.8 & *  \\
-		5.0 $\pm$ 0.1 & 18.1  $\pm$ 0.6 & 35.5 $\pm$ 0.8 & 68.8 $\pm$ 1.6 \\
-		6.0 $\pm$ 0.1 & 17.8   $\pm$ 0.6 & 35.6 $\pm$ 0.8 & 56.2 $\pm$ 1.4\\
-		7.0 $\pm$ 0.1 &18.3 $\pm$ 0.6 & 35.7 $\pm$ 0.8 & 56.4 $\pm$ 1.4 \\
-		8.0 $\pm$ 0.1 & 18.2 $\pm$ 0.6 & 35.5$\pm$ 0.8 & 55.8 $\pm$ 1.4 \\
-		9.0 $\pm$ 0.1 & 18.6 $\pm$  0.6 & 35.9 $\pm$ 0.8 & 56.6 $\pm$ 1.4 \\
-		10.0 $\pm$ 0.1 & 18.8 $\pm$ 0.6 & 36.3 $\pm$ 0.8 & 56.7 $\pm$ 1.4 \\
+		1.5 $\pm$ 0.1 & 20.1 $\pm$ 0.4  & * & *  \\
+		3.0 $\pm$ 0.1 & 18.2 $\pm$ 0.4 & 35.5 $\pm$ 0.4 & *  \\
+		4.0 $\pm$ 0.1 & 18.3  $\pm$ 0.4 & 35.6 $\pm$ 0.4 & *  \\
+		5.0 $\pm$ 0.1 & 18.1  $\pm$ 0.4 & 35.5 $\pm$ 0.4 & 68.8 $\pm$ 0.4 \\
+		6.0 $\pm$ 0.1 & 17.8   $\pm$ 0.4 & 35.6 $\pm$ 0.4 & 56.2 $\pm$ 0.4\\
+		7.0 $\pm$ 0.1 &18.3 $\pm$ 0.4 & 35.7 $\pm$ 0.4 & 56.4 $\pm$ 0.4 \\
+		8.0 $\pm$ 0.1 & 18.2 $\pm$ 0.4 & 35.5$\pm$ 0.4 & 55.8 $\pm$ 0.4 \\
+		9.0 $\pm$ 0.1 & 18.6 $\pm$  0.4 & 35.9 $\pm$ 0.4 & 56.6 $\pm$ 0.4 \\
+		10.0 $\pm$ 0.1 & 18.8 $\pm$ 0.4 & 36.3 $\pm$ 0.4 & 56.7 $\pm$ 0.4 \\
 		\hline
 	\end{tabular}
-	\captionof{table}{Tabella dei valori dei massimi della curva $I_{C} - U_{A}$ in funzione di $U_E$. Si sono indicati con * i massimi assenti}
+	\captionof{table}{Tabella dei valori dei massimi della curva $I_{C} - U_{A}$ in funzione di $U_E$. Si sono indicati con * i massimi assenti. Sono stati segnati in tabella solo gli errori di digitalizzazione, considerati scorrelati fra le diverse misure. Tutte le misure sono inoltre da intendersi con un ulteriore errore del 3\% totalmente correlato. Per maggiori dettagli si legga l'apposita sezione delle note}
 	\label{tab:maxfit}
 \end{table}
 
+
 Ci si attende che la spaziatura fra due massimi successivi sia pressoché costante \footnote{A meno di effetti dovuti al cammino libero medio, trascurabili in prima approssimazione}.
 
-%Se vuoi qui puoi riportare la tabella delle differenze
 
-Si riporta infine in \figurename{~\ref{fig:final}} il grafico dell'andamento dei massimi di corrente anodica in funzione della tensione frenante $U_E$.
+Si riporta infine in \figurename{~\ref{fig:final}} il grafico dell'andamento dei punti di massimo di corrente anodica in funzione della tensione frenante $U_E$. Come ci si sarebbe potuto aspettare la tensione di minimo non dipende dalla tensione frenante. In effetti essa serve solamente a impedire agli elettroni che abbiano subito uno scattering anelastico di raggiungere l'anodo, contribuendo alla corrente. 
 
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=0.80\textwidth]{../grafici/finale.pdf}
-	\caption{Andamento della tensione $U_A$ corrispondente ai massimi di $I_C$, in funzione di $U_E$}
+	\caption{Andamento della tensione $U_A$ corrispondente ai massimi di $I_C$, in funzione di $U_E$, e le relative medie. I punti sperimentali segnati in rosso sono stati considerati come outliers e scartati}
 	\label{fig:final}
 \end{figure}
 
-\emph{\LARGE Andre io il grafico non lo vedo, quindi queste osservazioni devi farle necessariamente tu ---> Falle! \\	
-E scrivi esplicitamente il confronto con le tensioni trovate ad occhio e riportate in \tablename{~\ref{tab:massimi}} \\
-Ovviamente quando hai fatto cancella questo commento}
+Le medie e i $\chi^2$ ottenuti sono riassunti nella tabella \ref{tab:finale} \\
+\begin{table}[h!]
+	\centering
+	\begin{tabular}{c|c|c|c|c}
+		\hline
+		tipo & media $V$ & errore (+3\% calibrazione) $V$ & $\chi^2/dof$ & p($\chi^2$) \\
+		\hline 
+		primo & 18.28 &0.02 &4.05/7 & 0.22\\
+		secondo& 35.57 & 0.02& 1.34/7 & 0.01\\
+		terzo & 56.34 & 0.03 &3.2/4 & 0.47\\
+		\hline
+
+	\end{tabular}
+	\captionof{table}{Valori ottenuti. Gli errori in tabella sono quelli scorrelati, ai quali va aggiunto il 3\% totalmente correlato fra le varie misure. Si rimanda all'apposita sezione delle note.}
+	\label{tab:finale}
+\end{table}
+
+Questi valori sono da confrontare con i valori stimati nei punti precedenti. Si nota che sia il primo che il secondo massimo sono stati precedentemente sottostimati e non risultano compatibili. Il terzo massimo risulta invece compatibile con l'errore. Il quarto, analizzato nei punti precedenti, è stato qui ignorato.\\
+Si può finalmente valutare la differenza di tensione fra minimi consecutivi:\\
+$U_2-U_1=17.29 \pm 0.3 V$ \\
+$U_3-U_2=20.77 \pm 0.3 V$\\
+Si nota come gli errori su questi ultimi valori non tengano conto dell'errore di calibrazione, considerato sistematico e parzialmente cancellato nella media.
+Questi valori sfortunatamente non sono compatibili all'interno dell'errore sperimentale.
+ 
 
 \section{Note}
 
@@ -203,7 +224,9 @@ Infatti la lettura dei valori era stabile nel tempo, e anche osservando i valori
 
 \subsection{Sulla stima degli errori sulle tensioni relative ai massimi di corrente anodica}
 
-Gli errori sui punti di massimo della corrente anodica sono essenzialmente dovuti all'errore di calibrazione dell'oscilloscopio (3\%).Questo porta ai dati ottenuti in tabella. 
+Per stimare gli errori sulle tensioni di massimo è bene considerare la procedura sperimentale attuata. Si è infatti acquisito al computer il segnale di rampa e corrente digitalizzato con l'oscilloscopio. Questa scelta è stata attuata per massimizzare la velocità in laboratorio(permettendo così di prendere dati per tanti valori di $U_E$), a scapito però della precisione. Il segnale della rampa è stato infatti digitalizzato con un unico fondo-scala con errore di digitalizzazione   di $0.4 V$. Si è dunque scelto di usare proprio l'errore di digitalizzazione come migliore stima dell'errore nella ricerca dei punti di massimo.  Quest'ultima scelta, a posteriori, è parsa ragionevole anche in vista dei valori dei $\chi^2$ riportati in \ref{tab:finale}. Questi errori sono stati considerati scorrelati.
+
+A questo errore si è aggiunto il 3\% (errore di calibrazione del oscilloscopio), trattato questa volta come totalmente correlato tra le diverse misure(fra i diversi minimi e dunque parzialmente cancellato nelle differenze).
 
 \section{Conclusioni}
 L'interpretazione dei fatti sperimentali qui osservati è già riportata nella scheda relativa all'esperienza, che è da considerarsi come un allegato a questo documento.
