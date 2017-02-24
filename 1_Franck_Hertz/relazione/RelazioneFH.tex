@@ -161,15 +161,15 @@ Si riporta quindi la \tablename{~\ref{tab:maxfit}}, contenente i valori dei mass
 		$U_E \unit{}{(\volt)}$ & 1 & 2 & 3 \\
 		\hline 
 		0.3 $\pm$ 0.1 & * & * & * \\
-		1.5 $\pm$ 0.1 & 20.065912181026825 $\pm$ 6.e-12 & * & *  \\
-		3.0 $\pm$ 0.1 & 18.180105600033844 $\pm$ 1.6e-12 & 35.480132102176825 $\pm$ 1.4e-12 & *  \\
-		4.0 $\pm$ 0.1 & 18.287762310420632  $\pm$ 1.5e-12 & 35.56243494429923 $\pm$ 9.6e-13 & *  \\
-		5.0 $\pm$ 0.1 & 18.051815714315318  $\pm$ 8.1e-13 & 35.49168824230213 $\pm$ 7.e-13& 68.79959929414346 $\pm$ 1.8e-11 \\
-		6.0 $\pm$ 0.1 & 17.84856829877407   $\pm$ 4.4e-13 & 35.6722840495447 $\pm$ 4.7e-13 & 56.19769987201788 $\pm$ 3.4e-13\\
-		7.0 $\pm$ 0.1 &18.33203126115184 $\pm$ 5.6e-13 & 35.793169756694 $\pm$ 3.5e-13 & 56.40857843207049 $\pm$ 2.2e-13 \\
-		8.0 $\pm$ 0.1 & 18.165680576428752 $\pm$ 7.e-13 & 35.515109603773624$\pm$ 5.2e-13 & 55.76852031379927 $\pm$ 3.5e-13 \\
-		9.0 $\pm$ 0.1 & 18.582315564995 $\pm$  4.e-13 & 35.97854084257551 $\pm$ 2.7e-13& 56.56157463003832 $\pm$ 2.2e-13 \\
-		10.0 $\pm$ 0.1 & 18.827216231727 $\pm$ 3.2e-13 & 36.376256518495374 $\pm$ 1.8e-13& 56.69422853493564 $\pm$ 2.2e-13 \\
+		1.5 $\pm$ 0.1 & 20.1 $\pm$ 0.6 & * & *  \\
+		3.0 $\pm$ 0.1 & 18.2 $\pm$ 0.6 & 35.5 $\pm$ 0.8 & *  \\
+		4.0 $\pm$ 0.1 & 18.3  $\pm$ 0.6 & 35.6 $\pm$ 0.8 & *  \\
+		5.0 $\pm$ 0.1 & 18.1  $\pm$ 0.6 & 35.5 $\pm$ 0.8 & 68.8 $\pm$ 1.6 \\
+		6.0 $\pm$ 0.1 & 17.8   $\pm$ 0.6 & 35.6 $\pm$ 0.8 & 56.2 $\pm$ 1.4\\
+		7.0 $\pm$ 0.1 &18.3 $\pm$ 0.6 & 35.7 $\pm$ 0.8 & 56.4 $\pm$ 1.4 \\
+		8.0 $\pm$ 0.1 & 18.2 $\pm$ 0.6 & 35.5$\pm$ 0.8 & 55.8 $\pm$ 1.4 \\
+		9.0 $\pm$ 0.1 & 18.6 $\pm$  0.6 & 35.9 $\pm$ 0.8 & 56.6 $\pm$ 1.4 \\
+		10.0 $\pm$ 0.1 & 18.8 $\pm$ 0.6 & 36.3 $\pm$ 0.8 & 56.7 $\pm$ 1.4 \\
 		\hline
 	\end{tabular}
 	\captionof{table}{Tabella dei valori dei massimi della curva $I_{C} - U_{A}$ in funzione di $U_E$. Si sono indicati con * i massimi assenti}
@@ -184,16 +184,13 @@ Si riporta infine in \figurename{~\ref{fig:final}} il grafico dell'andamento dei
 
 \begin{figure}[h!]
 	\centering
-%	\includegraphics[width=0.80\textwidth]{../oscilloscopio/}
+	\includegraphics[width=0.80\textwidth]{../grafici/finale.pdf}
 	\caption{Andamento della tensione $U_A$ corrispondente ai massimi di $I_C$, in funzione di $U_E$}
 	\label{fig:final}
 \end{figure}
 
 \emph{\LARGE Andre io il grafico non lo vedo, quindi queste osservazioni devi farle necessariamente tu ---> Falle! \\	
 E scrivi esplicitamente il confronto con le tensioni trovate ad occhio e riportate in \tablename{~\ref{tab:massimi}} \\
-Riporto qui le ultime cose da scrivere che sono richieste dalla scheda così da non dover andarle a cercare:
-1) Confrontate le tensioni a cui la corrente IC è massima con le tensioni annotate all'inizio.
-2) Analizzare i dati raccolti per determinare i valori di UA a cui IC è massimo E minimo a UE fissato e mostrate mediante un grafico la loro variazione al variare di UE. \\
 Ovviamente quando hai fatto cancella questo commento}
 
 \section{Note}
@@ -206,11 +203,7 @@ Infatti la lettura dei valori era stabile nel tempo, e anche osservando i valori
 
 \subsection{Sulla stima degli errori sulle tensioni relative ai massimi di corrente anodica}
 
-\emph{\LARGE Scrivi qui come hai deciso alla fine di valutare l'errore \\
- Riguardo al cammino libero medio: se hai fatto qualcosa va bene se no possiamo anche scrivere in due parole che lo trascuriamo. In tal caso io scriverei:
- Si ritiene che gli effetti dovuti al fatto che, raggiunta l’energia di eccitazione, l’elettrone percorre in media un tratto pari al libero cammino medio prima di urtare un atomo, in modo da acquistare un’ulteriore energia cinetica, siano trascurabili in prima approssimazione.}
-
-%TODO: cammino libero medio
+Gli errori sui punti di massimo della corrente anodica sono essenzialmente dovuti all'errore di calibrazione dell'oscilloscopio (3\%).Questo porta ai dati ottenuti in tabella. 
 
 \section{Conclusioni}
 L'interpretazione dei fatti sperimentali qui osservati è già riportata nella scheda relativa all'esperienza, che è da considerarsi come un allegato a questo documento.
