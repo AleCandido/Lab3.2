@@ -1,0 +1,117 @@
+--> mappatura campo bobine
+
+per le misure si è usato un righello, il cui battente non coincideva con la scala graduata
+la differenza è pari a: 5.5e-3
+
+Grandezze caratteristiche per le bobine di Helmotz: esterno 169e-3, ampiezza bobine 19e-3 ampiezza bobine
+tolto involucro esterno: 11e-3
+
+-> mappatura radiale
+bobine
+tensione: 7.6
+corrente: 1.91
+
+#uscita	campo(potenziale Hall)
+2.4e-2	334e-3
+3.5e-2	444e-3
+4.5e-2	537e-3
+5.5e-2	614e-3
+6.4e-2	668e-3
+7.4e-2	714e-3
+8.5e-2	748e-3
+9.6e-2	771e-3
+10.5e-2	781e-3
+11.5e-2	788e-3
+12.5e-2	792e-3
+13.5e-2	793e-3
+14.5e-2	793e-3
+15.5e-2	793e-3
+16.5e-2	792e-3
+17.4e-2	792e-3
+18.5e-2	791e-3
+19.5e-2	790e-3
+20.5e-2	789e-3
+21.5e-2	786e-3
+22.5e-2	781e-3
+23.5e-2	772e-3
+24.5e-2	760e-3
+25.6e-2	737e-3
+26.5e-2	707e-3
+27.5e-2	664e-3
+28.6e-2	592e-3
+30.1e-2	472e-3
+
+-->corrente bobine vs campo nel centro
+distanza: 16.8e-2	(posizione centro)
+
+#corrente	campo
+1.70		691e-3
+1.50		609e-3
+1.29		518e-3
+1.01		402e-3
+0.80		314e-3
+0.59		224e-3
+0.40		144e-3
+0.21		64e-3
+0		25e-3
+
+
+-> misura traccia
+
+--> dipendenza dalla tensione di riscaldamento del filo
+- alle tensioni 6,5 non succede niente
+- a 4 e ancora di piú a 3 si ha che la traccia si divide in una doppia elica
+- a 2 si ha che gradualmente, su tempi scala della decina di secondi, la traccia si attenua, e mentre si attenua il raggio diminuisce
+	- arrivati a un certo raggio si ha un salto: l'alone intorno alla traccia perde quasi tutta la sua luminosità e anche la traccia stessa non è più chiaramente distinguibile, ma pare di distinguere un elica con un passo piuttosto marcato
+	- mi è sembrato ci fossero anche altri salti oltre a quello (Ale)
+
+--> distanze
+distanza lente macchina-piano prima bobina: 375e-3
+
+-->foto traccia
+
+#ID	corrente coil	tensione coil	tensione di accelarazione	qualche cosa (in ampere)
+10	1.30		5.2		299				17.3e-3
+11	1.30		5.2		294				17.0e-3
+12	1.30		5.2		288				16.6e-3
+13	1.30		5.2		281				16.1e-3
+14	1.30		5.2		273				15.7e-3
+15	1.30		5.2		267				15.4e-3
+16	1.30		5.2		258				14.9e-3
+17	1.30		5.2		250				14.3e-3
+18	1.30		5.2		243				14.0e-3
+19	1.30		5.2		237				13.6e-3
+20	1.30		5.2		230				13.2e-3
+21	1.30		5.2		221				12.7e-3
+22	1.30		5.2		216				12.3e-3
+23	1.30		5.2		210				12.0e-3
+24	1.30		5.2		204				11.6e-3
+25	1.30		5.2		195				11.1e-3
+26	1.30		5.2		188				10.7e-3
+27	1.30		5.2		180				10.2e-3
+28	1.30		5.2		239				13.7e-3
+29	1.30		5.2		239				13.7e-3
+30	1.30		5.2		192				10.9e-3
+31	1.30		5.2		192				10.9e-3
+
+32	1.28		5.1		252				14.5e-3
+33	1.28		5.1		252				14.5e-3
+34	1.35		5.4		252				14.5e-3
+35	1.35		5.4		252				14.5e-3
+36	1.40		5.6		252				14.5e-3
+37	1.40		5.6		252				14.5e-3
+38	1.46		5.9		252				14.4e-3
+39	1.46		5.9		252				14.4e-3
+40	1.52		6.1		252				14.4e-3
+41	1.52		6.1		252				14.4e-3
+42	1.61		6.4		252				14.4e-3
+43	1.61		6.4		252				14.4e-3
+44	1.71		6.9		252				14.4e-3
+46	1.71		6.9		252				14.4e-3
+47	1.81		7.3		252				14.4e-3
+48	1.81		7.3		252				14.4e-3
+49	1.90		7.7		252				14.4e-3
+50	1.90		7.7		252				14.4e-3
+
+THE END
+		
