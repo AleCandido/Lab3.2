@@ -2,9 +2,34 @@ import numpy
 import pylab
 import math
 from scipy.optimize import curve_fit
+import os
+import lab
+import uncertainties
+import sys
+import scipy.stats
+
+
+import getpass
+users={"candi": "C:\\Users\\candi\\Documents\\GitHub\\Lab3.2\\",
+"silvanamorreale":"C:\\Users\\silvanamorreale\\Documents\\GitHub\\Lab3.2\\" ,
+"Studenti": "C:\\Users\\Studenti\\Desktop\\Lab3\\",
+"User":"C:\\Users\\User\\Documents\\GitHub\\Lab3.2\\"
+}
+try:
+    user=getpass.getuser()
+    path=users[user]
+    print("buongiorno ", user, "!!!")
+except:
+    raise Error("unknown user, please specify it and the path in the file Esercitazione*.py")
+
+
+sys.path = sys.path + [path]
+dir= path + "2_E-m\\"
+
+a,b =pylab.loadtxt(dir+"data\\46.txt", unpack=True)
 
 #per le notazioni guardare il file pdf 'circle fit'
-a,b = pylab.loadtxt( 'C:\\Users\\candi\\Documents\\GitHub\\Lab3.2\\2_E-m\\data\\46.txt' , unpack = True)
+# a,b = pylab.loadtxt( 'C:\\Users\\User\\Documents\\GitHub\\Lab3.2\\2_E-m\\data\\46.txt' , unpack = True)
 
 # estraggo le righe pari
 a0 = pylab.array([a[i] for i in range(0,len(a),2)]) 
