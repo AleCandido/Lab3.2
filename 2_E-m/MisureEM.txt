@@ -3,6 +3,8 @@
 per le misure si è usato un righello, il cui battente non coincideva con la scala graduata
 la differenza è pari a: 5.5e-3
 
+Effetti dovuti alla geometria proiettiva: rapporto 0.86 $\pm$ 0.01
+
 Grandezze caratteristiche per le bobine di Helmotz: esterno 169e-3, ampiezza bobine 19e-3 ampiezza bobine
 tolto involucro esterno: 11e-3
 

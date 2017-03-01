@@ -2,14 +2,52 @@ import numpy
 import pylab
 import math
 from scipy.optimize import curve_fit
+import os
+import lab
+import uncertainties
+import sys
+import scipy.stats
+
+
+import getpass
+users={"candi": "C:\\Users\\candi\\Documents\\GitHub\\Lab3.2\\",
+"silvanamorreale":"C:\\Users\\silvanamorreale\\Documents\\GitHub\\Lab3.2\\" ,
+"Studenti": "C:\\Users\\Studenti\\Desktop\\Lab3\\",
+"User":"C:\\Users\\User\\Documents\\GitHub\\Lab3.2\\"
+}
+try:
+    user=getpass.getuser()
+    path=users[user]
+    print("buongiorno ", user, "!!!")
+except:
+    raise Error("unknown user, please specify it and the path in the file Esercitazione*.py")
+
+
+sys.path = sys.path + [path]
+dir= path + "2_E-m\\"
+
+a,b =pylab.loadtxt(dir+"data\\46.txt", unpack=True)
 
 #per le notazioni guardare il file pdf 'circle fit'
-x,y= pylab.loadtxt( 'C:\\Users\\candi\\Documents\\GitHub\\Lab3.2\\2_E-m\\data\\12.txt' , unpack = True)
+# a,b = pylab.loadtxt( 'C:\\Users\\User\\Documents\\GitHub\\Lab3.2\\2_E-m\\data\\46.txt' , unpack = True)
 
-dx = 1
-dy = 1
+# estraggo le righe pari
+a0 = pylab.array([a[i] for i in range(0,len(a),2)]) 
+b0 = pylab.array([b[i] for i in range(0,len(b),2)])
+
+# estraggo le righe dispari
+a1 = pylab.array([a[i] for i in range(1,len(a),2)]) 
+b1 = pylab.array([b[i] for i in range(1,len(b),2)])
+
+# compongo l'array dei punti (x1,x2,y1,y2)
+P = pylab.array([a0,a1,b0,b1])
+
+x = (P[0] + P[1])/2
+y = (P[2] + P[3])/2
+dx = abs((P[0] - P[1])/2)   #devo inserire un minimo --> se l'elemento è minore di una soglia applica la soglia
+dy = abs((P[2] - P[3])/2)
+
 pylab.grid()
-
 pylab.xlim(0,max(x)*1.2)
 pylab.ylim(0,max(y)*1.2)
 pylab.xlabel('x')
