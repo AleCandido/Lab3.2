@@ -66,19 +66,27 @@ for z in np.linspace(0.5, 1.5, 10):
 
 #mo' proviamo un fit di tale cosa!!!!
 
-myR=169e-3
+
+
+
+myR=160e-3
 myz0=16.8e-2
 
-def fitField(r, I, a):
+
+###########fit a 4 parametri (I, a=shift, z, R)
+
+npars=4
+
+def fitField(r, I, a, z, R):
     ret=np.zeros(r.shape)
     i=0
     for rr in r:
-        ret[i]=field(rr-a, myR, myz0, I)
+        ret[i]=field(rr-a, R, z, I)
         i+=1
     return ret
 
 
-par, pcov= lab.curve_fit(fitField, xdata, ydata, p0=(1,16e-2), sigma=dydata)
+par, pcov= lab.curve_fit(fitField, xdata, ydata, p0=(1,16e-2, myz0, myR), sigma=dydata)
 print(par, pcov)
 
 
@@ -89,8 +97,16 @@ domain=np.linspace(np.min(xdata), np.max(xdata))
 pylab.plot(domain, fitField(domain, *par))
 pylab.errorbar(xdata, ydata, dydata, dxdata)
 
+chisq=sum((ydata-fitField(xdata, *par))**2/dydata**2)
+
+print(par)
+
+print(chisq, "/", len(xdata)-npars, "prob=", 1-scipy.stats.chi2(len(xdata)-npars).cdf(chisq))
+
+I, DX, Z, R=uncertainties.correlated_values(par, pcov)
+print(I, DX, Z, R)
 
 
-
+############fit a 4 parametri
 
 
