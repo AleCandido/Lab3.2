@@ -33,14 +33,36 @@ dxdata=np.ones(xdata.shape)*0.001
 
 pylab.errorbar(xdata, ydata, dydata, dxdata)
 
+
+epsilon=1e-5
 def field(r, R, z0, I):
-    x=R/r
-    y=(R**2+r**2+z0**2)/Rr
-    fun=lambda teta: (x-np.cos(teta))/(y-2*np.cos(teta))
-    return I*scipy.integrate.quad(fun,0 ,2*np.pi)
+    r=np.abs(r)+epsilon
+    A=(R**2+r**2+z0**2)
+    fun=lambda teta: R*(R-r*np.cos(teta))/(A-2*R*r*np.cos(teta))**3/2
+    return I*scipy.integrate.quad(fun,0 ,2*np.pi)  #scusate per l'integrazione numerica, ma che si può fare altrimenti???
+
+
+
+def myfield(r, R, z0, I):
+    for i in r:
+        yield field(i, R, z0, I)
+
 
 
 pylab.figure(1)
+pylab.title("singola spira")
 domain=np.linspace(-1, 1)
-pylab.plot(domain, field(domain, 1, 1, 1))
+for z in np.linspace(0.5, 2, 10):
+    pylab.plot(domain, list(myfield(domain, 1, z, 1)))
+
+pylab.figure(2)
+pylab.title("doppia")
+for z in np.linspace(0.5, 1.5, 10):
+    pylab.plot(domain, np.array(list(myfield(domain, 3, z, 1)))+np.array(list(myfield(domain, 3, 2-z, 1))))
+    
+
+
+
+
+
 
