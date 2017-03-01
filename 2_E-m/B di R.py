@@ -86,14 +86,14 @@ def fitField(r, I, a, z, R):
     return ret
 
 
-par, pcov= lab.curve_fit(fitField, xdata, ydata, p0=(1,16e-2, myz0, myR), sigma=dydata)
+par, pcov= lab.curve_fit(fitField, xdata, ydata, p0=(1,16e-2, myz0, myR), sigma=dydata, absolute_sigma=True)
 print(par, pcov)
 
 
 
 pylab.figure(3)
 pylab.title("un po'brutto, ma in un certo senso emozionanate!!!")
-domain=np.linspace(np.min(xdata), np.max(xdata))
+domain=np.linspace(np.min(xdata), np.max(xdata), 500)
 pylab.plot(domain, fitField(domain, *par))
 pylab.errorbar(xdata, ydata, dydata, dxdata)
 
@@ -107,6 +107,37 @@ I, DX, Z, R=uncertainties.correlated_values(par, pcov)
 print(I, DX, Z, R)
 
 
-############fit a 4 parametri
+############e se aggiungessimo uno shift a caso...(es campo magnetico terreste...q della calibrazione....???)
 
+
+npars=5
+
+def fitField(r, I, a, z, R, O):
+    ret=np.zeros(r.shape)
+    i=0
+    for rr in r:
+        ret[i]=field(rr-a, R, z, I)+O
+        i+=1
+    return ret
+
+
+par, pcov= lab.curve_fit(fitField, xdata, ydata, p0=(1,16e-2, myz0, myR, 0), sigma=dydata, absolute_sigma=True)
+print(par, pcov)
+
+
+
+pylab.figure(3)
+pylab.title("un po'brutto, ma in un certo senso emozionanate!!!")
+domain=np.linspace(np.min(xdata), np.max(xdata), 500)
+pylab.plot(domain, fitField(domain, *par))
+pylab.errorbar(xdata, ydata, dydata, dxdata)
+
+chisq=sum((ydata-fitField(xdata, *par))**2/dydata**2)
+
+print(par)
+
+print(chisq, "/", len(xdata)-npars, "prob=", 1-scipy.stats.chi2(len(xdata)-npars).cdf(chisq))
+
+I, DX, Z, R, O=uncertainties.correlated_values(par, pcov)
+print(I, DX, Z, R)
 
