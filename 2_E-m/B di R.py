@@ -8,6 +8,9 @@ import scipy.stats
 import scipy.integrate
 
 import getpass
+
+pylab.close("all")
+
 users={"candi": "C:\\Users\\candi\\Documents\\GitHub\\Lab3.2\\",
 "silvanamorreale":"C:\\Users\\silvanamorreale\\Documents\\GitHub\\Lab3.2\\" ,
 "Studenti": "C:\\Users\\Studenti\\Desktop\\Lab3\\",
@@ -39,7 +42,7 @@ def field(r, R, z0, I):
     r=np.abs(r)+epsilon
     A=(R**2+r**2+z0**2)
     fun=lambda teta: R*(R-r*np.cos(teta))/(A-2*R*r*np.cos(teta))**3/2
-    return I*scipy.integrate.quad(fun,0 ,2*np.pi)  #scusate per l'integrazione numerica, ma che si può fare altrimenti???
+    return I*scipy.integrate.quad(fun,0 ,2*np.pi)[0]  #scusate per l'integrazione numerica, ma che si può fare altrimenti???
 
 
 
@@ -60,6 +63,31 @@ pylab.title("doppia")
 for z in np.linspace(0.5, 1.5, 10):
     pylab.plot(domain, np.array(list(myfield(domain, 3, z, 1)))+np.array(list(myfield(domain, 3, 2-z, 1))))
     
+
+#mo' proviamo un fit di tale cosa!!!!
+
+myR=169e-3
+myz0=16.8e-2
+
+def fitField(r, I, a):
+    ret=np.zeros(r.shape)
+    i=0
+    for rr in r:
+        ret[i]=field(rr-a, myR, myz0, I)
+        i+=1
+    return ret
+
+
+par, pcov= lab.curve_fit(fitField, xdata, ydata, p0=(1,16e-2), sigma=dydata)
+print(par, pcov)
+
+
+
+pylab.figure(3)
+pylab.title("un po'brutto, ma in un certo senso emozionanate!!!")
+domain=np.linspace(np.min(xdata), np.max(xdata))
+pylab.plot(domain, fitField(domain, *par))
+pylab.errorbar(xdata, ydata, dydata, dxdata)
 
 
 
