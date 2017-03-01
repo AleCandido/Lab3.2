@@ -1,0 +1,14 @@
+cose a caso
+
+cose a casissimo
+
+1.2e-2	1.11e+11
+1.2e+3	1.11e-12
+
+cose a caso
+
+cose a casissimo
+
+1.2e-2	1.11e+11
+1.2e+3	1.11e-12
+
