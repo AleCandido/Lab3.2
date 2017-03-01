@@ -1,0 +1,19 @@
+du0du[i] = (1/(2*(suv**2 - suu*svv)**2))*(((svvv + suuv)*v[i] + 2*u[i]*v[i]*suv - (3*u[i]**2 + v[i]**2)*svv)*(suv**2 - suu*svv) - (2*suv*v[i] - 2*svv*u[i])*((svvv + suuv)*suv - (suuu + suvv)*svv))
+
+dv0dv[i] = (1/(2*(suv**2 - svv*suu)**2))*(((suuu + suvv)*u[i] + (2*v[i]*u[i])*suv - (3*v[i]**2 + u[i]**2)*suu)*(suv**2 - svv*suu) - (2*suv*u[i] - 2*suu*v[i])*((suuu + suvv)*suv - (svvv + suuv)*suu))
+
+du0dv[i] = (1/(2*(suv**2 - suu*svv)**2))*(((svvv + suuv)*u[i] + (3*v[i]**2 + u[i]**2)*suv - (suuu + suvv)*2*v[i]**2 - 2*u[i]*v[i]*svv)*(suv**2 - suu*svv) - (2*suv*u[i] - 2*suu*v[i])*((svvv + suuv)*suv - (suuu + suvv)*svv))
+
+dv0du[i] = (1/(2*(suv**2 - svv*suu)**2))*(((suuu + suvv)*v[i] + (3*u[i]**2 + v[i]**2)*suv - (svvv + suuv)*2*u[i]**2 - 2*v[i]*u[i]*suu)*(suv**2 - svv*suu) - (2*suv*v[i] - 2*svv*u[i])*((suuu + suvv)*suv - (svvv + suuv)*suu))
+
+##################
+
+# mentre rimpiazzando qualcosina con le funzioni già dichiarate
+
+du0du[i] = (1/(2*det**2))*(((svvv + suuv)*v[i] + 2*u[i]*v[i]*suv - (3*u[i]**2 + v[i]**2)*svv)*det - (2*suv*v[i] - 2*svv*u[i])*2*det1)
+
+dv0dv[i] = (1/(2*det**2))*(((suuu + suvv)*u[i] + (2*v[i]*u[i])*suv - (3*v[i]**2 + u[i]**2)*suu)*det - (2*suv*u[i] - 2*suu*v[i])*2*det2)
+
+du0dv[i] = (1/(2*det**2))*(((svvv + suuv)*u[i] + (3*v[i]**2 + u[i]**2)*suv - (suuu + suvv)*2*v[i]**2 - 2*u[i]*v[i]*svv)*det - (2*suv*u[i] - 2*suu*v[i])*2*det1)
+
+dv0du[i] = (1/(2*det**2))*(((suuu + suvv)*v[i] + (3*u[i]**2 + v[i]**2)*suv - (svvv + suuv)*2*u[i]**2 - 2*v[i]*u[i]*suu)*det - (2*suv*v[i] - 2*svv*u[i])*2*det2)

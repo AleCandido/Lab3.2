@@ -1,0 +1,9 @@
+# calcolo di varianze e covarianze
+
+sigmau2 = sum((du0du[i]**2)*(du[i]**2) + (du0dv[i]**2)*(dv[i]**2))
+
+sigmav2 = sum((dv0du[i]**2)*(du[i]**2) + (dv0dv[i]**2)*(dv[i]**2))
+
+sigmauv = sum((du0du[i]*dv0du[i])*(du[i]**2) + (du0dv[i]*dv0dv[i])*(dv[i]**2))
+
+sigmar2 =
