@@ -35,7 +35,7 @@ cost=lambda x, m, q: m
 a, b=lab.fit_generic_xyerr(retta, cost, xdata, ydata, dxdata, dydata)
 dom=np.linspace(min(xdata), max(xdata), 100)
 m, q=a
-pylab.plot(dom, retta(dom, m, q))
+pylab.plot(dom, retta(dom, m, q), color='r')
 pylab.errorbar(xdata, ydata, dydata, dxdata)
 M, Q=uncertainties.correlated_values(a, b)
 print(M, Q)
@@ -43,3 +43,46 @@ chiq=sum((ydata-retta(xdata, m, q))**2/(dxdata**2+dydata**2))
 print(chiq ,len(xdata-1),1-scipy.stats.chi2(len(xdata)-1).cdf(chiq))
 print("bene, o gli errori sono sbagliati o non è effettivamente una retta!!!!!")
 
+
+###########e se noi in effetti non abbiamo forse cambiato fondoscala....
+
+
+dydata=np.ones(xdata.shape)*lab.mme(np.max(ydata),"volt")
+dxdata=lab.mme(xdata, "ampere")
+print("si è stimato che gli errori sugli ampere fossero gli stessi dati dal multimetro digitale...sarà vero? esiste un manuale?")
+print("stessa cosa per B")
+retta=lambda x, m, q: m*x+q
+cost=lambda x, m, q: m
+a, b=lab.fit_generic_xyerr(retta, cost, xdata, ydata, dxdata, dydata)
+dom=np.linspace(min(xdata), max(xdata), 100)
+m, q=a
+pylab.plot(dom, retta(dom, m, q), color='b')
+pylab.errorbar(xdata, ydata, dydata, dxdata)
+M, Q=uncertainties.correlated_values(a, b)
+print(M, Q)
+chiq=sum((ydata-retta(xdata, m, q))**2/(dxdata**2+dydata**2))
+print(chiq ,len(xdata-1),1-scipy.stats.chi2(len(xdata)-1).cdf(chiq))
+print("bene, o gli errori sono sbagliati o non è effettivamente una retta!!!!!")
+
+
+########forse è il caso di outliare il primo!!!!
+
+xdata=xdata[0:len(xdata)-1]
+ydata=ydata[0:len(ydata)-1]
+#dydata=np.ones(xdata.shape)*lab.mme(np.max(ydata),"volt")
+dydata=lab.mme(ydata,"volt")
+dxdata=lab.mme(xdata, "ampere")
+print("si è stimato che gli errori sugli ampere fossero gli stessi dati dal multimetro digitale...sarà vero? esiste un manuale?")
+print("stessa cosa per B")
+retta=lambda x, m, q: m*x+q
+cost=lambda x, m, q: m
+a, b=lab.fit_generic_xyerr(retta, cost, xdata, ydata, dxdata, dydata)
+dom=np.linspace(min(xdata), max(xdata), 100)
+m, q=a
+pylab.plot(dom, retta(dom, m, q), color='b')
+pylab.errorbar(xdata, ydata, dydata, dxdata)
+M, Q=uncertainties.correlated_values(a, b)
+print(M, Q)
+chiq=sum((ydata-retta(xdata, m, q))**2/(dxdata**2+dydata**2))
+print(chiq ,len(xdata-1),1-scipy.stats.chi2(len(xdata)-1).cdf(chiq))
+print("bene, o gli errori sono sbagliati o non è effettivamente una retta!!!!!")

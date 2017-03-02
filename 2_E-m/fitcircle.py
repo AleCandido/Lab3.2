@@ -1,6 +1,31 @@
 import numpy
 from pylab import *
 from scipy.optimize import curve_fit
+import os
+import lab
+import uncertainties
+import sys
+import scipy.stats
+
+
+import getpass
+users={"candi": "C:\\Users\\candi\\Documents\\GitHub\\Lab3.2\\",
+"silvanamorreale":"C:\\Users\\silvanamorreale\\Documents\\GitHub\\Lab3.2\\" ,
+"Studenti": "C:\\Users\\Studenti\\Desktop\\Lab3\\",
+"User":"C:\\Users\\User\\Documents\\GitHub\\Lab3.2\\"
+}
+try:
+    user=getpass.getuser()
+    path=users[user]
+    print("buongiorno ", user, "!!!")
+except:
+    raise Error("unknown user, please specify it and the path in the file Esercitazione*.py")
+
+
+sys.path = sys.path + [path]
+dir= path + "2_E-m\\"
+
+a,b =pylab.loadtxt(dir+"data\\46.txt", unpack=True)
 
 ids = [i for i in range(11,29)] + [30,32,33,35,37,39,41,44,45,46,48,50]
 rls = []
