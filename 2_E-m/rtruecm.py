@@ -29,7 +29,8 @@ icoil = [ufloat(0,0) for i in range(0,len(preicoil))]
 
 for i in range(0,len(preicoil)):
     icoil[i] = ufloat(preicoil[i],0.01)
-    
+
+epsilon=1e-6
 def field(r, R, z0, I):
     r=np.abs(r)+epsilon
     A=(R**2+r**2+z0**2)
