@@ -1,6 +1,7 @@
 from uncertainties import *
 from scipy.integrate import quad
 
+
 ids = [i for i in range(11,29)] + [30,32,33,35,37,39,41,44,45,46,48,50]
 
 preprevacc = [299, 294, 288, 281, 273, 267, 258, 250, 243, 237, 230, 221, 216, 210, 204, 195, 188, 180, 239, 239, 192, 192, 252, 252, 252, 252, 252, 252, 252, 252, 252, 252, 252, 252, 252, 252, 252, 252, 252, 252]
@@ -45,7 +46,7 @@ for i in range(0,len(rtls)):
 B = [ufloat(0,0) for i in range(0,len(icoil))]
 
 for i in range(0,len(preicoil)):
-    B[i] = ufloat(field(rtt, R0, R0/2, icoil), dfield())
+    B[i] = BBR(rtt[i], icoil[i])#ufloat(field(rtt, R0, R0/2, icoil), dfield())
     
 em = [ufloat(0,0) for i in range(0,len(B))]
 
