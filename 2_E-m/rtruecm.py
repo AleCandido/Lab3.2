@@ -7,6 +7,8 @@ preprevacc = [299, 294, 288, 281, 273, 267, 258, 250, 243, 237, 230, 221, 216, 2
 
 prepreicoil = [1.30, 1.30, 1.30, 1.30, 1.30, 1.30, 1.30, 1.30, 1.30, 1.30, 1.30, 1.30, 1.30, 1.30, 1.30, 1.30, 1.30, 1.30, 1.30, 1.30, 1.30, 1.30, 1.28, 1.28, 1.35, 1.35, 1.40, 1.40, 1.46, 1.46, 1.52, 1.52, 1.61, 1.61, 1.71, 1.71, 1.81, 1.81, 1.90, 1.90]
 
+R0 = 15
+
 prevacc = [preprevacc[i-11] for i in ids]
 preicoil = [prepreicoil[i-11] for i in ids]
 
@@ -35,7 +37,7 @@ def field(r, R, z0, I):
 B = [ufloat(0,0) for i in range(0,len(icoil))]
 
 for i in range(0,len(preicoil)):
-    B[i] = ufloat(field(), )
+    B[i] = ufloat(field(rtls, R0, R0/2, icoil), dfield())
     
 em = [ufloat(0,0) for i in range(0,len(B))]
 
