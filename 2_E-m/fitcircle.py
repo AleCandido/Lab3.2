@@ -154,7 +154,7 @@ for id in ids:
     plot(x0,y0, marker = 'o')
     # print('r  =', r, '+/-', sqrt(sigmar2)/r*100, '%\n')
     
-    rls = rls + [[r, sqrt(sigmar2)/r*100]]
+    rls = rls + [ufloat(r, sqrt(sigmar2))]
     
     x1 = numpy.linspace(x0 - r + 1/10**10, x0 + r - 1/10**10, 1000)
     y1 = numpy.sqrt(r**2-(x1-x0)**2) + y0
