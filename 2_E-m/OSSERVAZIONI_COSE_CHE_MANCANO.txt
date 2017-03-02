@@ -1,0 +1,20 @@
+Scrivo riassunto delle cose che penso siano essenziali all'interno
+della relazione prima di consegnarla e che ancora mancano del tutto su di essa,
+quindi chiunque la consegni, prima di farlo, legga se ci sta tutto!!
+
+
+-Scopo esperienza e strumentazione
+
+- Come posizionare l'asse delle bobine rispetto alla direzione NS individuata 
+dalla bussola
+
+-Grafico Bz in funzione della distanza dall'asse delle spire (con sonda) + 
+confronto uniformità e valore massimo di B (guadagno amplificatore A = 11.1)
+
+-Effetto distorsione Bulbo di vetro (guardare foto preliminari)
+
+-Media valori e/m con errore statistico -> nostro e/m.
+
+-FIT (Br)^2 in funzione di Vacc
+
+-FIT Bz(r_orbita)/Bz_MAX in funzione di r_orbita
