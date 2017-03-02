@@ -7,6 +7,10 @@ preprevacc = [299, 294, 288, 281, 273, 267, 258, 250, 243, 237, 230, 221, 216, 2
 
 prepreicoil = [1.30, 1.30, 1.30, 1.30, 1.30, 1.30, 1.30, 1.30, 1.30, 1.30, 1.30, 1.30, 1.30, 1.30, 1.30, 1.30, 1.30, 1.30, 1.30, 1.30, 1.30, 1.30, 1.28, 1.28, 1.35, 1.35, 1.40, 1.40, 1.46, 1.46, 1.52, 1.52, 1.61, 1.61, 1.71, 1.71, 1.81, 1.81, 1.90, 1.90]
 
+R0 = 15
+D = ufloat(52.5, 0.2)
+d = ufloat(45.0, 0.4)
+
 prevacc = [preprevacc[i-11] for i in ids]
 preicoil = [prepreicoil[i-11] for i in ids]
 
@@ -32,12 +36,17 @@ def field(r, R, z0, I):
     fun=lambda teta: R*(R-r*np.cos(teta))/(A-2*R*r*np.cos(teta))**3/2
     return I*scipy.integrate.quad(fun,0 ,2*np.pi)[0] 
     
+rtt = [0 for i in range(0,len(rtls))]
+
+for i in range(0,len(rtls)):
+    rtt[i] = rtls[i]*d/D
+
 B = [ufloat(0,0) for i in range(0,len(icoil))]
 
 for i in range(0,len(preicoil)):
-    B[i] = ufloat(field(), )
+    B[i] = ufloat(field(rtt, R0, R0/2, icoil), dfield())
     
 em = [ufloat(0,0) for i in range(0,len(B))]
 
 for i in range(0,len(preicoil)):
-    em[i] = 2*vacc[i]/((B[i]*rtls[i])**2)
+    em[i] = 2*vacc[i]/((B[i]*rtt[i])**2)
