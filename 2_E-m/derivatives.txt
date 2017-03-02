@@ -17,3 +17,11 @@ dv0dv[i] = (1/(2*det**2))*(((suuu + suvv)*u[i] + (2*v[i]*u[i])*suv - (3*v[i]**2 
 du0dv[i] = (1/(2*det**2))*(((svvv + suuv)*u[i] + (3*v[i]**2 + u[i]**2)*suv - (suuu + suvv)*2*v[i]**2 - 2*u[i]*v[i]*svv)*det - (2*suv*u[i] - 2*suu*v[i])*2*det1)
 
 dv0du[i] = (1/(2*det**2))*(((suuu + suvv)*v[i] + (3*u[i]**2 + v[i]**2)*suv - (svvv + suuv)*2*u[i]**2 - 2*v[i]*u[i]*suu)*det - (2*suv*v[i] - 2*svv*u[i])*2*det2)
+
+###################
+
+# derivate del raggio
+
+drdu[i] = (u0*du0du[i] + v0*dv0du[i] + u[i]/len(x))/r
+
+drdv[i] = (u0*du0dv[i] + v0*dv0dv[i] + v[i]/len(x))/r
