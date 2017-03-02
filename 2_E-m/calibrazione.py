@@ -139,5 +139,5 @@ for id in ids:
 #     print("offset:", par[1], "+/-", sqrt(cov[1,1]), "pixel")
     plot(a14,dnom,"ko")
     
-    calibrazionels = calibrazionels + [(par[0],sqrt(cov[0,0]))]
-    offsetls = offsetls + [(par[1],sqrt(cov[1,1]))]
+    calibrazionels = calibrazionels + [ufloat(par[0],sqrt(cov[0,0]))]
+    offsetls = offsetls + [ufloat(par[1],sqrt(cov[1,1]))]
