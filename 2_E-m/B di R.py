@@ -141,3 +141,6 @@ print(chisq, "/", len(xdata)-npars, "prob=", 1-scipy.stats.chi2(len(xdata)-npars
 I, DX, Z, R, O=uncertainties.correlated_values(par, pcov)
 print(I, DX, Z, R)
 
+
+
+
