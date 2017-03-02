@@ -34,7 +34,7 @@ chi2ls = []
 
 for id in ids:
     #per le notazioni guardare il file pdf 'circle fit'
-    a,b = loadtxt( 'C:\\Users\\candi\\Documents\\GitHub\\Lab3.2\\2_E-m\\data\\{}.txt'.format(id), unpack = True)
+    a,b = loadtxt(dir + 'data\\{}.txt'.format(id), unpack = True)
     
     # estraggo le righe pari
     a0 = array([a[i] for i in range(0,len(a),2)]) 
