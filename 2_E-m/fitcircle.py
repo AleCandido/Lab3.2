@@ -25,8 +25,6 @@ except:
 sys.path = sys.path + [path]
 dir= path + "2_E-m\\"
 
-a,b =pylab.loadtxt(dir+"data\\46.txt", unpack=True)
-
 ids = [i for i in range(11,29)] + [30,32,33,35,37,39,41,44,45,46,48,50]
 rls = []
 Nigmals = []
