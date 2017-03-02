@@ -23,12 +23,10 @@
 \def\code#1{\texttt{#1}}
 
 
-\title{Misura del rapporto e/m}
+\title{Esperienza di Franck Hertz}
 \author{Gruppo BL \\ Candido Alessandro, Luzio Andrea, Mazziotti Fabrizio}
 
 \begin{document}
-
-\maketitle
 
 \emph{Questo pezzo lo aggiungo non appena vedo la cartella relazione, per non rischiare di fare casini.}
 \section{Elettroni in campo magnetico}
@@ -36,21 +34,22 @@ Dopo aver inserito il bulbo di vetro nel suo socket e acceso i vari alimentatori
 
 % direi di non scrivere tensione Vheat = 7 o 2 V dato che l'esperienza richiedeva di farla variare da 3 a 6, cosi evitiamo il salto misterioso che si vede quando mettiamo a 2
 Si è fissato i valori di $I_{Coil} = \unit{1.17}{A}$ e $V_{Acc} = \unit{230}{V}$ e si è variata la tensione $V_{Heat}$ responsabile dell'emissione degli elettroni per vedere se il raggio della traiettoria dipende da essa.
-Per tensioni $V_{Heat}$ di $\unit{6-5}{V}$ non si osserva nessuna variazione dell'orbita degli elettroni. Quando invece $V_{Heat} = \unit{4-3}{V}$ si osserva che la traccia si divide e va a formare un'elica e inoltre il raggio dell'orbita diminuisce. Si ritiene che ciò sia dovuto
+Per tensioni $V_{Heat}$ di $\unit{6-5}{V}$ non si osserva nessuna variazione dell'orbita degli elettroni. Quando invece $V_{Heat} = \unit{4-3}{V}$ si osserva che la traccia si divide e va a formare un'elica..
 %e il raggio della traiettoria diminuisce? non ricordo. Come lo spieghiamo?
 
 
 Ci si è posti nelle condizioni che si ritenevano ottimali (messo il panno scuro, fissata la posizione della macchina fotografica e il suo ingrandimento, per una successiva unica correzione delle immagini, illuminato la scala graduata) per scattare le foto con la macchina digitale e si è fissato $V_{Heat} = \unit{6}{V}$. In primo luogo si è mantenuta fissa $I_{Coil} = \unit{1.30 \pm 0.01}{A}$
 %ci ho messo un errore di un digit perchè il valore ballonzolava un po'
- e si è variata la tensione di accelerazione per misurare il raggio di curvatura dell'orbita circolare (r). Durante la fase di presa dati si sono stimati i vari raggi con la scala graduata per verificare l'ordine di grandezza di e/m, utilizzando le formule \ref{} e \ref{}. Si è ottenuto e/m $\approx \unit{1.5-1.6 10^{11}}{C/Kg}$, in buon accordo con il valore atteso ($e/m_{th} = \unit{1.75 10^{11}}{C/Kg}$).
-% per fare il calcolo ho utilizzato le due formulette che io metterei all'inizio della relazione nella prima parte.
+ e si è variata la tensione di accelerazione per misurare il raggio di curvatura dell'orbita circolare (r). Durante la fase di presa dati si sono stimati i vari raggi con la scala graduata per verificare l'ordine di grandezza di e/m, utilizzando le formule \ref{} e \ref{}. Si è ottenuto e/m $\approx \unit{10^{11}}{C/Kg}$, in ottimo accordo con il valore atteso ($e/m_{th} = \unit{1.75*10^{11}}{C/Kg}$).
+% (1.5-1.6*10^11) per fare il calcolo ho utilizzato le due formulette che io metterei all'inizio della relazione nella prima parte.
 
 Dopo aver digitalizzato le immagini si è effettuata una misura più accurata di r e del suo errore mediante un fit analitico circolare. Poiché il pennello elettronico ha uno 'spessore' non trascurabile si è scelto di prendere coppie di punti, uno sulla circonferenza più esterna e uno su quella più interna (dove per esterna e interna si intende quelle per le quali si vedeva una sostanziale differenza di luminosità con l'alone circostante). Come punto della circonferenza si è preso la media aritmetica tra questi due punti e come errore la semidispersione. I dati ottenuti sono riportati in \tablename{~\ref{tab:intfisso}}.
-%FIT
+%ci mettiamo anche una foto del fit?
 
 \emph{TABELLA!}
 
-In secondo luogo si è mantenuta fissa $V_{Acc} = \unit{252}{V}$ e si è variata la corrente $I_{coil}$ per misurare il raggio di curvatura dell'orbita circolare (r). Come prima si è fatta una stima dell'ordine di grandezza del valore di e/m, trovando $\approx \unit{1.8-2 10^{11}}{C/Kg}$, e quindi anche in questo caso risulta in accordo con il valore atteso.
+In secondo luogo si è mantenuta fissa $V_{Acc} = \unit{252}{V}$ e si è variata la corrente $I_{coil}$ per misurare il raggio di curvatura dell'orbita circolare (r). Come prima si è fatta una stima dell'ordine di grandezza del valore di e/m che anche in questo caso risulta in accordo con il valore atteso.
+% (1.8-2*10^11)
 Anche in questo caso si è effettuato in fit analitico circolare con la stessa procedura descritta sopra. I dati ottenuti sono riportati in \tablename{~\ref{tab:vacfisso}}
 
 \emph{TABELLA!}
@@ -74,6 +73,28 @@ Il fattore dovuto alla prospettiva risulta pari a $\unit{0.86 \pm 0.01}$.
 
 \subsection{Variazione $B_z(r)$/$B_z^{MAX}$}
 %punto 3.d della scheda sarebbe?
+
+Per meglio stimare la componente $B_z$ presente sulla traiettoria del fascio elettronico si è fatta una scansione con la sonda a effetto Hall facendola scorrere nella guida. Si sono ottenuti i dati in figura.\\
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.80\textwidth]{../figure/B di r.png}
+	\caption{Dati sperimentali scansione in $r$ di $B_z$ e relativo fit. Sulle ordinate si è rappresentato direttamente il valore di tensione output della sonda effetto Hall, misurato con il multimetro.Sovrapposto vi è un fit della curva teorica}
+	\label{task6.3}
+\end{figure}
+
+Si è dunque tentato un fit con una curva teorica. Essa è stata stimata numericamente poiché gli autori non conoscono formule analitiche per gli integrali coinvolti (integrazione della formula di Biot-Savart nella circonferenza). Sono stati lasciati come parametri di fit il il raggio delle bobine ($R$), la distanza bobina centro ($z$), la corrente circolante moltiplicata pesata con il numero di spire e la costante paramagnetica del vuoto ($I$), un offset rispetto al punto $r=0$ ($a$). Si sono ottenuti i seguenti risultati:\\
+
+0.0043+/-0.0019
+
+0.16916+/-0.00018
+
+0.184+/-0.012
+
+0.189+/-0.01
+
+ 
+ 
 
 \section{Calcolo di e/m}
 

@@ -121,13 +121,17 @@ def fitField(r, I, a, z, R, O):
     return ret
 
 
+
+
 par, pcov= lab.curve_fit(fitField, xdata, ydata, p0=(1,16e-2, myz0, myR, 0), sigma=dydata, absolute_sigma=True)
 print(par, pcov)
 
 
 
-pylab.figure(3)
-pylab.title("un po'brutto, ma in un certo senso emozionanate!!!")
+pylab.figure(4)
+pylab.title("Fit V(r) $\sim$ $B_z(r)$")
+pylab.xlabel("spostamento [m]")
+pylab.ylabel("tensione [V]")
 domain=np.linspace(np.min(xdata), np.max(xdata), 500)
 pylab.plot(domain, fitField(domain, *par))
 pylab.errorbar(xdata, ydata, dydata, dxdata)
@@ -142,5 +146,41 @@ I, DX, Z, R, O=uncertainties.correlated_values(par, pcov)
 print(I, DX, Z, R)
 
 
+epsilon=1e-4
+def DfieldDr(r, I, a, z, R, O, errorscale=epsilon):
+    return (field(r+espilon, I, a, z, R, O)-field(r, I, a, z, R, O))/epsilon
+
+def DfieldDI(r, I, a, z, R, O, errorscale=epsilon):
+    return (field(r, I+epsilon, a, z, R, O)-field(r, I, a, z, R, O))/epsilon
+    
+def DfieldDa(r, I, a, z, R, O, errorscale=epsilon):
+    return (field(r, I, a+epsilon, z, R, O)-field(r, I, a, z, R, O))/epsilon
+    
+def DfieldDz(r, I, a, z, R, O, errorscale=epsilon):
+    return (field(r, I, a, z+epsilon, R, O)-field(r, I, a, z, R, O))/epsilon
+    
+def DfieldDR(r, I, a, z, R, O, errorscale=epsilon):
+    return (field(r, I, a, z, R+epsilon, O)-field(r, I, a, z, R, O))/epsilon
+    
+def DfieldDO(r, I, a, z, R, O, errorscale=epsilon):
+    return (field(r, I, a, z, R, O+epsilon)-field(r, I, a, z, R, O))/epsilon
 
 
+def Derive(f, i, epsilon=1e-6):
+    def derivata(*pars):
+        mypars=list(pars)
+        mypars[i]+=epsilon
+        return (f(*mypars)-f(*pars))/epsilon
+    return derivata
+
+def fieldErrorSq(x, dx, pars, dpars):
+    return (dx**2)*Derive(field, 0)(x,*pars)**2+sum(dpars[i]*(Derive(field, 1+i)(r,*pars))**2 for i in range(0, len(pars))) 
+
+
+#valore da usare ora di I è quello fittato per la corrente....
+#Chiaramente questo da il risultato in volt... se si vuole il risultato in gauss bisogna usare la conversione che ora faccio...
+ 
+print(fieldErrorSq(10e-2, 1e-2, [15e-2, 7.5e-2, I.n], [0.1e-2,0.1e-2, I.s]))
+
+    
+    
