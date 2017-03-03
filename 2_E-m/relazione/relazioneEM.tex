@@ -55,7 +55,6 @@ Lo scopo dell’esperienza e’ misurare il rapporto tra la carica dell’elettr
 \end{itemize}
 
 \section{Bobine di Helmholtz}
-\emph{MANCANTE: CAMPO MAGNETICO TERRESTRE}
 
 In questa sezione si è studiato il campo magnetico prodotto dalle bobine di Helmholtz. Per fare questo si è usata una sonda a effetto Hall SS94A1 amplificata con un appropriato circuito. Si è trovato nel datasheet della sonda la specifica $\unit{5.0 \pm 0.1}{\milli\volt/gauss}$, mentre l'amplificatore ha un guadagno di $g = 11.09 \pm 0.003$. Si è provveduto dunque a controllare la linearità della sonda.
 
@@ -118,6 +117,7 @@ i coefficienti $a$ e $b$ di $B(I)=aI+b$ \footnote{dove B è da intendersi nell'a
 		\hline
 		$7.59 \pm 0.17$ & $-0.44 \pm 0.06$\\
 	\end{tabular}
+	\caption{Coefficienti di conversione per il campo magnetico}
 \end{table}
 
 Per una migliore stima del campo sulla circonferenza effettivamente fatta dagli elettroni si è inoltre controllato come vari il campo magnetico in funzione della distanza dall'asse del sistema. Ci si aspetta una curva teorica del tipo mostrato in \figurename{~\ref{fig:TEO}}.
@@ -148,7 +148,10 @@ Dopo aver inserito il bulbo di vetro nel suo socket e acceso i vari alimentatori
 \subsection{Emissione per effetto termoionico}
 
 Si è fissato i valori di $I_{Coil} = \unit{1.17}{A}$ e $V_{Acc} = \unit{230}{V}$ e si è variata la tensione $V_{Heat}$ responsabile dell'emissione degli elettroni per vedere se il raggio della traiettoria dipende da essa.
-Per tensioni $V_{Heat}$ di $\unit{6-5}{V}$ non si osserva nessuna variazione dell'orbita degli elettroni. Quando invece $V_{Heat} = \unit{4-3}{V}$ si osserva che la traccia si divide e va a formare un'elica e inoltre il raggio dell'orbita diminuisce. Diminuire la tensione $V_{Heat}$ significa diminuire la temperatura del cannone elettronico. Ci si aspetta che, indipendentemente da questo, gli elettroni vengono sparati sempre con la stessa velocità media. Tuttavia probabilmente la variazione della temperatura modifica anche altri aspetti del circuito con cui è costruito il cannone e questo dovrebbe causare una progressiva diminuzione della velocità media degli elettroni sparati, con conseguente diminuzione del raggio dell'orbita.
+
+Per tensioni $V_{Heat}$ di $\unit{6-5}{V}$ non si osserva nessuna variazione dell'orbita degli elettroni. Quando invece $V_{Heat} = \unit{4-3}{V}$ si osserva che la traccia si divide e va a formare un'elica e inoltre il raggio dell'orbita diminuisce. Diminuire la tensione $V_{Heat}$ significa diminuire la temperatura del cannone elettronico. 
+
+Ci si aspetta che, indipendentemente da questo, gli elettroni vengono sparati sempre con la stessa velocità media. Tuttavia probabilmente la variazione della temperatura modifica anche altri aspetti del circuito con cui è costruito il cannone e questo dovrebbe causare una progressiva diminuzione della velocità media degli elettroni sparati, con conseguente diminuzione del raggio dell'orbita.
 
 
 \subsection{Condizioni ottimali per le fotografie}
@@ -202,7 +205,7 @@ Il punto 4 invece è stato necessario per evitare di incorrere in un eccessiva d
 
 \paragraph{Fit circolari} Per ottenere i raggi delle circonferenza descritti dall'orbita degli elettroni si sono eseguiti dei fit analitici di circonferenze sui punti digitalizzati. Il metodo di fit seguito corrisponde a quello descritto in \emph{I.Kàsa, "A Circle Fitting Procedure and Its Error Analysis"}.
 Si sono calcolati anche i rispettivi $\chi^2$, considerando come residuo quadratico il quadrato della distanza di ogni punto digitalizzato dalla circonferenza di fit, normalizzato con la somma dei quadrati degli errori sulle coordinate $x$ e $y$.
-Si riportano a titolo di esempio alcuni valori ottenuti in \tablename{~\ref{tab:rpchi2}}
+Si riportano a titolo di esempio alcuni valori ottenuti in \tablename{~\ref{tab:rpchi2}}.
 
 \begin{figure}[H]
 	\centering
@@ -212,14 +215,23 @@ Si riportano a titolo di esempio alcuni valori ottenuti in \tablename{~\ref{tab:
 	\label{tab:rpchi2}
 \end{figure}
 
-\emph{MANCANTE: GIUSTIFICAZIONE ERRORE FLUTTUANTI}
-% contributo del processo manuale di digitalizzazione
-% non chiaramente definito
-% pezzi di immagine distorte più o meno, presenza righello, dispersione della larghezza del fascio luminoso, ...
-% opportunità di fare un fit preliminare, trovare il centro e riprendere i punti lungo i raggi approssimati
-% tentativo fallito con i punti a destra
 
-Si riporta anche l'immagine del risultato di un fit circolare in \figurename{~\ref{fig:fitcfr}}. Si fa notare che è evidenziato anche il centro della circonferenza di fit, mentre per quanto riguarda gli errori sui punti digitalizzati sono pressoché invisibili nella foto (fatta eccezione per pochi), e quello che viene visualizzato sono le estremità delle barre di errore (che si è scelto appositamente di non ridurre in modo da segnalare la presenza dei punti, e consentire, nei pochi casi in cui è possibile, di apprezzare l'errore, che sarebbe stato coperto da qualsiasi altro marcatore).
+\subparagraph{Ulteriori accorgimenti nel processo di digitalizzazione} Si può osservare che i limiti di variabilità di errori percentuali e $\chi^2$ in \tablename{~\ref{tab:rpchi2}} sono molto ampi. Questo è prevalentemente dovuto al processo manuale di digitalizzazione, infatti si sono identificati i seguenti problemi:
+\begin{enumerate}
+	\item la relazione tra i punti delle coppie che costituiscono un singolo dato non è chiaramente definita per un osservatore umano;
+	\item alcune regioni dell'immagine risultano più luminose di altre, a causa dell'illuminazione non perfettamente omogenea;
+	\item il fascio luminoso aumenta la sua larghezza allontanandosi dalla sorgente;
+	\item la presenza del righello molto luminoso rende inutili alcune regioni delle immagini.
+\end{enumerate}
+
+In merito al punto 4 si è scelto di evitare semplicemente le zone di intersezione con l'immagine del righello, eliminando però in alcuni casi una zona significativa dell'immagine (addiritura la metà superiore in alcune foto).
+
+Per il punto 2 non era possibile far nulla di semplice, mentre per il punto 3 si è provato a scegliere di usare solo i punti nella metà di destra delle immagini (le regioni più vicine alla sorgente), ma non ottenendo significativi miglioramenti si è rinunciato a perseguire questa strategia privilegiando il numero di punti.
+
+Infine riguardo al punto 1 non si è stati in grado di attuare una correzione, perché complessa, ma si è ipotizzato di poter ottenere risultati migliori scegliendo di fare un fit preliminare per individuare il centro della circonferenza, e di scegliere di trovare i punti costituenti le coppie sovrapponendo all'immagine una semiretta uscente dal centro, questo avrebbe certamente reso più efficace l'identificazione di punti accoppiati come desiderato.
+
+
+\subparagraph{Grafico del fit}Si riporta anche l'immagine del risultato di un fit circolare in \figurename{~\ref{fig:fitcfr}}. Si fa notare che è evidenziato anche il centro della circonferenza di fit, mentre per quanto riguarda gli errori sui punti digitalizzati sono pressoché invisibili nella foto (fatta eccezione per pochi), e quello che viene visualizzato sono le estremità delle barre di errore (che si è scelto appositamente di non ridurre in modo da segnalare la presenza dei punti, e consentire, nei pochi casi in cui è possibile, di apprezzare l'errore, che sarebbe stato coperto da qualsiasi altro marcatore).
 
 \begin{figure}[H]
 	\centering
