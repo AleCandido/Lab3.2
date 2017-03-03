@@ -19,9 +19,15 @@ preprevacc = [299, 294, 288, 281, 273, 267, 258, 250, 243, 237, 230, 221, 216, 2
 
 prepreicoil = [1.30, 1.30, 1.30, 1.30, 1.30, 1.30, 1.30, 1.30, 1.30, 1.30, 1.30, 1.30, 1.30, 1.30, 1.30, 1.30, 1.30, 1.30, 1.30, 1.30, 1.30, 1.30, 1.28, 1.28, 1.35, 1.35, 1.40, 1.40, 1.46, 1.46, 1.52, 1.52, 1.61, 1.61, 1.71, 1.71, 1.81, 1.81, 1.90, 1.90]
 
+
+AAA=-2048+3344
+BBB=-1925+3507
+
 #R0 = 15
 D = ufloat(52.5, 0.2)
 d = ufloat(45.0, 0.4)
+#D=1
+#d=1
 
 prevacc = [preprevacc[i-11] for i in ids]
 preicoil = [prepreicoil[i-11] for i in ids]
@@ -48,7 +54,7 @@ for i in range(0,len(preicoil)):
 rtt = [0 for i in range(0,len(rtls))]
 
 for i in range(0,len(rtls)):
-    rtt[i] = rtls[i]*d/D
+    rtt[i] = (rtls[i]*d/D)*(BBB/AAA)
 
 ## Campo  magnetico
 
@@ -60,8 +66,6 @@ for i in range(0,len(preicoil)):
    iB[i] = BBR(rtt[i], icoil[i])*1e-4  #in tesla!!!!
    print(iB[i], rtt[i], icoil[i])
    print(BB0field(rtt[i].n))
-  # print(icoil[i])
-  # print(rtt[i])
     
 ## Calcolo di e/m
     
@@ -70,6 +74,9 @@ emn=[0 for i in range(0,len(iB))]
 ems=[0 for i in range(0,len(iB))]
 for i in range(0,len(preicoil)):
     em[i] = 2*vacc[i]/((iB[i]*rtt[i])**2)
+    print(iB[i])
+    print(7.8e-4*icoil[i])
+    print(i)
     emn[i]=em[i].n
     ems[i]=em[i].s
 
@@ -78,11 +85,14 @@ def PN(l):
     for ll in l:
         ret.append(ll.n)
     return ret
+
 def PS(l):
     ret=[]
     for ll in l:
         ret.append(ll.n)
     return ret
+
+
 
 pylab.errorbar(range(len(em)), emn, ems)
 pylab.figure(2)
@@ -92,8 +102,8 @@ print(np.array(ems)/np.array(emn))
 EM, EEM=lab.fit_const_yerr(emn, ems)
 print(uncertainties.ufloat(EM, EEM**0.5))
 
+#scusate, stò fittano una cosa sbagliata....m/e , mica e/m!!!!!!!!!!!
 
-#iiB=uncertainties.unumpy.uarray(iB)
 pylab.figure(200)
 out=[((iB[i]*rtt[i])**2).n for i in range(len(rtt))]
 outs=[((iB[i]*rtt[i])**2).s for i in range(len(rtt))]
