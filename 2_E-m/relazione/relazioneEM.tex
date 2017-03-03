@@ -30,6 +30,9 @@
 
 \maketitle
 
+\section{Bobine di Helmholtz}
+% Questa Andre è tutta tua!
+
 \section{Elettroni in campo magnetico}
 Dopo aver inserito il bulbo di vetro nel suo socket e acceso i vari alimentatori, si ha che gli atomi di $He$ all'interno dell'ampolla emettono radiazione nel visibile in seguito agli urti con gli elettroni. Questo consente di visualizzare il pennello elettronico e misurarne l'orbita (vedi \figurename{~\ref{fig:ex1}}).
 
@@ -67,8 +70,8 @@ In primo luogo si è mantenuta fissa $I_{Coil} = \unit{1.30 \pm 0.01}{A}$ e si �
 
 Si è ottenuto  $e/m \approx \unit{1.5-1.6~10^{11}}{C/Kg}$, in ottimo accordo con il valore atteso ($e/m_{th} = \unit{1.75~10^{11}}{C/Kg}$).
 
-% forse dovrei fare un paragrafo in cui ammetto che come errori abbiamo preso un digit, tipo: \paragraph{Osservazione} Si è considerato ...
-% sono d'accordo a scrivere quali errori abbiamo considerato ma secondo me non in un paragrafo a parte ma all'interno della sezione inerente, altrimenti è tutto troppo frammentato
+\paragraph{Osservazione} Si è considerato come errore sulle letture degli alimentatori $1$ digit, in quanto non si dispone di datasheet relativo e avendo osservato che il valore visualizzato fosse perfettamente stabile nel tempo, sia a breve che a lungo termine.
+
 \subsection{Risultati dei fit}
 
 Per ottenere una misurata più accurata del raggio dell'orbita, e quindi di $e/m$ in ultima analisi, si è proceduto come segue:
@@ -95,33 +98,69 @@ Per quel che riguarda il terzo punto si è scelto di operare in questo modo cos�
 Il punto 4 invece è stato necessario per evitare di incorrere in un eccessiva deformazine del righello a causa della distorsione ottica dovuta al bulbo di vetro.
 
 \paragraph{Fit circolari} Per ottenere i raggi delle circonferenza descritti dall'orbita degli elettroni si sono eseguiti dei fit analitici di circonferenze sui punti digitalizzati. Il metodo di fit seguito corrisponde a quello descritto in \emph{I.Kàsa, "A Circle Fitting Procedure and Its Error Analysis"}.
-Si sono calcolati anche i rispettivi $\chi^2$, considerando come residuo quadratico il quadrato della distanza di ogni punto digitalizzato dalla circonferenza di fit normalizzato con la somma dei quadrati degli errori sulle coordinate $x$ e $y$.
+Si sono calcolati anche i rispettivi $\chi^2$, considerando come residuo quadratico il quadrato della distanza di ogni punto digitalizzato dalla circonferenza di fit, normalizzato con la somma dei quadrati degli errori sulle coordinate $x$ e $y$.
 Si riportano a titolo di esempio alcuni valori ottenuti in \tablename{~\ref{tab:rpchi2}}
 
 \begin{figure}[H]
 	\centering
 	\resizebox{0.3\textwidth}{!}{
 		\input{../tabelle/tab_somer.txt}}
-	\captionof{table}{Alcuni raggi ottenuti dai fit con relativi errori percentuali e $\chi^2$}
+	\captionof{table}{Alcuni raggi ottenuti dai fit con relativi errori percentuali e $\chi^2$ normalizzato}
 	\label{tab:rpchi2}
 \end{figure}
 
-\paragraph{}In secondo luogo si è mantenuta fissa $V_{Acc} = \unit{252}{V}$ e si è variata la corrente $I_{coil}$ per misurare il raggio di curvatura dell'orbita circolare (r). Come prima si è fatta una stima dell'ordine di grandezza del valore di e/m che anche in questo caso risulta in accordo con il valore atteso.
-% (1.8-2*10^11)
-Anche in questo caso si è effettuato in fit analitico circolare con la stessa procedura descritta sopra. I dati ottenuti sono riportati in \tablename{~\ref{tab:vacfisso}}
+Si riporta anche l'immagine del risultato di un fit circolare in \figurename{~\ref{fig:fitcfr}}. Si fa notare che è evidenziato anche il centro della circonferenza di fit, mentre per quanto riguarda gli errori sui punti digitalizzati sono pressoché invisibili nella foto (fatta eccezione per pochi), e quello che viene visualizzato sono le estremità delle barre di errore (che si è scelto appositamente di non ridurre in modo da segnalare la presenza dei punti, e consentire, nei pochi casi in cui è possibile, di apprezzare l'errore, che sarebbe stato coperto da qualsiasi altro marcatore).
 
-\emph{TABELLA!}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\textwidth]{../grafici/39.pdf}
+	\caption{Risultato di un fit (linea continua) e punti digitalizzati (croci)}
+	\label{fig:fitcfr}
+\end{figure}
+
+\paragraph{Calibrazione delle immagini} Ottenuti i raggi in $pixel$ si è dunque cercato il fattore di conversione per passare a unità fisiche (cm). Per fare ciò si sono sfruttati i valori digitalizzati dei punti corrispondenti alle tacche del righello luminoso.
+
+Si specifica innanzi tutto che gli errori sulle coordinate di tali punti sono stati stimati considerando la larghezza di tacca nella direzione orizzontale del righello e la sfrangiatura del fine tacca nela direzione verticale.\footnote{Anche in questo caso, come nella nota precedente, l'errore è inteso in senso quanto più possibile statistico, e non come errore massimo.}
+In questo caso l'errore è stato assunto costante per tutti i punti, dato che le tacche di un righello presentano poca variabilità (a meno di significativo deteriorarmento, caso che non si è presentato).
+
+Si è dunque eseguito un primo fit per determinare l'asse del righello, fittando le coordinate $x$ e $y$ dei punti con una retta affine.
+Si sono poi proiettati i punti sulla retta trovata in modo analitico\footnote{Semplici calcoli di geometria analitica danno la formula della proiezione di un punto su una retta.}, e secondo tale formula si è propagato l'errore su tali proiezioni.
+
+Si sono dunque calcolate le distanze di queste proiezioni dalla prima di esse (considerata come la più a sinistra nelle foto). Si è infine eseguito un fit di una retta considerando come ordinate tali distanze e come ascisse una progressione aritmetica di ragione $\unit{5}{\milli\meter}$, cioè le distanze fisiche fra le tacche del righello considerate.
+
+Per ogni foto si è ottenuto quindi un certo valore per la calibrazione, tutti compatibili con  $\unit{173}{pixel / \centi\meter}$ (differiscono alla prima cifra decimale). Anche di queste se ne riportano alcune in \tablename{~\ref{tab:somecal}}
+
+\begin{figure}[H]
+	\centering
+	\resizebox{0.3\textwidth}{!}{
+		\input{../tabelle/tab_somecal.txt}}
+	\captionof{table}{Alcuni raggi ottenuti dai fit con relativi errori percentuali e $\chi^2$ normalizzato}
+	\label{tab:somecal}
+\end{figure}
+
+
+\paragraph{Errore dovuto alla prospettiva} Il piano della scala graduata è diverso dal piano dell'orbita, quindi si deve tener conto di ciò. Si è misurata la distanza della lente della fotocamera dal piano del righello illuminato presente nelle foto ($D$), e anche la distanza dal piano dell'orbita degli elettroni sempre rispetto alla lente ($d$).
+Si riportano in \tablename{~\ref{tab:dist}}.
+\begin{table}[H]
+	\centering
+	\begin{tabular}{c|c}
+		$D$ [cm] & $d$ [cm]\\
+		\hline
+		$52.5 \pm 0.2$ & $45.0 \pm 0.4$\\
+	\end{tabular}
+	\caption{Distanze sull'asse ottico}
+	\label{tab:dist}
+\end{table}
+
+Il fattore di correzione alla prospettiva risulta pari a $\unit{0.86 \pm 0.01}{}$.
+
+\subsection{Valori di $e/m$ ottenuti}
+
+% questa la devi completare te Andre, con tabella, media e osservazioni
+
+% riportare in un grafico (Bz r)^2 in funzione di Vacc
+
 \section{Valutazione errori sistematici}
-
-\subsection{Errore dovuto alla geometria proiettiva}
-Il piano della scala graduata è diverso dal piano dell'orbita, quindi si deve tener conto di ciò. Si è misurata la distanza della lente della fotocamera dal piano del righello illuminato presente nelle foto($D$), e anche la distanza dal piano dell'orbita degli elettroni sempre rispetto alla lente($d$).
-Si riportano in \tablename(\ref{}).
-
-$D = 52.5 \pm 0.2$
-$d = 45.0 \pm 0.4$
-
-Il fattore dovuto alla prospettiva risulta pari a $\unit{0.86 \pm 0.01}{}$. 
-%da finire e riportare tabella con i valori nuovi ottenuti per r e i relativi valori di e/m
 
 \paragraph{Osservazione}
 Un ulteriore verifica che bisogna fare è che il piano contenente l'orbita sia parallelo a quello contenente la lente della fotocamera, altrimenti le immagini prese non risultano essere circonferenze ma ellissi. A tal proposito si sono effettuati fit analitici ellittici per quantificare eventuali discrepanze dovute al non parallelismo tra i due piani, ottenendo una correzione ai raggi delle orbite di un'ulteriore $0,5\%$.
@@ -131,7 +170,6 @@ Un ulteriore verifica che bisogna fare è che il piano contenente l'orbita sia p
 %Si consiglia di prendere una foto della scala graduata (illuminata) posta dietro la seconda bobina in assenza il bulbo di vetro, per valutare successivamente l’effetto di distorsione introdotto dalla rifrazione del bulbo.
 
 \subsection{Variazione $B_z(r)$/$B_z^{MAX}$}
-%punto 3.d della scheda sarebbe?
 
 Per meglio stimare la componente $B_z$ presente sulla traiettoria del fascio elettronico si è fatta una scansione con la sonda a effetto Hall facendola scorrere nella guida. Si sono ottenuti i dati in figura.\\
 
@@ -151,15 +189,6 @@ Si è dunque tentato un fit con una curva teorica. Essa è stata stimata numeric
 0.184+/-0.012
 
 0.189+/-0.01
-
- 
- 
-
-\section{Calcolo di e/m}
-
-%Trovare la media dei valori ottenuti per e/m con l’errore statistico
-
-%Riportare in un grafico (Bz r)^2 in funzione di Vacc
 
 
 \end{document}
