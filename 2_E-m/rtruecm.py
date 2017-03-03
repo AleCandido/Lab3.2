@@ -87,7 +87,8 @@ def PS(l):
 pylab.errorbar(range(len(em)), emn, ems)
 pylab.figure(2)
 pylab.errorbar(range(len(iB)), PN(iB))
-
+print(em)
+print(np.array(ems)/np.array(emn))
 EM, EEM=lab.fit_const_yerr(emn, ems)
 print(uncertainties.ufloat(EM, EEM**0.5))
 
