@@ -68,14 +68,19 @@ Per fare ciò ci si è posti con la sonda nel centro della bobina e si è variat
 	\label{fig:ex1}
 \end{figure}
 
-I risultati dei due fit sono i seguenti:\\
-$m=0.39509\pm0.00002 V/A$ \\
-$chi^2/d.o.f.=2.0/7$  $p_{value}0.92$\\
+I risultati dei due fit sono i seguenti:
 
-e\\
-
-$m=0.422\pm 0.007 V/A$ \\ $q=-0.025\pm 0.004 V$\\
-$chi^2/d.o.f.=0.008/8$  $p_{value}=1$\\
+\begin{table}
+	\centering
+\begin{tabular}{c|c|c}
+		& retta per l'origine & retta affine\\
+	\hline
+	$m$ & $\unit{0.39509 \pm 0.00002}{\volt/\ampere}$ & $\unit{0.422 \pm 0.007}{\volt/\ampere}$ \\
+	$q$ & & $\unit{-0.025 \pm 0.004}{\volt}$\\
+	$chi^2/d.o.f.$ & $2.0/7$ & $0.008/8$ \\
+	$p_{value}$ & $0.92$ & $1$\\
+\end{tabular}
+\end{table}
 
 Per queste due calibrazioni gli errori sulla corrente sono stati stimati essere all'incirca di un digit, mentre per quelli sulla tensione, in mancanza di ulteriori informazioni, si sono considerati comparabili a quelli forniti dal datasheet nel multimetro usato in lab.
 
@@ -197,13 +202,12 @@ Si riportano a titolo di esempio alcuni valori ottenuti in \tablename{~\ref{tab:
 
 Si riporta anche l'immagine del risultato di un fit circolare in \figurename{~\ref{fig:fitcfr}}. Si fa notare che è evidenziato anche il centro della circonferenza di fit, mentre per quanto riguarda gli errori sui punti digitalizzati sono pressoché invisibili nella foto (fatta eccezione per pochi), e quello che viene visualizzato sono le estremità delle barre di errore (che si è scelto appositamente di non ridurre in modo da segnalare la presenza dei punti, e consentire, nei pochi casi in cui è possibile, di apprezzare l'errore, che sarebbe stato coperto da qualsiasi altro marcatore).
 
-\emph{FIGURA DA INSERIRE}
-%\begin{figure}[H]
-%	\centering
-%	\includegraphics[width=0.8\textwidth]{../grafici/39.pdf}
-%	\caption{Risultato di un fit (linea continua) e punti digitalizzati (croci)}
-%	\label{fig:fitcfr}
-%\end{figure}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\textwidth]{../grafici/39.pdf}
+	\caption{Risultato di un fit (linea continua) e punti digitalizzati (croci)}
+	\label{fig:fitcfr}
+\end{figure}
 
 \paragraph{Calibrazione delle immagini} Ottenuti i raggi in $pixel$ si è dunque cercato il fattore di conversione per passare a unità fisiche (cm). Per fare ciò si sono sfruttati i valori digitalizzati dei punti corrispondenti alle tacche del righello luminoso.
 
