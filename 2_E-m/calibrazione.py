@@ -37,9 +37,9 @@ for id in ids:
         y[i] = ufloat(b13[i], dy)
     
     # graphic to view data
-    figure(id)
+    # figure(id)
     # subplot(2,1,1)
-    errorbar(a13,b13,dy,dx, linestyle = '' , color = 'black', marker = '.')
+    # errorbar(a13,b13,dy,dx, linestyle = '' , color = 'black', marker = '.')
     rc('font',size=16)
     xlabel('', labelpad = -7)
     ylabel('')
@@ -101,7 +101,7 @@ for id in ids:
     
     # prepare a dummy array and plot the fitting curve 
     xx=linspace(min(a13),max(a13),100)
-    plot(xx,func(xx,pars[0],pars[1]))
+    # plot(xx,func(xx,pars[0],pars[1]))
     # savefig(’figure1.pdf’)
     a = ufloat(pars[0],sqrt(covm[0,0]))
     b = ufloat(pars[1],sqrt(covm[1,1]))
@@ -132,12 +132,12 @@ for id in ids:
     a14 = array([i/2 for i in range(1,len(d))])
     
     
-    figure(100 + id)
+    # figure(100 + id)
     from lab import fit_linear
     par,cov = fit_linear(a14,dnom, dy=dstd)
 #     print("calibrazione:", par[0], "+/-", sqrt(cov[0,0]), "pixel/cm")
 #     print("offset:", par[1], "+/-", sqrt(cov[1,1]), "pixel")
-    plot(a14,dnom,"ko")
+    # plot(a14,dnom,"ko")
     
     calibrazionels = calibrazionels + [ufloat(par[0],sqrt(cov[0,0]))]
     offsetls = offsetls + [ufloat(par[1],sqrt(cov[1,1]))]
