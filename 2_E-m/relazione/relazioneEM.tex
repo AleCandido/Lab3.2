@@ -106,11 +106,26 @@ Si riportano a titolo di esempio alcuni valori ottenuti in \tablename{~\ref{tab:
 	\label{tab:rpchi2}
 \end{figure}
 
-\paragraph{}In secondo luogo si è mantenuta fissa $V_{Acc} = \unit{252}{V}$ e si è variata la corrente $I_{coil}$ per misurare il raggio di curvatura dell'orbita circolare (r). Come prima si è fatta una stima dell'ordine di grandezza del valore di e/m che anche in questo caso risulta in accordo con il valore atteso.
-% (1.8-2*10^11)
-Anche in questo caso si è effettuato in fit analitico circolare con la stessa procedura descritta sopra. I dati ottenuti sono riportati in \tablename{~\ref{tab:vacfisso}}
+Si riporta anche l'immagine del risultato di un fit circolare in \figurename{~\ref{fig:fitcfr}}. Si fa notare che è evidenziato anche il centro della circonferenza di fit, mentre per quanto riguarda gli errori sui punti digitalizzati sono pressoché invisibili nella foto (fatta eccezione per pochi), e quello che viene visualizzato sono le estremità delle barre di errore (che si è scelto appositamente di non ridurre in modo da segnalare la presenza dei punti, e consentire, nei pochi casi in cui è possibile, di apprezzare l'errore, che sarebbe stato coperto da qualsiasi altro marcatore).
 
-\emph{TABELLA!}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\textwidth]{../grafici/39.pdf}
+	\caption{Risultato di un fit (linea continua) e punti digitalizzati (croci)}
+	\label{fig:fitcfr}
+\end{figure}
+
+\paragraph{Calibrazione delle immagini} Ottenuti i raggi in $pixel$ si è dunque cercato il fattore di conversione per passare a unità fisiche (cm). Per fare ciò si sono sfruttati i valori digitalizzati dei punti corrispondenti alle tacche del righello luminoso.
+
+Si specifica innanzi tutto che gli errori sulle coordinate di tali punti sono stati stimati considerando la larghezza di tacca nella direzione orizzontale del righello e la sfrangiatura del fine tacca nela direzione verticale.\footnote{Anche in questo caso, come nella nota precedente, l'errore è inteso in senso quanto più possibile statistico, e non come errore massimo.}
+In questo caso l'errore è stato assunto costante per tutti i punti, dato che le tacche di un righello presentano poca variabilità (a meno di significativo deteriorarmento, caso che non si è presentato).
+
+Si è dunque eseguito un primo fit per determinare l'asse del righello, fittando le coordinate $x$ e $y$ dei punti con una retta affine.
+Si sono poi proiettati i punti sulla retta trovata in modo analitico\footnote{Semplici calcoli di geometria analitica danno la formula della proiezione di un punto su una retta.}, e secondo tale formula si è propagato l'errore su tali proiezioni.
+
+Si sono dunque calcolate le distanze di queste proiezioni dalla prima di esse (considerata come la più a sinistra nelle foto).
+
+
 \section{Valutazione errori sistematici}
 
 \subsection{Errore dovuto alla geometria proiettiva}

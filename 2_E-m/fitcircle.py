@@ -147,7 +147,7 @@ for id in ids:
     grid()
     xlabel('x')
     ylabel('y')
-    errorbar(x,y,dy,dx, marker= 'o' , linestyle = 'None' , )
+    errorbar(x,y,dy,dx, marker= ',' , linestyle = 'None' , )
     
     # print('x0 =', x0)
     # print('y0 =', y0)
@@ -167,4 +167,4 @@ for id in ids:
     y2 = - numpy.sqrt(r**2-(x2-x0)**2) + y0
     plot(x2,y2, color = 'black')
     
-    show()
+    # savefig(dir+"grafici\\"+str(id)+".pdf")
