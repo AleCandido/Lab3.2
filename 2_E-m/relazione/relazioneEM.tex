@@ -161,7 +161,9 @@ Ci si è posti nelle condizioni che si ritenevano ottimali (messo il panno scuro
 
 \subsection{Acquisizione fotografie e prime stime di $e/m$}
 
-In primo luogo si è mantenuta fissa $I_{Coil} = \unit{1.30 \pm 0.01}{A}$ e si è variata la tensione di accelerazione per misurare il raggio di curvatura dell'orbita circolare (r). Durante la fase di presa dati si sono stimati i vari raggi con la scala graduata per verificare l'ordine di grandezza di e/m, utilizzando le formule \eqref{eq:em} e \eqref{eq:vacc}. 
+In primo luogo si è mantenuta fissa $I_{Coil}$ e si è variata la tensione di accelerazione per misurare il raggio di curvatura dell'orbita circolare (r), in seguito si è fatto il viceversa.
+
+Durante la fase di presa dati si sono stimati i vari raggi con la scala graduata per verificare l'ordine di grandezza di e/m, utilizzando le formule \eqref{eq:em} e \eqref{eq:vacc}. 
 
 \begin{equation}
 	\frac{e}{m} = \frac{v_e}{B_z r}
@@ -173,7 +175,9 @@ In primo luogo si è mantenuta fissa $I_{Coil} = \unit{1.30 \pm 0.01}{A}$ e si �
 \label{eq:vacc}
 \end{equation}
 
-Si è ottenuto  $e/m \approx \unit{1.5-1.6~10^{11}}{C/Kg}$, in buon accordo con il valore atteso ($e/m_{th} = \unit{1.75~10^{11}}{C/Kg}$). Tuttavia in questa stima non si è considerata ne la distorsione dovuta alla presenza del bulbo ne quella dovuta alla prospettiva. Tuttavia il valore comunque risulta essere in buon accordo con quello atteso e ciò è dovuto al fatto che le due correzioni principali che si devono considerare si compensano tra loro. Infatti l'effetto della distorsione dovuta alla prospettiva è quello di aumentare il raggio misurato, mentre l'effetto dovuto alla distorsione del bulbo è quello di diminuirlo.
+Si è ottenuto  $e/m \approx \unit{1.5-1.6~10^{11}}{C/Kg}$, in buon accordo con il valore atteso ($e/m_{th} = \unit{1.75~10^{11}}{C/Kg}$).
+
+Tuttavia in questa stima non si è considerata né la distorsione dovuta alla presenza del bulbo né quella dovuta alla prospettiva. Tuttavia il valore comunque risulta essere in buon accordo con quello atteso e ciò è dovuto al fatto che le due correzioni principali che si devono considerare si compensano tra loro. Infatti l'effetto della distorsione dovuta alla prospettiva è quello di aumentare il raggio misurato (le tacche del righello appaiono più piccole che se fosse sullo stesso piano della circonferenza, in quanto più lontano, e quindi la circonferenza ne comprende un numero maggiore), mentre l'effetto dovuto alla distorsione del bulbo è quello di diminuirlo.
 
 
 \paragraph{Osservazione} Si è considerato come errore sulle letture degli alimentatori $1$ digit, in quanto non si dispone di datasheet relativo e avendo osservato che il valore visualizzato fosse perfettamente stabile nel tempo, sia a breve che a lungo termine.
@@ -310,15 +314,27 @@ Per meglio stimare la componente $B_z$ presente sulla traiettoria del fascio ele
 
 Si è dunque tentato un fit con una curva teorica. Essa è stata stimata numericamente a causa degli integrali coinvolti (integrazione della formula di Biot-Savart nella circonferenza). Sono stati lasciati come parametri di fit il raggio delle bobine ($R$), la distanza bobina centro ($z$), la corrente circolante moltiplicata pesata con il numero di spire e la costante paramagnetica del vuoto ($I$), un offset rispetto al punto $r=0$ ($a$) e un offset in tensione $b$. Si sono ottenuti i seguenti risultati:\\
 
-$R=0.19\pm 0.01 m$\\
-%$0.0043\pm0.0019$ \\ questo parametro non è interessante...
-$z=0.18\pm-0.01 m$ \\
-$a=0.1692 \pm 0.0002 m$\\ 
-$b=-66 \pm 28 mV$\footnote{ha senso confrontare questo offset sulla tensione con quello presentato nella parte 1 ($q=-25\pm 4 V$). Questi due valori sono compatibili entro 2 sigma, sebbene il valore statistico di tale informazione sia discutibile data la possibile sovrastima degli errori indicataci dai $\chi^2$}\\
-$\chi^2/dof=11.72 / 24 prob= 0.98$\\
+\begin{table}[H]
+	\centering
+	\begin{tabular}{c|c}
+	$R$ & $0.19\pm 0.01 m$\\
+	\hline
+	%$0.0043\pm0.0019$ \\ questo parametro non è interessante...
+	$z$ & $0.18\pm-0.01 m$ \\
+	\hline
+	$a$ & $0.1692 \pm 0.0002 m$\\ 
+	\hline
+	$b$ & $-66 \pm 28 mV$\footnote{ha senso confrontare questo offset sulla tensione con quello presentato nella parte 1 ($q=-25\pm 4 V$). Questi due valori sono compatibili entro 2 sigma, sebbene il valore statistico di tale informazione sia discutibile data la possibile sovrastima degli errori indicataci dai $\chi^2$}\\
+	\hline
+	$\chi^2/d.o.f.$ & $11.72 / 24$\\
+	\hline
+	$p_{value}$ & $0.98$\\
+	\end{tabular}
+	\caption{Risultati del fit del campo magnetico in funzione del raggio}
+	\label{tab:BrBmax}
+\end{table}
 
 Anche questo fit mostra una possibile sovrastima degli errori sulle tensioni. I dati sperimentali e la curva teorica sono in figura \ref{BR}.
-\
 
 
 \end{document}
