@@ -7,13 +7,13 @@ import scipy.integrate
 import pylab
 import os
 
-
+pylab.close("all")
 
 def B(V):
     '''Volt to gauss B field'''
     return V*1e3/(ufloat(5.0,0.1)*ufloat(11.09, 0.003))
 
-R=15e-2
+R=15.9e-2
 z0=15e-2
 I=1
 
@@ -42,6 +42,13 @@ pylab.plot(dom, np.vectorize(BB0field)(dom))
 
 #####################################controllo la linearità I-V
 
+
+pylab.figure(1)
+pylab.title("I vs V hall (amplificato)")
+pylab.xlabel("I coil [A]")
+pylab.ylabel("V sonda amplificata [V]")
+
+
 import getpass
 users={"candi": "C:\\Users\\candi\\Documents\\GitHub\\Lab3.2\\",
 "silvanamorreale":"C:\\Users\\silvanamorreale\\Documents\\GitHub\\Lab3.2\\" ,
@@ -69,6 +76,7 @@ ydata=ydata[0:len(ydata)-1]
 #dydata=np.ones(xdata.shape)*lab.mme(np.max(ydata),"volt")
 dydata=lab.mme(ydata,"volt")
 dxdata=lab.mme(xdata, "ampere")
+dxdata=0.01*np.ones(xdata.shape)
 print("si è stimato che gli errori sugli ampere fossero gli stessi dati dal multimetro digitale...sarà vero? esiste un manuale?")
 print("stessa cosa per B")
 retta=lambda x, m, q: m*x+q
@@ -100,7 +108,7 @@ cost=lambda x, m: m
 a, b=lab.fit_generic_xyerr(retta, cost, xdata, ydata, dxdata, dydata)
 dom=np.linspace(min(xdata), max(xdata), 100)
 m=a
-pylab.plot(dom, retta(dom, m), color='b')
+pylab.plot(dom, retta(dom, m), color='r')
 pylab.errorbar(xdata, ydata, dydata, dxdata)
 M=uncertainties.ufloat(a, b)
 print(M)
@@ -124,6 +132,39 @@ print("Bene, il campo magnetico è noto al 5%")
 
 ####################################fitting B(r)
 
+pylab.figure(4)
+pylab.title("Fit campo raggio-campo magnetico")
+pylab.xlabel("posizione [m]")
+pylab.ylabel("tensione [V]")
+npars=4
+def fitterfield(r, R, I, z0):
+    r=np.abs(r)+epsilon
+    A=(R**2+r**2+z0**2)
+    fun=lambda teta: R*(R-r*np.cos(teta))/(A-2*R*r*np.cos(teta))**3/2
+    return I*scipy.integrate.quad(fun,0 ,2*np.pi)[0]
 
+xdata, ydata=np.loadtxt(dir+"B in r.txt", unpack=True)
+dydata=lab.mme(ydata, "volt")
+dxdata=np.ones(xdata.shape)*0.001
+
+pylab.errorbar(xdata, ydata, dydata, dxdata)
+def tofit(r, R, I, z0, a, b):
+   # return fitterfield(r-a, R, I,z0)
+    ret=np.zeros(r.shape)
+    i=0
+    for rr in r:
+        ret[i]=fitterfield(rr-a, R, I,z0)+b
+        i+=1
+    return ret
+
+par, pcov= lab.curve_fit(tofit, xdata, ydata, p0=(R, 1, z0, 16e-2, 0), sigma=dydata, absolute_sigma=True)
+print(par, pcov)
+dom=np.linspace(min(xdata), max(xdata))
+pylab.plot(dom,tofit(dom, *par))
+
+R, I, z0, a, b=uncertainties.correlated_values(par, pcov)
+print(R, I, z0, a, b)
+chisq=sum((ydata-tofit(xdata, *par))**2/dydata**2)
+print(chisq, "/", len(xdata)-npars, "prob=", 1-scipy.stats.chi2(len(xdata)-npars).cdf(chisq))
 
 

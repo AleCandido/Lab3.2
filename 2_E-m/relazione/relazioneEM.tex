@@ -31,7 +31,34 @@
 \maketitle
 
 \section{Bobine di Helmholtz}
-% Questa Andre è tutta tua!
+In questa sezione si è studiato il campo magnetico prodotto dalle bobine di Helmholtz. Per fare questo si è usata una sonda a effetto Hall SS94A1 amplificata con un appropriato circuito. Si è trovato nel datasheet della sonda la specifica $5.0\pm 0.1 mV/gauss$, mentre l'amplificatore ha un guadagno di $g=11.09\pm0.003$. Si è provveduto dunque a controllare la linearità della sonda.
+
+Per fare ciò ci si è posti con la sonda nel centro della bobina e si è variata la corrente nelle spire. I dati sono riassunti in figura e sono stati fittati con una retta passante per l'origine e con una retta affine. 
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\textwidth]{../grafici/IV.pdf}
+	\caption{Calibrazione sonda, dati contro fit I-V. In particolare la retta rossa è lineare, la blu affine}
+	\label{fig:ex1}
+\end{figure}
+
+I risultati dei due fit sono i seguenti:\\
+$m=0.39509\pm0.00002 V/A$ \\
+$chi^2/d.o.f.=2.0/7$  $p_{value}0.92$\\
+
+e\\
+
+$m=0.422\pm 0.007 V/A$ \\ $q=-0.025\pm 0.004 V$\\
+$chi^2/d.o.f.=0.008/8$  $p_{value}=1$\\
+
+Per queste due calibrazioni gli errori sulla corrente sono stati stimati essere all'incirca di un digit, mentre per quelli sulla tensione, in mancanza di ulteriori informazioni, si sono considerati comparabili a quelli forniti dal datasheet nel multimetro usato in lab.
+
+Si nota (dal grafico e dal $chi^2$) come questi errori, soprattutto nel secondo test(fit affine) debbano essere chiaramente sovrastimati.
+
+
+
+
+
 
 \section{Elettroni in campo magnetico}
 Dopo aver inserito il bulbo di vetro nel suo socket e acceso i vari alimentatori, si ha che gli atomi di $He$ all'interno dell'ampolla emettono radiazione nel visibile in seguito agli urti con gli elettroni. Questo consente di visualizzare il pennello elettronico e misurarne l'orbita (vedi \figurename{~\ref{fig:ex1}}).
@@ -111,12 +138,12 @@ Si riportano a titolo di esempio alcuni valori ottenuti in \tablename{~\ref{tab:
 
 Si riporta anche l'immagine del risultato di un fit circolare in \figurename{~\ref{fig:fitcfr}}. Si fa notare che è evidenziato anche il centro della circonferenza di fit, mentre per quanto riguarda gli errori sui punti digitalizzati sono pressoché invisibili nella foto (fatta eccezione per pochi), e quello che viene visualizzato sono le estremità delle barre di errore (che si è scelto appositamente di non ridurre in modo da segnalare la presenza dei punti, e consentire, nei pochi casi in cui è possibile, di apprezzare l'errore, che sarebbe stato coperto da qualsiasi altro marcatore).
 
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=0.8\textwidth]{../grafici/39.pdf}
-	\caption{Risultato di un fit (linea continua) e punti digitalizzati (croci)}
-	\label{fig:fitcfr}
-\end{figure}
+%\begin{figure}[H]
+%	\centering
+%	\includegraphics[width=0.8\textwidth]{../grafici/39.pdf}
+%	\caption{Risultato di un fit (linea continua) e punti digitalizzati (croci)}
+%	\label{fig:fitcfr}
+%\end{figure}
 
 \paragraph{Calibrazione delle immagini} Ottenuti i raggi in $pixel$ si è dunque cercato il fattore di conversione per passare a unità fisiche (cm). Per fare ciò si sono sfruttati i valori digitalizzati dei punti corrispondenti alle tacche del righello luminoso.
 
@@ -171,24 +198,26 @@ Un ulteriore verifica che bisogna fare è che il piano contenente l'orbita sia p
 
 \subsection{Variazione $B_z(r)$/$B_z^{MAX}$}
 
-Per meglio stimare la componente $B_z$ presente sulla traiettoria del fascio elettronico si è fatta una scansione con la sonda a effetto Hall facendola scorrere nella guida. Si sono ottenuti i dati in figura.\\
+Per meglio stimare la componente $B_z$ presente sulla traiettoria del fascio elettronico si è fatta una scansione con la sonda a effetto Hall facendola scorrere nella guida. 
 
-%\begin{figure}[h!]
-%	\centering
-%	\includegraphics[width=0.80\textwidth]{../figure/B_di_r.png}
-%	\caption{Dati sperimentali scansione in $r$ di $B_z$ e relativo fit. Sulle ordinate si è rappresentato direttamente il valore di tensione output della sonda effetto Hall, misurato con il multimetro.Sovrapposto vi è un fit della curva teorica}
-%	\label{task6.3}
-%\end{figure}
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.80\textwidth]{../grafici/BR.pdf}
+	\caption{Dati sperimentali scansione in $r$ di $B_z$ e relativo fit. Sulle ordinate si è rappresentato direttamente il valore di tensione output della sonda effetto Hall, misurato con il multimetro attraverso l'amplificatore. Sovrapposto vi è un fit della curva teorica}
+	\label{task6.3}
+\end{figure}
 
 Si è dunque tentato un fit con una curva teorica. Essa è stata stimata numericamente poiché gli autori non conoscono formule analitiche per gli integrali coinvolti (integrazione della formula di Biot-Savart nella circonferenza). Sono stati lasciati come parametri di fit il raggio delle bobine ($R$), la distanza bobina centro ($z$), la corrente circolante moltiplicata pesata con il numero di spire e la costante paramagnetica del vuoto ($I$), un offset rispetto al punto $r=0$ ($a$). Si sono ottenuti i seguenti risultati:\\
 
-0.0043+/-0.0019
+$R=0.19\pm 0.01 m$\\
+%$0.0043\pm0.0019$ \\
+$z=0.18\pm-0.01 m$ \\
+$a=0.1692 \pm 0.0002 m$\\ 
+$b=-0.66 \pm 0.28 mV$\\
+$\chi^2/dof=11.72 / 24 prob= 0.98$\\
 
-0.16916+/-0.00018
-
-0.184+/-0.012
-
-0.189+/-0.01
+Anche questo fit mostra una possibile sovrastima degli errori sulle tensioni. I dati sperimentali e la curva teorica sono in figura.
+\
 
 
 \end{document}
