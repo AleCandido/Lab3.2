@@ -56,7 +56,26 @@ Per queste due calibrazioni gli errori sulla corrente sono stati stimati essere 
 Si nota (dal grafico e dal $chi^2$) come questi errori, soprattutto nel secondo test(fit affine) debbano essere chiaramente sovrastimati.
 
 
+Si nota inoltre che il valore $q$ del secondo fit non è compatibile con zero. Questo può voler dire:\\
+\begin{itemize}
+\item c'è un offset nelle tensioni dovuto a una non perfetta calibrazione della sonda\\
+\item c'è un offset dovuto a un campo magnetico residuo nella regione delle bobine che si sovrappone a quello creato dalle correnti.\\
+\end{itemize}
 
+
+
+Si è inoltre controllato come vari il campo magnetico in funzione della distanza dall'asse del sistema. Ci si aspetta una curva teorica di questo tipo \ref{TEO}
+
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\textwidth]{../grafici/TEO.pdf}
+	\caption{Immagine esemplificativa del fenomeno osservato}
+	\label{fig:TEO}
+\end{figure}
+
+
+Si è dunque confrontata la suddetta curva teorica con i valori presi spazzando con la sonda lungo un raggio. Per ulteriori dettagli si rimandi alla sezione "Variazione $B_z(r)$/$B_z^{MAX}$".
 
 
 
@@ -147,7 +166,7 @@ Si riporta anche l'immagine del risultato di un fit circolare in \figurename{~\r
 
 \paragraph{Calibrazione delle immagini} Ottenuti i raggi in $pixel$ si è dunque cercato il fattore di conversione per passare a unità fisiche (cm). Per fare ciò si sono sfruttati i valori digitalizzati dei punti corrispondenti alle tacche del righello luminoso.
 
-Si specifica innanzi tutto che gli errori sulle coordinate di tali punti sono stati stimati considerando la larghezza di tacca nella direzione orizzontale del righello e la sfrangiatura del fine tacca nela direzione verticale.\footnote{Anche in questo caso, come nella nota precedente, l'errore è inteso in senso quanto più possibile statistico, e non come errore massimo.}
+Si specifica innanzi tutto che gli errori sulle coordinate di tali punti sono stati stimati considerando la larghezza di tacca nella direzione orizzontale del righello e la sfrangiatura del fine tacca nella direzione verticale.\footnote{Anche in questo caso, come nella nota precedente, l'errore è inteso in senso quanto più possibile statistico, e non come errore massimo.}
 In questo caso l'errore è stato assunto costante per tutti i punti, dato che le tacche di un righello presentano poca variabilità (a meno di significativo deteriorarmento, caso che non si è presentato).
 
 Si è dunque eseguito un primo fit per determinare l'asse del righello, fittando le coordinate $x$ e $y$ dei punti con una retta affine.
@@ -204,19 +223,19 @@ Per meglio stimare la componente $B_z$ presente sulla traiettoria del fascio ele
 	\centering
 	\includegraphics[width=0.80\textwidth]{../grafici/BR.pdf}
 	\caption{Dati sperimentali scansione in $r$ di $B_z$ e relativo fit. Sulle ordinate si è rappresentato direttamente il valore di tensione output della sonda effetto Hall, misurato con il multimetro attraverso l'amplificatore. Sovrapposto vi è un fit della curva teorica}
-	\label{task6.3}
+	\label{BR}
 \end{figure}
 
-Si è dunque tentato un fit con una curva teorica. Essa è stata stimata numericamente poiché gli autori non conoscono formule analitiche per gli integrali coinvolti (integrazione della formula di Biot-Savart nella circonferenza). Sono stati lasciati come parametri di fit il raggio delle bobine ($R$), la distanza bobina centro ($z$), la corrente circolante moltiplicata pesata con il numero di spire e la costante paramagnetica del vuoto ($I$), un offset rispetto al punto $r=0$ ($a$). Si sono ottenuti i seguenti risultati:\\
+Si è dunque tentato un fit con una curva teorica. Essa è stata stimata numericamente a causa degli integrali coinvolti (integrazione della formula di Biot-Savart nella circonferenza). Sono stati lasciati come parametri di fit il raggio delle bobine ($R$), la distanza bobina centro ($z$), la corrente circolante moltiplicata pesata con il numero di spire e la costante paramagnetica del vuoto ($I$), un offset rispetto al punto $r=0$ ($a$) e un offset in tensione $b$. Si sono ottenuti i seguenti risultati:\\
 
 $R=0.19\pm 0.01 m$\\
-%$0.0043\pm0.0019$ \\
+%$0.0043\pm0.0019$ \\ questo parametro non è interessante...
 $z=0.18\pm-0.01 m$ \\
 $a=0.1692 \pm 0.0002 m$\\ 
 $b=-0.66 \pm 0.28 mV$\\
 $\chi^2/dof=11.72 / 24 prob= 0.98$\\
 
-Anche questo fit mostra una possibile sovrastima degli errori sulle tensioni. I dati sperimentali e la curva teorica sono in figura.
+Anche questo fit mostra una possibile sovrastima degli errori sulle tensioni. I dati sperimentali e la curva teorica sono in figura \ref{BR}.
 \
 
 

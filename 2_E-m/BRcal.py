@@ -38,6 +38,9 @@ def UBB0field(r):
 
 pylab.figure(0)
 dom=np.linspace(0, 15e-2, 100)
+pylab.title("B_z(r)/B_z(0) atteso")
+pylab.xlabel("r [m]")
+pylab.ylabel("B_z(r)/B_z(0)")
 pylab.plot(dom, np.vectorize(BB0field)(dom))
 
 #####################################controllo la linearità I-V
@@ -133,7 +136,7 @@ print("Bene, il campo magnetico è noto al 5%")
 ####################################fitting B(r)
 
 pylab.figure(4)
-pylab.title("Fit campo raggio-campo magnetico")
+pylab.title("Raggio-campo magnetico (r-V)")
 pylab.xlabel("posizione [m]")
 pylab.ylabel("tensione [V]")
 npars=4
