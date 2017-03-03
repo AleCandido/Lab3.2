@@ -3,7 +3,7 @@ from pylab import *
 from scipy.optimize import curve_fit
 import os
 import lab
-import uncertainties
+from uncertainties import *
 import sys
 import scipy.stats
 
@@ -142,16 +142,16 @@ for id in ids:
     # print('chi2 =', chi2/len(x))
     chi2ls = chi2ls + [chi2/len(x)]
     
-    figure(id)
+    # figure(id)
     
     grid()
     xlabel('x')
     ylabel('y')
-    errorbar(x,y,dy,dx, marker= ',' , linestyle = 'None' , )
+    # errorbar(x,y,dy,dx, marker= ',' , linestyle = 'None' , )
     
     # print('x0 =', x0)
     # print('y0 =', y0)
-    plot(x0,y0, marker = 'o')
+    # plot(x0,y0, marker = 'o')
     # print('r  =', r, '+/-', sqrt(sigmar2)/r*100, '%\n')
     
     rls = rls + [ufloat(r, sqrt(sigmar2))]
@@ -161,10 +161,10 @@ for id in ids:
     
     xlim(0,max(x1)*1.2)
     ylim(0,max(y1)*1.2)
-    plot(x1,y1, color = 'black')
+    # plot(x1,y1, color = 'black')
     
     x2 = numpy.linspace(x0 - r + 1/10**10, x0 + r -1/10**10, 1000)
     y2 = - numpy.sqrt(r**2-(x2-x0)**2) + y0
-    plot(x2,y2, color = 'black')
+    # plot(x2,y2, color = 'black')
     
     # savefig(dir+"grafici\\"+str(id)+".pdf")
