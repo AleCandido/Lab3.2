@@ -6,6 +6,7 @@ import scipy.stats
 import scipy.integrate
 import pylab
 import os
+import lab
 
 pylab.close("all")
 
@@ -13,16 +14,16 @@ def B(V):
     '''Volt to gauss B field'''
     return V*1e3/(ufloat(5.0,0.1)*ufloat(11.09, 0.003))
 
-R=15.9e-2
-z0=15e-2
-I=1
+_R=15.9e-2
+_z0=15e-2
+_I=1
 
 epsilon=1e-6
 def field(r):
     r=np.abs(r)+epsilon
-    A=(R**2+r**2+z0**2)
-    fun=lambda teta: R*(R-r*np.cos(teta))/(A-2*R*r*np.cos(teta))**3/2
-    return I*scipy.integrate.quad(fun,0 ,2*np.pi)[0]
+    A=(_R**2+r**2+_z0**2)
+    fun=lambda teta: _R*(_R-r*np.cos(teta))/(A-2*_R*r*np.cos(teta))**3/2
+    return _I*scipy.integrate.quad(fun,0 ,2*np.pi)[0]
 
 
 
@@ -38,9 +39,9 @@ def UBB0field(r):
 
 pylab.figure(0)
 dom=np.linspace(0, 15e-2, 100)
-pylab.title("B_z(r)/B_z(0) atteso")
-pylab.xlabel("r [m]")
-pylab.ylabel("B_z(r)/B_z(0)")
+pylab.title("$B_z(r)/B_z(0)$ atteso")
+pylab.xlabel("$r$ [m]")
+pylab.ylabel("$B_z(r)/B_z(0)$")
 pylab.plot(dom, np.vectorize(BB0field)(dom))
 
 #####################################controllo la linearità I-V
@@ -99,29 +100,29 @@ print("bene, o gli errori sono sbagliati o non è effettivamente una retta!!!!!"
 ######################################fit senza temrine noto...
 
 
-xdata=xdata[0:len(xdata)-1]
-ydata=ydata[0:len(ydata)-1]
-#dydata=np.ones(xdata.shape)*lab.mme(np.max(ydata),"volt")
-dydata=lab.mme(ydata,"volt")
-dxdata=lab.mme(xdata, "ampere")
-print("si è stimato che gli errori sugli ampere fossero gli stessi dati dal multimetro digitale...sarà vero? esiste un manuale?")
-print("stessa cosa per B")
-retta=lambda x, m: m*x
-cost=lambda x, m: m
-a, b=lab.fit_generic_xyerr(retta, cost, xdata, ydata, dxdata, dydata)
-dom=np.linspace(min(xdata), max(xdata), 100)
-m=a
-pylab.plot(dom, retta(dom, m), color='r')
-pylab.errorbar(xdata, ydata, dydata, dxdata)
-M=uncertainties.ufloat(a, b)
-print(M)
-chiq=sum((ydata-retta(xdata, m))**2/(dxdata**2+dydata**2))
-print(chiq ,len(xdata-1),1-scipy.stats.chi2(len(xdata)-1).cdf(chiq))
-print("bene, o gli errori sono sbagliati o non è effettivamente una retta!!!!!")
+# xdata=xdata[0:len(xdata)-1]
+# ydata=ydata[0:len(ydata)-1]
+# #dydata=np.ones(xdata.shape)*lab.mme(np.max(ydata),"volt")
+# dydata=lab.mme(ydata,"volt")
+# dxdata=lab.mme(xdata, "ampere")
+# print("si è stimato che gli errori sugli ampere fossero gli stessi dati dal multimetro digitale...sarà vero? esiste un manuale?")
+# print("stessa cosa per B")
+# retta=lambda x, m: m*x
+# cost=lambda x, m: m
+# a, b=lab.fit_generic_xyerr(retta, cost, xdata, ydata, dxdata, dydata)
+# dom=np.linspace(min(xdata), max(xdata), 100)
+# m=a
+# pylab.plot(dom, retta(dom, m), color='r')
+# pylab.errorbar(xdata, ydata, dydata, dxdata)
+# M=uncertainties.ufloat(a, b)
+# print(M)
+# chiq=sum((ydata-retta(xdata, m))**2/(dxdata**2+dydata**2))
+# print(chiq ,len(xdata-1),1-scipy.stats.chi2(len(xdata)-1).cdf(chiq))
+# print("bene, o gli errori sono sbagliati o non è effettivamente una retta!!!!!")
 
 
 def BB(I):
-    return B(M*I)
+    return B(M*I+Q)
 
 def BBR(r, I):
     return UBB0field(r)*BB(I)
@@ -129,6 +130,11 @@ def BBR(r, I):
 def lBBR(r, I):
     for rr, ii in zip(r, I):
         yield BBR(rr, ii)
+
+
+BM=B(1)*M
+BQ=B(1)*Q
+#B(I)=BM*I+BQ
 
 print("Bene, il campo magnetico è noto al 5%")
     
@@ -160,7 +166,7 @@ def tofit(r, R, I, z0, a, b):
         i+=1
     return ret
 
-par, pcov= lab.curve_fit(tofit, xdata, ydata, p0=(R, 1, z0, 16e-2, 0), sigma=dydata, absolute_sigma=True)
+par, pcov= lab.curve_fit(tofit, xdata, ydata, p0=(_R, 1, _z0, 16e-2, 0), sigma=dydata, absolute_sigma=True)
 print(par, pcov)
 dom=np.linspace(min(xdata), max(xdata))
 pylab.plot(dom,tofit(dom, *par))

@@ -61,21 +61,24 @@ Si nota inoltre che il valore $q$ del secondo fit non è compatibile con zero. Q
 \item c'è un offset nelle tensioni dovuto a una non perfetta calibrazione della sonda\\
 \item c'è un offset dovuto a un campo magnetico residuo nella regione delle bobine che si sovrappone a quello creato dalle correnti.\\
 \end{itemize}
+Sembrando più probabile la prima si è usata l'equazione affine per stimare la funzione $B_z(r=0, I)$ nei punti successivi.\footnote{Se fosse stata considerata vera la seconda allora si sarebbe dovuto tenere in conto di questo campo magnetico nel calcolo di $B_z$, e questo avrebbe influito sulla misura di $e/m$. Si noti che il campo magnetico terrestre è stato subito escluso ponendoci, come suggerito dalla scheda, con l'asse delle bobine ortogonale ad esso.}\\
+Mettendo insieme le cose i coefficienti $a$ e $b$ di $B(I)=aI+b$\footnote{dove B è da intendersi nell'asse} sono:\\
+$a=7.59\pm0.17 gauss/A$\\
+$b=-0.44+/-0.06 gauss$\\
 
 
-
-Si è inoltre controllato come vari il campo magnetico in funzione della distanza dall'asse del sistema. Ci si aspetta una curva teorica di questo tipo \ref{TEO}
+Per una migliore stima del campo sulla circonferenza effettivamente fatta dagli elettroni si è inoltre controllato come vari il campo magnetico in funzione della distanza dall'asse del sistema. Ci si aspetta una curva teorica di questo tipo \ref{fig:TEO}.
 
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.8\textwidth]{../grafici/TEO.pdf}
-	\caption{Immagine esemplificativa del fenomeno osservato}
+	\caption{Curva teorica per $B_z(r)/B_z(0)$}
 	\label{fig:TEO}
 \end{figure}
 
 
-Si è dunque confrontata la suddetta curva teorica con i valori presi spazzando con la sonda lungo un raggio. Per ulteriori dettagli si rimandi alla sezione "Variazione $B_z(r)$/$B_z^{MAX}$".
+Si è dunque confrontata la suddetta curva teorica con i valori presi spazzando con la sonda lungo un raggio. Per ulteriori dettagli si rimandi alla sezione "Variazione $B_z(r)$/$B_z(0)$".
 
 
 
@@ -232,7 +235,7 @@ $R=0.19\pm 0.01 m$\\
 %$0.0043\pm0.0019$ \\ questo parametro non è interessante...
 $z=0.18\pm-0.01 m$ \\
 $a=0.1692 \pm 0.0002 m$\\ 
-$b=-0.66 \pm 0.28 mV$\\
+$b=-0.66 \pm 0.28 mV$\footnote{ha senso confrontare questo offset sulla tensione con quello presentato nella parte 1 ($q=-25\pm 4 V$). Questi due valori sono compatibili entro 2 sigma, sebbene il valore statistico di tale informazione sia discutibile data la possibile sovrastima degli errori indicataci dai $\chi^2$}\\
 $\chi^2/dof=11.72 / 24 prob= 0.98$\\
 
 Anche questo fit mostra una possibile sovrastima degli errori sulle tensioni. I dati sperimentali e la curva teorica sono in figura \ref{BR}.
