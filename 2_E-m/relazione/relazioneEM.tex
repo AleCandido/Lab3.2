@@ -55,6 +55,8 @@ Lo scopo dell’esperienza e’ misurare il rapporto tra la carica dell’elettr
 \end{itemize}
 
 \section{Bobine di Helmholtz}
+\emph{MANCANTE: CAMPO MAGNETICO TERRESTRE}
+
 In questa sezione si è studiato il campo magnetico prodotto dalle bobine di Helmholtz. Per fare questo si è usata una sonda a effetto Hall SS94A1 amplificata con un appropriato circuito. Si è trovato nel datasheet della sonda la specifica $5.0\pm 0.1 mV/gauss$, mentre l'amplificatore ha un guadagno di $g=11.09\pm0.003$. Si è provveduto dunque a controllare la linearità della sonda.
 
 Per fare ciò ci si è posti con la sonda nel centro della bobina e si è variata la corrente nelle spire. I dati sono riassunti in figura e sono stati fittati con una retta passante per l'origine e con una retta affine. 
@@ -120,11 +122,12 @@ Dopo aver inserito il bulbo di vetro nel suo socket e acceso i vari alimentatori
 
 Si è fissato i valori di $I_{Coil} = \unit{1.17}{A}$ e $V_{Acc} = \unit{230}{V}$ e si è variata la tensione $V_{Heat}$ responsabile dell'emissione degli elettroni per vedere se il raggio della traiettoria dipende da essa.
 Per tensioni $V_{Heat}$ di $\unit{6-5}{V}$ non si osserva nessuna variazione dell'orbita degli elettroni. Quando invece $V_{Heat} = \unit{4-3}{V}$ si osserva che la traccia si divide e va a formare un'elica..
-%e giustificare perché il raggio è crescente con V_Heat
+
+\emph{MANCANTE: GIUSTIFICAZIONE ANDAMENTO RAGGIO}
 
 \subsection{Condizioni ottimali per le fotografie}
 
-Ci si è posti nelle condizioni che si ritenevano ottimali (messo il panno scuro, fissata la posizione della macchina fotografica e il suo ingrandimento, per una successiva unica correzione delle immagini, illuminato la scala graduata) per scattare le foto con la macchina digitale e si è fissato $V_{Heat} = \unit{6}{V}$. 
+Ci si è posti nelle condizioni che si ritenevano ottimali (messo il panno scuro, fissata la posizione della macchina fotografica e il suo ingrandimento, per una successiva unica correzione delle immagini, illuminato la scala graduata) per scattare le foto con la macchina digitale e si è fissato $V_{Heat} = \unit{6}{V}$.
 
 
 \subsection{Acquisizione fotografie e prime stime di $e/m$}
@@ -142,6 +145,9 @@ In primo luogo si è mantenuta fissa $I_{Coil} = \unit{1.30 \pm 0.01}{A}$ e si �
 \end{equation}
 
 Si è ottenuto  $e/m \approx \unit{1.5-1.6~10^{11}}{C/Kg}$, in ottimo accordo con il valore atteso ($e/m_{th} = \unit{1.75~10^{11}}{C/Kg}$).
+
+\emph{MANCANTE: GIUSTIFICAZIONE ACCORDO CASUALE}
+% due effetti che si compensano
 
 \paragraph{Osservazione} Si è considerato come errore sulle letture degli alimentatori $1$ digit, in quanto non si dispone di datasheet relativo e avendo osservato che il valore visualizzato fosse perfettamente stabile nel tempo, sia a breve che a lungo termine.
 
@@ -181,6 +187,13 @@ Si riportano a titolo di esempio alcuni valori ottenuti in \tablename{~\ref{tab:
 	\captionof{table}{Alcuni raggi ottenuti dai fit con relativi errori percentuali e $\chi^2$ normalizzato}
 	\label{tab:rpchi2}
 \end{figure}
+
+\emph{MANCANTE: GIUSTIFICAZIONE ERRORE FLUTTUANTI}
+% contributo del processo manuale di digitalizzazione
+% non chiaramente definito
+% pezzi di immagine distorte più o meno, presenza righello, dispersione della larghezza del fascio luminoso, ...
+% opportunità di fare un fit preliminare, trovare il centro e riprendere i punti lungo i raggi approssimati
+% tentativo fallito con i punti a destra
 
 Si riporta anche l'immagine del risultato di un fit circolare in \figurename{~\ref{fig:fitcfr}}. Si fa notare che è evidenziato anche il centro della circonferenza di fit, mentre per quanto riguarda gli errori sui punti digitalizzati sono pressoché invisibili nella foto (fatta eccezione per pochi), e quello che viene visualizzato sono le estremità delle barre di errore (che si è scelto appositamente di non ridurre in modo da segnalare la presenza dei punti, e consentire, nei pochi casi in cui è possibile, di apprezzare l'errore, che sarebbe stato coperto da qualsiasi altro marcatore).
 
