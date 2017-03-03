@@ -151,7 +151,7 @@ for id in ids:
     
     # print('x0 =', x0)
     # print('y0 =', y0)
-    # plot(x0,y0, marker = 'o')
+    plot(x0,y0, marker = 'o')
     # print('r  =', r, '+/-', sqrt(sigmar2)/r*100, '%\n')
     
     rls = rls + [ufloat(r, sqrt(sigmar2))]
