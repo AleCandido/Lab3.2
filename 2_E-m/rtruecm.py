@@ -10,6 +10,8 @@ from uncertainties import *
 from scipy.integrate import quad
 import math
 
+#prima di esegiure questo esegui BRcal
+
 
 ids = [i for i in range(11,29)] + [30,32,33,35,37,39,41,44,45,46,48,50]
 

@@ -135,6 +135,7 @@ def lBBR(r, I):
 BM=B(1)*M
 BQ=B(1)*Q
 #B(I)=BM*I+BQ
+print("parametri B(I)", BM, BQ)
 
 print("Bene, il campo magnetico è noto al 5%")
     
