@@ -14,7 +14,7 @@ def B(V):
     '''Volt to gauss B field'''
     return V*1e3/(ufloat(5.0,0.1)*ufloat(11.09, 0.003))
 
-_R=15.9e-2
+_R=15e-2
 _z0=15e-2
 _I=1
 

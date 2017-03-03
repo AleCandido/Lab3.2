@@ -19,7 +19,7 @@ preprevacc = [299, 294, 288, 281, 273, 267, 258, 250, 243, 237, 230, 221, 216, 2
 
 prepreicoil = [1.30, 1.30, 1.30, 1.30, 1.30, 1.30, 1.30, 1.30, 1.30, 1.30, 1.30, 1.30, 1.30, 1.30, 1.30, 1.30, 1.30, 1.30, 1.30, 1.30, 1.30, 1.30, 1.28, 1.28, 1.35, 1.35, 1.40, 1.40, 1.46, 1.46, 1.52, 1.52, 1.61, 1.61, 1.71, 1.71, 1.81, 1.81, 1.90, 1.90]
 
-R0 = 15
+#R0 = 15
 D = ufloat(52.5, 0.2)
 d = ufloat(45.0, 0.4)
 
@@ -78,7 +78,11 @@ def PN(l):
     for ll in l:
         ret.append(ll.n)
     return ret
-
+def PS(l):
+    ret=[]
+    for ll in l:
+        ret.append(ll.n)
+    return ret
 
 pylab.errorbar(range(len(em)), emn, ems)
 pylab.figure(2)
@@ -86,3 +90,32 @@ pylab.errorbar(range(len(iB)), PN(iB))
 
 EM, EEM=lab.fit_const_yerr(emn, ems)
 print(uncertainties.ufloat(EM, EEM**0.5))
+
+
+#iiB=uncertainties.unumpy.uarray(iB)
+pylab.figure(200)
+out=[((iB[i]*rtt[i])**2).n for i in range(len(rtt))]
+outs=[((iB[i]*rtt[i])**2).s for i in range(len(rtt))]
+vacca=[vacc[i].n for i in range(len(rtt))]
+vaccas=[vacc[i].s for i in range(len(rtt))]
+pylab.errorbar(vacca, out,outs, vaccas, fmt='.') 
+em, emq=lab.curve_fit(lambda x, a, b: a*x+b, vacca, out,sigma=outs)
+print(em)
+pylab.plot(vacca, [em[0]*vacca[i]+em[1] for i in range(len(rtt))])
+
+EMH, EMI = uncertainties.correlated_values(em, emq)
+
+
+
+
+#iiB=uncertainties.unumpy.uarray(iB)
+pylab.figure(201)
+out=[((iB[i]*rtt[i])**2).n for i in range(len(rtt))]
+outs=[((iB[i]*rtt[i])**2).s for i in range(len(rtt))]
+vacca=[vacc[i].n for i in range(len(rtt))]
+vaccas=[vacc[i].s for i in range(len(rtt))]
+pylab.errorbar(vacca, out,outs, vaccas, fmt='.') 
+em, emq=lab.curve_fit(lambda x, a: a*x, vacca, out,sigma=outs)
+print(em)
+pylab.plot(vacca, [em[0]*vacca[i] for i in range(len(rtt))])
+
