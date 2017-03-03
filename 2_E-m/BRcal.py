@@ -85,6 +85,7 @@ print(chiq ,len(xdata-1),1-scipy.stats.chi2(len(xdata)-1).cdf(chiq))
 print("bene, o gli errori sono sbagliati o non è effettivamente una retta!!!!!")
 
 
+######################################fit senza temrine noto...
 
 
 xdata=xdata[0:len(xdata)-1]

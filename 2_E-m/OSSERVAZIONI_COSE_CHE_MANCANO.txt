@@ -11,7 +11,9 @@ dalla bussola
 -Grafico Bz in funzione della distanza dall'asse delle spire (con sonda) + 
 confronto uniformità e valore massimo di B (guadagno amplificatore A = 11.1)
 
--Effetto distorsione Bulbo di vetro (guardare foto preliminari)
+-Effetto distorsione Bulbo di vetro (Ho preso punti sul righello con e senza il bulbo a
+distanza di 1 cm e ci ho fatto la calibrazione sopra per stimare il suo effetto. l'andamento
+dei punti è chiaramente non casuale (vedi il fit)
 
 -Media valori e/m con errore statistico -> nostro e/m.
 
