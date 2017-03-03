@@ -11,6 +11,26 @@ from scipy.integrate import quad
 import math
 
 #prima di esegiure questo esegui BRcal
+pylab.close("all")
+
+import getpass
+users={"candi": "C:\\Users\\candi\\Documents\\GitHub\\Lab3.2\\",
+"silvanamorreale":"C:\\Users\\silvanamorreale\\Documents\\GitHub\\Lab3.2\\" ,
+"Studenti": "C:\\Users\\Studenti\\Desktop\\Lab3\\",
+"User":"C:\\Users\\User\\Documents\\GitHub\\Lab3.2\\"
+}
+try:
+    user=getpass.getuser()
+    path=users[user]
+    print("buongiorno ", user, "!!!")
+except:
+    raise Error("unknown user, please specify it and the path in the file Esercitazione*.py")
+
+
+sys.path = sys.path + [path]
+dir= path + "2_E-m\\"
+
+
 
 
 ids = [i for i in range(11,29)] + [30,32,33,35,37,39,41,44,45,46,48,50]
@@ -119,8 +139,13 @@ EMH, EMI = uncertainties.correlated_values(em, emq)
 
 
 
+
+
 #iiB=uncertainties.unumpy.uarray(iB)
 pylab.figure(201)
+pylab.title("$V_{acc}$ vs $(Br)^2$")
+pylab.xlabel("$V_{acc}$ [V]")
+pylab.ylabel("$(BR)^2$ [$T^2m^2$]")
 out=[((iB[i]*rtt[i])**2).n for i in range(len(rtt))]
 outs=[((iB[i]*rtt[i])**2).s for i in range(len(rtt))]
 vacca=[vacc[i].n for i in range(len(rtt))]
@@ -129,4 +154,6 @@ pylab.errorbar(vacca, out,outs, vaccas, fmt='.')
 em, emq=lab.curve_fit(lambda x, a: a*x, vacca, out,sigma=outs)
 print(em)
 pylab.plot(vacca, [em[0]*vacca[i] for i in range(len(rtt))])
-
+pylab.savefig(dir+"\\grafici\\VaccBRq.pdf")
+ME=uncertainties.ufloat(em, emq**0.5)
+print(2/ME)
