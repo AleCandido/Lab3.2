@@ -1,0 +1,60 @@
+#zero
+348	40
+348	41
+348	45
+
+# ordine 0 (theta0) mercurio
+8	56
+8	55
+8	56
+
+# verde (thetav) mercurio
+69	30
+69	28
+69	30
+
+#theta0 idrogeno
+71	52
+
+#azzurra (intensa) H
+81	49
+
+#rossa	(intensa) H
+93	58.5
+
+#azzurra (intensa_2ordine) H
+115	55
+
+
+#doppietto viola (poco intenso_prima_riga) H
+71 	49
+
+# doppietto verde (debole_prima_riga) H
+85
+
+# rossa (moderatamente intensa) H
+91	11
+
+#doppietto viola (molto debole secondo ordine) H
+108
+
+# doppietto gialla sodio (prima-seconda in ordine)
+71	52
+71	55
+
+71	53
+71	55.5
+
+89	18
+89	21
+
+89	20
+89	
+
+
+
+
+
+
+
+
