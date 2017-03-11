@@ -46,8 +46,8 @@ L'esperienza è divisa in due parti:
 	\item spettroscopio a prisma:
 	\begin{itemize} %questa lista è solo un abbozzo, devo scriverla bene
 		\item due telescopi;
-		\item base rotante con goniometro con nonio etc. etc.;
-		\item prisma con supporto.
+		\item prisma con supporto;
+		\item struttura di base, con possibilità di ruotare il supporto del prisma e blocco per la posizione, e possibilità di ruotare il telescopio d'osservazione, con blocco e goniometro dotato di nonio per la misura della posizione del telescopio stesso.
 	\end{itemize}
 	\item lampada al cadmio;
 	\item lampada al sodio;
@@ -89,13 +89,102 @@ Si è inoltre stimato indipendentemente che, data la larghezza dell'oculare, il 
 Si è notato che la posizione della riga verde era stazionaria, entro la sensibilità consentita dall'apparato, per un certo intervallo di posizioni del prisma, si è perciò sfruttata questa indeterminazione (più correttamente: si è cercato di ridurla) imponendo approssimativamente la condizione di minimo spostamento anche per la riga rossa.
 L'inesattezza in quest'ultima operazione è introdotta dal fatto che fosse difficile per l'osservatore assicurare che la condizione, che veniva verificata dinamicamente ruotando il prisma, fosse rispettata da entrambe le righe; si è dunque privilegiato la riga verde, in quanto era stata individuata in principio come la più vicina alla zona d'interesse.
 
+Il prisma è stato dunque bloccato nella posizione individuata, e non è stato più mosso nel seguito dell'esperienza A.
+
 \paragraph{Calibrazione della scala spettrale} 
+
+Si sono misurate le posizioni delle righe del cadmio nel modo descritto per l'individuazione dello zero. I valori di tutte le misure sono riportati in \tablename{~\ref{tab:cadmio}.
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{c|c|c|c}
+	blu & azzurro & verde & rosso \\
+	\hline
+	$60\degree~39'$ & $60\degree~29'$ & $60\degree~0'$ & $58\degree~43'$\\
+	$60\degree~40'$ & $60\degree~26'$ & $60\degree~0'$ & $58\degree~41'$\\
+	$60\degree~41'$ & $60\degree~28'$ & $60\degree~0'$ & $58\degree~44'$\\
+	\end{tabular}
+	\caption{Misura delle righe del cadmio}
+	\label{tab:cadmio}
+\end{table}
+
+Si è quindi eseguito un fit affine per la calibrazione della scala spettrale, si riporta il grafico in \figurename{~\ref{fig:cadmio}.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\textwidth]{../grafici/calcadmio.pdf}
+	\caption{Dati sperimentali e fit affine delle righe spettrali del cadmio}
+	\label{fig:cadmio}
+\end{figure}
+
+I risultati ottenuti dal fit per coefficiente angolare ($m$) ed intercetta ($q$) sono riportati di seguito in \tablename{~\ref{tab:calcadmio}.
+	
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{c|c}
+		$m$ & $\unit{0.373 \pm 0.009}{eV/~\degree}$ \\
+		\hline
+		$q$ & $\unit{-15.9 \pm 0.4}{eV}$ \\
+	\end{tabular}
+	\caption{Parametri ottenuti dal fit}
+	\label{tab:calcadmio}
+\end{table}
+
+\subparagraph{Riga viola} Si è inoltre misurata un ulteriore riga nella regione viola dello spettro, l'intensità di questa riga era però molto debole, la misura è stata quindi notevolmente meno precisa.
+Si riportano i dati raccolti in \tablename{~\ref{tab:viola}.
+	
+\begin{table}[H]
+	\centering
+	\begin{tabular}{c|c|c}
+		$61\degree~15'$  & $61\degree~16'$ & $61\degree~11'$\\
+	\end{tabular}
+	\caption{Dati raccolti sulla riga viola}
+	\label{tab:viola}
+\end{table}
+	
+Non si è incluso questo valore nel fit perché non era a disposizione un valore corrispondente della lunghezza d'onda con cui confrontarlo.
+% ce lo scrivo questo?
 
 \subsection{Misura della lunghezza d’onda della riga osservata del sodio}
 
 \paragraph{Riga di emissione gialla}
+Si è misurata la riga di emissione del sodio nella regione gialla dello spettro, con la stessa modalità adottata per le righe del cadmio.
+Si riportano le misure in \tablename{~\ref{tab:gialloNa}.
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{c|c|c}
+		$61\degree~15'$  & $61\degree~16'$ & $61\degree~11'$\\
+	\end{tabular}
+	\caption{Dati raccolti sulla riga viola}
+	\label{tab:gialloNa}
+\end{table}
+
+Dalla calibrazione effettuata con il cadmio si ottiene che la lunghezza d'onda corrispondente alla riga è: $\lambda_{yellow, Na} = \unit{594 \pm 6}{\nano\meter}$, cioè ha un'energia pari a $E_{yellow, Na} = \unit{2.086\pm0.020}{e\volt}$.
 
 \paragraph{Altre righe}
+
+Si sono misurate anche altre righe del sodio, si riportano in \tablename{~\ref{tab:moreNa} i vari valori e le relative lunghezze d'onda associate.
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{c|c|c|c|c|c}
+		colore &	&	&	& misura & lunghezza d'onda [nm]\\
+		\hline
+		rosso &	$58\degree~55'$ & $58\degree~53'$ & $58\degree~56'$ & $58\degree~54'~40'' \pm 1'~30''$ & $618 \pm 5$\\
+		verde & $59\degree~18'$ & $59\degree~20'$ & $59\degree~16'$ & $59\degree~18' \pm 2'$  & $576 \pm 5$\\
+		verde scuro & $59\degree~55'$ & $59\degree~55'$ & $59\degree~55'$ & $59\degree~55' \pm 1'$ & $520 \pm 9$\\
+		azzurro & $60\degree~8'$ & $60\degree~10'$ & $60\degree~6'$ & $60\degree~8' \pm 2'$& $503 \pm 4$\\
+		viola & $60\degree~39'$ & $60\degree~39'$ & $60\degree~39'$ & $60\degree~39' \pm 1'$ & $467 \pm 7$\\	
+	\end{tabular}
+	\caption{Misura delle ulteriori righe del sodio}
+	\label{tab:moreNa}
+\end{table}
+
+L'intensità delle altre righe era per tutte minore rispetto a quella della riga gialla, ma alcuna eran comunque ben visibili, mentre, anche in questo caso, la riga nella regione viola dello spettro lo era poco.
+
+Si è provato a migliorare la visualizzazione della riga viola muovendo la slitta d'ingresso, ottenendo però modesti risultati.
 
 \section{Esperienza B: Misura della costante di Rydberg}
 
@@ -112,6 +201,12 @@ L'inesattezza in quest'ultima operazione è introdotta dal fatto che fosse diffi
 	\item torcia.
 \end{itemize}
 
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\textwidth]{../grafici/Schema2.png}
+	\caption{Schema dell'apparato usato}
+	\label{fig:schema2}
+\end{figure}
 
 \subsection{Regolazione della geometria dei telescopi}
 Lo schema dell'apparato è rappresentato in figura \figurename{~\ref{fig:reticolo}}.
@@ -122,6 +217,14 @@ Si sono poi osservate le righe del primo ordine di diffrazione (quelle più inte
 
 \subsection{Calibrazione dello strumento e misura del passo reticolare}
 Con la stessa procedura effettuata nella parte A si è effettuata la calibrazione del nonio ottenendo $\alpha_0 = $\footnote{La trattazione dei vari dati acquisiti in questa parte dell'esperienza e dei relativi errori sono trattati nell'apposita sezione 'errori sistematici'.}. Presa questa misura, tutte le letture successive fatte sul nonio e riportate qui saranno riferite a questo valore.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\textwidth]{../grafici/Angoli.png}
+	\caption{Schema dell'apparato usato}
+	\label{fig:angoli}
+\end{figure}
+
 \paragraph{Misura del passo reticolare}
 
 \subsection{Righe di emissione dell'idrogeno}
