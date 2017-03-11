@@ -1,4 +1,6 @@
+from lab import *
 from pylab import *
+from uncertainties import *
 
 import getpass
 users={"candi": "C:\\Users\\candi\\Documents\\GitHub\\Lab3.2\\",
@@ -15,30 +17,18 @@ except:
 
 
 sys.path = sys.path + [path]
-dir= path + "Esercitazione/"
+dir= path + "4_Ottica1\\"
 
-from BuzzLightyear import * 
-import uncertainties
-###########################################################################
+##
 
-file=""
+alphar = loadtxt(dir + "data\\cadmio.txt", unpack=True)
 
-def f(x, a, b):
-    return a+b*x
+lamda = array([ 467.8, 480.0, 508.6, 643.8])*10**(-9)
+nu = 1/lamda
 
-p0=[1,1]
+alpha0 = ufloat(10.895, 0.026)
 
-def XYfun(a):
-    return a[0],a[1]
+alpha = []
+dalpha = []
 
-unit=[("",""),("","")]
-
-titolo=""
-Xlab=""
-Ylab=""
-
-tab=["",""]
-
-fit(dir,file,unit,f,p0,titolo,Xlab,Ylab,XYfun)
-
-###########################################################################
+alpha += [0]
