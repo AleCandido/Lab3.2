@@ -1,18 +1,31 @@
 \documentclass[a4paper,10pt]{article}
 \usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}	
+\usepackage[italian]{babel}
+
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
 \usepackage{graphicx}
+
+\usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
+\geometry{a4paper}
+
+\usepackage{booktabs}
 \usepackage{verbatim}
-%opening
+\usepackage{subfig}
+
+\usepackage[cdot, thickqspace, squaren]{SIunits}
+\usepackage{float}
+% macro
+\def\code#1{\texttt{#1}}
+
 \title{Esperienza di Ottica 1}
 \author{Gruppo BL \\ Candido Alessandro, Luzio Andrea, Mazziotti Fabrizio}
 
 \begin{document}
 
 \maketitle
-
-%\begin{abstract}
-%Lo scopo di questa esperienza è di
-%\end{abstract}
 
 \section{Scopo}
 L'esperienza è divisa in due parti:
@@ -41,6 +54,48 @@ L'esperienza è divisa in due parti:
 	\item lente d'ingrandimento, per la lettura del nonio;
 	\item torcia.
 \end{itemize}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\textwidth]{../grafici/Schema1.png}
+	\caption{Schema dell'apparato usato}
+	\label{fig:schema1}
+\end{figure}
+
+\subsection{Calibrazione dello strumento con la lampada al cadmio}
+
+Si è accesa la lampada al cadmio e dopo aver atteso qualche minuto, per far sì che andasse in temperatura, si sono eseguite le seguenti operazioni.
+
+\paragraph{Determinazione dello "zero" del goniometro} Come prima cosa si è rimossa la torretta e si è posizionata approssimativamente la lampada in modo che la fessura raccogliesse più luce possibile. 
+
+Si è dunque allineato il telescopio di osservazione e si è migliorato il posizioamento della lampada, decidendo assieme l'apertura della slitta d'ingresso. Per fare ciò si è riposizionato anche il prisma per verificare l'effetto dell'apertura della slitta sulla visualizzazione delle righe spettrali; un'apertura troppo ristretta non consentiva il passaggio di abbastanza luce, viceversa se troppo larga si aveva ambiguità sulla posizione della riga e, decisamente più importante, la luce delle righe più intense diventa troppa, al punto da peggiorare la visualizzazione di quelle meno intense.
+
+Si è infine acquisito l'angolo ($\alpha_0$) a cui veniva osservata la luce non deflessa, a partire dall'uscita del telescopio fisso. Come indicato la misura è stata effettuata da tutti i componenti del gruppo, ottenendo così 3 misure, al fine di valutare l'errore sistematico associato al metodo di misura.
+Si è trovato: $\alpha_0 = 10\degree~53'~42''\pm 1'~32''$
+% la notazione in gradi è doppiamente posizionale, quindi non so bene come regolarmi con le cifre significative, ho messo i decimali giusti, ma converiti in secondi sembrano un obbrobrio
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{c|c|c}
+		$10\degree~55'$  & $10\degree~52'$ & $10\degree~54'$\\
+	\end{tabular}
+\caption{Dati raccolti sulla misura di $\alpha_0$}
+\end{table}
+
+Si è inoltre stimato indipendentemente che, data la larghezza dell'oculare, il singolo osservatore poteva compiere un errore massimo di parallasse pari a circa $2\degree-3\degree$ complessivi (ampiezza dell'intervallo), quindi circa $\pm 1\degree-1.5\degree$, si è in seguito supposto che fosse già incluso nelle fluttuazioni considerate con la misura da parte di più osservatori.
+
+\paragraph{Determinazione della condizione di minima deviazione} Si è osservato lo spostamento dell righe spettrali del cadmio in funzione della posizione del prisma, e si è individuata la posizione corrispondente alla condizione di minimo spostamento relativa alla riga verde, la più vicina alla riga gialla attesa del sodio.
+
+Si è notato che la posizione della riga verde era stazionaria, entro la sensibilità consentita dall'apparato, per un certo intervallo di posizioni del prisma, si è perciò sfruttata questa indeterminazione (più correttamente: si è cercato di ridurla) imponendo approssimativamente la condizione di minimo spostamento anche per la riga rossa.
+L'inesattezza in quest'ultima operazione è introdotta dal fatto che fosse difficile per l'osservatore assicurare che la condizione, che veniva verificata dinamicamente ruotando il prisma, fosse rispettata da entrambe le righe; si è dunque privilegiato la riga verde, in quanto era stata individuata in principio come la più vicina alla zona d'interesse.
+
+\paragraph{Calibrazione della scala spettrale} 
+
+\subsection{Misura della lunghezza d’onda della riga osservata del sodio}
+
+\paragraph{Riga di emissione gialla}
+
+\paragraph{Altre righe}
 
 \section{Esperienza B: Misura della costante di Rydberg}
 
