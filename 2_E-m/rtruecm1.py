@@ -48,10 +48,10 @@ BBBP=-2096+3344
 AAAP=-2199+3309
 fact2=BBBP/AAAP
 
-factm=(fact1+fact2)/2
+factm=fact1#(fact1+fact2)/2
 facter=0.68*(fact1-fact2)/2
 
-fact=uncertainties.ufloat(fact1, facter)
+fact=uncertainties.ufloat(factm, facter)
 
 #R0 = 15
 D = ufloat(52.5, 0.2)
@@ -99,17 +99,19 @@ for i in range(0,len(preicoil)):
     
 ## Calcolo di e/m
     
-em = [ufloat(0,0) for i in range(0,len(iB))]
-emn=[0 for i in range(0,len(iB))]
-ems=[0 for i in range(0,len(iB))]
-
+em =[] #[ufloat(0,0) for i in range(0,len(iB))]
+emn=[]#[0 for i in range(0,len(iB))]
+ems=[]#[0 for i in range(0,len(iB))]
 for i in range(0,len(preicoil)):
-    em[i] = 2*vacc[i]/((iB[i]*rtt[i])**2)
-    print(iB[i])
-    print(iB[i]*icoil[i])
-    print(i)
-    emn[i]=em[i].n
-    ems[i]=em[i].s
+    if(rtt[i].s/rtt[i].n<0.20):
+        em.append(2*vacc[i]/((iB[i]*rtt[i])**2))
+        print(iB[i])
+        print(7.8e-4*icoil[i])
+        print(i)
+        emn.append(em[len(em)-1].n)
+        ems.append(em[len(em)-1].s)
+    else:
+        print("tolto")
 
 def PN(l):
     ret=[]
@@ -136,14 +138,14 @@ print(uncertainties.ufloat(EM, EEM**0.5))
 #scusate, stò fittano una cosa sbagliata....m/e , mica e/m!!!!!!!!!!!
 
 pylab.figure(200)
-out=[((iB[i]*rtt[i])**2).n for i in range(len(rtt))]
-outs=[((iB[i]*rtt[i])**2).s for i in range(len(rtt))]
-vacca=[vacc[i].n for i in range(len(rtt))]
-vaccas=[vacc[i].s for i in range(len(rtt))]
+out=[((iB[i]*rtt[i])**2).n for i in range(len(rtt)) if rtt[i].s/rtt[i].n<0.20]
+outs=[((iB[i]*rtt[i])**2).s for i in range(len(rtt)) if rtt[i].s/rtt[i].n<0.20]
+vacca=[vacc[i].n for i in range(len(rtt)) if rtt[i].s/rtt[i].n<0.20]
+vaccas=[vacc[i].s for i in range(len(rtt))if rtt[i].s/rtt[i].n<0.20]
 pylab.errorbar(vacca, out,outs, vaccas, fmt='.') 
 em, emq=lab.curve_fit(lambda x, a, b: a*x+b, vacca, out,sigma=outs)
 print(em)
-pylab.plot(vacca, [em[0]*vacca[i]+em[1] for i in range(len(rtt))])
+pylab.plot(vacca, [em[0]*vacca[i]+em[1] for i in range(len(rtt)) if rtt[i].s/rtt[i].n<0.20])
 
 EMH, EMI = uncertainties.correlated_values(em, emq)
 
@@ -157,19 +159,14 @@ pylab.figure(201)
 pylab.title("$V_{acc}$ vs $(Br)^2$")
 pylab.xlabel("$V_{acc}$ [V]")
 pylab.ylabel("$(BR)^2$ [$T^2m^2$]")
-out=[((iB[i]*rtt[i])**2).n for i in range(len(rtt))]
-outs=[((iB[i]*rtt[i])**2).s for i in range(len(rtt))]
-vacca=[vacc[i].n for i in range(len(rtt))]
-vaccas=[vacc[i].s for i in range(len(rtt))]
-filter=[i.s/i.n<0.2 for i in rtt]
-print(np.array(vacca)[filter])
-pylab.xlim(min(vacca)*0.98, 260)
-
-#pylab.errorbar(np.array(vacca)[filter], np.array(out)[filter],np.array(outs)[filter], np.array(vaccas)[filter], fmt='.') 
-pylab.errorbar(vacca, out, outs, vaccas, fmt='.')
+out=[((iB[i]*rtt[i])**2).n for i in range(len(rtt)) if rtt[i].s/rtt[i].n<0.20]
+outs=[((iB[i]*rtt[i])**2).s for i in range(len(rtt)) if rtt[i].s/rtt[i].n<0.20]
+vacca=[vacc[i].n for i in range(len(rtt)) if rtt[i].s/rtt[i].n<0.20]
+vaccas=[vacc[i].s for i in range(len(rtt)) if rtt[i].s/rtt[i].n<0.20]
+pylab.errorbar(vacca, out,outs, vaccas, fmt='.') 
 em, emq=lab.curve_fit(lambda x, a: a*x, vacca, out,sigma=outs)
 print(em)
-pylab.plot(np.array(vacca), [em[0]*vacca[i] for i in range(len(rtt))])
+pylab.plot(vacca, [em[0]*vacca[i] for i in range(len(rtt)) if rtt[i].s/rtt[i].n<0.20])
 pylab.savefig(dir+"\\grafici\\VaccBRq.pdf")
 ME=uncertainties.ufloat(em, emq**0.5)
 print(2/ME)
