@@ -56,6 +56,10 @@ m, q = par
 x = linspace(min(E)*0.99, max(E)*1.01)
 y = m*x + q
 
+ret=lambda x: m*x+q
+chisq=sum((unumpy.nominal_values(alphai)-ret(E))**2/unumpy.std_devs(alphai)**2)
+print("Chiq=", chisq, "su ", len(alphai)-2)
+
 xlim(min(y)*0.998, max(y)*1.002)
 xlabel("Deflection angles [°]")
 ylabel("Light energies [eV]")
