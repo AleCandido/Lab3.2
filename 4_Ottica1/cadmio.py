@@ -63,3 +63,42 @@ ylabel("Light energies [eV]")
 plot(y, x, 'g')
 
 savefig(dir + "grafici\\calcadmio.pdf")
+
+m,q = correlated_values([m,q], cov)
+a = 1/m
+b = -q/m
+
+print("\nangular coefficient:",a,"intercepts:",b, "\n")
+
+print("Sodio:\n")
+
+giallor = [59+10/60,59+6/60,59+6/60]
+giallos = ufloat(mean(giallor), stdev(giallor))
+giallo = giallos - alpha0
+
+verder = [59+18/60,59+20/60,59+16/60]
+verdes = ufloat(mean(verder), stdev(verder))
+verde = verdes - alpha0
+
+verdescuror = [59+55/60,59+55/60,59+55/60]
+verdescuros = ufloat(mean(verdescuror), stdev(verdescuror)+0.1)
+verdescuro = verdescuros - alpha0
+
+azzurror = [60+8/60, 60+10/60, 60+6/60]
+azzurros = ufloat(mean(azzurror), stdev(azzurror))
+azzurro = azzurros - alpha0
+
+rossor = [58+55/60,58+53/60,58+56/60]
+rossos = ufloat(mean(rossor), stdev(rossor))
+rosso = rossos - alpha0
+
+violar = [60+39/60]*3
+violas = ufloat(mean(violar), stdev(violar)+0.1)
+viola = violas - alpha0
+
+color = [giallo,verde,verdescuro,azzurro,rosso,viola]
+colorname = ['giallo','verde','verdescuro','azzurro','rosso','viola']
+
+for i in range(0,len(color)):
+    print(colorname[i],": ",c/(color[i]*a + b)*(h/physical_constants['electron volt'][0]))
+
