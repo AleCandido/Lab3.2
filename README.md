@@ -15,11 +15,13 @@ Cosette da fare prima di andare a regime con le esercitazioni
 * Verificare che non ci siano bug in BuzzLightyear.py
 * (opzionale) Aggiornare BuzzLightyear.py con le ultime release di Jack
 * Testare il template Esercitazione.py e verificare compatibilità con BuzzLightyear.py (era stato pensato per analyzer.py, perciò dovrebbe funzionare senza problemi)
-* Inserire in Esercitazione.py le informazioni sui nuovi computer
 
 ___Meglio fare anche un po' di discussione sugli strumenti (scelte strategiche su cosa usare e come usarlo)___
 
 ---
+
+## 11 Mar
+Ho inserito un'impostazione di massima nella relazione, così voi potete lavorare sulla vostra parte mentre io lavoro sulla mia. Lo scopo, anche della vostra, è già inserito, la strumentazione no (potete copiare una cosa simile a quello che ho scritto e finirò di scrivere io). Buon lavoro, vi auguro di non perdere troppo tempo in cazzeggio (anche perché non ci dovrebbero essere possibilità di riuscirci) ____Ale___
 
 ## 17 Feb
 
