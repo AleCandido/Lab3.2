@@ -173,7 +173,7 @@ Durante la fase di presa dati si sono stimati i vari raggi con la scala graduata
 \label{eq:vacc}
 \end{equation}
 
-Si è ottenuto  $e/m \approx \unit{1.5-1.6~10^{11}}{C/Kg}$, in buon accordo con il valore atteso ($e/m_{th} = \unit{1.75~10^{11}}{C/Kg}$).
+Si è ottenuto  $e/m \approx \unit{1.5-1.6~10^{11}}{C/Kg}$, in buon accordo con il valore atteso ($e/m_{exp} = \unit{1.75~10^{11}}{C/Kg}$).
 
 Tuttavia in questa stima non si è considerata né la distorsione dovuta alla presenza del bulbo né quella dovuta alla prospettiva. Il valore comunque risulta essere in buon accordo con quello atteso e ciò è dovuto al fatto che le due correzioni principali che si devono considerare si compensano tra loro. Infatti l'effetto della distorsione dovuta alla prospettiva è quello di aumentare il raggio misurato (le tacche del righello appaiono più piccole rispetto al caso in cui sia sullo stesso piano della circonferenza, in quanto più lontano, e quindi la circonferenza ne comprende un numero maggiore), mentre l'effetto dovuto alla distorsione del bulbo è quello di diminuirlo.
 
@@ -278,7 +278,7 @@ Si riportano in \tablename{~\ref{tab:dist}}.
 Il fattore di correzione alla prospettiva risulta pari a $\unit{0.86 \pm 0.01}{}$.
 
 \subsection{Valori di $e/m$ ottenuti}
-Dopo aver preso i valori dei raggi e  verificato l'andamento del campo magnetico, utilizzando sempre le formule \eqref{eq:em} e \eqref{eq:vacc} si è effettuato un fit lineare di $(Br)^{2} \text{ vs } V_{Acc}$, in cui il coefficiente angolare è 2m/e. Il grafico è riportato in figura \figurename{~\ref{fig:VaccBRq}} il risultato ottenuto è: e/m = $(1.82\pm0.04){10^{-11}} C/Kg$. Come procedura alternatva si è calcolato e/m per ogni foto acquisita e si è fatto il valor medio e la deviazione standard dei valori ottenuti.  il valore ottenuto in questo modo è di $e/m = (1.82\pm0.07)\dot{10^{-11}} C/Kg$.
+Dopo aver preso i valori dei raggi e  verificato l'andamento del campo magnetico, utilizzando sempre le formule \eqref{eq:em} e \eqref{eq:vacc} si è effettuato un fit lineare di $(Br)^{2} \text{ vs } V_{Acc}$, in cui il coefficiente angolare è 2m/e. Il grafico è riportato in figura \figurename{~\ref{fig:VaccBRq}} il risultato ottenuto è: e/m = $(1.82\pm0.04){10^{-11}} C/Kg$ \footnote{L'errore su questa misura è quasi interamente dovuto all'errore strumentale della sonda Hall, in quanto quello statistico risulta soppresso dall'abbondanza di dati.}.
 
 \begin{figure}[H]
 	\centering
@@ -287,12 +287,15 @@ Dopo aver preso i valori dei raggi e  verificato l'andamento del campo magnetico
 	\label{fig:VaccBRq}
 \end{figure}
 
+Come procedura alternatva si è calcolato e/m per ogni foto acquisita e si è fatto il valor medio e la deviazione standard dei valori ottenuti.  il valore ottenuto in questo modo è di $e/m = (1.82\pm0.07)\dot{10^{-11}} C/Kg$.
 
+\subparagraph{Confronto valori} I due valori ottenuti sono compatibili tra loro entro gli errori e compatibili con il valore atteso\footnote{Precedentemente riportato quando si è effettuata la prima stima grezza di e/m.} a meno di $2 \sigma$.
 
 \section{Valutazione errori sistematici}
 
 \subsection{Effetto di distorsione dovuto alla rifrazione del bulbo}
 Si è presa una foto della scala graduata (illuminata) in assenza del bulbo di vetro, in modo tale da poter valutare l'effetto della distorsione del bulbo sulle misure acquisite. Si sono presi più punti sulla scala graduata in due foto scattata consecutivamente: una in assenza del bulbo di vetro e l'altra in presenza di esso.
+
 Al fine di stimare quantitativamente l'effetto, si è suddiviso il bulbo in regioni concentriche e si è supposto che in ogni regione la distanza tra le varie coppie di punti sia bene approssimata con la distanza delle stesse coppie non distorta dal bulbo, moltiplicata per un fattore, costante all'interno di una stessa regione. I fattori sono stati stimati a partire dalle due foto in \figurename{~\ref{fig:righelli}}.
 
 \begin{figure}[H]
@@ -313,13 +316,11 @@ Al fine di stimare quantitativamente l'effetto, si è suddiviso il bulbo in regi
 \end{figure}
 
 
-
 Per ogni raggio si è applicata la correzione necessaria che in media risulta essere dell'ordine del 15\%.
 Si ritiene che tale effetto abbia un impatto significativo sulla nostra misura dei raggi poiché l'orbita degli elettroni non è centrale ma spostata verso il bordo destro del bulbo; tale decentramento amplifica la rilevanza dell'effetto di distorsione osservato.
 
 \paragraph{Osservazione}
 Un ulteriore verifica che bisogna fare è che il piano contenente l'orbita sia parallelo a quello contenente la lente della fotocamera, altrimenti le immagini prese non risultano essere circonferenze ma ellissi. A tal proposito si sono effettuati fit analitici ellittici per quantificare eventuali discrepanze dovute al non parallelismo tra i due piani, ottenendo una correzione ai raggi delle orbite di un'ulteriore $0,5\%$.
-% percentuale stimata grossolanamente tra quasi tutte le foto, ma direi trascurabile quindi l'osservazione finisce qui.
 
 \subsection{Variazione $B_z(r)$/$B_z^{MAX}$}
 
