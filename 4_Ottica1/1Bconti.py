@@ -117,7 +117,7 @@ dY=unumpy.std_devs(y)
 fun=lambda x, R: R*(1/2**2-1/x**2)
 
 pars, pcov=lab.curve_fit(fun, x, Y, sigma=dY, absolute_sigma=True)
-RyS=ufloat(pars, pcov)
+RyS=ufloat(pars, pcov**0.5)
 print(RyS*1e2)
 print(sum((Y-fun(x, pars))**2/dY**2))
 
@@ -125,6 +125,26 @@ pylab.errorbar(x, Y, dY)
 
 pylab.errorbar(x, fun(x, pars))
 
+
+
+#lambdaH=lambdaH[mask]
+#ord1H=ord1H[mask]
+attese=1/(Ryexp*(1/4-1/n2s**2))
+#n1=n1[mask]
+#attese=attese[mask]
+
+def mycoso(self):
+    a0, a1=Angle(self.n)
+    b0, b1=Angle(self.s)
+    return str(math.floor(np.round(a0)))+"\degree "+str(np.floor(a1))+"' \pm "+str(np.round(b1))+" '"
+
+def mucoso(self):
+    return str(self.n)+" \pm "+ str(self.s)
+
+
+for i,j in enumerate(lambdaH):
+    if(mask[i]):
+        print(colori[i], "&  $", mycoso(ord1H[i]+360),"$  &  $",mycoso((180 - theta0H - ord1H)[i]-180),"$  &  $", int(ordine[i].n),"$ & $" ,lambdaH[i],"$ & $" ,attese[i],"$ & $", int(n2s[i]) ,r"$ \\")
 
 # ## fit per trovare costante di Rydberg
 # #metto 1 come errore su n1 stimato prima perchè n è intero. bisogna stare attenti quando n = 1, perchè n non può essere 0, quindi in quel caso l'errore sarebbe asimmetrico
@@ -247,7 +267,6 @@ arg11 = theta0H*ones(2)*math.pi/180
 
 arg22 = (180 - theta0H - ordS)*math.pi/180
 
-#calcolo della lunghezza d'onda OTTENGO COSE SENSATE SE CI METTO THETA0HG AL POSTO DI THETA0H
 
 lambdaS = unumpy.uarray(ones(2),zeros(2))
 

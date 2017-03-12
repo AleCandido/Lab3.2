@@ -247,16 +247,13 @@ dovrebbe aumentare la potenza delle righe osservate. Si è misurato un angolo di
 
 \begin{table}[H]
 	\centering
-	\begin{tabular}{c|c|c|c|c|c|c|c}
-		colore & $\alpha_i$ &	$\theta_i$ & ordine & lunghezza d'onda [nm] & attesa[nm]& $n_2$ (serie) & $n_1$\\
+	\begin{tabular}{c|c|c|c|c|c|c}
+		colore & $\alpha_i$ &	$\theta_i$ & ordine & lunghezza d'onda [nm] & attesa[nm]& $n_2$  \\
 		\hline
-azzurro &  $ 93\degree 7.0' \pm 2.0 ' $  &  $ 19\degree 54.0' \pm 2.0 ' $  &  $ 1 $ & $ 484.5+/-0.6 $ & $ 0 $ & $ 2 $ \\
-rosso &  $ 105\degree 16.0' \pm 2.0 ' $  &  $ 7\degree 45.0' \pm 2.0 ' $  &  $ 1 $ & $ 656.3+/-0.6 $ & $ 0 $ & $ 2 $ \\
-azzurro &  $ 127\degree 13.0' \pm 2.0 ' $  &  $ -15\degree 48.0' \pm 2.0 ' $  &  $ 2 $ & $ 486.93+/-0.32 $ & $ 0 $ & $ 2 $ \\
-d-viola &  $ 83\degree 7.0' \pm 2.0 ' $  &  $ 29\degree 54.0' \pm 2.0 ' $  &  $ 1 $ & $ 352.4+/-0.5 $ & $ 0 $ & $ 1 $ \\
-d-verde &  $ 96\degree 18.0' \pm 3.0 ' $  &  $ 16\degree 43.0' \pm 3.0 ' $  &  $ 1 $ & $ 528.5+/-0.8 $ & $ 0 $ & $ 2 $ \\
-rosso &  $ 102\degree 29.0' \pm 2.0 ' $  &  $ 10\degree 32.0' \pm 2.0 ' $  &  $ 1 $ & $ 616.1+/-0.6 $ & $ 0 $ & $ 2 $ \\
-viola &  $ 119\degree 18.0' \pm 3.0 ' $  &  $ -7\degree 43.0' \pm 3.0 ' $  &  $ 2 $ & $ 430.2+/-0.4 $ & $ 0 $ & $ 2 $ \\
+azzurro &  $ 93\degree 7.0' \pm 4.0 ' $  &  $ 19\degree 54.0' \pm 4.0 ' $  &  $ 1 $ & $ 484.5 \pm 1.0 $ & $ 486.0 $ & $ 4 $ \\
+rosso &  $ 105\degree 16.0' \pm 4.0 ' $  &  $ 7\degree 45.0' \pm 4.0 ' $  &  $ 1 $ & $ 656.3 \pm 1.0 $ & $ 656.1 $ & $ 3 $ \\
+azzurro &  $ 127\degree 13.0' \pm 4.0 ' $  &  $ -15\degree 48.0' \pm 4.0 ' $  &  $ 2 $ & $ 486.9 \pm 0.5 $ & $ 486.0 $ & $ 4 $ \\
+viola &  $ 119\degree 18.0' \pm 3.0 ' $  &  $ -7\degree 43.0' \pm 3.0 ' $  &  $ 2 $ & $ 430.2 \pm 0.4 $ & $ 433.9 $ & $ 5 $ \\
 	\end{tabular}
 	\caption{Misura delle righe spettrali dell'idrogeno, la d nel nome significa che in realtà la linea è un doppietto, di cui un componente è talmente fioco da non poter essere misurato. }
 	\label{tab:HH}
@@ -269,13 +266,44 @@ I valori di $n_1$ e $n_2$ sono quelli che compaiono nell'equazione $1/\lambda=Ry
 % Una caption non può essere così lunga, i vari discorsi vanno scritti fuori. Se poi c'è qualcosa che va assolutamente specificato, o si vuole assolutamente farlo, le note in questo caso sono una buona idea.
 % Le altre note vanno abolite e inserite nel testo, perché è chiaro che sono porzioni di testo
 % Bisogna che accanto al nome del colore compaia la dicitura 2°ord, o simile, per i secondi ordini di diffrazione
+%Bhaaa, c'è una colonna intera per queste cose
 
 
-La stima dei numeri quantici coinvolti è stata fatta con la misura di riferimento del $Ry=1.097373156 * 10^{-2} nm^{-1}$\footnote{ Questo valore è privo della correzione apportata dalla massa finita del nucleo dell'ordine del 1 per mille).(che schifo, la nota si mescola con l'esponente... \underline{\textbf{e allora non metterla in nota!}})} . Questo processo è stato svolto essenzialmente a mano...
+La stima dei numeri quantici coinvolti è stata fatta con la misura di riferimento del $Ry=1.097373156 * 10^{-2} nm^{-1}$\footnote{ Questo valore è privo della correzione apportata dalla massa finita del nucleo dell'ordine del 1 per mille).(che schifo, la nota si mescola con l'esponente... )} . Questo processo è stato svolto essenzialmente a mano.
+Si noti inoltre che sono state prese altre linee non compatibili con nessuna linea nota dell'idrogeno. Un ipotesi è che possano appartenere alla luce spuria proveniente dalle lampade (molto più forti della debole lampada all'idrogeno) messe a scaldare. All'argomento è dedicata la sezione apposita "Curiosità: linee non note".
+
+
+Dalle misure fatte si è proceduto con un fit della costante $Ry$. Si è fittata l'equazione $1/\lambda=Ry(1/n_1^2-1/n_2^2)$ con i numeri quantici trovati in precedenza. Si sono ottenuti i seguenti dati:\\
+$Ry= 0.01098 \pm 0.0007 nm^{-1}$ BISOGNA FARE TORNARE QUESTO ERRORE...\\ 
+$\chi^2=6.1$ (d.o.f.=3)\\
+
+Questo è da confrontare con il valore teorico di $0.010973 nm^{-1}$ (o meglio $0.010968 nm^{-1}$, correzione dovuta alla massa ridotta dell'idrogeno)
  
 
 \subsection{Misura del doppietto del sodio}
+Si è fatta la stessa cosa usando la lampada al sodio. Ci si è focalizzati sul doppietto giallo. Nella tabella sotto le misure prese e le relative conclusioni...
 
 
+
+\subsection{Curiosità: linee non note}
+Nella presa dati per l'idrogeno, oltre alle ben note linee della serie Balmer sono state viste altre linee meno note. \'E stato ipotizzato che tali linee siano originate:
+\begin{itemize}
+\item contaminazione di luce ambientale, per esempio le due lampade messe a riscaldare dietro il paravento
+\item altri elementi presenti nella scarica, es. atomi di elettrodo
+\item linee dell'idrogeno molecolare
+\end{itemize}
+Si ritiene la prima ipotesi molto più probabile, considerando anche la relativa poca brillantezza della lampada ad idrogeno. In particolare si è visto:
+\begin{table}[H]
+	\centering
+	\begin{tabular}{c|c|c|c|c|c}
+		colore & $\alpha_i$ &	$\theta_i$ & ordine & lunghezza d'onda [nm] & sodio  \\
+		\hline
+d-viola &  $ 83\degree 7.0' \pm 2.0 ' $  &  $ 29\degree 54.0' \pm 2.0 ' $  &  $ 1 $ & $ 352.4+/-0.5 $ & $ 467\pm 7 $ \\
+rosso &  $ 102\degree 29.0' \pm 2.0 ' $  &  $ 10\degree 32.0' \pm 2.0 ' $  &  $ 1 $ & $ 616.1+/-0.6 $ & $ 520 \pm 9 $ \\
+Dunque si ritiene molto probabile che le linee viste provengano dalla contaminazione provocata dalla luce della lampada al sodio. Non si capisce perché non siano state viste anche le ben più brillanti linee gialle del sodio (forse non essendo prevista non è stata semplicemente notata).
+\end{tabular}
+	\caption{Misura delle righe spettrali dell'idrogeno, la d nel nome significa che in realtà la linea è un doppietto, di cui un componente è talmente fioco da non poter essere misurato. }
+	\label{tab:HH}
+\end{table}
 
 \end{document}
