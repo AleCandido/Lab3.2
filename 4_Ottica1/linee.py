@@ -32,3 +32,17 @@ stddev=sqrt(sum((ll - mean)**2 for ll in l)/len(l))
 print(Angle(mean), "+-", Angle(stddev))
 
 
+A1=angle(69,30)
+A2=angle(69, 28)
+A3=angle(69, 30)
+
+
+
+
+
+l=[A1, A2, A3]
+mean=(A1+A2+A3)/3
+stddev=sqrt(sum((ll - mean)**2 for ll in l)/len(l))
+print(Angle(mean), "+-", Angle(stddev))
+
+

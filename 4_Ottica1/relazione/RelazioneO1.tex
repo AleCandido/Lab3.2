@@ -81,7 +81,7 @@ Si è trovato: $\alpha_0 = 10\degree~53'~42''\pm 1'~32''$
 	\end{tabular}
 \caption{Dati raccolti sulla misura di $\alpha_0$}
 \end{table}
-%2-3' o 2-3°?
+
 Si è inoltre stimato indipendentemente che, data la larghezza dell'oculare, il singolo osservatore poteva compiere un errore massimo di parallasse pari a circa $2\degree-3\degree$ complessivi (ampiezza dell'intervallo), quindi circa $\pm 1\degree-1.5\degree$, si è in seguito supposto che fosse già incluso nelle fluttuazioni considerate con la misura da parte di più osservatori.
 
 \paragraph{Determinazione della condizione di minima deviazione} Si è osservato lo spostamento dell righe spettrali del cadmio in funzione della posizione del prisma, e si è individuata la posizione corrispondente alla condizione di minimo spostamento relativa alla riga verde, la più vicina alla riga gialla attesa del sodio.
@@ -209,23 +209,11 @@ Si è provato a migliorare la visualizzazione della riga viola muovendo la slitt
 \end{figure}
 
 \subsection{Regolazione della geometria dei telescopi}
-Lo schema dell'apparato è rappresentato in figura \figurename{~\ref{fig:schema2}}.
-
-
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=0.7\textwidth]{../grafici/Schema2.png}
-	\caption{Schema dell'apparato usato}
-	\label{fig:schema2}
-\end{figure}
-
-
-
+Lo schema dell'apparato è rappresentato in figura \figurename{~\ref{fig:reticolo}}.
 In primo luogo si è posizionata la lampada al mercurio vicino al telescopio fisso e si è ruotato il telescopio di osservazione fino ad osservare l'ordine zero di diffrazione. Si è fissato questo telescopio e si è regolato lo spessore della fenditura, la distanza della lampada da essa e la messa a fuoco del telescopio per visualizzare la riga con la maggior intensità possibile e con uno spessore né troppo piccolo da non permettere la visualizzazione della riga, né troppo grande per evitare di avere un'incertezza grande sulla effettiva posizione della riga rispetto alle distanze in gioco\footnote{La distanza tra i due bordi della riga dell'ordine zero (e poi anche di quelle di ordine superiore), nelle condizioni scelte nell'esperienza, è stimata essere minore di ???(io direi 0.5') che è da confrontare con la scala graduata del nonio, la cui risoluzione massima è di 0.5'.}.
 %da completare
-La distanza della lampada dalla fenditura non deve essere né troppo grande ($\sim 1 cm$) perché ne risentirebbe la luminosità delle riga, né troppo piccola perché si vedrebbero aloni intorno ad essa. Per la fenditura si sono effettuati gli stessi accorgimenti seguiti nella prima parte.
+La distanza della lampada dalla fenditura non deve essere né troppo grande ($\sim 1 cm$) perché ne risentirebbe la luminosità delle riga, né troppo piccola perché si vedrebbero aloni intorno ad essa.
 Si sono poi osservate le righe del primo ordine di diffrazione (quelle più intense,cioè, in ordine per angolo di incidenza decrescente: viola, verde, rosso e un doppietto giallo) e si è verificato che, con gli stessi accorgimenti fatti per la riga dell'ordine zero, esse siano ben messe a fuoco.
-
 
 \subsection{Calibrazione dello strumento e misura del passo reticolare}
 Con la stessa procedura effettuata nella parte A si è effettuata la calibrazione del nonio ottenendo $\alpha_0 = $\footnote{La trattazione dei vari dati acquisiti in questa parte dell'esperienza e dei relativi errori sono trattati nell'apposita sezione 'errori sistematici'.}. Presa questa misura, tutte le letture successive fatte sul nonio e riportate qui saranno riferite a questo valore.
@@ -238,9 +226,35 @@ Con la stessa procedura effettuata nella parte A si è effettuata la calibrazion
 \end{figure}
 
 \paragraph{Misura del passo reticolare}
+Si Il passo reticolare è stato misurato conoscendo la lunghezza d'onda della riga verde del sodio. Sono stati misurati, relativi all'angolo di calibrazione $\theta_0 =348\degree 42' \pm  2' $, l'angolo della riflessione speculare $8\degree 55.7' \pm 0.5'$ e del primo massimo di interferenza della riga verde del mercurio $69\degree 29.0'\pm 1'$. Nota la lunghezza d'onda della suddetta linea $546.074 \pm 0.001 nm$ si è usata la nota equazione $d(sin \theta_i– sin \theta_d) = m\lambda$ per stimare il passo reticolare $d$. Gli errori sono stati propagati tenendo conto delle covarianze e i dati presi sono stati considerati con errori statistici\footnote{Si è ritenuto possibile considerare gli errori come statistici in quanto frutto della media di dati presi da persone diverse. Fra le prese dati dei vari elementi del gruppo si ha avuto cura di riportare il telescopio di osservazione in una zona neutra, in modo di evitare eventuali influenze da parte di membri del gruppo su altri} e scorrelati.
+
+
+Il risultato ottenuto è dunque $d=835.57 \pm 0.25 nm$ (ovvero $1196.8+/-0.4$ linee per mm). Il risultato sembra compatibile con quanto atteso.
 
 \subsection{Righe di emissione dell'idrogeno}
+Per misurare la lunghezza d'onda delle linee dell'idrogeno si è deciso di diminuire l'angolo di incidenza del fascio entrante sul reticolo. Questo \footnote{Secondo il gruppo e parte dei membri dello staff del lab, fra questi c'è molta confusione a riguardo} dovrebbe aumentare la potenza delle righe osservate. Si è misurato un angolo di deviazione in riflessione di $46\degree 3' \pm 2'$. Riferiti a tale angolo sono stati misurati i seguenti dati.
 
+\begin{table}[H]
+	\centering
+	\begin{tabular}{c|c|c|c|c|c|c|c}
+		colore & $\alpha_i$ &	$\theta_i$ & ordine & lunghezza d'onda [nm] & attesa[nm]& $n_2$ (serie) & $n_1$\\
+		\hline
+azzurro &  $ 93\degree 7.0' \pm 2.0 ' $  &  $ 19\degree 54.0' \pm 2.0 ' $  &  $ 1 $ & $ 484.5+/-0.6 $ & $ 0 $ & $ 2 $ \\
+rosso &  $ 105\degree 16.0' \pm 2.0 ' $  &  $ 7\degree 45.0' \pm 2.0 ' $  &  $ 1 $ & $ 656.3+/-0.6 $ & $ 0 $ & $ 2 $ \\
+azzurro &  $ 127\degree 13.0' \pm 2.0 ' $  &  $ -15\degree 48.0' \pm 2.0 ' $  &  $ 2 $ & $ 486.93+/-0.32 $ & $ 0 $ & $ 2 $ \\
+d-viola &  $ 83\degree 7.0' \pm 2.0 ' $  &  $ 29\degree 54.0' \pm 2.0 ' $  &  $ 1 $ & $ 352.4+/-0.5 $ & $ 0 $ & $ 1 $ \\
+d-verde &  $ 96\degree 18.0' \pm 3.0 ' $  &  $ 16\degree 43.0' \pm 3.0 ' $  &  $ 1 $ & $ 528.5+/-0.8 $ & $ 0 $ & $ 2 $ \\
+rosso &  $ 102\degree 29.0' \pm 2.0 ' $  &  $ 10\degree 32.0' \pm 2.0 ' $  &  $ 1 $ & $ 616.1+/-0.6 $ & $ 0 $ & $ 2 $ \\
+viola &  $ 119\degree 18.0' \pm 3.0 ' $  &  $ -7\degree 43.0' \pm 3.0 ' $  &  $ 2 $ & $ 430.2+/-0.4 $ & $ 0 $ & $ 2 $ \\
+	\end{tabular}
+	\caption{Misura delle righe spettrali dell'idrogeno, la d nel nome significa che in realtà la linea è un doppietto, di cui un componente è talmente fioco da non essere stato misurabile. Si noti come il primo azzurro e il secondo dovrebbero essere la stessa linea spettrale viste al primo e al secondo massimo di interferenza. I valori sono simili MA NON PIENAMENTE COMPATIBILI, PERCH\'E ????
+I valori di $n_1$ e $n_2$ sono quelli che compaiono nell'equazione $1/\lambda=Ry(1/n_1^2-1/n_2^2)$. La serie Balmer corrisponde a $n_2=2$. $n_2=1$ è la serie Lyman.	
+	}
+	\label{tab:HH}
+\end{table}
+La stima dei numeri quantici coinvolti è stata fatta con la misura di riferimento del $Ry=1.097373156 * 10^{-2} nm^{-1}$\footnote{ Questo valore è privo della correzione apportata dalla massa finita del nucleo dell'ordine del 1 per mille).(che schifo, la nota si mescola con l'esponente...)} . Questo processo è stato svolto essenzialmente a mano...
+
+ 
 
 \subsection{Misura del doppietto del sodio}
 

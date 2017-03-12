@@ -38,17 +38,17 @@ num = 7
 
 
 #costante di ry nominale
-Ryexp = 1.097373156 * 10**(-2)
+Ryexp = 1.097373156 * 10**(-2)  #in nm*-1
 
-
+#alpha0+=360
 
 # ricalcolo riga ordine 0 per H perchè si è spostato il reticolo.
-ord0H = ufloat(71+52/60,2/60) -  alpha0
+ord0H = ufloat(34+45/60,2/60) -  alpha0 
 
 theta0H = 0.5*(180 - ord0H)
 
 # righe ordine 1 e 2
-ord1H = unumpy.uarray([  array([81+49/60,93+58.5/60,115+55/60,71+49/60,85,91+11/60,108]),array([2,2,2,2,3,2,3])/60])
+ord1H = unumpy.uarray([  array([81+49/60,93+58.5/60,115+55/60,71+49/60,85,91+11/60,108]),array([2,2,2,2,3,2,3])/60])-alpha0
 
 # ordine della riga
 ordine = unumpy.uarray(array([1,1,2,1,1,1,2]),zeros(7))
@@ -60,17 +60,24 @@ arg2 = (180 - theta0H - ord1H)*math.pi/180
 
 #calcolo della lunghezza d'onda OTTENGO COSE SENSATE SE IN ARG2 CI METTO THETA0HG AL POSTO DI THETA0H
 
-# lambdaH = unumpy.uarray(ones(7),zeros(7))
-# 
-# 
-# for i in range(0,7):
-#     lambdaH[i] = (d*(umath.sin(arg2[i])-umath.sin(arg1[i])))/ordine[i]
-# 
-# 
-# print(lambdaH)
+lambdaH = unumpy.uarray(ones(7),zeros(7))
+
+
+for i in range(0,7):
+    lambdaH[i] = (d*(umath.sin(arg2[i])-umath.sin(arg1[i])))/ordine[i]
+
+
+print(lambdaH)
+
+colori=["azzurro", "rosso", "azzurro", "d-viola", "d-verde","rosso", "viola"]
+attese=[0, 0, 0, 0, 0, 0, 0]
+
+figure(123)
+plot(range(len(unumpy.nominal_values(lambdaH))), unumpy.nominal_values(1/lambdaH))
+figure(0)
 
 #  DA CANCELLARE solo per aggiustare le cose e vedere se tornano le cose dopo concettualmente
-lambdaH =  unumpy.uarray([ array([50,350,550,750,1400,2180,3000]),0.4*ones(num)])
+#lambdaH =  unumpy.uarray([ array([50,350,550,750,1400,2180,3000]),0.4*ones(num)])
 
 
 #calcolo n1 e n2
@@ -95,6 +102,31 @@ for i in range(0,num):
     n11[i] =1/umath.sqrt(   (1/n2[i]**2) + (1/(Ryexp*lambdaH[i])) )
  # estraggo valore di n1  
     frac[i],n1[i] = math.modf(0.5 + n11[i].nominal_value)    
+    
+
+
+########plot della tabella...non mi convincono i numerini delle serie e dei valori iniziali...
+def mycoso(self):
+    a0, a1=Angle(self.n)
+    b0, b1=Angle(self.s)
+    return str(math.floor(np.round(a0)))+"\degree "+str(np.floor(a1))+"' \pm "+str(np.round(b1))+" '"
+
+for i,j in enumerate(lambdaH):
+    print(colori[i], "&  $", mycoso(ord1H[i]+360),"$  &  $",mycoso((180 - theta0H - ord1H)[i]-180),"$  &  $", int(ordine[i].n),"$ & $" ,lambdaH[i],"$ & $" ,attese[i],"$ & $", int(n1[i]) ,r"$ \\")
+
+
+######mia stima numeri quantici...
+
+
+n1s=np.array([2, 2, 2, 3, 2, 2, 2]) #giuste 0, 1, 2...
+n2s=np.array([4, 3, 4, 4, 3, 3, 3])
+stimata=1/(Ryexp*(1/n1s**2-1/n2s**2))
+
+
+print("matching...")
+for i in stimata-lambdaH:
+    print(i)
+
 
 
 ## fit per trovare costante di Rydberg
