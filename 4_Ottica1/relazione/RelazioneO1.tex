@@ -84,7 +84,7 @@ Si è trovato: $\alpha_0 = 10\degree~53'~42''\pm 1'~32''$
 
 Si è inoltre stimato indipendentemente che, data la larghezza dell'oculare, il singolo osservatore poteva compiere un errore massimo di parallasse pari a circa $2'-3'$ complessivi (ampiezza dell'intervallo), quindi circa $\pm 1'-1.5'$, si è in seguito supposto che fosse già incluso nelle fluttuazioni considerate con la misura da parte di più osservatori.
 
-\paragraph{Determinazione della condizione di minima deviazione} Si è osservato lo spostamento dell righe spettrali del cadmio in funzione della posizione del prisma, e si è individuata la posizione corrispondente alla condizione di minimo spostamento relativa alla riga verde, la più vicina alla riga gialla attesa del sodio.
+\paragraph{Determinazione della condizione di minima deviazione} Si è osservato lo spostamento delle righe spettrali del cadmio in funzione della posizione del prisma, e si è individuata la posizione corrispondente alla condizione di minimo spostamento relativa alla riga verde, la più vicina alla riga gialla attesa del sodio.
 
 Si è notato che la posizione della riga verde era stazionaria, entro la sensibilità consentita dall'apparato, per un certo intervallo di posizioni del prisma, si è perciò sfruttata questa indeterminazione (più correttamente: si è cercato di ridurla) imponendo approssimativamente la condizione di minimo spostamento anche per la riga rossa.
 L'inesattezza in quest'ultima operazione è introdotta dal fatto che fosse difficile per l'osservatore assicurare che la condizione, che veniva verificata dinamicamente ruotando il prisma, fosse rispettata da entrambe le righe; si è dunque privilegiato la riga verde, in quanto era stata individuata in principio come la più vicina alla zona d'interesse.
@@ -110,7 +110,6 @@ Si sono misurate le posizioni delle righe del cadmio nel modo descritto per l'in
 
 Si è quindi eseguito un fit affine per la calibrazione della scala spettrale, si riporta il grafico in \figurename{~\ref{fig:cadmio}.
 
-%metti il grafico su git altrimenti non lo vediamo
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.7\textwidth]{../grafici/calcadmio.pdf}
@@ -190,6 +189,7 @@ Si è provato a migliorare la visualizzazione della riga viola muovendo la slitt
 % queste lunghezze d'onda andrebbero confrontate con qualcosa, inoltre il punto corrispondente per la lunghezza d'onda della riga osservata del sodio andrebbe evidenziato nel grafico del fit( tanto per avere un idea di dove starebbe secondo me); non vedendo il grafico lo scrivo se non lo hai già fatto.
 FORSE NON SONO RIGHE DEL SODIO...%in http://physics.nist.gov/PhysRefData/Handbook/Tables/sodiumtable2.htm non vedo ad esempio la 520 pm 9 potrebbe essere la riga di qualcosa che c'è nella lampada (elettrodo??)
 
+
 \section{Esperienza B: Misura della costante di Rydberg}
 
 \subsection{Strumentazione}
@@ -228,7 +228,14 @@ Con la stessa procedura effettuata nella parte A si è effettuata la calibrazion
 
 
 \paragraph{Misura del passo reticolare}
-Il passo reticolare è stato misurato conoscendo la lunghezza d'onda della riga verde del sodio. Sono stati misurati, relativamente all'angolo di calibrazione $\alpha_0$, l'angolo della riflessione speculare $8\degree 55.7' \pm 0.5'$ e del primo massimo di interferenza della riga verde del mercurio $69\degree 29.0'\pm 1'$. Nota la lunghezza d'onda della suddetta linea ($546.074 \pm 0.001 nm$) per stimare il passo reticolare $d$ si è usata la nota equazione $d(sin \theta_i$ – $sin \theta_d) = m\lambda$, dove $\theta_{i,ord0} =0.5(\pi - \alpha_0)$ e $\theta_d = \pi - \theta_{i,ord1} - \alpha_1$. Una rappresentazione schematica per trovare le equazioni precedenti è mostrata in \figurename{~\ref{fig:angoli}}.
+Il passo reticolare è stato misurato conoscendo la lunghezza d'onda della riga verde del sodio. Sono stati misurati, relativamente all'angolo di calibrazione $\alpha_0$, l'angolo della riflessione speculare $8\degree 55.7' \pm 0.5'$ e del primo massimo di interferenza della riga verde del mercurio $69\degree 29.0'\pm 1'$. Nota la lunghezza d'onda della suddetta linea ($546.074 \pm 0.001 nm$) per stimare il passo reticolare $d$ si è usata la nota equazione 
+\begin{align*}
+&d(sin \theta_i - sin \theta_d) = m\lambda\\
+&\theta_{i,ord0} = (\pi - \alpha_0)/2\\
+&\theta_d = \pi - \theta_{i,ord1} - \alpha_1
+\end{align*}
+
+Una rappresentazione schematica per trovare le equazioni precedenti è mostrata in \figurename{~\ref{fig:angoli}}.
 
 
 \begin{figure}[H]
@@ -239,7 +246,7 @@ Il passo reticolare è stato misurato conoscendo la lunghezza d'onda della riga 
 \end{figure}
 
 Gli errori sono stati propagati tenendo conto delle covarianze e i dati presi sono stati considerati con errori statistici\footnote{Si è ritenuto possibile considerare gli errori come statistici in quanto frutto della media di dati presi da persone diverse. Fra le prese dati dei vari elementi del gruppo si ha avuto cura di riportare il telescopio di osservazione in una zona neutra, in modo di evitare eventuali influenze da parte di membri del gruppo su altri} e scorrelati. 
-Il risultato ottenuto è dunque $d=835.57 \pm 0.25 nm$ (ovvero $1196.8+/-0.4$ linee per mm). Il risultato sembra compatibile con quanto atteso ($\sim 1200$ linee per mm).
+Il risultato ottenuto è dunque $d=835.57 \pm 0.25 nm$ (ovvero $1196.8 \pm 0.4$ linee per mm). Il risultato sembra compatibile con quanto atteso ($\sim 1200$ linee per mm).
 
 \subsection{Righe di emissione dell'idrogeno}
 
@@ -283,6 +290,7 @@ Questo è da confrontare con il valore atteso di $0.010973 nm^{-1}$ (o meglio $0
 
 \subsection{Misura del doppietto del sodio}
 Si è fatta la stessa cosa usando la lampada al sodio. Ci si è focalizzati sul doppietto giallo. Nella tabella sotto le misure prese e le relative conclusioni...
+TRANQUILLI, QUESTO E' SOLO DA INSERIRE...
 
 
 
@@ -316,6 +324,6 @@ Dunque si ritiene molto probabile che le linee emesse siano il contributo allo s
 
 
 VA BE, GLI SPETTRI NEL PUNTO 1 NON SONO STATI CONTROLLATI!!!!!IL SODIO NON HA 520!!!!!!NON HA NEANCHE UN 618!!!!
-POTREBBE ESSERE DEL HG
+Neanche l'Hg torna... qualcuno SA DOVE TROVARE I DATASHEET DELLE LAMPADE?
 
 \end{document}
