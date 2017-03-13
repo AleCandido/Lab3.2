@@ -63,7 +63,7 @@ print("Chiq=", chisq, "su ", len(alphai)-2)
 xlim(min(y)*0.998, max(y)*1.002)
 xlabel("Deflection angles [°]")
 ylabel("Light energies [eV]")
-
+grid()
 plot(y, x, 'g')
 
 savefig(dir + "grafici\\calcadmio.pdf")
