@@ -188,6 +188,7 @@ L'intensità delle altre righe era per tutte minore rispetto a quella della riga
 
 Si è provato a migliorare la visualizzazione della riga viola muovendo la slitta d'ingresso, ottenendo però modesti risultati.
 % queste lunghezze d'onda andrebbero confrontate con qualcosa, inoltre il punto corrispondente per la lunghezza d'onda della riga osservata del sodio andrebbe evidenziato nel grafico del fit( tanto per avere un idea di dove starebbe secondo me); non vedendo il grafico lo scrivo se non lo hai già fatto.
+FORSE NON SONO RIGHE DEL SODIO...%in http://physics.nist.gov/PhysRefData/Handbook/Tables/sodiumtable2.htm non vedo ad esempio la 520 pm 9 potrebbe essere la riga di qualcosa che c'è nella lampada (elettrodo??)
 
 \section{Esperienza B: Misura della costante di Rydberg}
 
@@ -250,10 +251,10 @@ dovrebbe aumentare la potenza delle righe osservate. Si è misurato un angolo di
 	\begin{tabular}{c|c|c|c|c|c|c}
 		colore & $\alpha_i$ &	$\theta_i$ & ordine & lunghezza d'onda [nm] & attesa[nm]& $n_2$  \\
 		\hline
-azzurro &  $ 93\degree 7.0' \pm 4.0 ' $  &  $ 19\degree 54.0' \pm 4.0 ' $  &  $ 1 $ & $ 484.5 \pm 1.0 $ & $ 486.0 $ & $ 4 $ \\
-rosso &  $ 105\degree 16.0' \pm 4.0 ' $  &  $ 7\degree 45.0' \pm 4.0 ' $  &  $ 1 $ & $ 656.3 \pm 1.0 $ & $ 656.1 $ & $ 3 $ \\
-azzurro &  $ 127\degree 13.0' \pm 4.0 ' $  &  $ -15\degree 48.0' \pm 4.0 ' $  &  $ 2 $ & $ 486.9 \pm 0.5 $ & $ 486.0 $ & $ 4 $ \\
-viola &  $ 119\degree 18.0' \pm 3.0 ' $  &  $ -7\degree 43.0' \pm 3.0 ' $  &  $ 2 $ & $ 430.2 \pm 0.4 $ & $ 433.9 $ & $ 5 $ \\
+azzurro &  $ 93\degree 7.0' \pm 4.0 ' $  &  $ 19\degree 54.0' \pm 4.0 ' $  &  $ 1 $ & $ 484.5 \pm 1.0 $ & $ 486.0 $ & $ 4 $\\
+rosso &  $ 105\degree 16.0' \pm 4.0 ' $  &  $ 7\degree 45.0' \pm 4.0 ' $  &  $ 1 $ & $ 656.3 \pm 1.0 $ & $ 656.1 $ & $ 3 $\\
+azzurro &  $ 127\degree 13.0' \pm 4.0 ' $  &  $ -15\degree 48.0' \pm 4.0 ' $  &  $ 2 $ & $ 486.9 \pm 0.5 $ & $ 486.0 $ & $ 4 $\\
+viola &  $ 119\degree 18.0' \pm 3.0 ' $  &  $ -7\degree 43.0' \pm 3.0 ' $  &  $ 2 $ & $ 430.2 \pm 0.4 $ & $ 433.9 $ & $ 5 $\\
 	\end{tabular}
 	\caption{Misura delle righe spettrali dell'idrogeno, la d nel nome significa che in realtà la linea è un doppietto, di cui un componente è talmente fioco da non poter essere misurato. }
 	\label{tab:HH}
@@ -274,14 +275,15 @@ Si noti inoltre che sono state prese altre linee non compatibili con nessuna lin
 
 
 Dalle misure fatte si è proceduto con un fit della costante $Ry$. Si è fittata l'equazione $1/\lambda=Ry(1/n_1^2-1/n_2^2)$ con i numeri quantici trovati in precedenza. Si sono ottenuti i seguenti dati:\\
-$Ry= 0.01098 \pm 0.0007 nm^{-1}$ BISOGNA FARE TORNARE QUESTO ERRORE...\\ 
-$\chi^2=6.1$ (d.o.f.=3)\\
+$Ry= 0.01098 \pm 0.0007 nm^{-1}$ \\
+$\chi^2=6.1$ (d.o.f.=3) \'E molto male, ma lo posso fare andare dove voglio con l'errore sui dati...il punto che non abbiamo statistica su questi punti che arano anche molto puù difficili da prendere.\\ 
 
-Questo è da confrontare con il valore teorico di $0.010973 nm^{-1}$ (o meglio $0.010968 nm^{-1}$, correzione dovuta alla massa ridotta dell'idrogeno)
+Questo è da confrontare con il valore atteso di $0.010973 nm^{-1}$ (o meglio $0.010968 nm^{-1}$, correzione dovuta alla massa ridotta dell'idrogeno): ampiamente nell'errore sperimentale.
  
 
 \subsection{Misura del doppietto del sodio}
 Si è fatta la stessa cosa usando la lampada al sodio. Ci si è focalizzati sul doppietto giallo. Nella tabella sotto le misure prese e le relative conclusioni...
+
 
 
 
@@ -291,19 +293,29 @@ Nella presa dati per l'idrogeno, oltre alle ben note linee della serie Balmer so
 \item contaminazione di luce ambientale, per esempio le due lampade messe a riscaldare dietro il paravento
 \item altri elementi presenti nella scarica, es. atomi di elettrodo
 \item linee dell'idrogeno molecolare
+\item SE AVETE ALTRI SUGGERIMENTI PREGO...
 \end{itemize}
-Si ritiene la prima ipotesi molto più probabile, considerando anche la relativa poca brillantezza della lampada ad idrogeno. In particolare si è visto:
+Si ritiene che l'ultima ipotesi sia da scartare in quanto le stesse linee sono state viste anche nella presa dati delle linee del sodio, ANCHE SE IL SODIO NON HA QUELLE LINEE!!!!!:\\
+
+
 \begin{table}[H]
-	\centering
-	\begin{tabular}{c|c|c|c|c|c}
-		colore & $\alpha_i$ &	$\theta_i$ & ordine & lunghezza d'onda [nm] & sodio  \\
-		\hline
-d-viola &  $ 83\degree 7.0' \pm 2.0 ' $  &  $ 29\degree 54.0' \pm 2.0 ' $  &  $ 1 $ & $ 352.4+/-0.5 $ & $ 467\pm 7 $ \\
-rosso &  $ 102\degree 29.0' \pm 2.0 ' $  &  $ 10\degree 32.0' \pm 2.0 ' $  &  $ 1 $ & $ 616.1+/-0.6 $ & $ 520 \pm 9 $ \\
-Dunque si ritiene molto probabile che le linee viste provengano dalla contaminazione provocata dalla luce della lampada al sodio. Non si capisce perché non siano state viste anche le ben più brillanti linee gialle del sodio (forse non essendo prevista non è stata semplicemente notata).
+\centering
+\begin{tabular}{c|c|c|c|c|c}
+colore & $\theta_i$ & ordine & lunghezza d'onda [nm] & sodio[nm](esperimento 1) & sodio[nm] (exp)  \\
+\hline
+d-verde &  $ 96\degree 18.0' \pm 3.0 ' $  &  $ 16\degree 43.0' \pm 3.0 ' $  &  $ 1 $ & $ 528.5+/-0.8 $ $520 \pm 9$&NON MI RISULTA ESISTERE!!!! \\
+rosso &    $ 10\degree 32.0' \pm 2.0 ' $  &  $ 1 $ & $ 616.1+/-0.6 $ & $ 618 \pm 5 $& NON MI RISULTA ESISTERE!!!!\\
 \end{tabular}
-	\caption{Misura delle righe spettrali dell'idrogeno, la d nel nome significa che in realtà la linea è un doppietto, di cui un componente è talmente fioco da non poter essere misurato. }
-	\label{tab:HH}
+\caption{CAZZO}
+\label{tab:HNa}
 \end{table}
+
+
+
+Dunque si ritiene molto probabile che le linee emesse siano il contributo allo spettro degli atomi del metallo degli elettrodi o di una contaminazione di un qualche gas ignoto presente nelle lampade.
+
+
+VA BE, GLI SPETTRI NEL PUNTO 1 NON SONO STATI CONTROLLATI!!!!!IL SODIO NON HA 520!!!!!!NON HA NEANCHE UN 618!!!!
+POTREBBE ESSERE DEL HG
 
 \end{document}
