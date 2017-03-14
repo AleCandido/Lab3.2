@@ -258,7 +258,7 @@ dovrebbe aumentare la potenza delle righe osservate. Si è misurato un angolo di
 \begin{table}[H]
 	\centering
 	\begin{tabular}{c|c|c|c|c|c|c}
-		colore & $\alpha_i$ &	$\theta_i$ & ordine di diffrazione & $\lambda$[nm] & $\lambda_{attesa}$[nm]& $n_2$  \\
+colore & $\alpha_i$ &	$\theta_i$ & ordine di diffrazione & $\lambda$[nm] & $\lambda_{attesa}$[nm]& $n_2$  \\
 		\hline
 azzurro &  $ 93\degree 7.0' \pm 4.0 ' $  &  $ 19\degree 54.0' \pm 4.0 ' $  &  $ 1 $ & $ 484.5 \pm 1.0 $ & $ 486.0 $ & $ 4 $\\
 rosso &  $ 105\degree 16.0' \pm 4.0 ' $  &  $ 7\degree 45.0' \pm 4.0 ' $  &  $ 1 $ & $ 656.3 \pm 1.0 $ & $ 656.1 $ & $ 3 $\\
@@ -291,15 +291,40 @@ Si noti inoltre che sono state prese altre linee non compatibili con nessuna lin
 Dalle misure fatte si è proceduto con un fit della costante di Rydberg $Ry$. Si è fittata l'equazione (1) con i numeri quantici trovati in precedenza e riportati in \tablename{~\ref{tab:HH}, ottenendo i seguenti risultati:\\
 $Ry= 0.01098 \pm 0.0007 nm^{-1}$ \\
 $\chi^2=6.1$ (d.o.f.=3)
- \emph{'E molto male, ma lo posso fare andare dove voglio con l'errore sui dati...il punto che non abbiamo statistica su questi punti che arano anche molto puù difficili da prendere.MANCA IL GRAFICO}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\textwidth]{../grafici/Ryf.pdf}
+	\caption{Fit dell'equazione $1/\lambda=Ry(1/n_1^2-1/n_2^2)$ per la determinazione di $Ry$}
+	\label{fig:cadmio}
+\end{figure}
+
 
 Questo è da confrontare con il valore atteso di $0.010973 nm^{-1}$ (o meglio $0.010968 nm^{-1}$, correzione dovuta alla massa ridotta dell'idrogeno): il risultato ottenuto è compatibile nell'errore sperimentale.
  
 
 \subsection{Misura del doppietto del sodio}
-A questo punto si è messa la lampada al sodio. Ci si è focalizzati sul doppietto giallo. Nella tabella sotto le misure prese e le relative conclusioni...
-TRANQUILLI, QUESTO E' SOLO DA INSERIRE...
+A questo punto si è messa la lampada al sodio. Ci si è focalizzati sul doppietto giallo. Nella tabella sotto \ref{tab:NaR} gli angoli e le lunghezze ottenute.
 %SCRIVO QUA COSA CHIEDE LA SCHEDA COSI DA VERIFICARE CHE CI SIA TUTTO E NON FARE AVENTI E INDIETRO CON LA PAGINA: Si utilizzi ora la lampada al sodio e si osservi la posizione angolare, al primo ordine di diffrazione, delle righe di emissione del doppietto del sodio. La distanza tra le due righe è nota essere 0.6 nm; SI UTILIZZI questo dato per stimare la precisione sulla misura di lunghezze d’onda ottenibile con lo spettroscopio a disposizione e SI CONFRONTI il valore ottenuto con gli errori stimati sulla lunghezza d’onda propagando l’errore sulle misure angolari al punto a).INFINE SI COFRONTI la misura del doppietto del sodio osservato con lo spettrometro a reticolo e con quello a prisma. Si commentino le differenze osservate.
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{c|c|c|c}
+		$\theta_i$ & $\lambda$[nm] & $\lambda_{attesa}$[nm]  \\
+		\hline
+  $ 12\degree 25.0' \pm 2.0 ' $ & $ 589.2 \pm 0.6 $ & $ 589.0 $ \\
+  $ 12\degree 22.0' \pm 2.0 ' $ & $ 589.9 \pm 0.6 $ & $ 589.6 $ \\
+\end{tabular}
+	\caption{Doppietto del sodio. Nomi degli angoli seguono le convenzioni dei paragrafi precedenti}
+	\label{tab:NaR}
+\end{table}
+
+La differenza fra le linee risulta essere dunque di $0.7\pm 0.7 nm$ (dove l'errore è stato propagato con la stessa procedura ottenuta in precedenza), da confrontare con il valore noto di $0.6 nm$. Questo farebbe pensare a una sovrastima dell'errore. Inoltre si può notare dalla tabella \ref{tab:NaR} che anche per il valore delle singole righe l'errore sembra essere sovrastimato: risultano entrambe spostate al più di $0.3 nm$, la metà dell'errore stimato.
+Questo dovrebbe far credere che gli errori presenti in tabella \ref{tab:HH} (tutti dell'ordine del $nm$)debbano essere sbagliati di un fattore 5. Si noti però che una correzione di un fattore 5 negli errori porterebbe il valore del $\chi^2$ del fit della costante di Rydberg totalmente fuoriscala. D'altro canto bisogna osservare che le linee del sodio sono molto più intense di molte delle linee tabulate in \ref{tab:HH}, per alcune delle quali è stato difficile allineare la croce del centro del telescopio con la linea stessa. Altro errore potrebbe essere stato introdotto li. 
+
+
+La differenza con la misura effettuata al punto 1 è non solo quantitativa, ma addirittura qualitativa: con lo spettroscopio a prisma non si riesce ad apprezzare la presenza di due linee, cosa tra l'alto plausibile avendo una risoluzione di circa $6 nm$. Con il presente le due righe, distanti solo $0.6 nm$, sono chiaramente separate. Si stima dunque che lo spettroscopio a reticolo sia decine di volte più preciso di quello a prisma.  
+
 
 
 
@@ -307,38 +332,34 @@ TRANQUILLI, QUESTO E' SOLO DA INSERIRE...
 Nella presa dati per l'idrogeno, oltre alle ben note linee della serie Balmer sono state viste altre linee meno note. \'E stato ipotizzato che tali linee siano originate:
 \begin{itemize}
 \item contaminazione di luce ambientale, per esempio le due lampade messe a riscaldare dietro il paravento
-\item altri elementi presenti nella scarica, es. atomi di elettrodo
+\item altri elementi presenti nella scarica, es. atomi di elettrodo, ossigeno o azoto dell'aria penetrati nella lampada...
 \item linee dell'idrogeno molecolare
-\item SE AVETE ALTRI SUGGERIMENTI PREGO...:
-ossigeno / azoto / qualche altro gas che può essere presente in entrambe le lampade? 
+\item ossigeno, azoto o qualche altro gas che può essere presente in entrambe le lampade? 
 \end{itemize}
 
-
-\underline{\textbf{Ecco il nostro candidato per le linee in più $http://www.atoptics.co.uk/highsky/images1/aurspec20_try.jpg$}}
-\\
-
-Si ritiene che l'ultima ipotesi sia da scartare in quanto le stesse linee sono state viste anche nella presa dati delle linee del sodio, ANCHE SE IL SODIO NON HA QUELLE LINEE!!!!!:\\
+In tabella \ref{tab:Cur} le linee ignote.
 
 
 \begin{table}[H]
 \centering
 \begin{tabular}{c|c|c|c|c|c}
-colore & $\theta_i$ & ordine & lunghezza d'onda [nm] & sodio[nm](esperimento 1) & sodio[nm] (exp)  \\
+colore & $\theta_i$ & ordine & lunghezza d'onda [nm] & sodio[nm](esperimento 1) \\
 \hline
-d-verde &  $ 96\degree 18.0' \pm 3.0 ' $  &  $ 16\degree 43.0' \pm 3.0 ' $  &  $ 1 $ & $ 528.5+/-0.8 $ $520 \pm 9$&NON MI RISULTA ESISTERE!!!! \\
-rosso &    $ 10\degree 32.0' \pm 2.0 ' $  &  $ 1 $ & $ 616.1+/-0.6 $ & $ 618 \pm 5 $& NON MI RISULTA ESISTERE!!!!\\
+d-verde &  $ 96\degree 18.0' \pm 3.0 ' $  &  $ 16\degree 43.0' \pm 3.0 ' $  &  $ 1 $ & $ 528.5 \pm 0.8 $ $520 \pm 9$\\
+rosso &    $ 10\degree 32.0' \pm 2.0 ' $  &  $ 1 $ & $ 616.1 \pm 0.6 $ & $ 618 \pm 5 $\\
 \end{tabular}
-\caption{CAZZO}
-\label{tab:HNa}
+\caption{Misure delle righe ignote. Per semplicità sono state riportate le lunghezze d'onda delle righe corrispondenti in tabella \ref{tab:moreNa}, misurate con la lampada al sodio.}
+\label{tab:Cur}
 \end{table}
 
+Si è scartata la prima ipotesi notando che gli spettri non appartengono ne al cadmio ne al mercurio\\
 
 
-Dunque si ritiene molto probabile che le linee emesse siano il contributo allo spettro degli atomi del metallo degli elettrodi o di una contaminazione di un qualche gas ignoto presente nelle lampade.
+La cosa più curiosa è che le stesse linee sono state osservate nella lampada al sodio usata per la parte uno (linee presenti nella tabella \ref{tab:moreNa}).
 
+Dunque non essendo linee del sodio viene il sospetto che tali linee siano dovute a una qualche contaminazione presente in tutte e due le lampade. Si è dunque scartata la possibile presenza d'aria controllando lo spettro dell'azoto e dell'ossigeno. \\
 
-VA BE, GLI SPETTRI NEL PUNTO 1 NON SONO STATI CONTROLLATI!!!!!IL SODIO NON HA 520!!!!!!NON HA NEANCHE UN 618!!!!
-Neanche l'Hg torna... qualcuno SA DOVE TROVARE I DATASHEET DELLE LAMPADE?
+Si ritiene molto plausibile dunque che le linee appartengano agli atomi degli elettrodi o all'idrogeno molecolare, ma nel primo caso la ricerca è troppo ampia, per il secondo non sono stati trovati dati.
 forse ale ci aveva fatto una foto!
 
 \end{document}
