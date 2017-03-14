@@ -6,6 +6,34 @@ from uncertainties import unumpy,umath,ufloat
 import lab
 import pylab
 import scipy.stats
+import sys
+
+
+
+import getpass
+users={"candi": "C:\\Users\\candi\\Documents\\GitHub\\Lab3.2\\",
+"silvanamorreale":"C:\\Users\\silvanamorreale\\Documents\\GitHub\\Lab3.2\\" ,
+"Studenti": "C:\\Users\\Studenti\\Desktop\\Lab3\\",
+"User":"C:\\Users\\User\\Documents\\GitHub\\Lab3.2\\"
+}
+try:
+    user=getpass.getuser()
+    path=users[user]
+    print("buongiorno ", user, "!!!")
+except:
+    raise Error("unknown user, please specify it and the path in the file Esercitazione*.py")
+
+
+sys.path = sys.path + [path]
+dir= path + "4_Ottica1\\"
+
+
+
+
+
+
+
+
 
 ## passo reticolare, misura con Hg
 
@@ -74,9 +102,9 @@ print(lambdaH)
 colori=["azzurro", "rosso", "azzurro", "d-viola", "d-verde","rosso", "viola"]
 attese=[0, 0, 0, 0, 0, 0, 0]
 
-figure(123)
-plot(range(len(unumpy.nominal_values(lambdaH))), unumpy.nominal_values(1/lambdaH))
-figure(0)
+pylab.figure(123)
+pylab.plot(range(len(unumpy.nominal_values(lambdaH))), unumpy.nominal_values(1/lambdaH))
+pylab.figure(0)
 
 
 
@@ -86,8 +114,8 @@ def mycoso(self):
     b0, b1=Angle(self.s)
     return str(math.floor(np.round(a0)))+"\degree "+str(np.floor(a1))+"' \pm "+str(np.round(b1))+" '"
 
-for i,j in enumerate(lambdaH):
-    print(colori[i], "&  $", mycoso(ord1H[i]+360),"$  &  $",mycoso((180 - theta0H - ord1H)[i]-180),"$  &  $", int(ordine[i].n),"$ & $" ,lambdaH[i],"$ & $" ,attese[i],"$ & $", int(n1[i]) ,r"$ \\")
+# for i,j in enumerate(lambdaH):
+#     print(colori[i], "&  $", mycoso(ord1H[i]+360),"$  &  $",mycoso((180 - theta0H - ord1H)[i]-180),"$  &  $", int(ordine[i].n),"$ & $" ,lambdaH[i],"$ & $" ,attese[i],"$ & $", int(n1[i]) ,r"$ \\")
 
 
 ######mia stima numeri quantici...
@@ -100,7 +128,7 @@ stimata=1/(Ryexp*(1/n1s**2-1/n2s**2))
 
 print("matching...")
 for i, j in enumerate(stimata-lambdaH):
-    print(i, ":", j)
+    print(i, ":", j)    
 
 
 print("linee...")
@@ -110,8 +138,8 @@ for c,x, y in zip(colori, stimata, lambdaH):
 
 
 mask=[True, True ,True, False, False, False,True]
-x=n2s[mask]
-y=1/lambdaH[mask]
+x=np.array([n for i,n in enumerate(n2s) if mask[i]])
+y=np.array([1/l for i,l in enumerate(lambdaH) if mask[i]])
 Y=unumpy.nominal_values(y)
 dY=unumpy.std_devs(y)
 fun=lambda x, R: R*(1/2**2-1/x**2)
@@ -121,11 +149,17 @@ RyS=ufloat(pars, pcov**0.5)
 print(RyS*1e2)
 print(sum((Y-fun(x, pars))**2/dY**2))
 
-pylab.errorbar(x, Y, dY)
+pylab.title("Fit $n_2$ vs $1/\lambda$")
+pylab.xlabel("$n_2$")
+pylab.ylabel("$1/\lambda$ [$nm^{-1}$]")
 
-pylab.errorbar(x, fun(x, pars))
+pylab.errorbar(x, Y, dY, fmt=".")
+
+pylab.errorbar(x, fun(x, pars), fmt='.')
+pylab.savefig(dir+"grafici\\Ryf.pdf")
 
 
+print("....", x)
 
 #lambdaH=lambdaH[mask]
 #ord1H=ord1H[mask]
@@ -277,4 +311,8 @@ for i in range(0,2):
 print(lambdaS)
 
 print(lambdaS[1]-lambdaS[0])
+lambdaSexp=np.array([589.0, 589.6])
 
+for i,j in enumerate(lambdaS):
+    if(mask[i]):
+        print("$", mycoso(ordineS[i]+360),"$  &  $",mycoso((180 - theta0H - ordS)[i]-180), "$ & $" ,lambdaS[i],"$ & $", lambdaSexp[i], "r$ \\")
