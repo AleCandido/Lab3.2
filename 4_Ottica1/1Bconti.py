@@ -31,7 +31,7 @@ dir= path + "4_Ottica1\\"
 
 
 
-
+pylab.close("all")
 
 
 
@@ -74,7 +74,7 @@ Ryexp = 1.097373156 * 10**(-2)  #in nm*-1
 #alpha0+=360
 
 # ricalcolo riga ordine 0 per H perchè si è spostato il reticolo.
-ord0H = ufloat(34+35/60,2/60) -  alpha0 #+0.7
+ord0H = ufloat(34+40/60,2/60) -  alpha0 #+0.7
 
 theta0H = 0.5*(180 - ord0H)
 
@@ -150,6 +150,7 @@ RyS=ufloat(pars, pcov**0.5)
 print(RyS*1e2)
 print(sum((Y-fun(x, pars))**2/dY**2))
 
+pylab.figure(1)
 pylab.title("Fit $n_2$ vs $1/\lambda$")
 pylab.xlabel("$n_2$")
 pylab.ylabel("$1/\lambda$ [$nm^{-1}$]")
@@ -159,8 +160,17 @@ pylab.errorbar(x, Y, dY, fmt=".", color="r")
 
 pylab.plot(x, fun(x, pars), ".", color="b")
 #pylab.plot(x, fun(x,0.0109))
-pylab.savefig(dir+"grafici\\Ryf.pdf")
 
+
+pylab.figure(2)
+pylab.savefig(dir+"grafici\\Ryf.pdf")
+pylab.title('Residui Normalizzati')
+pylab.xlabel("$n_2$")
+pylab.ylabel("Residui normalizzati")
+pylab.xlim(2, 6)
+r = (Y-fun(x,pars))/dY
+pylab.plot(x, r, "o")
+pylab.savefig(dir+"grafici\\Ryfr.pdf")
 
 print("....", x)
 
