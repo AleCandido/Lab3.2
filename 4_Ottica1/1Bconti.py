@@ -74,7 +74,7 @@ Ryexp = 1.097373156 * 10**(-2)  #in nm*-1
 #alpha0+=360
 
 # ricalcolo riga ordine 0 per H perchè si è spostato il reticolo.
-ord0H = ufloat(34+40/60,2/60) -  alpha0 #+0.7
+ord0H = ufloat(34+43/60,2/60) -  alpha0 #+0.7
 
 theta0H = 0.5*(180 - ord0H)
 
@@ -138,7 +138,7 @@ for c,x, y in zip(colori, stimata, lambdaH):
 
 
 
-mask=[True, True ,True, False, False, False,True]
+mask=[True, True ,True, True, False, False,True]
 x=np.array([n for i,n in enumerate(n2s) if mask[i]])
 y=np.array([1/l for i,l in enumerate(lambdaH) if mask[i]])
 Y=unumpy.nominal_values(y)
@@ -155,12 +155,14 @@ pylab.title("Fit $n_2$ vs $1/\lambda$")
 pylab.xlabel("$n_2$")
 pylab.ylabel("$1/\lambda$ [$nm^{-1}$]")
 pylab.xlim(2, 6)
-pylab.ylim(min(Y)-(max(Y)-min(Y))/3,max(Y)+(max(Y)-min(Y))/3 )
+minim=min(Y)-(max(Y)-min(Y))/3
+maxim=max(Y)+(max(Y)-min(Y))/3
+pylab.ylim(minim,maxim)
 pylab.errorbar(x, Y, dY, fmt=".", color="r")
-
-pylab.plot(x, fun(x, pars), ".", color="b")
+domain=np.linspace(2.5, 5.5, 1000)
+pylab.plot(domain, fun(domain, pars), color="b")
 #pylab.plot(x, fun(x,0.0109))
-
+pylab.grid()
 
 pylab.figure(2)
 pylab.savefig(dir+"grafici\\Ryf.pdf")
@@ -170,6 +172,8 @@ pylab.ylabel("Residui normalizzati")
 pylab.xlim(2, 6)
 r = (Y-fun(x,pars))/dY
 pylab.plot(x, r, "o")
+pylab.grid()
+
 pylab.savefig(dir+"grafici\\Ryfr.pdf")
 
 print("....", x)
