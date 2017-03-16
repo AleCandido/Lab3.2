@@ -7,6 +7,7 @@ import lab
 import pylab
 import scipy.stats
 import sys
+import numpy as np
 
 
 
@@ -73,7 +74,7 @@ Ryexp = 1.097373156 * 10**(-2)  #in nm*-1
 #alpha0+=360
 
 # ricalcolo riga ordine 0 per H perchè si è spostato il reticolo.
-ord0H = ufloat(34+45/60,2/60) -  alpha0 #+0.7
+ord0H = ufloat(34+35/60,2/60) -  alpha0 #+0.7
 
 theta0H = 0.5*(180 - ord0H)
 
@@ -152,10 +153,12 @@ print(sum((Y-fun(x, pars))**2/dY**2))
 pylab.title("Fit $n_2$ vs $1/\lambda$")
 pylab.xlabel("$n_2$")
 pylab.ylabel("$1/\lambda$ [$nm^{-1}$]")
+pylab.xlim(2, 6)
+pylab.ylim(min(Y)-(max(Y)-min(Y))/3,max(Y)+(max(Y)-min(Y))/3 )
+pylab.errorbar(x, Y, dY, fmt=".", color="r")
 
-pylab.errorbar(x, Y, dY, fmt=".")
-
-pylab.errorbar(x, fun(x, pars), fmt='.')
+pylab.plot(x, fun(x, pars), ".", color="b")
+#pylab.plot(x, fun(x,0.0109))
 pylab.savefig(dir+"grafici\\Ryf.pdf")
 
 
@@ -180,92 +183,7 @@ for i,j in enumerate(lambdaH):
     if(mask[i]):
         print(colori[i], "&  $", mycoso(ord1H[i]+360),"$  &  $",mycoso((180 - theta0H - ord1H)[i]-180),"$  &  $", int(ordine[i].n),"$ & $" ,lambdaH[i],"$ & $" ,attese[i],"$ & $", int(n2s[i]) ,r"$ \\")
 
-# ## fit per trovare costante di Rydberg
-# #metto 1 come errore su n1 stimato prima perchè n è intero. bisogna stare attenti quando n = 1, perchè n non può essere 0, quindi in quel caso l'errore sarebbe asimmetrico
-# # dn1 = ones(num)
-# 
-# 
-# yy = unumpy.uarray(ones(num),zeros(num))
-# x = ones(num)
-# y = ones(num)
-# dy = ones(num)
-# dx = zeros(num)
-# 
-# for i in range (0,num):
-#     x[i] = (1/pow(n1[i],2))-(1/pow(n2[i],2))
-#     yy[i] = 1/lambdaH[i] 
-#     y[i] = yy[i].nominal_value 
-#     dy[i] = yy[i].std_dev
-#     dx[i] = 2*dn1[i]*x[i]/n1[i]
-# 
-# #meglio non mettere errori sulle x..
-# 
-# # graphic to view data
-# figure(1)
-# # subplot(2,1,1)
-# errorbar(x,y,dy,dx, linestyle = '' , color = 'black', marker = '.')
-# rc('font',size=16)
-# xlabel('$1/n_1^{2}-1/n_2^{2}$', labelpad = -7)
-# ylabel('$1/\lambda [nm^{-1}$]')
-# title('Misura della costante di Rydberg')
-# # xlim(-0.2,5)
-# # ylim(,)
-# minorticks_on()
-# grid()
-# # legend()
-# show()
-# 
-# 
-# # definitions used in both fit:
-# # define the linear function
-# def func(x,a,b):
-#     return a*x + b
-#     
-# # estimated values of the parameters
-# inval=array([1,1])
-# 
-# A=inval[0]
-# B=inval[1]
-# a0=0.
-# b0=0.
-# while abs(A-a0)>10**(-5) and abs(B-b0)>10**(-5):
-#     
-#     # Override the step n-2
-#     A=a0
-#     B=b0
-# 
-# 
-# 
-#     
-# #statistical error (dx not negligible, or use 'A' in the formula or calculate before 'a' and then insert and recalculate)
-# sigma = sqrt(dy**2+(A*dx)**2)
-# 
-# "peso statistico"
-# w = 1/sigma**2
-# 
-# #best-fit and chi square
-# 'al posto di sigma va err a seconda dei casi'
-# pars,covm = scipy.optimize.curve_fit(func,x,y,inval,sigma)
-# # Calculate chi square with n DOF
-# chi2 = ((w*(y-func(x,pars[0],pars[1]))**2)).sum()
-# ndof = len(x)-len(inval)
-# sigmachi2 = sqrt(2*ndof)
-# 
-# 
-# # Results (linear correlation coefficient = normalized covariance)
-# print('Risultati Best-fit Numerico:')
-# print('a0 = ', pars[0], '+/-', sqrt(covm[0,0]))
-# print('b0 = ', pars[1], '+/-', sqrt(covm[1,1]))
-# print('norm_cov = ', covm[0,1]/(sqrt(covm[0,0]*covm[1,1])))
-# print('chi2/ndof = %f/%d' %(chi2, ndof))
-# print('sigmachi2 = %f' % sigmachi2)
-# 
-# 
-# # prepare a dummy array and plot the fitting curve 
-# xx=linspace(min(x),max(x),100)
-# plot(xx,func(xx,pars[0],pars[1]), color='black')
-# # savefig(’figure1.pdf’)
-# show()
+
 
 ## Residue
 
