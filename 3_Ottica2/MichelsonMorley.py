@@ -22,3 +22,16 @@ dir= path + "3_Ottica2\\"
 
 ##
 
+lamb = 632.8
+m =  ufloat(70,1)
+
+dX = 0.5 * m * lamb
+r = dX/10**4
+
+print(r)
+
+mv = ufloat(,)
+
+lambdav = 2*dX* mv
+
+print(lambdav)
