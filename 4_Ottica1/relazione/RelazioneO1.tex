@@ -14,7 +14,8 @@
 \usepackage{booktabs}
 \usepackage{verbatim}
 \usepackage{subfig}
-\usepackage{hyperref}
+\usepackage[dvipsnames]{xcolor}  %colori
+\usepackage[colorlinks=true, linkcolor=black, urlcolor=blue, citecolor=darkgray, filecolor=darkgray]{hyperref}   %per gli hyperlink
 
 
 \usepackage[cdot, thickqspace, squaren]{SIunits}
@@ -35,8 +36,8 @@ L'esperienza è divisa in due parti:
 	\item nella prima parte si vuole determinare la lunghezza d’onda di una riga spettrale emessa dal sodio (la riga gialla);
 	\item nella seconda parte ci sono due obiettivi:
 	\begin{itemize}
-		\item il primo è di valutare la risoluzione dello strumento di misura, uno spettroscopio a reticolo, nella misura delle linee emesse da lampade spettrali;
-		\item il secondo è quello di determinare la costante di Rydberg dalla misura della lunghezza d’onda delle righe di emissione dell’idrogeno.
+		\item il primo è di valutare la risoluzione dello strumento di misura, uno spettroscopio a reticolo di diffrazione (in riflessione), nella misura delle linee emesse da lampade spettrali;
+		\item il secondo è quello di determinare la costante di Rydberg dalla misura della lunghezza d’onda delle righe di emissione dell’idrogeno (appartenenti alla serie di Balmer).
 	\end{itemize}
 \end{itemize}
 
@@ -196,8 +197,7 @@ Si è provato a migliorare la visualizzazione della riga viola muovendo la slitt
 
 
 \section{Esperienza B: Stima della costante di Rydberg}
-\subsection{Scopo}
-Lo scopo di questa esperienza è misurare la costante di Rydberg attraverso la misura delle lunghezze d'onda delle linee spettrali della serie di Balmer dell'idrogeno. Ciò viene fatto attraverso uno spettroscopio a reticolo di diffrazione (in riflessione) precedentemente calibrato con una lampada spettroscopica al mercurio. Viene poi stimata la risoluzione dello strumento attraverso l'osservazione del doppietto D del sodio.
+
 \subsection{Strumentazione}
 
 \begin{itemize}
@@ -222,9 +222,13 @@ Lo scopo di questa esperienza è misurare la costante di Rydberg attraverso la m
 \end{figure}
 
 \subsection{Regolazione della geometria dei telescopi}
-Lo schema dell'apparato è rappresentato in figura \figurename{~\ref{fig:schema2}}.
+Lo schema dell'apparato è rappresentato in \figurename{~\ref{fig:schema2}}.
 
-In primo luogo si è posizionata la lampada al mercurio vicino al telescopio fisso e si è ruotato il telescopio di osservazione fino ad osservare l'ordine zero di diffrazione. Si è fissato questo telescopio e si è regolato lo spessore della fenditura, la distanza della lampada da essa e la messa a fuoco del telescopio per visualizzare la riga con la maggior intensità possibile e con uno spessore né troppo piccolo da non permettere la visualizzazione della riga, né troppo grande per evitare che le righe più luminose peggiorassero la visibilità di quelle meno intense. La distanza della lampada dalla fenditura non deve essere né troppo grande ($\sim 1 cm$) perché ne risentirebbe la luminosità delle riga, né troppo piccola perché si vedrebbero aloni intorno ad essa.
+In primo luogo si è posizionata la lampada al mercurio vicino al telescopio fisso e si è ruotato il telescopio di osservazione fino ad osservare l'ordine zero di diffrazione. 
+Si è fissato questo telescopio e si è regolato lo spessore della fenditura, la distanza della lampada da essa e la messa a fuoco del telescopio per visualizzare la riga con la maggior intensità possibile e con uno spessore né troppo piccolo da non permettere la visualizzazione della riga, né troppo grande, per evitare che le righe più luminose peggiorassero la visibilità di quelle meno intense.
+
+La distanza della lampada dalla fenditura non deve essere né troppo grande ($\sim 1 cm$) perché ne risentirebbe la luminosità delle riga, né troppo piccola perché si vedrebbero aloni intorno ad essa.
+
 Si sono poi osservate le righe del primo ordine di diffrazione (quelle più intense,cioè, in ordine per angolo di incidenza decrescente: viola, verde, rosso e un doppietto giallo) e si è verificato che, con gli stessi accorgimenti fatti per la riga dell'ordine zero, esse siano ben messe a fuoco.
 
 \subsection{Calibrazione dello strumento e misura del passo reticolare}
@@ -232,7 +236,7 @@ Con la stessa procedura effettuata nella parte A si è effettuata la calibrazion
 
 
 \paragraph{Misura del passo reticolare}
-Il passo reticolare è stato misurato conoscendo la lunghezza d'onda della riga verde del sodio. Sono stati misurati, relativamente all'angolo di calibrazione $\alpha_0$, l'angolo della riflessione speculare e del primo massimo di interferenza della riga verde del mercurio: $\theta_{i,ord0} = 8\degree 55.7' \pm 0.5'$, $\theta_{i,ord1} = 69\degree 29.0'\pm 1'$. Nota la lunghezza d'onda della suddetta linea ($546.074 \pm 0.001 nm$) per stimare il passo reticolare $d$ si sono utilizzate le equazioni
+Il passo reticolare è stato misurato conoscendo la lunghezza d'onda della riga verde del mercurio. Sono stati misurati, relativamente all'angolo di calibrazione $\alpha_0$, l'angolo della riflessione speculare e del primo massimo di interferenza della riga verde del mercurio: $\theta_{i,ord0} = 8\degree 55.7' \pm 0.5'$, $\theta_{i,ord1} = 69\degree 29.0'\pm 1'$. Nota la lunghezza d'onda della suddetta linea ($546.074 \pm 0.001 nm$) per stimare il passo reticolare $d$ si sono utilizzate le equazioni
 \begin{align*}
 &d(sin \theta_{i,ord0} - sin \theta_d) = m\lambda\\
 &\theta_{i,ord0} = (\pi - \alpha_0)/2\\
@@ -287,8 +291,17 @@ Si noti inoltre che sono state prese altre linee non compatibili con nessuna lin
 
 
 Dalle misure fatte si è proceduto con un fit della costante di Rydberg $Ry$. Si è fittata l'equazione (1) con i numeri quantici trovati in precedenza e riportati in \tablename{~\ref{tab:HH}, ottenendo i seguenti risultati:\\
-$Ry= 0.01098 \pm 0.0007 nm^{-1}$ \\
-$\chi^2=60.1$ (d.o.f.=3)
+	
+\begin{table}[H]
+	\centering
+	\begin{tabular}{|c|c|c|c|}
+		\cline{0-1}
+		$Ry$ & $0.01098 \pm 0.0007 nm^{-1}$ \\
+		\hline
+		$\chi^2$ & $60.1$ & ndof & 3 \\
+		\hline
+	\end{tabular}
+\end{table}
 
  
 
@@ -362,12 +375,12 @@ rosso  &  $ 10\degree 32.0' \pm 2.0 ' $  &  $ 1 $ & $ 616.1 \pm 0.6 $ & $ 618 \p
 Si è scartata la prima ipotesi notando che gli spettri non appartengono ne al cadmio ne al mercurio.\footnote{Tutte le linee spettrali sono state confrontate con quelle tabulate dal sito \url{http://physics.nist.gov/PhysRefData/ASD/lines_form.html}}\\
 
 
-La cosa più curiosa è che le stesse linee sono state osservate nella lampada al sodio usata per parte A dell'esperienza (linee presenti nella tabella \ref{tab:moreNa}s).
+La cosa più curiosa è che le stesse linee sono state osservate nella lampada al sodio usata per la parte A dell'esperienza (linee presenti nella tabella \ref{tab:moreNa}s).
 
-Dunque non essendo linee del sodio viene il sospetto che tali linee siano dovute a una qualche contaminazione presente in tutte e due le lampade. Si è dunque scartata la possibile presenza d'aria controllando lo spettro dell'azoto. Per quanto riguarda l'ossigeno, in effetti si è trovata una possibile corrispondenza con le righe osservate e riportate in \ref{tab:Cur}. Infatti per la riga rossa esistono tre righe di lunghezza d'onda simili ($\sim$ 615 nm, separazione di $\sim$ 0.1 nm) che sono in ottimo accordo con la riga misurata, mentre per quella d-verde si ha una buona corrispondenza con righe che hanno lunghezza d'onda di circa 532 nm.\footnote{In effetti ciò che si è osservato è un doppietto verde, di cui una delle due righe non era misurabile, e questo è in linea con quanto trovato sul sito di riferimento}. Le linee osservate dovrebbero essere dunque quelle presenti nei siti: \href{http://physics.nist.gov/cgi-bin/ASD/lines1.pl?spectra=O&low_wl=610&upp_wn=&upp_wl=625&low_wn=&unit=1&submit=Retrieve+Data&de=0&java_window=3&java_mult=&format=0&line_out=0&en_unit=0&output=0&bibrefs=1&page_size=15&show_obs_wl=1&show_calc_wl=1&order_out=0&max_low_enrg=&show_av=2&max_upp_enrg=&tsb_value=0&min_str=&A_out=0&intens_out=on&max_str=&allowed_out=1&forbid_out=1&min_accur=&min_intens=100&conf_out=on&term_out=on&enrg_out=on&J_out=on}{linee rosse ossigeno}
-\href{http://physics.nist.gov/cgi-bin/ASD/lines1.pl?spectra=O&low_wl=510&upp_wn=&upp_wl=550&low_wn=&unit=1&submit=Retrieve+Data&de=0&java_window=3&java_mult=&format=0&line_out=0&en_unit=0&output=0&bibrefs=1&page_size=15&show_obs_wl=1&show_calc_wl=1&order_out=0&max_low_enrg=&show_av=2&max_upp_enrg=&tsb_value=0&min_str=&A_out=0&intens_out=on&max_str=&allowed_out=1&forbid_out=1&min_accur=&min_intens=100&conf_out=on&term_out=on&enrg_out=on&J_out=on}{linee verdi ossigeno}  \\
+Dunque non essendo linee del sodio viene il sospetto che tali linee siano dovute a una qualche contaminazione presente in tutte e due le lampade. Si è dunque scartata la possibile presenza d'aria controllando lo spettro dell'azoto. Per quanto riguarda l'ossigeno, in effetti si è trovata una possibile corrispondenza con le righe osservate e riportate in \ref{tab:Cur}. Infatti per la riga rossa esistono tre righe di lunghezza d'onda simili ($\sim$ 615 nm, separazione di $\sim$ 0.1 nm) che sono in ottimo accordo con la riga misurata, mentre per quella d-verde si ha una buona corrispondenza con righe che hanno lunghezza d'onda di circa 532 nm.\footnote{In effetti ciò che si è osservato è un doppietto verde, di cui una delle due righe non era misurabile, e questo è in linea con quanto trovato sul sito di riferimento}. Le linee osservate dovrebbero essere dunque quelle presenti nei siti: \href{http://physics.nist.gov/cgi-bin/ASD/lines1.pl?spectra=O&low_wl=610&upp_wn=&upp_wl=625&low_wn=&unit=1&submit=Retrieve+Data&de=0&java_window=3&java_mult=&format=0&line_out=0&en_unit=0&output=0&bibrefs=1&page_size=15&show_obs_wl=1&show_calc_wl=1&order_out=0&max_low_enrg=&show_av=2&max_upp_enrg=&tsb_value=0&min_str=&A_out=0&intens_out=on&max_str=&allowed_out=1&forbid_out=1&min_accur=&min_intens=100&conf_out=on&term_out=on&enrg_out=on&J_out=on}{linee rosse ossigeno}, 
+\href{http://physics.nist.gov/cgi-bin/ASD/lines1.pl?spectra=O&low_wl=510&upp_wn=&upp_wl=550&low_wn=&unit=1&submit=Retrieve+Data&de=0&java_window=3&java_mult=&format=0&line_out=0&en_unit=0&output=0&bibrefs=1&page_size=15&show_obs_wl=1&show_calc_wl=1&order_out=0&max_low_enrg=&show_av=2&max_upp_enrg=&tsb_value=0&min_str=&A_out=0&intens_out=on&max_str=&allowed_out=1&forbid_out=1&min_accur=&min_intens=100&conf_out=on&term_out=on&enrg_out=on&J_out=on}{linee verdi ossigeno}.
 
-Un'altra possibilità è che le linee appartengano agli atomi degli elettrodi o all'idrogeno molecolare. 
+\paragraph{}Un'altra possibilità è che le linee appartengano agli atomi degli elettrodi o all'idrogeno molecolare. 
 
 Il primo caso è però escluso in quanto il datasheet delle lampade sostiene che gli elettrodi siano in  tungsteno, e neanche il tungsteno sembra possedere quelle due linee spettrali.
 
