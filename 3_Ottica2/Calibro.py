@@ -2,7 +2,7 @@ from pylab import *
 from lab import *
 from uncertainties import *
 from uncertainties import unumpy
-
+import scipy.special
 import getpass
 users={"candi": "C:\\Users\\candi\\Documents\\GitHub\\Lab3.2\\",
 "silvanamorreale":"C:\\Users\\silvanamorreale\\Documents\\GitHub\\Lab3.2\\" ,
@@ -24,17 +24,24 @@ dir= path + "3_Ottica2\\"
 
 ys, dys = loadtxt(dir + "data\\Calibro.txt", unpack=True)
 
-L = ufloat(210,0.1)
-Ydirect = ufloat(10,0.05)
+L = ufloat(209,0.1)
 
-Yst = unumpy.uarray(ys,0.1)
+
+Ydirect = ufloat(10,0.1)
+
+# Yst = unumpy.uarray(ys,0.1)
+Yst = unumpy.uarray(ys,dys/20)
 Y0 = (Yst[0] + Ydirect)/2
-Ys = Yst - Y0.n
+
+Ys = Yst - Y0 #.n
 
 tans = Ys/L
 sins = unumpy.sin(pi/2 - unumpy.arctan(tans))
 
+
+# m = array([i for i in range(1, len(sins)+1)])
 m = array([i for i in range(0, len(sins))])
+
 par, cov = fit_linear(m, unumpy.nominal_values(sins), dy=unumpy.std_devs(sins))
 
 n, q = correlated_values(par, cov)
@@ -47,8 +54,15 @@ errorbar(m,unumpy.nominal_values(sins), yerr=unumpy.std_devs(sins), fmt = 'r,')
 x = linspace(0,max(m),1000)
 y = n*x + q
 plot(x,unumpy.nominal_values(y))
+xlim(-0.1,16.1)
+grid()
+
+
 
 print(lamda, '\nchi2/ndof =', chi2, '/', len(sins)-2)
+print(unumpy.arcsin(q), math.pi/2)
 
-
-
+# print("x & dx & ordine ")
+# print("0.0 & 0.1 & 0")
+# for i in range(0, len(ys)):
+#     print(Ys[i].nominal_value,"&",Ys[i].std_dev,"&", i+1, "\\")
