@@ -24,8 +24,15 @@ dir= path + "3_Ottica2\\"
 
 ys, dys = loadtxt(dir + "data\\Calibro.txt", unpack=True)
 
-L = ufloat(209,0.1)
+#centrale = 210.1
 
+
+dL = (214.7-205.0)/2 # 5
+L = ufloat(210,5)
+
+
+# L = ufloat(215,5)
+# L = ufloat(205,5)
 
 Ydirect = ufloat(10,0.1)
 
@@ -37,9 +44,6 @@ Ys = Yst - Y0 #.n
 
 tans = Ys/L
 sins = unumpy.sin(pi/2 - unumpy.arctan(tans))
-
-
-# m = array([i for i in range(1, len(sins)+1)])
 m = array([i for i in range(0, len(sins))])
 
 par, cov = fit_linear(m, unumpy.nominal_values(sins), dy=unumpy.std_devs(sins))
@@ -56,13 +60,24 @@ y = n*x + q
 plot(x,unumpy.nominal_values(y))
 xlim(-0.1,16.1)
 grid()
+title("Lunghezza d'onda laser ad He-Ne")
+xlabel("Ordine di diffrazione m")
+ylabel("$sin\\theta_d$")
 
+thetanI = zeros(len(ys))
+thetad = zeros(len(ys))
+thetanF = zeros(len(ys))
 
+# 
+# for i in range(0,len(ys)):
+#     thetanF[i],thetanI[i] = math.modf(180*unumpy.arcsin(sins[i].nominal_value)/math.pi)
+#     thetad[i] = (180*unumpy.arcsin(sins[i].std_dev)/math.pi)
+#     thetanF[i] = thetanF[i]*6/10
 
-print(lamda, '\nchi2/ndof =', chi2, '/', len(sins)-2)
-print(unumpy.arcsin(q), math.pi/2)
-
-# print("x & dx & ordine ")
-# print("0.0 & 0.1 & 0")
+print(lamda*10**7, '\nchi2/ndof =', chi2, '/', len(sins)-2)
+print(unumpy.arcsin(sins[0])*180/math.pi, math.pi/2)
+print(unumpy.arcsin(q)*180/math.pi, math.pi/2)
+# 
+# print("x[cm] & dx[cm] & ordine & \\theta_d & d\\theta_d \\\\")
 # for i in range(0, len(ys)):
-#     print(Ys[i].nominal_value,"&",Ys[i].std_dev,"&", i+1, "\\")
+#     print("%.2f" %Ys[i].nominal_value,"&","%.2f" %Ys[i].std_dev,"&", i,"&", "%.4f" %thetan,"&","%.4f" %thetad,"\\\\")

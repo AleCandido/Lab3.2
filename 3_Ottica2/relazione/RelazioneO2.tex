@@ -51,7 +51,7 @@ L'esperienza è divisa in due parti:
 
 \subsection{Misura della lunghezza d'onda del laser ad He-Ne}
 In questa prima parte dell'esperienza si vuole misurare la lunghezza d'onda di un laser ad He-Ne. Per fare ciò si è indirizzato il laser, attraverso uno specchio, sul righello graduato di un calibro ventesimale, utilizzando queste righe come un reticolo di diffrazione. Poiché il passo $d$ di questo reticolo( d = 1 mm) è molto più grande della lunghezza d'onda attesa ($\lambda_{att} \sim$ 650 nm), si è fatto in modo che il fascio laser incida sul righello con un angolo di circa $\pi/2$, altrimenti non si avrebbe modo di apprezzare la figura di diffrazione.
-Questa figura di diffrazione si può osservare su un opportuno schermo vicino al banco di lavoro su cui è fissato un foglio di carta per la presa dati.
+Questa figura si può osservare su un opportuno schermo vicino al banco di lavoro su cui è fissato un foglio di carta per la presa dati.
 L'equazione che lega la posizione dei massimi di diffrazione al passo reticolare $d$ e all'angolo di incidenza $\theta_i$ è
 
 \begin{equation}
@@ -60,7 +60,7 @@ d(sin\theta_i - sin\theta_d)= m\lambda
 \end{equation}
 
 dove $\theta_d$ è l'angolo di riflessione.
-Una rappresentazione schematica di ciò che accade è mostrata in figura \figurename{~\ref{fig:espa}.
+Una rappresentazione schematica di ciò che accade è mostrata in \figurename{~\ref{fig:espa}.
 
 \begin{figure}[H]
 	\centering
@@ -71,25 +71,67 @@ Una rappresentazione schematica di ciò che accade è mostrata in figura \figure
 
 Per prima cosa si è trovata sullo schermo la quota del calibro, poiché tutte gli ordini di diffrazione devono essere riferiti a questa misura che rappresenta lo zero sull'asse dello schermo. Tale quota si è trovata misurando il punto intermedio tra la luce non riflessa dal calibro (cioè quella che si vede bene in assenza di esso) e l'ordine zero di diffrazione, che nella figura \figurename{~\ref{fig:espa} corrisponde alla quota $h_0$. Inoltre dalla posizione dell'ordine zero (m = 0), utilizzando la formula \ref{reticolo}, si può trovare l'angolo di incidenza $\theta_i$. Successivamente si sono presi gli altri ordini e, dalla misura della distanza di essi dallo zero dell'asse precedentemente trovato ($h_n$), si sono trovati i complementari degli angoli di riflessione utilizzando le formule
 
-\begin{align*}
+\begin{equation}
 sin\theta_{d,n} = sin(\pi/2 - \theta_n)
-\end{align*}
+\label{thetad}
+\end{equation}
 \begin{equation}
 \theta_n = arctg(h_n/D)
+\label{thetan}
 \end{equation}
 
 dove D è la distanza del calibro dallo schermo, misurata mediante un metro a nastro.
-
-
-ERRORI, QUANTO VALE D
+\paragraph{Errori}
 Per quanto riguarda gli errori associati alle misure, si sono effettuati i seguenti accorgimenti:
 \begin{itemize}
-\item 
+\item Per ogni misura effettuata con il metro a nastro per le lunghezze sullo schermo relative agli ordini di diffrazione si sono presi gli estremi delle bande luminose (quelle verticali\footnote{Nella parte superiore di ogni banda era presente un alone con luminosità decrescente che non si è considerato per l'acquisizione dati, mentre nella parte inferiore della banda questo alone non era presente. L'alone probabilmente è dovuto alla non perfetta monocromaticità del fascio laser, mentre si ritiene che la mancanza dell'alone nella parte inferiore sia dovuta al fatto che le tacche del calibro sono in rilievo},
+%non lo so, ho sparato, se avete altre idee proponete
+quelle orizzontali sono dovute solo alla larghezza del fascio) che contraddistinguono tale punto e si è considerata come valore la semisomma e come errore la semidifferenza tra questi punti.
+%non abbiamo fatto così ma altrimenti dovrei scrivere " abbiamo preso un punto a caso al "centro" della banda e poi gli estremi", che è brutto. Comunque il risultato non cambierebbe di tanto quindi io lascierei cosi.
+\item Per la distanza D dello schermo dal calibro, poiché lo spot del laser sul calibro è allungato, si sono identificate 3 misure: una tra lo schermo e la zona in cui il fascio laser aveva la maggior luminosità sul calibro e le altre due dallo schermo fino agli estremi di luminosità del laser sempre sul calibro. Si è quindi deciso di considerare la prima misura come l'effettiva distanza D, mentre le altre due sono state utilizzate per stimare l'errore associato a questa misura, in particolare si è scelto di prendere come errore su D la semidifferenza tra le due misure suddette. I valori ottenuti per queste 3 misure sono riportati in \tablename{~\ref{tab:D}}. Da questi dati si è ottenuto $D = 210 \pm 5 cm$.
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{c|c|c|c}
+\hline
+205.0$\pm$0.1 & 210.1$\pm$0.1 & 214.7$\pm$0.1\\
+\hline
+	\end{tabular}
+\caption{Distanze caratteristiche schermo-calibro espresse in cm. La misura centrale è quella che si è assunta come D, mentre le altre due servono per stimare l'errore.}
+\label{tab:D}
+\end{table}
+
+\item Gli errori associati agli angoli si sono ottenuti, propagando attraverso le formule \ref{thetad} e \ref{thetan}, gli errori ottenuti per    la distanza dello schermo dal calibro (D) e per i vari ordini di diffrazione ($h_n$).
 \end{itemize}
+\paragraph{risultati analisi dati}
+Si è ottenuto come angolo di incidenza $\theta_i = (88.10 \pm 0.05)\degree$, risultato molto vicino a $90\degree$, come ci si poteva aspettare in seguito alle condizioni in cui ci si è posti per l'esperienza. I vari valori delle altezza $h_n$ rispetto allo zero dello schermo e dei seni degli angoli di riflessione sono riportati in \tablename{~\ref{tab:data}.
 
-Effettuando i calcoli si ottiene come angolo di incidenza $\theta_i = rad$, risultato molto vicino a $\pi/2 rad$, come ci si poteva aspettare in seguito alle condizioni in cui ci si è posti per l'esperienza. I vari valori delle altezza $h_n$ rispetto allo zero dello schermo e degli angoli di riflessione sono riportati in \tablename{~\ref{tab:data}.
-
-TABELLA DATI
+\begin{table}[H]
+	\centering
+	\begin{tabular}{c|c|c|c|c}
+x[cm] & dx[cm] & ordine & $\theta_d[\degree]$ & d$\theta_d[\degree]$ \\
+\hline
+6.95 & 0.07 & 0 & 88.0677 & 0.0007 \\
+10.2 & 0.1 & 1 & 87.179 & 0.002 \\
+12.6 & 0.2 & 2 & 86.514 & 0.004 \\
+14.7 & 0.1 & 3 & 85.932 & 0.002 \\
+16.5 & 0.2 & 4 & 85.434 & 0.004 \\
+18.1 & 0.2 & 5 & 84.993 & 0.005 \\
+19.6 & 0.2 & 6 & 84.579 & 0.006 \\
+21.0 & 0.2 & 7 & 84.193 & 0.006 \\
+22.3 & 0.2 & 8 & 83.835 & 0.006 \\
+23.5 & 0.2 & 9 & 83.506 & 0.007 \\
+24.7 & 0.2 & 10 & 83.176 & 0.007 \\
+25.8 & 0.2 & 11 & 82.88 & 0.01 \\
+26.9 & 0.3 & 12 & 82.57 & 0.01 \\
+27.9 & 0.3 & 13 & 82.30 & 0.01 \\
+29.0 & 0.3 & 14 & 82.00 & 0.01 \\
+30.0 & 0.3 & 15 & 81.73 & 0.01 \\
+30.9 & 0.3 & 16 & 81.48 & 0.01 \\
+	\end{tabular}
+\caption{Dati raccolti per i vari ordini di diffrazione e valore del seno degli angoli di riflessione. La variabile x con il suo errore dx rappresenta la distanza dei vari massimi di diffrazione dallo zero sull'asse dello schermo.}
+\label{tab:data}
+\end{table}
 
 
 
@@ -98,19 +140,54 @@ Riscrivendo l'equazione \ref{reticolo} come
 sin\theta_d = - m(\lambda/d) + sin\theta_i
 \end{align*} 
   
-si è effettuato un fit lineare utilizzando come variabile dipendente $\sin\theta_d$ e come variabile indipendente $m$. Dal valore $d$ del passo reticolare del calibro si è quindi ottenuta una misura della lunghezza d'onda del laser ad He-Ne. I risultati del fit sono riportati in \tablename{~\ref{tab:fita}.
+si è effettuato un fit lineare utilizzando come variabile dipendente $\sin\theta_d$ e come variabile indipendente $m$. Il grafico è riportato in \figurename{~\ref{fig:fita}.
+Dal valore $d$ del passo reticolare del calibro si è quindi ottenuta una misura della lunghezza d'onda del laser ad He-Ne, mentre l'intercetta è proprio $\sin\theta_i$. I valori ottenuti sono riportati in \tablename{~\ref{tab:fita}}.
 
 
-TABELLA
+\begin{table}[H]
+	\centering
+	\begin{tabular}{c|c|c|c}
+$\lambda$[nm] &$\lambda_{atteso}$ &$\theta_i[\degree]$& $\chi^2/DOF$ \\
+\hline
+627$\pm$10 & 650 & 88.11$\pm$0.04 & 0.1/15\\
+\hline
+	\end{tabular}
+\caption{Risultati del fit lineare.}
+\label{tab:fita}
+\end{table}
 
-Dai risultati del fit si può osservare come il valore di $\sin\theta_i$ sia compatibile con la misura effettuata precedentemente e con le condizioni scelte nell'esperienza riguardo quest'angolo.
-Il valore della lunghezza d'onda del laser ad He-Ne è dell'ordine del valore atteso (650 nm), ma non è perfettamente compatibile PERCHE'...
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\textwidth]{../grafici/fita.png}
+	\caption{Fit lineare dell'angolo di diffrazione $sin\theta_d$ in funzione dell'ordine di diffrazione m.}
+	\label{fig:fita}
+\end{figure}
+
+
+Dai risultati del fit si può osservare come il valore di $\theta_i$ sia compatibile con la misura effettuata precedentemente e con le condizioni scelte nell'esperienza riguardo quest'angolo.
+Il valore della lunghezza d'onda del laser ad He-Ne è dell'ordine del valore atteso (650 nm), compatibile entro circa 2$\sigma$.
+
+Tuttavia si è notato come la misura della distanza schermo-calibro influisca significativamente sul risultato ottenuto per $\lambda$, nel senso che cambiando la misura scelta per D di 2-3cm (sempre all'interno degli estremi riportati in \ref{tab:D}), la lunghezza d'onda varia di $\sim 20nm$. Questo induce a pensare che effettivamente il punto a maggior luminosità sul calibro si discosti di un po' da quello considerato.
+% io lo ho scritto, fatemi sapere se secondo voi ce la dobbiamo mettere questa cosa.
+
 Il $\chi^2$ è sottostimato. Si ritiene che ciò sia dovuto al fatto che tutti gli errori considerati nell'elaborazione dati sono errori strumentali e non statistici, che quindi risultano essere inevitabilmente una sovrastima dell'errore da attribuire alla misura per effettuare il fit.
 
+ 
 
 \section{Esperienza B: Misura della lunghezza d'onda della radiazione emessa da una lampada al mercurio mediante l'interferometro di Michelson}
 
+\subsection{Strumentazione}
 
+\begin{itemize}
+	\item Inteferometro di Michelson
+	\item spaziatore in alluminio, punta di riferimento per contare i massimi, filtro verde.
+	\item Laser ad He-Ne;
+	\item Lampada al Mercurio
+	\item Schermo per visualizzare la figura di interferenza;
+	\item riga;
+	\item torcia.
+\end{itemize}
 
 
 
