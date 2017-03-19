@@ -92,7 +92,7 @@ quelle orizzontali sono dovute solo alla larghezza del fascio) che contraddistin
 
 \begin{table}[H]
 	\centering
-	\begin{tabular}{c|c|c|c}
+	\begin{tabular}{c|c|c}
 \hline
 205.0$\pm$0.1 & 210.1$\pm$0.1 & 214.7$\pm$0.1\\
 \hline
@@ -147,7 +147,7 @@ Dal valore $d$ del passo reticolare del calibro si è quindi ottenuta una misura
 \begin{table}[H]
 	\centering
 	\begin{tabular}{c|c|c|c}
-$\lambda$[nm] &$\lambda_{atteso}$ &$\theta_i[\degree]$& $\chi^2/DOF$ \\
+$\lambda$[nm] &$\lambda_{atteso}$ &$\theta_i[\degree]$& $\chi^2/ndof$ \\
 \hline
 627$\pm$10 & 650 & 88.11$\pm$0.04 & 0.1/15\\
 \hline
@@ -175,19 +175,57 @@ Il $\chi^2$ è sottostimato. Si ritiene che ciò sia dovuto al fatto che tutti g
 
  
 
-\section{Esperienza B: Misura della lunghezza d'onda della radiazione emessa da una lampada al mercurio mediante l'interferometro di Michelson}
+\section{Esperienza B: Interferometro di Michelson}
 
 \subsection{Strumentazione}
 
 \begin{itemize}
-	\item Inteferometro di Michelson
-	\item spaziatore in alluminio, punta di riferimento per contare i massimi, filtro verde.
+	\item Inteferometro di Michelson;
+	\begin{itemize}
+		\item spaziatore in alluminio;
+		\item punta di riferimento per contare i massimi;
+		\item filtro verde;		
+	\end{itemize}
 	\item Laser ad He-Ne;
 	\item Lampada al Mercurio
 	\item Schermo per visualizzare la figura di interferenza;
-	\item riga;
-	\item torcia.
+	\item Riga;
+	\item Torcia.
 \end{itemize}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\textwidth]{../grafici/MichelsonMorley.png}
+	\caption{Schema dell'interferometro di Michelson e Morley}
+	\label{fig:MMint}
+\end{figure}
+
+\subsection{Misura del fattore di demoltiplica della leva micrometrica}
+Per misurare il fattore di demoltiplica della leva si è acceso il laser ad He-Ne e si è posizionato come sorgente dell'interferometro.
+Si è quindi posizionato lo specchio M$_2$, agendo opportunamente sulle viti relative, in modo da visualizzare le frange di interferenza al centro dello schermo, posto a distanza e ortogonale al fascio uscente.
+
+Una volta trovata la configurazione di visualizzazione delle frange si è ruotato il micrometro relativo allo specchio M$_1$ di $20 \pm 0.25~$\footnote{L'errore sulla misura delle tacche è stato posto pari al quarto di tacca, poiché si è ritenuto che le tacche fossero sufficientemente spaziate da apprezzarlo.} tacche, filmando lo schermo sul quale scorrevano le frange.
+% Mi sa che l'errore è il doppio, perché c'è anche quello sulla posizione dello 0
+
+Si è dunque riprodotto il video rallentato e si sono contate le frange passate nella rotazione eseguita del micrometro, ottenendo un valore di $110 \pm 1$ frange. L'errore in questo caso è dovuto all'incertezza sulla posizione dell'ultima frangia osservata rispetto alla prima.
+
+\subparagraph{Errore sul numero delle frange} Si sarebbe potuta ottenere una migliore stima dell'errore osservando nel video la posizione della frangia iniziale e finale osservate, però a questo punto sarebbero intervenute altre fonti di incertezza, come il fatto che le frange hanno un profilo variabile e non nettamente definito e il fatto che la posizione della fotocamera che ha ripreso le frange non era fissata e costante. Si è quindi deciso di porre l'incertezza pari a una frangia, anche se questo è una leggera sovrastima dell'incertezza reale.
+
+\subparagraph{Fattore di demoltiplica} Si è infine trovato un fattore di demoltiplica pari a $\unit{1.740 \pm 0.027}{\micro\meter / tacca}$.
+
+\subsection{Misura della lunghezza d'onda del mercurio}
+Per la misura della lunghezza d'onda della riga verde del mercurio si è sostituito il laser a He-Ne, inserito nella misura precedente, con una lampada a mercurio, e si è interposto un filtro verde di fronte alla lampada, in modo da selezionare la componente spettrale d'interesse.
+
+Si è riposizionato lo specchio M$_2$, sempre agendo sulle apposite viti, in modo da visualizzare le frange d'interferenza.
+
+Poiché la luce emessa era d'intensità notevolmente minore rispetto a quella del laser non si è potuto visualizzare sullo schermo la figura d'interferenza. Si è cercato di filmare ugualmente il fascio uscente dall'interferometro, ma non si è riusciti ad ottenere un risultato adeguato ad una misura delle frange come nel caso precedente. Si è dunque proceduto con un'osservazione diretta delle frange.
+
+Si è dunque posizionata una punta di riferimento sul filtro, in modo da aiutare a distinguire le frange nell'osservazione diretta. Data la sensibilità del micrometro e la difficoltà nell'identificazione esatta delle frange successive quando in moto, si è deciso di ripetere la misura più volte, con osservatori diversi, per ridurre l'incertezza statistica.
+
+\subparagraph{Lunghezza d'onda Hg} Si è ottenuto infine che in $\unit{4 \pm 0.5}{tacche}$ sono passate $\unit{30 \pm 5}{frange}$, da cui si ha una misura della lunghezza d'onda del mercurio pari a $\unit{464 \pm 97}{\nano\meter}$, compatibile con il valore noto di $\unit{546}{\nano\meter}$.
+%troppe cifre significative nella lunghezza d'onda, poi lo aggiusto, ma i valori sono un minimo da discutere
+
+\subsection{Visualizzazione delle frange di interferenza con luce bianca}
 
 
 
