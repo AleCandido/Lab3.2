@@ -14,6 +14,8 @@
 \usepackage{booktabs}
 \usepackage{verbatim}
 \usepackage{subfig}
+\usepackage[dvipsnames]{xcolor}  %colori
+\usepackage[colorlinks=true, linkcolor=black, urlcolor=blue, citecolor=darkgray, filecolor=darkgray]{hyperref}   %per gli hyperlink
 
 \usepackage[cdot, thickqspace, squaren]{SIunits}
 \usepackage{float}
@@ -132,9 +134,31 @@ Si è quindi connesso il terminale \code{A} a $V_{in}$ e si è posto quest'ultim
 	\item a $V_{cc}$, cioè la tensione di alimentazione, per misurare $I_{OL}$.
 \end{itemize}
 
+In entrambi i casi si sono eseguite tre misure: nella prima si sono misurati i valori tipici di corrente di output, corrispondenti a valori tipici di tensione per l'uscita, nelle altre si sono misurate le correnti di output corrispondenti a valori limite di tensione per la logica TTL. \footnote{\href{https://www.allaboutcircuits.com/textbook/digital/chpt-3/logic-signal-voltage-levels/}{https://www.allaboutcircuits.com/textbook/digital/chpt-3/logic-signal-voltage-levels/}}
 
+Si è stabilito di misurare le correnti leggendo la tensione ai capi della resistenza $R_2$, cioè la tensione presente tra \code{A} e \code{B}, con il tester digitale. Si riportano le misure effettuate nella tabella seguente:
 
+\begin{table}[H]
+	\centering
+	\begin{tabular}{c|c|c|c|c|c|c|c|}
+		\cline{2-7}
+			& \multicolumn{2}{|c|}{Typical values} &	\multicolumn{2}{|c|}{TTL IN threshold}	& \multicolumn{2}{|c|}{TTL OUT threshold}\\
+		\cline{2-7}
+			& $V_{out}$ & $I_{out}$ & $V_{out}$ & $I_{out}$ & $V_{out}$ & $I_{out}$	\\
+		\hline
+		\multicolumn{1}{|c|}{$I_{OH}$} & $\unit{3.28 \pm 0.03}{\volt}$ & $\unit{1.555 \pm 0.019}{\milli\ampere}$ & $\unit{2.00 \pm 0.02}{\volt}$ & $\unit{16.47 \pm 0.20}{\milli\ampere}$ & $\unit{2.40 \pm 0.02}{\volt}$ &	$\unit{12.09 \pm 0.15}{\milli\ampere}$\\
+		\hline
+		\multicolumn{1}{|c|}{$I_{OL}$} & $\unit{248 \pm 2}{\milli\volt}$ & $\unit{2.59 \pm 0.04}{\milli\ampere}$ & $\unit{800 \pm 5}{\milli\volt}$ & $\unit{24.2 \pm 0.3}{\milli\ampere}$ & $\unit{400 \pm 3}{\milli\volt}$ & $\unit{10.27 \pm 0.13}{\milli\ampere}$\\
+		\hline
+	\end{tabular}
+\end{table}
+% mentre i valori delle soglie convenzionali sono esatti per quelle di input, sono solo approssimati per quelle di output (che convenzionalmente sono 0.5-2.7, vedi nota), che forse sono anche più rilevanti delle soglie di input (dato che stiamo guardando l'output di una porta)
 
+Dal datasheet del componente si possono leggere i valori massimi per le correnti misurate, che corrispondono a $I_{OH} = \unit{-0.4}{\milli\ampere}$ e $I_{OL} = \unit{16}{\milli\ampere}$.
+% e non torna un accidente, IOH, mentre IOL torna tranquillo tranquillo
+
+\subparagraph{Variazioni repentine} Si è osservata la presenza di regioni di tensione di output in cui non si riusciva a fissare stabilmente il valore dell'uscita, e la tensione tendeva a portarsi ai margini della regione. Queste regioni (una nella misura di $I_{OH}$ e una in quella di $I_{OL}$) erano instabili proprio perché per variazioni piccole del carico si passava rapidamente da un margine all'altro della regione.
+% e se devo dare una spiegazione del perché non la so e quindi mi fermo, amen
 
 \section{Montaggio di Arduino}
 
