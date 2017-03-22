@@ -73,14 +73,67 @@ La strumentazione è quella solitamente presente sul banco di lavoro, e inoltre 
 
 \paragraph{Correnti in ingresso}
 
-\paragraph{Correnti in uscita}
+Si è variata la tensione in ingresso agendo sul trimmer \code{R1}, mostrato in \figurename{~\ref{fig:NOTin}}.
+	
+Si è osservata una fascia di tensioni in ingresso della porta \code{NOT} compresa tra il valore minimo ottenibile con ruotando il trimmer e i primi valori per cui la corrente in ingresso si annullava.\footnote{\label{nota:I0}Scendeva sotto la sensibilità minima degli strumenti a disposizione per la misura di correnti.} Si è controllato anche cosa succedesse a tensioni più elevate, ma il valore della corrente in ingresso era stabilmente nullo.
+
+I risultati della misura sono riportati in \figurename{~\ref{fig:Iin}}, le tensioni in ingresso sono state misurate con il tester digitale, mentre le correnti in ingresso con quello analogico.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.5\textwidth]{../grafici/LS04.png}
+	\caption{Schema del circuito elettrico di una singola porta appartenente a \code{IC SN74LS04}}
+	\label{fig:LS04}
+\end{figure}
+
+Il verso delle correnti in input è uscente, infatti con un ingresso \code{HIGH} si hanno correnti nulle, mentre per un valore dell'ingresso corrispondente a \code{LOW} si osserva una corrente uscente dal circuito (vedi \figurename{~\ref{fig:Iin}}, dove le correnti sono però riportate in modulo).
+
+Questo è coerente con quanto atteso dallo circuito elettrico riportato sul datasheet (\figurename{~\ref{fig:LS04}), dove è mostrato che la tensione di almentazione è connessa all'input, per cui, se lasciato flottante, quest'ultimo si trova \code{HIGH}, da cui il naturale comportamento delle correnti (si è verificato misurandolo lo stato dell'input flottante, che risultava effettivamente \code{HIGH}).
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\textwidth]{../grafici/Iin.pdf}
+	\caption{Dati sperimentali relativi alle correnti in ingresso in funzione delle tensioni in ingresso}
+	\label{fig:Iin}
+\end{figure}
+
+La corrente $I_{IH}$ è nulla, poiché al di sopra di $V_{in} = \unit{1.2}{\volt}$ risultava tale (confronta nota \ref{nota:I0}). La corrente $I_{IL}$ risultava pari a $\unit{210 \pm 10}{\micro\ampere}$ alla tensione $V_{in} = \unit{506 \pm 6}{\milli\volt}$, prossima a quella a cui è riportato il valore del datasheet, mentre risultava $\unit{260 \pm 10}{\micro\ampere}$ alla tensione $V_{in} = \unit{172 \pm 1}{\milli\volt}$, la minima che è stato possibile raggiungere.
+
+La corrente $I_{IH}$, essendo nulla, è compatibile con il valore massimo da datasheet pari a $\unit{40}{\micro\ampere}$, ed anche $I_{IL}$ risultava essere compatibile, in entrambi i casi considerati sopra, con il valore $\unit{-1.6}{\milli\ampere}$ riportato dal datasheet.
+
+\subparagraph{Fanout} La corrente rilevante per il fanout è la massima corrente assorbita dalla porta (ovviamente questo costituisce una limitazione per il numero di porte di questo tipo pilotabili da un'altra porta).
+Dunque la corrente rilevante è la corrente $I_{IL}$, il cui massimo valore misurato è $I_{IL}$ = $\unit{260 \pm 10}{\micro\ampere}$.
+
+%qui la corrente è negativa, quindi sputa anziché tirarsela, ma suppongo valga lo stesso
+
+\paragraph{Correnti in uscita} Per misurare le correnti in uscita si è montato il circuito in \figurename{~\ref{fig:NOTout}}.
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.5\textwidth]{../grafici/NOTout.png}
-	\caption{}
+	\caption{Schema del circuito usato per la misura delle correnti in uscita dalla porta \code{NOT}}
 	\label{fig:NOTout}
 \end{figure}
+
+Si riportano di seguito i valori dei componenti usati per la realizzazione del circuito:
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{c|c}
+		\hline
+		$R_1 = \unit{103.0 \pm 0.9}{\kilo\ohm}$ & $R_2 = \unit{99.7 \pm 1.1}{\ohm}$\\
+		\hline
+	\end{tabular}
+\end{table}
+
+Si è quindi connesso il terminale \code{A} a $V_{in}$ e si è posto quest'ultimo:
+\begin{itemize}
+	\item a \code{GND}, per misurare $I_{OH}$;
+	\item a $V_{cc}$, cioè la tensione di alimentazione, per misurare $I_{OL}$.
+\end{itemize}
+
+
+
 
 
 \section{Montaggio di Arduino}
