@@ -1,0 +1,15 @@
+V = 4.99
+f = 859.34 Hz
+
+NOT
+tPHL (5ns)
+9.400
+tPLH (5ns)
+15.20
+
+TEMPO SALITA 
+
+incertezza gomito 7.6 ns (intervallo totale)
+
+
+TEMPO DISCESA
