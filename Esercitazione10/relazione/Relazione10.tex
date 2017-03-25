@@ -23,7 +23,7 @@
 % macro
 \def\code#1{\texttt{#1}}
 
-\title{Esperienza di Franck Hertz}
+\title{Esperienza porta Not} % bha il titolo andrebbe migliorato
 \author{Gruppo BL \\ Candido Alessandro, Luzio Andrea, Mazziotti Fabrizio}
 
 \begin{document}
@@ -70,7 +70,41 @@ La strumentazione è quella solitamente presente sul banco di lavoro, e inoltre 
 	\caption{}
 	\label{fig:NOTin}
 \end{figure}
+Per misurare la caratteristica $V_{in}-V_{out}$ della porta not presa in esame si è montato il circuito come in \ref{fig:NOTin}. Sono stati misurati i valori delle resistenze $R_2$ e il massimo di $R_1$. Sebbene il funzionamento del circuito sia indipendente dai valori precisi di tali valori i dati presi sono tabulati in tabella \ref{Res1}.
 
+\begin{table}[H]
+	\centering
+	\begin{tabular}{c|c}
+		\hline
+		$R_1 = \unit{1.979 \pm 0.017}{\kilo\ohm}$ & $R_2 = \unit{99.7 \pm 1.1}{\ohm}$\\
+		\hline
+	\end{tabular}
+	\caption{}
+	\label{Res1}
+\end{table}
+
+\'E dunque stata presa la tensione di ingresso e la tensione di uscita per diversi valori della resistenza $R_1$.
+
+'\E stata presa la tensione $V_{in}$ e $V_{out}$ con il multimetro digitale. I dati raccolti sono riassunti in \ref{fig:VinVout}.
+
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\textwidth]{../grafici/VinVout.pdf}
+	\caption{Dati sperimentali relativi alle tensioni in uscita in funzione delle tensioni in ingresso. La tensione di alimentazione è $ \unit{4.95 \pm 0.03}{\volt}$}
+	\label{fig:VinVout}
+\end{figure}
+
+\'E facile commentare questo grafico. Fino a una certa tensione in ingresso V_{IH} l'uscita è chiaramente HIGH. Questa tensione è osservabile dal grafico ed è collocabile tra i 0.80 e i 0.90 V. Se ne da dunque una stima di $0.85 \pm 0.05 V$. Come errore si è preferito scegliere la semidispersione in quanto "valore di riferimento". 
+Aumentando ancora la tensione di ingresso si ha dunque un crollo della tensione di uscita che si stabilizza al suo valore finale verso i 1.06-1.08 v. Al di sopra di questa seconda tensione l'output è stabilmente LOW.
+
+
+Si può capire meglio che cosa succede osservando il comportamento del circuito con l'oscilloscopio. Si osserva in pratica che l'output, per valori di tensione vicini alla discontinuità vista nel grafico, è rumorosissimo. Questo è ovvio se si considera quanto può variare in quella regione l'output a causa di anche piccoli rumori dell'input, piccoli rumori che possono anche essere interni alla porta.
+In pratica il marcato rumore era presente tra $1.03 V$ e $1.01 V$.
+
+
+Bisogna confrontare questi valori con quelli da datasheet...
+ 
 \subsection{Misura delle correnti e del fanout}
 
 \paragraph{Correnti in ingresso}

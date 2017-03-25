@@ -20,8 +20,11 @@ dir= path + "Esercitazione10\\"
 from BuzzLightyear import * 
 from lab import mme
 from uncertainties import *
-###########################################################################
 
+close("all")
+
+###########################################################################
+figure(0)
 file="Iin"
 
 vin, iin = loadtxt(dir + "data\\" + file + ".txt", unpack=True)
@@ -45,3 +48,25 @@ savefig(dir + "grafici\\" + file + ".pdf")
 
 
 ###########################################################################
+figure(1)
+file="VinVout"
+
+vin, iin = loadtxt(dir + "data\\" + file + ".txt", unpack=True)
+
+dvin = mme(vin, 'volt')
+diin = mme(iin, 'volt')
+
+iin *= 1
+diin *= 1
+
+xlim(min(vin)*0.9,max(vin)*1.03)
+ylim(-max(iin)/20,max(iin)*1.1)
+errorbar(vin, iin, xerr=dvin, yerr=diin, fmt=",b")
+
+title("Tensione di ingresso - tensione di uscita @ $V_{cc}=4.95 \pm 0.03$ V")
+xlabel("Input voltages [V]")
+ylabel("Input voltages [V]")
+
+savefig(dir + "grafici\\" + file + ".pdf")
+print("ginocchio fra i 0.78 - 0.90 V")
+print("secondo ginoccho @ 1.060- 1.080 V")
