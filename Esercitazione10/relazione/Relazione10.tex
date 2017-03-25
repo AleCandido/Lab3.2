@@ -90,7 +90,7 @@ I risultati della misura sono riportati in \figurename{~\ref{fig:Iin}}, le tensi
 
 Il verso delle correnti in input è uscente, infatti con un ingresso \code{HIGH} si hanno correnti nulle, mentre per un valore dell'ingresso corrispondente a \code{LOW} si osserva una corrente uscente dal circuito (vedi \figurename{~\ref{fig:Iin}}, dove le correnti sono però riportate in modulo).
 
-Questo è coerente con quanto atteso dallo circuito elettrico riportato sul datasheet (\figurename{~\ref{fig:LS04}), dove è mostrato che la tensione di almentazione è connessa all'input, per cui, se lasciato flottante, quest'ultimo si trova \code{HIGH}, da cui il naturale comportamento delle correnti (si è verificato misurandolo lo stato dell'input flottante, che risultava effettivamente \code{HIGH}).
+Questo è coerente con quanto atteso dallo circuito elettrico riportato sul datasheet (\figurename{~\ref{fig:LS04}), dove è mostrato che la tensione di almentazione è connessa all'input, per cui, se lasciato flottante, quest'ultimo si trova \code{HIGH}, da cui il naturale comportamento delle correnti (si è verificato misurandolo lo stato dell'input flottante, che risultava effettivamente \code{HIGH}). D'altronde non potrebbe essere diversamente a causa dei diodi a cui è connesso l'input.
 
 \begin{figure}[H]
 	\centering
@@ -137,29 +137,28 @@ Si è quindi connesso il terminale \code{A} a $V_{in}$ e si è posto quest'ultim
 \end{itemize}
 
 In entrambi i casi si sono eseguite tre misure: nella prima si sono misurati i valori tipici di corrente di output, corrispondenti a valori tipici di tensione per l'uscita, nelle altre si sono misurate le correnti di output corrispondenti a valori limite di tensione per la logica TTL. \footnote{\href{https://www.allaboutcircuits.com/textbook/digital/chpt-3/logic-signal-voltage-levels/}{https://www.allaboutcircuits.com/textbook/digital/chpt-3/logic-signal-voltage-levels/}}
+\footnote{Poiché nella zona intermedia lo stato della porta era instabile si è cercato di andare quanto più possibile vicino ai limiti TTL rimanendo nella zona di stabilità.}
 
-Si è stabilito di misurare le correnti leggendo la tensione ai capi della resistenza $R_2$, cioè la tensione presente tra \code{A} e \code{B}, con il tester digitale. Le misure effettuate sono riportate in \tablename{~\ref{tab:iohiol}} 
+Si è stabilito di misurare le correnti leggendo la tensione ai capi della resistenza $R_2$, cioè la tensione presente tra \code{A} e \code{B}, con il tester digitale. Le misure effettuate sono riportate in \tablename{~\ref{tab:iohiol}}.
 
 \begin{table}[H]
 	\centering
-	\begin{tabular}{c|c|c|c|c|c|c|c|}
-		\cline{2-7}
-			& \multicolumn{2}{|c|}{Typical values} &	\multicolumn{2}{|c|}{TTL IN threshold}	& \multicolumn{2}{|c|}{TTL OUT threshold}\\
-		\cline{2-7}
-			& $V_{out}$ & $I_{out}$ & $V_{out}$ & $I_{out}$ & $V_{out}$ & $I_{out}$	\\
+	\begin{tabular}{c|c|c|c|c|c|}
+		\cline{2-5}
+			& \multicolumn{2}{|c|}{Typical values} &	 \multicolumn{2}{|c|}{TTL OUT threshold}\\
+		\cline{2-5}
+			& $V_{out}$ & $I_{out}$ & $V_{out}$ & $I_{out}$	\\
 		\hline
-		\multicolumn{1}{|c|}{$I_{OH}$} & $\unit{3.28 \pm 0.03}{\volt}$ & $\unit{1.555 \pm 0.019}{\milli\ampere}$ & $\unit{2.00 \pm 0.02}{\volt}$ & $\unit{16.47 \pm 0.20}{\milli\ampere}$ & $\unit{2.40 \pm 0.02}{\volt}$ &	$\unit{12.09 \pm 0.15}{\milli\ampere}$\\
+		\multicolumn{1}{|c|}{$I_{OH}$} & $\unit{3.56 \pm 0.03}{\volt}$ & $\unit{106.2 \pm 1.9}{\micro\ampere}$ & $\unit{2.78 \pm 0.02}{\volt}$ &	$\unit{5.81 \pm 0.12}{\milli\ampere}$\\
 		\hline
-		\multicolumn{1}{|c|}{$I_{OL}$} & $\unit{248 \pm 2}{\milli\volt}$ & $\unit{2.59 \pm 0.04}{\milli\ampere}$ & $\unit{800 \pm 5}{\milli\volt}$ & $\unit{24.2 \pm 0.3}{\milli\ampere}$ & $\unit{400 \pm 3}{\milli\volt}$ & $\unit{10.27 \pm 0.13}{\milli\ampere}$\\
+		\multicolumn{1}{|c|}{$I_{OL}$} & $\unit{144 \pm 2}{\milli\volt}$ & $\unit{44.1 \pm 1.3}{\micro\ampere}$ & $\unit{280 \pm 3}{\milli\volt}$ & $\unit{4.01 \pm 0.11}{\milli\ampere}$ \\
 		\hline
 	\end{tabular}
-	\caption{Misure di $I_{OH} e I_{OL}$.}
+	\caption{Misure di $I_{OH}$ e $I_{OL}$.}
 	\label{tab:iohiol}
 \end{table}
-% mentre i valori delle soglie convenzionali sono esatti per quelle di input, sono solo approssimati per quelle di output (che convenzionalmente sono 0.5-2.7, vedi nota), che forse sono anche più rilevanti delle soglie di input (dato che stiamo guardando l'output di una porta)
 
-Dal datasheet del componente si possono leggere i valori massimi per le correnti misurate, che corrispondono a $I_{OH} = \unit{-0.4}{\milli\ampere}$ e $I_{OL} = \unit{16}{\milli\ampere}$.
-% e non torna un accidente, IOH, mentre IOL torna tranquillo tranquillo
+Dal datasheet del componente si possono leggere i valori massimi per le correnti misurate, che corrispondono a $I_{OH} = \unit{-0.4}{\milli\ampere}$ e $I_{OL} = \unit{16}{\milli\ampere}$, e dal confronto con i valori in \tablename{~\ref{tab:iohiol}} si ha che nel regime di funzionamento tipico le correnti sono nel range dichiarato dal datasheet, mentre avvicinandosi alla regione di instabilità il valore di $I_{OH}$ supera quello massimo dichiarato, mentre $I_{OL}$ rientra ancora nel margine dato (è da notare però che mentre $I_{OH}$ è misurato quasi a soglia, che corrisponde a $\unit{2.7}{\volt}$, $I_{OL}$ è piuttosto lontano dalla sua), che corrisponde a $\unit{0.5}{\volt}$.
 
 \subparagraph{Variazioni repentine} Si è osservata la presenza di regioni di tensione di output in cui non si riusciva a fissare stabilmente il valore dell'uscita, e la tensione tendeva a portarsi ai margini della regione. Queste regioni (una nella misura di $I_{OH}$ e una in quella di $I_{OL}$) erano instabili proprio perché per variazioni piccole del carico si passava rapidamente da un margine all'altro della regione.
 % e se devo dare una spiegazione del perché non la so e quindi mi fermo, amen
