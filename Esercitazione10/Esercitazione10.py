@@ -70,3 +70,33 @@ ylabel("Input voltages [V]")
 savefig(dir + "grafici\\" + file + ".pdf")
 print("ginocchio fra i 0.78 - 0.90 V")
 print("secondo ginoccho @ 1.060- 1.080 V")
+
+
+import Oscillografo
+
+CH1=Oscillografo.OscilloscopeData(dir+"data\\CH1.csv")
+CH2=Oscillografo.OscilloscopeData(dir+"data\\CH2.csv")
+
+#1285 1435
+figure(2)
+
+#x_data=CH1.CH1[((CH1.T1>0.00073) and (CH1.T1<0.0020))]
+title("Tensione di ingresso e uscita @ $V_{cc}=4.95 \pm 0.03$ V, oscilloscopio")
+xlabel("time [s]")
+ylabel("voltages [V]")
+plot(CH1.T1, CH1.CH1)
+plot(CH2.T1, CH2.CH1)
+savefig(dir+ "grafici\\oscRaw.pdf")
+
+
+figure(3)
+
+plot(CH1.CH1[1285:1435], CH2.CH1[1285:1435])
+
+figure(4)
+errorbar(CH1.CH1, CH2.CH1, CH1.dCH1, CH2.dCH1, fmt="none")
+xlim(0, 1.6)
+title("Tensione di ingresso - tensione di uscita @ $V_{cc}=4.95 \pm 0.03$ V, oscilloscopio")
+xlabel("Input voltages [V]")
+ylabel("Input voltages [V]")
+savefig(dir+ "grafici\\osc.pdf")

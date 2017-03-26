@@ -34,6 +34,8 @@
 %Lo scopo di questa esperienza è di
 %\end{abstract}
 
+
+
 \section{Scopo e Strumentazione}
 Lo scopo dell'esperienza è Misurare le caratteristiche statiche e dinamiche delle porte NOT contenute nell’integrato \code{SN74LS04} (HEX Inverter).
 
@@ -70,7 +72,7 @@ La strumentazione è quella solitamente presente sul banco di lavoro, e inoltre 
 	\caption{}
 	\label{fig:NOTin}
 \end{figure}
-Per misurare la caratteristica $V_{in}-V_{out}$ della porta not presa in esame si è montato il circuito come in \ref{fig:NOTin}. Sono stati misurati i valori delle resistenze $R_2$ e il massimo di $R_1$. Sebbene il funzionamento del circuito sia indipendente dai valori precisi di tali valori i dati presi sono tabulati in tabella \ref{Res1}.
+Per misurare la caratteristica $V_{in}-V_{out}$ della porta not presa in esame si è montato il circuito come in \ref{fig:NOTin}. Sono stati misurati i valori delle resistenze $R_2$ e il massimo di $R_1$e, sebbene il funzionamento del circuito sia indipendente dai valori precisi essi, sono tabulati in tabella \ref{Res1}.
 
 \begin{table}[H]
 	\centering
@@ -83,9 +85,7 @@ Per misurare la caratteristica $V_{in}-V_{out}$ della porta not presa in esame s
 	\label{Res1}
 \end{table}
 
-\'E dunque stata presa la tensione di ingresso e la tensione di uscita per diversi valori della resistenza $R_1$.
-
-'\E stata presa la tensione $V_{in}$ e $V_{out}$ con il multimetro digitale. I dati raccolti sono riassunti in \ref{fig:VinVout}.
+\'E dunque stata presa la tensione di ingresso (con il multimetro digitale) e la tensione di uscita (con l'oscilloscopio) per diversi valori della resistenza $R_1$.I dati raccolti sono riassunti in \ref{fig:VinVout}.
 
 
 \begin{figure}[H]
@@ -95,16 +95,55 @@ Per misurare la caratteristica $V_{in}-V_{out}$ della porta not presa in esame s
 	\label{fig:VinVout}
 \end{figure}
 
-\'E facile commentare questo grafico. Fino a una certa tensione in ingresso V_{IH} l'uscita è chiaramente HIGH. Questa tensione è osservabile dal grafico ed è collocabile tra i 0.80 e i 0.90 V. Se ne da dunque una stima di $0.85 \pm 0.05 V$. Come errore si è preferito scegliere la semidispersione in quanto "valore di riferimento". 
-Aumentando ancora la tensione di ingresso si ha dunque un crollo della tensione di uscita che si stabilizza al suo valore finale verso i 1.06-1.08 v. Al di sopra di questa seconda tensione l'output è stabilmente LOW.
+\'E facile commentare questo grafico. Fino a una certa tensione in ingresso $V_{IH}$ l'uscita è chiaramente HIGH. Questa tensione è osservabile dal grafico ed è collocabile tra i 0.80 e i 0.90 V. Se ne da dunque una stima di $0.85 \pm 0.05 V$. Come errore si è preferito scegliere la semidispersione in quanto "valore di riferimento". 
+Aumentando ancora la tensione di ingresso si ha dunque un crollo della tensione di uscita che si stabilizza al suo valore finale verso i 1.06-1.08 v. Al di sopra di questa seconda tensione l'output è stabilmente LOW. Si è dunque stimato il valore di $V_{IL}=1.07 \pm 0.01 V$. 
 
 
-Si può capire meglio che cosa succede osservando il comportamento del circuito con l'oscilloscopio. Si osserva in pratica che l'output, per valori di tensione vicini alla discontinuità vista nel grafico, è rumorosissimo. Questo è ovvio se si considera quanto può variare in quella regione l'output a causa di anche piccoli rumori dell'input, piccoli rumori che possono anche essere interni alla porta.
-In pratica il marcato rumore era presente tra $1.03 V$ e $1.01 V$.
+Si può capire meglio che cosa succede osservando il comportamento del circuito con l'oscilloscopio. Si osserva in pratica che l'output, per valori di tensione vicini alla discontinuità vista nel grafico, è rumorosissimo. Questo è ovvio se si considera quanto può variare in quella regione l'output a causa di anche piccoli rumori dell'input\footnote{ Rumore che possono anche essere interni alla porta.}.
+In pratica il marcato rumore è presente tra $1.03 V$ e $1.01 V$.
 
 
-Bisogna confrontare questi valori con quelli da datasheet...
- 
+Gli stessi dati sono stati presi sostituendo il partitore di ingresso con l'uscita del generatore di tensione settato per generare una rampa triangolare.
+Sono stati ottenuti i dati rappresentati nelle figure \ref{fig:oscRaw} e \ref{fig:osc}.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\textwidth]{../grafici/oscRaw.pdf}
+	\caption{I due canali ottenuti direttamente dall'oscilloscopio. La tensione di alimentazione della porta è sempre $ \unit{4.95 \pm 0.03}{\volt}$}
+	\label{fig:oscRaw}
+\end{figure}
+
+
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\textwidth]{../grafici/osc.pdf}
+	\caption{Dati sperimentali relativi alle tensioni in uscita in funzione delle tensioni in ingresso, ottenuti con un onda triangolare e digitalizzati con l'oscilloscopio. La tensione di alimentazione è $ \unit{4.95 \pm 0.03}{\volt}$}
+	\label{fig:osc}
+\end{figure}
+
+Sono chiaramente visibili anche i valori di tensione $V_{OH}$ e $V_{OL}$, come i valori di tensione subito prima e dopo la "discontinuità". Essi sono stimati come $V_{OH}\sim 3.60 \pm 0.05 V$ e $V_{OL}\sim 0.014 \pm 0.005 V$. Queste stime sono state ottenute con i grafici ottenuti con l'oscilloscopio in quanto esso, fornendo una scansione più completa, permette di meglio individuare i due ginocchi della risposta $V_{in} - V_{out}$. Gli errori sono maggiori di quelli strumentali perché è difficile stabilire con precisione il punto di ginocchio. 
+
+Tutti i dati presentati sono confrontati con i valori tipici presenti nel datasheet nella tabella \ref{Vresults}.
+
+ \begin{table}[H]
+	\centering
+	\begin{tabular}{c|c|c|c|c}
+		parametro & sperimentale & min & tipical & max\\		
+		\hline
+		$V_{IH}$ & $0.85 \pm 0.05 V$ & $2 V$&&\\
+		$V_{IL}$ & $1.07 \pm 0.01 V$ &&& $0.8 V$ \\
+		$V_{OH}$ & $3.60 \pm 0.05 V$ &$2.7 V$&$3.4 V$&\\
+		$V_{OL}$ & $ 0.014 \pm 0.005 V$ &&&$0.4 V$ \\
+		\hline
+	\end{tabular}
+	\caption{Tutti i valori risultano compatibili con quanto presente nel datasheet. Da notare che comuque le caratteristiche di uscita misurate dal datasheet sono con corrente di uscita non nulla, dunque con condizioni peggiori rispetto a quelle da noi sperimentate.}
+	\label{Vresults}
+\end{table}
+
+La tabella mostra come tutti i dati siano compatibili con quanto espresso nel datasheet. In particolare le caratteristiche di uscita sembrano addirittura troppo buone. Questo è principalmente dovuto al diverso setting nel quale sono situati i componenti. In particolare noi abbiamo misurato le caratteristiche senza alcun carico, nel datasheet sono presenti le misure per $-0.4 mA$ ($V_{OH}$) e $4 mA$ ($V_{OL}$). Anche le tensioni di alimentazione sono leggermente diverse ($4.95 V$ per il nostro dispositivo, $4.75 V$ per il datasheet).
+
+
 \subsection{Misura delle correnti e del fanout}
 
 \paragraph{Correnti in ingresso}
