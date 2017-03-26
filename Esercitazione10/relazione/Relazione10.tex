@@ -111,7 +111,7 @@ Bisogna confrontare questi valori con quelli da datasheet...
 
 Si è variata la tensione in ingresso agendo sul trimmer \code{R1}, mostrato in \figurename{~\ref{fig:NOTin}}.
 	
-Si è osservata una fascia di tensioni in ingresso della porta \code{NOT} compresa tra il valore minimo ottenibile con ruotando il trimmer e i primi valori per cui la corrente in ingresso si annullava.\footnote{\label{nota:I0}Scendeva sotto la sensibilità minima degli strumenti a disposizione per la misura di correnti.} Si è controllato anche cosa succedesse a tensioni più elevate, ma il valore della corrente in ingresso era stabilmente nullo.
+Si è osservata una fascia di tensioni in ingresso della porta \code{NOT} compresa tra il valore minimo ottenibile ruotando il trimmer e i primi valori per cui la corrente in ingresso si annullava.\footnote{\label{nota:I0}Scendeva sotto la sensibilità minima degli strumenti a disposizione per la misura di correnti.} Si è controllato anche cosa succedesse a tensioni più elevate, ma il valore della corrente in ingresso era stabilmente nullo.
 
 I risultati della misura sono riportati in \figurename{~\ref{fig:Iin}}, le tensioni in ingresso sono state misurate con il tester digitale, mentre le correnti in ingresso con quello analogico.
 
@@ -124,7 +124,7 @@ I risultati della misura sono riportati in \figurename{~\ref{fig:Iin}}, le tensi
 
 Il verso delle correnti in input è uscente, infatti con un ingresso \code{HIGH} si hanno correnti nulle, mentre per un valore dell'ingresso corrispondente a \code{LOW} si osserva una corrente uscente dal circuito (vedi \figurename{~\ref{fig:Iin}}, dove le correnti sono però riportate in modulo).
 
-Questo è coerente con quanto atteso dallo circuito elettrico riportato sul datasheet (\figurename{~\ref{fig:LS04}), dove è mostrato che la tensione di almentazione è connessa all'input, per cui, se lasciato flottante, quest'ultimo si trova \code{HIGH}, da cui il naturale comportamento delle correnti (si è verificato misurandolo lo stato dell'input flottante, che risultava effettivamente \code{HIGH}).
+Questo è coerente con quanto atteso dallo circuito elettrico riportato sul datasheet (\figurename{~\ref{fig:LS04}), dove è mostrato che la tensione di almentazione è connessa all'input, per cui, se lasciato flottante, quest'ultimo si trova \code{HIGH}, da cui il naturale comportamento delle correnti (si è verificato misurandolo lo stato dell'input flottante, che risultava effettivamente \code{HIGH}). D'altronde non potrebbe essere diversamente a causa dei diodi a cui è connesso l'input.
 
 \begin{figure}[H]
 	\centering
@@ -151,7 +151,7 @@ Dunque la corrente rilevante è la corrente $I_{IL}$, il cui massimo valore misu
 	\label{fig:NOTout}
 \end{figure}
 
-Si riportano di seguito i valori dei componenti usati per la realizzazione del circuito:
+I valori dei componenti usati per la realizzazione del circuito sono riportati in \tablename{~\ref{tab:valori}}. 
 
 \begin{table}[H]
 	\centering
@@ -160,6 +160,8 @@ Si riportano di seguito i valori dei componenti usati per la realizzazione del c
 		$R_1 = \unit{103.0 \pm 0.9}{\kilo\ohm}$ & $R_2 = \unit{99.7 \pm 1.1}{\ohm}$\\
 		\hline
 	\end{tabular}
+	\caption{Valori dei componenti usati per la realizzazione del circuito in esame.}
+	\label{tab:valori}
 \end{table}
 
 Si è quindi connesso il terminale \code{A} a $V_{in}$ e si è posto quest'ultimo:
@@ -169,37 +171,137 @@ Si è quindi connesso il terminale \code{A} a $V_{in}$ e si è posto quest'ultim
 \end{itemize}
 
 In entrambi i casi si sono eseguite tre misure: nella prima si sono misurati i valori tipici di corrente di output, corrispondenti a valori tipici di tensione per l'uscita, nelle altre si sono misurate le correnti di output corrispondenti a valori limite di tensione per la logica TTL. \footnote{\href{https://www.allaboutcircuits.com/textbook/digital/chpt-3/logic-signal-voltage-levels/}{https://www.allaboutcircuits.com/textbook/digital/chpt-3/logic-signal-voltage-levels/}}
+\footnote{Poiché nella zona intermedia lo stato della porta era instabile si è cercato di andare quanto più possibile vicino ai limiti TTL rimanendo nella zona di stabilità.}
 
-Si è stabilito di misurare le correnti leggendo la tensione ai capi della resistenza $R_2$, cioè la tensione presente tra \code{A} e \code{B}, con il tester digitale. Si riportano le misure effettuate nella tabella seguente:
+Si è stabilito di misurare le correnti leggendo la tensione ai capi della resistenza $R_2$, cioè la tensione presente tra \code{A} e \code{B}, con il tester digitale. Le misure effettuate sono riportate in \tablename{~\ref{tab:iohiol}}.
 
 \begin{table}[H]
 	\centering
-	\begin{tabular}{c|c|c|c|c|c|c|c|}
-		\cline{2-7}
-			& \multicolumn{2}{|c|}{Typical values} &	\multicolumn{2}{|c|}{TTL IN threshold}	& \multicolumn{2}{|c|}{TTL OUT threshold}\\
-		\cline{2-7}
-			& $V_{out}$ & $I_{out}$ & $V_{out}$ & $I_{out}$ & $V_{out}$ & $I_{out}$	\\
+	\begin{tabular}{c|c|c|c|c|c|}
+		\cline{2-5}
+			& \multicolumn{2}{|c|}{Typical values} &	 \multicolumn{2}{|c|}{TTL OUT threshold}\\
+		\cline{2-5}
+			& $V_{out}$ & $I_{out}$ & $V_{out}$ & $I_{out}$	\\
 		\hline
-		\multicolumn{1}{|c|}{$I_{OH}$} & $\unit{3.28 \pm 0.03}{\volt}$ & $\unit{1.555 \pm 0.019}{\milli\ampere}$ & $\unit{2.00 \pm 0.02}{\volt}$ & $\unit{16.47 \pm 0.20}{\milli\ampere}$ & $\unit{2.40 \pm 0.02}{\volt}$ &	$\unit{12.09 \pm 0.15}{\milli\ampere}$\\
+		\multicolumn{1}{|c|}{$I_{OH}$} & $\unit{3.56 \pm 0.03}{\volt}$ & $\unit{106.2 \pm 1.9}{\micro\ampere}$ & $\unit{2.78 \pm 0.02}{\volt}$ &	$\unit{5.81 \pm 0.12}{\milli\ampere}$\\
 		\hline
-		\multicolumn{1}{|c|}{$I_{OL}$} & $\unit{248 \pm 2}{\milli\volt}$ & $\unit{2.59 \pm 0.04}{\milli\ampere}$ & $\unit{800 \pm 5}{\milli\volt}$ & $\unit{24.2 \pm 0.3}{\milli\ampere}$ & $\unit{400 \pm 3}{\milli\volt}$ & $\unit{10.27 \pm 0.13}{\milli\ampere}$\\
+		\multicolumn{1}{|c|}{$I_{OL}$} & $\unit{144 \pm 2}{\milli\volt}$ & $\unit{44.1 \pm 1.3}{\micro\ampere}$ & $\unit{280 \pm 3}{\milli\volt}$ & $\unit{4.01 \pm 0.11}{\milli\ampere}$ \\
 		\hline
 	\end{tabular}
+	\caption{Misure di $I_{OH}$ e $I_{OL}$.}
+	\label{tab:iohiol}
 \end{table}
-% mentre i valori delle soglie convenzionali sono esatti per quelle di input, sono solo approssimati per quelle di output (che convenzionalmente sono 0.5-2.7, vedi nota), che forse sono anche più rilevanti delle soglie di input (dato che stiamo guardando l'output di una porta)
 
-Dal datasheet del componente si possono leggere i valori massimi per le correnti misurate, che corrispondono a $I_{OH} = \unit{-0.4}{\milli\ampere}$ e $I_{OL} = \unit{16}{\milli\ampere}$.
-% e non torna un accidente, IOH, mentre IOL torna tranquillo tranquillo
+Dal datasheet del componente si possono leggere i valori massimi per le correnti misurate, che corrispondono a $I_{OH} = \unit{-0.4}{\milli\ampere}$ e $I_{OL} = \unit{16}{\milli\ampere}$, e dal confronto con i valori in \tablename{~\ref{tab:iohiol}} si ha che nel regime di funzionamento tipico le correnti sono nel range dichiarato dal datasheet, mentre avvicinandosi alla regione di instabilità il valore di $I_{OH}$ supera quello massimo dichiarato, mentre $I_{OL}$ rientra ancora nel margine dato (è da notare però che mentre $I_{OH}$ è misurato quasi a soglia, che corrisponde a $\unit{2.7}{\volt}$, $I_{OL}$ è piuttosto lontano dalla sua), che corrisponde a $\unit{0.5}{\volt}$.
 
 \subparagraph{Variazioni repentine} Si è osservata la presenza di regioni di tensione di output in cui non si riusciva a fissare stabilmente il valore dell'uscita, e la tensione tendeva a portarsi ai margini della regione. Queste regioni (una nella misura di $I_{OH}$ e una in quella di $I_{OL}$) erano instabili proprio perché per variazioni piccole del carico si passava rapidamente da un margine all'altro della regione.
 % e se devo dare una spiegazione del perché non la so e quindi mi fermo, amen
 
 \section{Montaggio di Arduino}
+Si è montato il circuito impulsatore con il microcontrollore arduino, seguendo le indicazioni riportate sulla scheda. Si è stati attenti a rendere il montaggio più ordinato e compatto possibile al fine di permettere l'utilizzo di altri componenti circuitali sulla basetta. Di seguito è riportato lo schema circuitale del circuito assemblato (\figurename{~\ref{fig:schardu}}). Le resistenze e i condensatori utilizzati sono riportati in \tablename{~\ref{tab:ardu}}. 
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{c|c|c|c|c|c|c}
+	$R_1 [\Omega$] & $R_2 [\Omega]$ & $R_3 [\Omega]$ & $R_4 [\Omega]$ & Trimmer($R_5 [k \Omega]$) & $C_1 [nF]$ & $C_2 [nF]$\\
+	\hline
+	974 $\pm$8 & 986$\pm$8 & 990$\pm$8& 990$\pm$8 & 10.3$\pm$0.1 & 107$\pm$4 & 107$\pm$4\\
+	\hline
+	\end{tabular}
+	\caption{Valori delle resistenze e dei condensatori utilizzati per montare arduino e il microcontrollore. I nomi sono riferiti alla \figurename{~\ref{fig:schardu}} .}
+	\label{tab:ardu}
+\end{table}
+
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.5\textwidth]{../grafici/schardu.png}
+	\caption{Schema circuito impulsatore con il microcontrollore arduino.}
+	\label{fig:schardu}
+\end{figure}
+
+Questo circuito genera sui piedini Y1 e Y2 evidenziati in \figurename{~\ref{fig:schardu}}, due onde quadre sfasate di 90$\degree$ con una frequenza variabile tra pochi Hz e 50KHz attraverso il trimmer. Le onde in uscita vengono mostrate in \figurename{~\ref{fig:ardu}} e hanno una frequenza di 859.35$\pm$0.02 Hz.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.5\textwidth]{../grafici/ardu.png}
+	\caption{Onde quadre in uscita dai piedini Y1 e Y2 sfasate di 90$\degree$ tra loro.}
+	\label{fig:ardu}
+\end{figure}
+
 
 \section{Caratteristiche dinamiche}
+Si è inviata in ingresso all'impulsatore un’onda quadra di ampiezza di (4.99$\pm$0.03) V e con la stessa frequenza fissata precedentemente. Al buffer si è poi collegato un circuito NOT. Le onde in ingresso e in uscita al NOT sono mostrate in \figurename{~\ref{fig:notardu}} e, come aspettato, mostrano il corretto funzionamento di questo.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.5\textwidth]{../grafici/notardu.png}
+	\caption{Onde quadre in ingresso e uscita del circuito NOT.}
+	\label{fig:notardu}
+\end{figure}
 
 \subsection{Misura dei tempi di propagazione}
+Si sono misurati i tempi di propagazione del circuito NOT nel passaggio da High(H) a Low(L) e viceversa. Più precisamente, per il passaggio del NOT da H a L si è preso come tempo di propagazione (tPHL) la distanza temporale tra il tempo corrispondente alla metà della differenza di potenziale nel passaggio da L a H all'uscita del buffer e il tempo corrispondente alla metà della differenza di potenziale nel passaggio da H a L del NOT. Allo stesso modo si è proceduto per il calcolo di tPLH dove in tutto ciò che si è scritto sopra basta sostituire H$\leftrightarrow$L. I dati sono riportati in \tablename{~\ref{tab:tprop}} e in \figurename{~\ref{fig:tphlNOT}} è mostrata come esempio la misura di tPHL.
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{c|c|c|c|c|c}
+	tPHL [ns] & $tPHL_{typ} [ns]$ & $tPHL_{max} [ns]$ & tPLH [ns] & $tPLH_{typ} [ns]$& $tPLH_{max} [ns]$\\
+	\hline
+	9.4 $\pm$0.4 & 10 & 15 & 15.2$\pm$0.4 & 9 & 15\\
+	\hline
+	\end{tabular}
+	\caption{Misure dei tempi di propagazione tPHL e tPLH del circuito NOT. Sono mostrati anche i valori tipici e massimi forniti sul datasheet.}
+	\label{tab:tprop}
+\end{table}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.5\textwidth]{../grafici/tphlNOT.png}
+	\caption{Misura del tempo di propagazione tPHL del circuito NOT mediante l'oscilloscopio.}
+	\label{fig:tphlNOT}
+\end{figure}
+
+Come si può vedere dalla \tablename{~\ref{tab:tprop}} i valori ottenuti sono compatibili con i valori tipici/massimi riportati sul datasheet del circuito NOT. Gli errori associati a tali misure sono stati calcolati facendo la somma in quadratura dei vari errori riportati sul datasheet dell'oscilloscopio. Inoltre si è trascurato l'errore dovuto alla misura dei valori picco-picco, assumendo pendenza nulla su di essi e quindi trascurandoli nella propagazione.
 
 \subsection{Misura del tempo di salita}
+Si sono misurati i tempi di salita e discesa (tra il 10\% e il 90\% dei valori picco-picco) del circuito NOT al suo ingresso (quindi all'uscita del buffer) e alla sua uscita. I dati ottenuti sono riportati in \tablename{~\ref{tab:tsaldisc}}. Nella \figurename{~\ref{fig:temposalita1input}} è mostrata come esempio la misura del tempo di salita all'ingresso del NOT e nella \figurename{~\ref{fig:tempodiscesa}} è mostrata la misura del tempo di discesa all'uscita di esso.
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{c|c|c|c}
+	$t_{sal,in}$ [ns] & $t_{disc,in}$ [ns] & $t_{sal,out}$ [ns] & $t_{disc,out}$ [ns]\\
+	\hline
+	12.4$\pm$0.3 & 6.0$\pm$0.3 & 290$\pm$40 &12.8$\pm$0.3\\
+	\hline
+	\end{tabular}
+	\caption{Misure dei tempi di salita e discesa all'ingresso e all'uscita del circuito NOT.}
+	\label{tab:tsaldisc}
+\end{table}
+
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.5\textwidth]{../grafici/temposalita1input.png}
+	\caption{Misura del tempo di salita all'ingresso del NOT.}
+	\label{fig:temposalita1input}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.5\textwidth]{../grafici/tempodiscesa.png}
+	\caption{Misura del tempo di discesa all'uscita del NOT.}
+	\label{fig:tempodiscesa}
+\end{figure}
+
+Come si può notare dalla \tablename{~\ref{tab:tsaldisc}} il tempo di salita all'uscita del NOT è notevolmente maggiore degli altri tempi di salita e discesa.
+Nel misurare questo tempo si è notato che che in realtà erano presenti due fronti, uno molto ripido ("gomito") e uno a bassa pendenza. Come tempo di salita si è scelto di prendere l'intervallo al tra il 10\% e il 90\% della salita complessiva, ma si è riportato per completezza anche il tempo di salita del gomito che risulta essere di 45.6$\pm$ 0.4 ns. L'errore associato alla salita complessiva e la sua misura sono stati stimati a partire dal range di tempi in cui si aveva il 90\% dell'ampiezza picco-picco dell'onda(questo punto ricadeva nella parte di salita a bassa pendenza, perciò si aveva molta più incertezza). Si è presa la distanza temporale tra il 10\% della salita e il più alto valore t in cui si aveva il 90\% dell'ampiezza picco-picco; si è scelta come misura la differenza tra questo tempo e la semiampiezza del range in cui si aveva il 90\% e come errore questa semiampiezza. I due diversi fronti di salita sono mostrati in \figurename{~\ref{fig:temposalita1}}.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.5\textwidth]{../grafici/temposalita1.png}
+	\caption{Visualizzazione tramite l'oscilloscopio dei due diversi fronti di salita all'uscita del circuito NOT.}
+	\label{fig:temposalita1}
+\end{figure}
 
 \end{document}
