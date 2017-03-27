@@ -72,7 +72,7 @@ La strumentazione è quella solitamente presente sul banco di lavoro, e inoltre 
 	\caption{}
 	\label{fig:NOTin}
 \end{figure}
-Per misurare la caratteristica $V_{in}-V_{out}$ della porta not presa in esame si è montato il circuito come in \ref{fig:NOTin}. Sono stati misurati i valori delle resistenze $R_2$ e il massimo di $R_1$e, sebbene il funzionamento del circuito sia indipendente dai valori precisi essi, sono tabulati in tabella \ref{Res1}.
+Per misurare la caratteristica $V_{in}-V_{out}$ della porta not presa in esame si è montato il circuito come in Figura \ref{fig:NOTin}. Sono stati misurati i valori delle resistenze $R_2$ e il massimo di $R_1$ e, sebbene il funzionamento del circuito sia indipendente dai valori precisi, essi sono tabulati in tabella \ref{Res1}.
 
 \begin{table}[H]
 	\centering
@@ -85,7 +85,7 @@ Per misurare la caratteristica $V_{in}-V_{out}$ della porta not presa in esame s
 	\label{Res1}
 \end{table}
 
-\'E dunque stata presa la tensione di ingresso (con il multimetro digitale) e la tensione di uscita (con l'oscilloscopio) per diversi valori della resistenza $R_1$.I dati raccolti sono riassunti in \ref{fig:VinVout}.
+\'E dunque stata presa la tensione di ingresso (con il multimetro digitale) e la tensione di uscita (con l'oscilloscopio) per diversi valori della resistenza $R_1$. I dati raccolti sono riassunti in Figura \ref{fig:VinVout}.
 
 
 \begin{figure}[H]
@@ -96,14 +96,14 @@ Per misurare la caratteristica $V_{in}-V_{out}$ della porta not presa in esame s
 \end{figure}
 
 Questo grafico è da commentare. Fino a una certa tensione in ingresso $V_{IH}$ l'uscita è chiaramente HIGH. Questa tensione è osservabile dal grafico ed è collocabile tra i 0.80 e i 0.90 V. Se ne da dunque una stima di $0.85 \pm 0.05 V$. Come errore si è preferito scegliere la semidispersione in quanto "valore di riferimento". 
-Aumentando ancora la tensione di ingresso si ha dunque un crollo della tensione di uscita che si stabilizza al suo valore finale verso i 1.06-1.08 v. Al di sopra di questa seconda tensione l'output è stabilmente LOW. Si è dunque stimato il valore di $V_{IL}=1.07 \pm 0.01 V$. 
+Aumentando ancora la tensione di ingresso si ha dunque un crollo della tensione di uscita che si stabilizza al suo valore finale verso i 1.06-1.08 V. Al di sopra di questa seconda tensione l'output è stabilmente LOW. Si è dunque stimato il valore di $V_{IL}=1.07 \pm 0.01 V$. 
 
 
 Si può capire meglio che cosa succede osservando il comportamento del circuito con l'oscilloscopio. Si osserva in pratica che l'output, per valori di tensione vicini alla discontinuità vista nel grafico, è rumorosissimo. Questo è ovvio se si considera quanto può variare in quella regione l'output a causa di anche piccoli rumori dell'input\footnote{ Rumore che possono anche essere interni alla porta.}.
 In pratica il marcato rumore è presente tra $1.03 V$ e $1.01 V$.
 
 
-Gli stessi dati sono stati presi sostituendo il partitore di ingresso con l'uscita del generatore di tensione settato per generare una rampa triangolare.
+Gli stessi dati sono stati presi sostituendo il partitore di ingresso con l'uscita del generatore di frequenza settato per generare una rampa triangolare.
 Sono stati ottenuti i dati rappresentati nelle figure \ref{fig:oscRaw} e \ref{fig:osc}.
 
 \begin{figure}[H]
@@ -137,11 +137,13 @@ Tutti i dati presentati sono confrontati con i valori tipici presenti nel datash
 		$V_{OL}$ & $ 0.014 \pm 0.005 V$ &&&$0.4 V$ \\
 		\hline
 	\end{tabular}
-	\caption{Comparativa tensioni misurate e tensioni di rifermento. Per maggiori informazioni leggere il testo.}
+	\caption{Confronto tra tensioni misurate e tensioni di rifermento. Per maggiori informazioni leggere il testo.}
 	\label{Vresults}
 \end{table}
 
-La tabella mostra come tutti i dati siano compatibili con quanto espresso nel datasheet. In particolare le caratteristiche di uscita sembrano addirittura troppo buone. Questo è principalmente dovuto al diverso setting nel quale sono situati i componenti. In particolare noi abbiamo misurato le caratteristiche senza alcun carico, nel datasheet sono presenti le misure per $-0.4 mA$ ($V_{OH}$) e $4 mA$ ($V_{OL}$). Anche le tensioni di alimentazione sono leggermente diverse ($4.95 V$ per il nostro dispositivo, $4.75 V$ per il datasheet).
+La tabella mostra come tutti i dati siano compatibili con quanto espresso nel datasheet.
+%VIL a me non sembra rientrare nei valori del datasheet...
+ In particolare le caratteristiche di uscita sembrano addirittura troppo buone. Questo è principalmente dovuto al diverso setting nel quale sono situati i componenti. In particolare noi abbiamo misurato le caratteristiche senza alcun carico, nel datasheet sono presenti le misure per $-0.4 mA$ ($V_{OH}$) e $4 mA$ ($V_{OL}$). Anche le tensioni di alimentazione sono leggermente diverse ($4.95 V$ per il nostro dispositivo, $4.75 V$ per il datasheet).
 
 
 \subsection{Misura delle correnti e del fanout}
@@ -172,12 +174,12 @@ Questo è coerente con quanto atteso dallo circuito elettrico riportato sul data
 	\label{fig:Iin}
 \end{figure}
 
-La corrente $I_{IH}$ è nulla, poiché al di sopra di $V_{in} = \unit{1.2}{\volt}$ risultava tale (confronta nota \ref{nota:I0}). La corrente $I_{IL}$ risultava pari a $\unit{210 \pm 10}{\micro\ampere}$ alla tensione $V_{in} = \unit{506 \pm 6}{\milli\volt}$, prossima a quella a cui è riportato il valore del datasheet, mentre risultava $\unit{260 \pm 10}{\micro\ampere}$ alla tensione $V_{in} = \unit{172 \pm 1}{\milli\volt}$, la minima che è stato possibile raggiungere.
+La corrente $I_{IH}$ è nulla, poiché al di sopra di $V_{in} = \unit{1.2}{\volt}$ risultava tale (vedere nota \ref{nota:I0}). La corrente $I_{IL}$ risultava pari a $\unit{-210 \pm 10}{\micro\ampere}$ alla tensione $V_{in} = \unit{506 \pm 6}{\milli\volt}$, prossima a quella a cui è riportato il valore del datasheet, mentre risultava $\unit{-260 \pm 10}{\micro\ampere}$ alla tensione $V_{in} = \unit{172 \pm 1}{\milli\volt}$, la minima che è stato possibile raggiungere.
 
 La corrente $I_{IH}$, essendo nulla, è compatibile con il valore massimo da datasheet pari a $\unit{40}{\micro\ampere}$, ed anche $I_{IL}$ risultava essere compatibile, in entrambi i casi considerati sopra, con il valore $\unit{-1.6}{\milli\ampere}$ riportato dal datasheet.
 
 \subparagraph{Fanout} La corrente rilevante per il fanout è la massima corrente assorbita dalla porta (ovviamente questo costituisce una limitazione per il numero di porte di questo tipo pilotabili da un'altra porta).
-Dunque la corrente rilevante è la corrente $I_{IL}$, il cui massimo valore misurato è $I_{IL}$ = $\unit{260 \pm 10}{\micro\ampere}$.
+Dunque la corrente rilevante è la corrente $I_{IL}$, il cui massimo valore misurato (in modulo) è $I_{IL}$ = $\unit{260 \pm 10}{\micro\ampere}$.
 
 %qui la corrente è negativa, quindi sputa anziché tirarsela, ma suppongo valga lo stesso
 

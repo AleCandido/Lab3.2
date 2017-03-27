@@ -94,7 +94,7 @@ figure(3)
 plot(CH1.CH1[1285:1435], CH2.CH1[1285:1435])
 
 figure(4)
-errorbar(CH1.CH1, CH2.CH1, CH1.dCH1, CH2.dCH1, fmt="none")
+errorbar(CH1.CH1, CH2.CH1, CH1.dCH1, CH2.dCH1,fmt=None)
 xlim(0, 1.6)
 title("Tensione di ingresso - tensione di uscita @ $V_{cc}=4.95 \pm 0.03$ V, oscilloscopio")
 xlabel("Input voltages [V]")
