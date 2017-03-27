@@ -259,7 +259,7 @@ Si è montato il circuito impulsatore con il microcontrollore arduino, seguendo 
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.5\textwidth]{../grafici/schardu.png}
+	\includegraphics[width=0.8\textwidth]{../grafici/schardu.png}
 	\caption{Schema circuito impulsatore con il microcontrollore arduino.}
 	\label{fig:schardu}
 \end{figure}
@@ -285,7 +285,7 @@ Si è inviata in ingresso all'impulsatore un’onda quadra di ampiezza di (4.99$
 \end{figure}
 
 \subsection{Misura dei tempi di propagazione}
-Si sono misurati i tempi di propagazione del circuito NOT nel passaggio da High(H) a Low(L) e viceversa. Più precisamente, per il passaggio del NOT da H a L si è preso come tempo di propagazione (tPHL) la distanza temporale tra il tempo corrispondente alla metà della differenza di potenziale nel passaggio da L a H all'uscita del buffer e il tempo corrispondente alla metà della differenza di potenziale nel passaggio da H a L del NOT. Allo stesso modo si è proceduto per il calcolo di tPLH dove in tutto ciò che si è scritto sopra basta sostituire H$\leftrightarrow$L. I dati sono riportati in \tablename{~\ref{tab:tprop}} e in \figurename{~\ref{fig:tphlNOT}} è mostrata come esempio la misura di tPHL.
+Si sono misurati i tempi di propagazione del circuito NOT nel passaggio da \code{HIGH} a \code{LOW} e viceversa. Più precisamente, per il passaggio del NOT da \code{HIGH} a \code{LOW} si è preso come tempo di propagazione (tPHL) la distanza temporale tra il tempo corrispondente alla metà della differenza di potenziale nel passaggio da \code{LOW} a \code{HIGH} all'uscita del buffer e il tempo corrispondente alla metà della differenza di potenziale nel passaggio da \code{HIGH} a \code{LOW} del NOT. Allo stesso modo si è proceduto per il calcolo di tPLH dove in tutto ciò che si è scritto sopra basta sostituire \code{HIGH}$\leftrightarrow$\code{LOW}. I dati sono riportati in \tablename{~\ref{tab:tprop}} e in \figurename{~\ref{fig:tphlNOT}} è mostrata come esempio la misura di tPHL.
 
 \begin{table}[H]
 	\centering
@@ -306,9 +306,11 @@ Si sono misurati i tempi di propagazione del circuito NOT nel passaggio da High(
 	\label{fig:tphlNOT}
 \end{figure}
 
-Come si può vedere dalla \tablename{~\ref{tab:tprop}} i valori ottenuti sono compatibili con i valori tipici/massimi riportati sul datasheet del circuito NOT. Gli errori associati a tali misure sono stati calcolati facendo la somma in quadratura dei vari errori riportati sul datasheet dell'oscilloscopio. Inoltre si è trascurato l'errore dovuto alla misura dei valori picco-picco, assumendo pendenza nulla su di essi e quindi trascurandoli nella propagazione.
+Come si può vedere dalla \tablename{~\ref{tab:tprop}} i valori ottenuti sono compatibili con i valori tipici/massimi riportati sul datasheet del circuito NOT. Gli errori associati a tali misure sono stati calcolati facendo la somma in quadratura dei vari errori riportati sul datasheet dell'oscilloscopio.
 
-\subsection{Misura del tempo di salita}
+Inoltre si è trascurato di propagare l'errore dovuto alla misura dei valori di tensione con cui erano identificati i vari punti ($50\%$ dei valori picco-picco, overshoot esclusi), considerando che la curva fosse abbastanza ripida su di essi e quindi l'errore risultante piccolo relativamente alle altre sorgenti.
+
+\subsection{Misura del tempo di salita e discesa}
 Si sono misurati i tempi di salita e discesa (tra il 10\% e il 90\% dei valori picco-picco) del circuito NOT al suo ingresso (quindi all'uscita del buffer) e alla sua uscita. I dati ottenuti sono riportati in \tablename{~\ref{tab:tsaldisc}}. Nella \figurename{~\ref{fig:temposalita1input}} è mostrata come esempio la misura del tempo di salita all'ingresso del NOT e nella \figurename{~\ref{fig:tempodiscesa}} è mostrata la misura del tempo di discesa all'uscita di esso.
 
 \begin{table}[H]
@@ -338,9 +340,21 @@ Si sono misurati i tempi di salita e discesa (tra il 10\% e il 90\% dei valori p
 	\label{fig:tempodiscesa}
 \end{figure}
 
+\paragraph{Osservazione}
 Come si può notare dalla \tablename{~\ref{tab:tsaldisc}} il tempo di salita all'uscita del NOT è notevolmente maggiore degli altri tempi di salita e discesa.
-Nel misurare questo tempo si è notato che che in realtà erano presenti due fronti, uno molto ripido ("gomito") e uno a bassa pendenza. Come tempo di salita si è scelto di prendere l'intervallo al tra il 10\% e il 90\% della salita complessiva, ma si è riportato per completezza anche il tempo di salita del gomito che risulta essere di 45.6$\pm$ 0.4 ns. L'errore associato alla salita complessiva e la sua misura sono stati stimati a partire dal range di tempi in cui si aveva il 90\% dell'ampiezza picco-picco dell'onda(questo punto ricadeva nella parte di salita a bassa pendenza, perciò si aveva molta più incertezza). Si è presa la distanza temporale tra il 10\% della salita e il più alto valore t in cui si aveva il 90\% dell'ampiezza picco-picco; si è scelta come misura la differenza tra questo tempo e la semiampiezza del range in cui si aveva il 90\% e come errore questa semiampiezza. I due diversi fronti di salita sono mostrati in \figurename{~\ref{fig:temposalita1}}.
+Nel misurare questo tempo si è notato che che in realtà erano presenti due fronti, uno molto ripido ("gomito") e uno a bassa pendenza.
 
+Inoltre a differenza degli altri fronti che presentavano undershoot e overshoot, in questo caso non si è vista la presenza di nessun overshoot. 
+
+Da questo segue una differenza sostanziale rispetto agli altri casi, dovuta alla definizione del tempo di salita: il $90\%$ considerato è quello sul fronte di overshoot, e non quello ottenuto cercando di sottrarre l'overshoot al segnale, perciò in assenza di overshoot è ben plausibile che questo punto si sposti in avanti nel tempo, al più di un valore dell'ordine di grandezza dell'estensione temporale dell'overshoot.
+
+Si riporta per completezza anche il tempo di salita del gomito che risulta essere di $\unit{45.6 \pm 0.4}{ns}$. 
+
+\paragraph{} L'errore associato alla salita complessiva e la sua misura sono stati stimati a partire dal range di tempi in cui si aveva il $90\%$ dell'ampiezza picco-picco dell'onda(questo punto ricadeva nella parte di salita a bassa pendenza, perciò si aveva molta più incertezza).
+
+Si è presa la distanza temporale tra il 10\% della salita e il più alto valore t in cui si aveva il $90\%$ dell'ampiezza picco-picco; si è scelta come misura la differenza tra questo tempo e la semiampiezza del range in cui si aveva il $90\%$ e come errore questa semiampiezza.
+
+I due diversi fronti di salita sono mostrati in \figurename{~\ref{fig:temposalita1}}. 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.5\textwidth]{../grafici/temposalita1.png}
