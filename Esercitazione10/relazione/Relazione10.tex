@@ -69,10 +69,11 @@ La strumentazione è quella solitamente presente sul banco di lavoro, e inoltre 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.7\textwidth]{../grafici/NOTin.png}
-	\caption{}
+	\caption{Circuito per alimentare la porta NOT in un certo range di tensioni (in DC)}
 	\label{fig:NOTin}
 \end{figure}
-Per misurare la caratteristica $V_{in}-V_{out}$ della porta not presa in esame si è montato il circuito come in Figura \ref{fig:NOTin}. Sono stati misurati i valori delle resistenze $R_2$ e il massimo di $R_1$ e, sebbene il funzionamento del circuito sia indipendente dai valori precisi, essi sono tabulati in tabella \ref{Res1}.
+
+Per misurare la caratteristica $V_{in}-V_{out}$ della porta NOT presa in esame si è montato il circuito come in \figurename{~\ref{fig:NOTin}}. Sono stati misurati i valori delle resistenze $R_2$ e il massimo del trimmer $R_1$ e, sebbene il funzionamento del circuito sia indipendente dai valori precisi, essi sono tabulati in  \tablename{~\ref{Res1}}.
 
 \begin{table}[H]
 	\centering
@@ -85,7 +86,7 @@ Per misurare la caratteristica $V_{in}-V_{out}$ della porta not presa in esame s
 	\label{Res1}
 \end{table}
 
-\'E dunque stata presa la tensione di ingresso (con il multimetro digitale) e la tensione di uscita (con l'oscilloscopio) per diversi valori della resistenza $R_1$. I dati raccolti sono riassunti in Figura \ref{fig:VinVout}.
+\'E dunque stata presa la tensione di ingresso (con il multimetro digitale) e la tensione di uscita (con l'oscilloscopio) per diversi valori della resistenza $R_1$. I dati raccolti sono riportati in \figurename{~\ref{fig:VinVout}}.
 
 
 \begin{figure}[H]
@@ -95,16 +96,16 @@ Per misurare la caratteristica $V_{in}-V_{out}$ della porta not presa in esame s
 	\label{fig:VinVout}
 \end{figure}
 
-Questo grafico è da commentare. Fino a una certa tensione in ingresso $V_{IH}$ l'uscita è chiaramente HIGH. Questa tensione è osservabile dal grafico ed è collocabile tra i 0.80 e i 0.90 V. Se ne da dunque una stima di $0.85 \pm 0.05 V$. Come errore si è preferito scegliere la semidispersione in quanto "valore di riferimento". 
-Aumentando ancora la tensione di ingresso si ha dunque un crollo della tensione di uscita che si stabilizza al suo valore finale verso i 1.06-1.08 V. Al di sopra di questa seconda tensione l'output è stabilmente LOW. Si è dunque stimato il valore di $V_{IL}=1.07 \pm 0.01 V$. 
+\paragraph{Valori di soglia} fino a una certa tensione in ingresso $V_{IH}$ l'uscita è chiaramente \code{HIGH}. Questa tensione è osservabile dal grafico ed è collocabile tra i $\unit{0.80\text{ e i }0.90}{V}$. Se ne da dunque una stima di $\unit{0.85 \pm 0.05}{V}$. Come errore si è preferito scegliere la semidispersione in quanto "valore di riferimento". 
+Aumentando ancora la tensione di ingresso si ha dunque un crollo della tensione di uscita che si stabilizza al suo valore finale verso i 1.06-1.08 V. Al di sopra di questa seconda tensione l'output è stabilmente \code{LOW}. Si è dunque stimato il valore di $V_{IL}=\unit{1.07 \pm 0.01}{V}$. 
 
 
-Si può capire meglio che cosa succede osservando il comportamento del circuito con l'oscilloscopio. Si osserva in pratica che l'output, per valori di tensione vicini alla discontinuità vista nel grafico, è rumorosissimo. Questo è ovvio se si considera quanto può variare in quella regione l'output a causa di anche piccoli rumori dell'input\footnote{ Rumore che possono anche essere interni alla porta.}.
-In pratica il marcato rumore è presente tra $1.03 V$ e $1.01 V$.
+\paragraph{Rumore} Si può capire meglio che cosa succede osservando il comportamento del circuito con l'oscilloscopio. Si osserva in pratica che l'output, per valori di tensione vicini alla discontinuità vista nel grafico, è rumorosissimo. Questo è ovvio se si considera quanto può variare in quella regione l'output a causa di anche piccoli rumori dell'input\footnote{Rumori che possono anche essere interni alla porta.}.
+In pratica il marcato rumore è presente tra $\unit{1.01}{V}$ e $\unit{1.03}{V}$.
 
 
-Gli stessi dati sono stati presi sostituendo il partitore di ingresso con l'uscita del generatore di frequenza settato per generare una rampa triangolare.
-Sono stati ottenuti i dati rappresentati nelle figure \ref{fig:oscRaw} e \ref{fig:osc}.
+\paragraph{}Gli stessi dati sono stati presi sostituendo il partitore di ingresso con l'uscita del generatore di forme d'onda settato per generare una rampa triangolare.
+Sono stati ottenuti i dati rappresentati nelle figure \figurename{~\ref{fig:oscRaw}} e \figurename{~\ref{fig:osc}}.
 
 \begin{figure}[H]
 	\centering
@@ -131,19 +132,21 @@ Tutti i dati presentati sono confrontati con i valori tipici presenti nel datash
 	\begin{tabular}{c|c|c|c|c}
 		parametro & sperimentale & min & tipical & max\\		
 		\hline
-		$V_{IH}$ & $0.85 \pm 0.05 V$ & $2 V$&&\\
-		$V_{IL}$ & $1.07 \pm 0.01 V$ &&& $0.8 V$ \\
-		$V_{OH}$ & $3.60 \pm 0.05 V$ &$2.7 V$&$3.4 V$&\\
-		$V_{OL}$ & $ 0.014 \pm 0.005 V$ &&&$0.4 V$ \\
+		$V_{IH}$ & $\unit{1.07 \pm 0.01}{V}$ & $\unit{2}{V}$&&\\
+		$V_{IL}$ & $\unit{0.85 \pm 0.05}{V}$ &&& $\unit{0.8}{V}$ \\
+		$V_{OH}$ & $\unit{3.60 \pm 0.05}{V}$ &$\unit{2.7}{V}$&$\unit{3.4}{V}$&\\
+		$V_{OL}$ & $\unit{0.014 \pm 0.005}{V}$ &&&$\unit{0.4}{V}$ \\
 		\hline
 	\end{tabular}
 	\caption{Confronto tra tensioni misurate e tensioni di rifermento. Per maggiori informazioni leggere il testo.}
 	\label{Vresults}
 \end{table}
 
-La tabella mostra come tutti i dati siano compatibili con quanto espresso nel datasheet.
-%VIL a me non sembra rientrare nei valori del datasheet...
- In particolare le caratteristiche di uscita sembrano addirittura troppo buone. Questo è principalmente dovuto al diverso setting nel quale sono situati i componenti. In particolare noi abbiamo misurato le caratteristiche senza alcun carico, nel datasheet sono presenti le misure per $-0.4 mA$ ($V_{OH}$) e $4 mA$ ($V_{OL}$). Anche le tensioni di alimentazione sono leggermente diverse ($4.95 V$ per il nostro dispositivo, $4.75 V$ per il datasheet).
+\noindent La tabella mostra come tutti i dati siano compatibili con quanto espresso nel datasheet.
+
+In particolare le caratteristiche di uscita sembrano addirittura troppo buone.
+%questo "troppo buone" ha da sparire, trova un modo più elegante per scriverlo
+Questo è principalmente dovuto al diverso setting nel quale sono situati i componenti. In particolare noi abbiamo misurato le caratteristiche senza alcun carico, nel datasheet sono presenti le misure per $\unit{-0.4}{\milli\ampere}$ ($V_{OH}$) e $\unit{4}{\milli\ampere}$ ($V_{OL}$). Anche le tensioni di alimentazione sono leggermente diverse ($\unit{4.95}{V}$ per il nostro dispositivo, $\unit{4.75}{V}$ per il datasheet).
 
 
 \subsection{Misura delle correnti e del fanout}
