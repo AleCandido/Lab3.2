@@ -65,7 +65,7 @@ errorbar(vin, iin, xerr=dvin, yerr=diin, fmt=",b")
 
 title("Tensione di ingresso - tensione di uscita @ $V_{cc}=4.95 \pm 0.03$ V")
 xlabel("Input voltages [V]")
-ylabel("Input voltages [V]")
+ylabel("Output voltages [V]")
 
 savefig(dir + "grafici\\" + file + ".pdf")
 print("ginocchio fra i 0.78 - 0.90 V")
