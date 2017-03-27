@@ -308,7 +308,7 @@ Si sono misurati i tempi di propagazione del circuito NOT nel passaggio da \code
 
 Come si può vedere dalla \tablename{~\ref{tab:tprop}} i valori ottenuti sono compatibili con i valori tipici/massimi riportati sul datasheet del circuito NOT. Gli errori associati a tali misure sono stati calcolati facendo la somma in quadratura dei vari errori riportati sul datasheet dell'oscilloscopio.
 
-Inoltre si è trascurato l'errore dovuto alla misura dei valori di tensione con cui erano identificati i vari punti($50\%$ dei valori picco-picco, overshoot esclusi), assumendo pendenza nulla su di essi e quindi trascurandoli nella propagazione.
+Inoltre si è trascurato di propagare l'errore dovuto alla misura dei valori di tensione con cui erano identificati i vari punti ($50\%$ dei valori picco-picco, overshoot esclusi), considerando che la curva fosse abbastanza ripida su di essi e quindi l'errore risultante piccolo relativamente alle altre sorgenti.
 
 \subsection{Misura del tempo di salita e discesa}
 Si sono misurati i tempi di salita e discesa (tra il 10\% e il 90\% dei valori picco-picco) del circuito NOT al suo ingresso (quindi all'uscita del buffer) e alla sua uscita. I dati ottenuti sono riportati in \tablename{~\ref{tab:tsaldisc}}. Nella \figurename{~\ref{fig:temposalita1input}} è mostrata come esempio la misura del tempo di salita all'ingresso del NOT e nella \figurename{~\ref{fig:tempodiscesa}} è mostrata la misura del tempo di discesa all'uscita di esso.
@@ -342,15 +342,18 @@ Si sono misurati i tempi di salita e discesa (tra il 10\% e il 90\% dei valori p
 
 \paragraph{Osservazione}
 Come si può notare dalla \tablename{~\ref{tab:tsaldisc}} il tempo di salita all'uscita del NOT è notevolmente maggiore degli altri tempi di salita e discesa.
-Nel misurare questo tempo si è notato che che in realtà erano presenti due fronti, uno molto ripido ("gomito") e uno a bassa pendenza. Inoltre a differenza degli altri fronti che presentavano gli undershoot e gli overshoot previsti, in questo caso non si è vista la presenza di nessun overshoot. Da questo segue una differenza nella presa del tempo di salita rispetto agli altri casi,
-%tra parentesi puoi mettere ulteriori delucidazioni, ma per me va bene cosi
-che spiega il perché si è ottenuta una misura molto maggiore rispetto a quella relativa agli altri tempi di salita/discesa.
-\newline
-Infatti come tempo di salita si è scelto di prendere l'intervallo al tra il 10\% e il 90\% della salita complessiva, e si è riportato per completezza anche il tempo di salita del gomito che risulta essere di 45.6$\pm$ 0.4 ns. 
-\newline
-\newline
-L'errore associato alla salita complessiva e la sua misura sono stati stimati a partire dal range di tempi in cui si aveva il 90\% dell'ampiezza picco-picco dell'onda(questo punto ricadeva nella parte di salita a bassa pendenza, perciò si aveva molta più incertezza). Si è presa la distanza temporale tra il 10\% della salita e il più alto valore t in cui si aveva il 90\% dell'ampiezza picco-picco; si è scelta come misura la differenza tra questo tempo e la semiampiezza del range in cui si aveva il 90\% e come errore questa semiampiezza.
-\newline
+Nel misurare questo tempo si è notato che che in realtà erano presenti due fronti, uno molto ripido ("gomito") e uno a bassa pendenza.
+
+Inoltre a differenza degli altri fronti che presentavano undershoot e overshoot, in questo caso non si è vista la presenza di nessun overshoot. 
+
+Da questo segue una differenza sostanziale rispetto agli altri casi, dovuta alla definizione del tempo di salita: il $90\%$ considerato è quello sul fronte di overshoot, e non quello ottenuto cercando di sottrarre l'overshoot al segnale, perciò in assenza di overshoot è ben plausibile che questo punto si sposti in avanti nel tempo, al più di un valore dell'ordine di grandezza dell'estensione temporale dell'overshoot.
+
+Si riporta per completezza anche il tempo di salita del gomito che risulta essere di $\unit{45.6 \pm 0.4}{ns}$. 
+
+\paragraph{} L'errore associato alla salita complessiva e la sua misura sono stati stimati a partire dal range di tempi in cui si aveva il $90\%$ dell'ampiezza picco-picco dell'onda(questo punto ricadeva nella parte di salita a bassa pendenza, perciò si aveva molta più incertezza).
+
+Si è presa la distanza temporale tra il 10\% della salita e il più alto valore t in cui si aveva il $90\%$ dell'ampiezza picco-picco; si è scelta come misura la differenza tra questo tempo e la semiampiezza del range in cui si aveva il $90\%$ e come errore questa semiampiezza.
+
 I due diversi fronti di salita sono mostrati in \figurename{~\ref{fig:temposalita1}}. 
 \begin{figure}[H]
 	\centering
