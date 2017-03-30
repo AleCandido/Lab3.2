@@ -18,7 +18,7 @@ sys.path = sys.path + [path]
 dir= path + "Esercitazione11/"
 
 from BuzzLightyear import * 
-import uncertainties
+from uncertainties import *
 ###########################################################################
 
 from Oscillografo import *
@@ -85,4 +85,36 @@ legend(loc=6)
 
 savefig(dir + "grafici\\ADDERard.pdf")
 
-show()
+# show()
+close('all')
+
+###########################################################################
+
+file = "astabileRes"
+data = load_data(dir,file)
+data_err = [mme(data[0], 'ohm'), mme(data[1], 'time', 'oscil')]
+tab=["$R_2$ [$\Omega$]","Period [s]"]
+
+latex_table(dir, file, data, data_err, tab)
+
+par, cov = fit_linear(data[0], data[1], dx=data_err[0], dy=data_err[1])
+m, q = correlated_values(par, cov)
+
+line = lambda x, m, q: m*x + q
+
+x = linspace(min(data[0])*0.9, max(data[0])*1.05, 1000)
+y = line(x, m.nominal_value, q.nominal_value)
+
+chi2 = sum(((data[1] - line(data[0], m.nominal_value, q.nominal_value))/data_err[1])**2)
+
+errorbar(data[0], data[1], xerr=data_err[0], yerr=data_err[1], fmt=',')
+plot(x, y)
+
+xlim(min(data[0])*0.88, max(data[0])*1.06)
+ylim(min(data[1])*0.88, max(data[1])*1.06)
+xlabel(tab[0], fontsize = 24)
+ylabel(tab[1], fontsize = 24)
+ticklabel_format(style='sci', axis='both', scilimits=(0,0))
+
+savefig(dir + "./grafici/FITastabile.pdf")
+
