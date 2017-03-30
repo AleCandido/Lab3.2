@@ -15,14 +15,74 @@ except:
 
 
 sys.path = sys.path + [path]
-dir= path + "Esercitazione/"
+dir= path + "Esercitazione11/"
 
 from BuzzLightyear import * 
 import uncertainties
 ###########################################################################
 
-file="Iin"
+from Oscillografo import *
 
-loadtxt(dir + file + ".txt", unpack=True)
+AB = OscilloscopeData("C:\\Users\candi\Documents\GitHub\Lab3.2\Esercitazione11\data\\AB.csv")
+andAO = OscilloscopeData("C:\\Users\candi\Documents\GitHub\Lab3.2\Esercitazione11\data\\andAO.csv")
+orAO = OscilloscopeData("C:\\Users\candi\Documents\GitHub\Lab3.2\Esercitazione11\data\\orAO.csv")
+xorAO = OscilloscopeData("C:\\Users\candi\Documents\GitHub\Lab3.2\Esercitazione11\data\\xorAO.csv")
 
-###########################################################################
+figure(1)
+fig,ax = subplots(1)
+
+plot(AB.T1, AB.CH1, ",--", label="input1")
+plot(AB.T2, AB.CH2, ",--", label="input2")
+plot(andAO.T2, andAO.CH2, ",-", label="AND")
+
+
+ax.set_yticklabels([])
+ax.set_xticklabels([])
+legend(loc=6)
+
+savefig(dir + "grafici\\ANDard.pdf")
+
+figure(2)
+fig,ax = subplots(1)
+
+plot(AB.T1, AB.CH1, ",--", label="input1")
+plot(AB.T2, AB.CH2, ",--", label="input2")
+plot(orAO.T2, orAO.CH2, ",-", label="OR")
+
+
+ax.set_yticklabels([])
+ax.set_xticklabels([])
+legend(loc=6)
+
+savefig(dir + "grafici\\ORard.pdf")
+
+figure(3)
+fig,ax = subplots(1)
+
+plot(AB.T1, AB.CH1, ",--", label="input1")
+plot(AB.T2, AB.CH2, ",--", label="input2")
+plot(xorAO.T2, xorAO.CH2, ",-", label="XOR")
+
+
+ax.set_yticklabels([])
+ax.set_xticklabels([])
+legend(loc=6)
+
+savefig(dir + "grafici\\XORard.pdf")
+
+figure(4)
+fig,ax = subplots(1)
+
+plot(AB.T1, AB.CH1, ",:", label="input1")
+plot(AB.T2, AB.CH2, ",:", label="input2")
+plot(xorAO.T2, xorAO.CH2, ",--", label="SUM")
+plot(andAO.T2, andAO.CH2, ",-", label="CARRY")
+
+
+ax.set_yticklabels([])
+ax.set_xticklabels([])
+legend(loc=6)
+
+savefig(dir + "grafici\\ADDERard.pdf")
+
+show()

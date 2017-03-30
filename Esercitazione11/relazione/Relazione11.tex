@@ -14,6 +14,7 @@
 \usepackage{booktabs}
 \usepackage{verbatim}
 \usepackage{subfig}
+\usepackage{cleveref}
 
 \usepackage[cdot, thickqspace, squaren]{SIunits}
 \usepackage{float}
@@ -41,7 +42,75 @@ La strumentazione è quella solitamente presente sul banco di lavoro, e inoltre 
 \end{itemize}
 
 \section{Costruzione di circuiti logici elementari}
+Si sono connessi due interruttori tra i due ingressi di una porta NAND, alimentata a $\unit{4.94 \pm 0.03}{\volt}$, e massa e si è posto un diodo LED, con una resistenza di protezione di $\sim \unit{330}{\ohm}$, all'uscita della porta.
+Si è verificata la tabella di verità del NAND provando tutte le combinazioni delle posizioni dei due interruttori, verificando lo stato dell'uscita mediante l'accensione del LED.
 
+Si è applicato lo stesso metodo anche gli altri circuiti descritti in questa sezione, ma non sarà ripetuto, poiché si è verificato correttamente il comportamento delle varie porte e, soprattutto, si è usato l'impulsatore per visualizzare il risultato sull'oscilloscopio, e se ne riportano i grafici nelle \figurename{~\cref{fig:AND,fig:OR,fig:XOR}}.
+
+\paragraph{AND} Si è realizzato il circuito AND con 2 porte NAND.
+
+\begin{figure}[H]
+	\centering
+	\begin{minipage}{0.49\textwidth}
+		\centering
+		\includegraphics[width=\textwidth]{../grafici/AND1.png}
+	\end{minipage}
+	\begin{minipage}{0.49\textwidth}
+		\centering
+		\includegraphics[width=\textwidth]{../grafici/ANDard.pdf}
+	\end{minipage}
+	\caption{Schema del circuito AND e visualizzazione segnali in I/O}
+	\label{fig:AND}
+\end{figure}
+
+\paragraph{OR} Si è realizzato il circuito OR con 3 porte NAND.
+
+\begin{figure}[H]
+	\centering
+	\begin{minipage}{0.49\textwidth}
+		\centering
+		\includegraphics[width=\textwidth]{../grafici/OR1.png}
+	\end{minipage}
+	\begin{minipage}{0.49\textwidth}
+		\centering
+		\includegraphics[width=\textwidth]{../grafici/ORard.pdf}
+	\end{minipage}
+	\caption{Schema del circuito OR e visualizzazione segnali in I/O}
+	\label{fig:OR}
+\end{figure}
+
+\paragraph{XOR} Si è realizzato il circuito XOR con 4 porte NAND.
+
+\begin{figure}[H]
+	\centering
+	\begin{minipage}{0.49\textwidth}
+		\centering
+		\includegraphics[width=\textwidth]{../grafici/XOR1.png}
+	\end{minipage}
+	\begin{minipage}{0.49\textwidth}
+		\centering
+		\includegraphics[width=\textwidth]{../grafici/XORard.pdf}
+	\end{minipage}
+	\caption{Schema del circuito XOR e visualizzazione segnali in I/O}
+	\label{fig:XOR}
+\end{figure}
+
+
+\paragraph{Sommatore ad un bit} Si è realizzato il sommatore ad un bit con 5 porte NAND.
+
+\begin{figure}[H]
+	\centering
+	\begin{minipage}{0.49\textwidth}
+		\centering
+		\includegraphics[width=\textwidth]{../grafici/Sommatore1.png}
+	\end{minipage}
+	\begin{minipage}{0.49\textwidth}
+		\centering
+		\includegraphics[width=\textwidth]{../grafici/ADDERard.pdf}
+	\end{minipage}
+	\caption{Schema del sommatore ad un bit e visualizzazione segnali in I/O}
+	\label{fig:ADDER}
+\end{figure}
 
 \section{Multivibratore MONOSTABILE}
 
