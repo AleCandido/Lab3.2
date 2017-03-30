@@ -118,13 +118,33 @@ Tenendo conto di questo si ottiene infatti (\code{HIGH-HIGH} $\rightarrow$ \code
 
 Si sarebbe potuto connettere gli ingressi insieme, così da avere in uscita ancora una volta un NOT, infatti (\code{HIGH-HIGH} $\rightarrow$ \code{LOW}) e (\code{LOW-LOW} $\rightarrow$ \code{HIGH}) secondo la tabella di verità di una porta NAND, ed essere indipendenti dalla logica usata; si è preferito fare così solo per risparmiare qualche connessione sulla basetta e avere un po' più di ordine (fisico, e quindi anche concettuale).
 
-Si è applicato lo stesso metodo anche nei circuito successivi, anche se gli schemi dei circuiti mostrano gli input connessi insieme perché tratti dalla scheda.
+Si è applicato lo stesso metodo anche nei circuito successivi, anche se gli schemi dei circuiti mostrano gli input connessi insieme perché tratti dalla scheda (vedi \cref{fig:MONO,fig:AST,fig:SQGEN}).
 
 \section{Multivibratore MONOSTABILE}
 
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\textwidth]{../grafici/Monostabile.png}
+	\caption{Schema del circuito del multivibratore monostabile}
+	\label{fig:MONO}
+\end{figure}
+
 \section{Multivibratore ASTABILE}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\textwidth]{../grafici/Astabile.png}
+	\caption{Schema del circuito del multivibratore astabile}
+	\label{fig:AST}
+\end{figure}
 
 \section{Generatore di onda quadra}
 
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\textwidth]{../grafici/SqGen.png}
+	\caption{Schema del circuito del generatore di onda quadra}
+	\label{fig:SQGEN}
+\end{figure}
 
 \end{document}
