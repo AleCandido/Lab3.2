@@ -14,7 +14,7 @@
 \usepackage{booktabs}
 \usepackage{verbatim}
 \usepackage{subfig}
-\usepackage{cleveref}
+\usepackage[italian, sort, noabbrev, capitalise]{cleveref}
 
 \usepackage[cdot, thickqspace, squaren]{SIunits}
 \usepackage{float}
@@ -45,7 +45,8 @@ La strumentazione è quella solitamente presente sul banco di lavoro, e inoltre 
 Si sono connessi due interruttori tra i due ingressi di una porta NAND, alimentata a $\unit{4.94 \pm 0.03}{\volt}$, e massa e si è posto un diodo LED, con una resistenza di protezione di $\sim \unit{330}{\ohm}$, all'uscita della porta.
 Si è verificata la tabella di verità del NAND provando tutte le combinazioni delle posizioni dei due interruttori, verificando lo stato dell'uscita mediante l'accensione del LED.
 
-Si è applicato lo stesso metodo anche gli altri circuiti descritti in questa sezione, ma non sarà ripetuto, poiché si è verificato correttamente il comportamento delle varie porte e, soprattutto, si è usato l'impulsatore per visualizzare il risultato sull'oscilloscopio, e se ne riportano i grafici nelle \figurename{~\cref{fig:AND,fig:OR,fig:XOR}}.
+Si è applicato lo stesso metodo anche gli altri circuiti descritti in questa sezione, e si è verificata la tabella di verità nei vari casi.
+Inoltre si è usato l'impulsatore per visualizzare il risultato sull'oscilloscopio; si riportano i grafici nelle \cref{fig:AND,fig:OR,fig:XOR,fig:ADDER}.
 
 \paragraph{AND} Si è realizzato il circuito AND con 2 porte NAND.
 
@@ -111,6 +112,13 @@ Si è applicato lo stesso metodo anche gli altri circuiti descritti in questa se
 	\caption{Schema del sommatore ad un bit e visualizzazione segnali in I/O}
 	\label{fig:ADDER}
 \end{figure}
+
+\subsection{Osservazione} Negli schemi elettrici mostrati nelle \cref{fig:AND,fig:OR,fig:XOR,fig:ADDER} si può notare che per alcune porte NAND si è lasciato un ingresso flottante, quando si voleva usarle come porte NOT. Si è sfruttato infatti il fatto che gli ingressi flottanti delle porte corrispondono ad un valore \code{HIGH}, secondo la logica TTL.
+Tenendo conto di questo si ottiene infatti (\code{HIGH-HIGH} $\rightarrow$ \code{LOW}) e (\code{LOW-HIGH} $\rightarrow$ \code{HIGH}), cioè il comportamento richiesto per una porta NOT.
+
+Si sarebbe potuto connettere gli ingressi insieme, così da avere in uscita ancora una volta un NOT, infatti (\code{HIGH-HIGH} $\rightarrow$ \code{LOW}) e (\code{LOW-LOW} $\rightarrow$ \code{HIGH}) secondo la tabella di verità di una porta NAND, ed essere indipendenti dalla logica usata; si è preferito fare così solo per risparmiare qualche connessione sulla basetta e avere un po' più di ordine (fisico, e quindi anche concettuale).
+
+Si è applicato lo stesso metodo anche nei circuito successivi, anche se gli schemi dei circuiti mostrano gli input connessi insieme perché tratti dalla scheda.
 
 \section{Multivibratore MONOSTABILE}
 
