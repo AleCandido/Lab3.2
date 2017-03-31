@@ -23,10 +23,10 @@ import uncertainties
 
 from Oscillografo import *
 
-AB = OscilloscopeData("C:\\Users\candi\Documents\GitHub\Lab3.2\Esercitazione11\data\\AB.csv")
-andAO = OscilloscopeData("C:\\Users\candi\Documents\GitHub\Lab3.2\Esercitazione11\data\\andAO.csv")
-orAO = OscilloscopeData("C:\\Users\candi\Documents\GitHub\Lab3.2\Esercitazione11\data\\orAO.csv")
-xorAO = OscilloscopeData("C:\\Users\candi\Documents\GitHub\Lab3.2\Esercitazione11\data\\xorAO.csv")
+AB = OscilloscopeData(dir + "data\\AB.csv")
+andAO = OscilloscopeData(dir + "data\\andAO.csv")
+orAO = OscilloscopeData(dir + "data\\orAO.csv")
+xorAO = OscilloscopeData(dir + "data\\xorAO.csv")
 
 figure(1)
 fig,ax = subplots(1)
@@ -39,7 +39,7 @@ plot(andAO.T2, andAO.CH2, ",-", label="AND")
 ax.set_yticklabels([])
 ax.set_xticklabels([])
 legend(loc=6)
-
+grid()
 savefig(dir + "grafici\\ANDard.pdf")
 
 figure(2)
@@ -53,7 +53,7 @@ plot(orAO.T2, orAO.CH2, ",-", label="OR")
 ax.set_yticklabels([])
 ax.set_xticklabels([])
 legend(loc=6)
-
+grid()
 savefig(dir + "grafici\\ORard.pdf")
 
 figure(3)
@@ -67,7 +67,7 @@ plot(xorAO.T2, xorAO.CH2, ",-", label="XOR")
 ax.set_yticklabels([])
 ax.set_xticklabels([])
 legend(loc=6)
-
+grid()
 savefig(dir + "grafici\\XORard.pdf")
 
 figure(4)
@@ -84,5 +84,5 @@ ax.set_xticklabels([])
 legend(loc=6)
 
 savefig(dir + "grafici\\ADDERard.pdf")
-
+grid()
 show()

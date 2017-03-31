@@ -113,6 +113,7 @@ Inoltre si è usato l'impulsatore per visualizzare il risultato sull'oscilloscop
 	\label{fig:ADDER}
 \end{figure}
 
+
 \subsection{Osservazione} Negli schemi elettrici mostrati nelle \cref{fig:AND,fig:OR,fig:XOR,fig:ADDER} si può notare che per alcune porte NAND si è lasciato un ingresso flottante, quando si voleva usarle come porte NOT. Si è sfruttato infatti il fatto che gli ingressi flottanti delle porte corrispondono ad un valore \code{HIGH}, secondo la logica TTL.
 Tenendo conto di questo si ottiene infatti (\code{HIGH-HIGH} $\rightarrow$ \code{LOW}) e (\code{LOW-HIGH} $\rightarrow$ \code{HIGH}), cioè il comportamento richiesto per una porta NOT.
 
@@ -120,7 +121,10 @@ Si sarebbe potuto connettere gli ingressi insieme, così da avere in uscita anco
 
 Si è applicato lo stesso metodo anche nei circuito successivi, anche se gli schemi dei circuiti mostrano gli input connessi insieme perché tratti dalla scheda (vedi \cref{fig:MONO,fig:AST,fig:SQGEN}).
 
+
 \section{Multivibratore MONOSTABILE}
+Si è montato il circuito mostrato in \cref{fig:MONO} che rappresenta un Multivibratore Monostabile. Si è collegato l'ingresso del multivibratore al generatore di onde, in particolare si è inviata un'onda quadra al suo ingresso con un'ampiezza compresa tra ($88\pm5$)mV e ($4.6\pm0.3$)V , regolando il periodo dell'onda a (200$\pm 3 \mu s$), ossia ad una frequenza di (5000$\pm$75) Hz e il duty cycle (tempo in cui l'onda era a tensione alta rispetto all'onda completa) al ($6.7\pm0.3$)\%, cioè in altre parole si è utilizzato un impulso di $(13.4\pm0.4) \mu s$ ripetuto ogni $(200\pm3) \mu s$\footnote{Tutte le misure sono state effettuate mediante l'oscilloscopio.}.
+
 
 \begin{figure}[H]
 	\centering
@@ -128,6 +132,17 @@ Si è applicato lo stesso metodo anche nei circuito successivi, anche se gli sch
 	\caption{Schema del circuito del multivibratore monostabile}
 	\label{fig:MONO}
 \end{figure}
+
+
+
+
+
+
+
+
+
+
+
 
 \section{Multivibratore ASTABILE}
 
