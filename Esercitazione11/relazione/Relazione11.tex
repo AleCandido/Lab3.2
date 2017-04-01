@@ -114,6 +114,7 @@ Inoltre si è usato l'impulsatore per visualizzare il risultato sull'oscilloscop
 	\label{fig:ADDER}
 \end{figure}
 
+
 \subsection{Osservazione} Negli schemi elettrici mostrati nelle \cref{fig:AND,fig:OR,fig:XOR,fig:ADDER} si può notare che per alcune porte NAND si è lasciato un ingresso flottante, quando si voleva usarle come porte NOT. Si è sfruttato infatti il fatto che gli ingressi flottanti delle porte corrispondono ad un valore \code{HIGH}, secondo la logica TTL.
 Tenendo conto di questo si ottiene infatti (\code{HIGH-HIGH} $\rightarrow$ \code{LOW}) e (\code{LOW-HIGH} $\rightarrow$ \code{HIGH}), cioè il comportamento richiesto per una porta NOT.
 
@@ -121,7 +122,10 @@ Si sarebbe potuto connettere gli ingressi insieme, così da avere in uscita anco
 
 Si è applicato lo stesso metodo anche nei circuito successivi, anche se gli schemi dei circuiti mostrano gli input connessi insieme perché tratti dalla scheda (vedi \cref{fig:MONO,fig:AST,fig:SQGEN}).
 
+
 \section{Multivibratore MONOSTABILE}
+Si è montato il circuito mostrato in \cref{fig:MONO} che rappresenta un Multivibratore Monostabile. 
+
 
 \begin{figure}[H]
 	\centering
@@ -129,6 +133,92 @@ Si è applicato lo stesso metodo anche nei circuito successivi, anche se gli sch
 	\caption{Schema del circuito del multivibratore monostabile}
 	\label{fig:MONO}
 \end{figure}
+
+
+Si è collegato l'ingresso del multivibratore al generatore di onde, in particolare si è inviata un'onda quadra al suo ingresso con un'ampiezza compresa tra ($88\pm5$)mV e ($4.6\pm0.2$)V , regolando il periodo dell'onda a (200$\pm 1 \mu s$), ossia ad una frequenza di (5000$\pm$25) Hz e il duty cycle (tempo in cui l'onda era a tensione alta rispetto all'onda completa) al ($6.7\pm0.3$)\%, cioè in altre parole si è utilizzato un impulso di $(13.4\pm0.4) \mu s$ ripetuto ogni $(200\pm1) \mu s$\footnote{Tutte le misure sono state effettuate mediante l'oscilloscopio.}.
+\newline
+\newline
+I componenti impiegati sono stati misurati con il tester digitale, e sono:
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{cc}
+		$R_1 = \unit{475 \pm5}{\ohm}$ & $C_1 = \unit{108 \pm 5}{\nano\farad}$\\
+	\end{tabular}
+\end{table}
+
+
+
+
+\paragraph{Funzionamento del circuito}
+Analizziamo i grafici mostrati in \cref{fig:OSC,fig:VC} che mostrano rispettivamente le forme d'onda (a regime) in IN-M e OUT-M e le forme d'onda in IN-M e VC rispetto alla \cref{fig:MONO}.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\textwidth]{../grafici/monostabileOSC.png}
+	\caption{Forme d'onda visualizzate tramite l'oscilloscopio in ingresso (azzurra) e in uscita (gialla) al multivibratore monostabile.}
+	\label{fig:OSC}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\textwidth]{../grafici/monostabileVC.png}
+	\caption{Forme d'onda visualizzate tramite l'oscilloscopio in ingresso (azzurra) e in VC (vedi \cref{fig:MONO}) del multivibratore monostabile.}
+	\label{fig:VC}
+\end{figure}
+
+Quando l'onda quadra in ingresso è a $\sim 0V$ (\code{LOW}), all'uscita del NAND1 si è nello stato \code{HIGH}. Supponendo che in partenza  all'uscita del circuito si abbia lo stato \code{LOW}, quindi all'uscita del NAND3 lo stato \code{HIGH}, si ottiene che l'uscita del NAND2 è \code{LOW}. Il condensatore, inizialmente scarico, non si carica e all'ingresso del NAND3 si ha lo stato \code{LOW-LOW}. In questa situazione, finché in ingresso si è nello stato \code{LOW}, il circuito è stabile.
+\newline
+\newline
+A questo punto l'ingresso passa a \code{HIGH}, quindi l'uscita del NAND2 è \code{HIGH}. Il condensatore inizia a caricarsi attraverso la resistenza $R_1$ e quindi in VC si vede prima il passaggio ad un potenziale\footnote{la carica di un condensatore non è istantanea, quindi quando il NAND2 passa a \code{HIGH},inizialmente entrambe le armature sono a potenziale alto.} $V_{max} = 2.93\pm 0.02 V$, e poi la carica di esso, che si manifesta attraverso una discesa esponenziale poiché l'armatura di destra del condensatore si deve caricare negativamente.
+\newline
+\newline
+A questo punto l'ingresso non gioca più alcun ruolo: finché la tensione VC non scende al di sotto di $V_{IH}$ del NAND3, si vedrà la discesa esponenziale dovuta alla carica del condensatore, e quindi la durata dell'impulso (\code{HIGH}) in OUT-M dipende solamente da questa carica, cioè è proporzionale al tempo caratteristico di carica del condensatore $\tau = R_1 C_1 = 51 \pm 3 \mu s$, (la costante di proporzionalità trovata vale 0.87 $\pm$ 0.08) e non dipende dalla durata dell'impulso in IN-M. Questa cosa si è anche verificata modificando l'impulso in IN-M. Il valore di tensione per cui il NAND3 commuta è $V_{com} = 1.44\pm 0.04 V$.
+\newline
+\newline
+Quando il NAND3 commuta (passa da \code{HIGH-HIGH} a \code{LOW-LOW} al suo ingresso, e quindi in uscita a \code{HIGH}), in seguito al valore scelto per il duty cycle in ingresso al circuito, all'ingresso del NAND1 si è nello stato \code{LOW}, quindi l'uscita del NAND2 è \code{LOW}. In OUT-M il segnale passa quindi da \code{HIGH} a \code{LOW}. Il diodo entra in conduzione (resistenza trascurabile) e l'armatura di destra del condensatore passa da (\code{HIGH} - esponenziale) a (- esponenziale) in tempi non apprezzabili dall'oscilloscopio. Il valore del minimo del potenziale\footnote{Tutte le misure dei valori per cui il NAND3 commuta, dei massimi e dei minimi dei potenziali visualizzati in VC, sono calcolate facendo il valor medio e la deviazione standard tra le tre misure trovate analizzando la forma d'onda in \cref{fig:VC}.} è $V_{min} = -0.88\pm 0.04 V$.
+% non so che valore guardare sul datasheet, ma ce ne possiamo anche fregare
+\newline
+A questo punto il diodo esce dal regime di conduzione e passa a interdizione; in questo passaggio il condensatore (l'armatura destra, quella di sinistra è passata da carica a scarica in tempi dell'ordine dei tempi caratteristici di commutazione del NAND2) si carica attraverso la resistenza $R_1$ passando da un valore negativo di tensione fino ad una tensione di $\sim 0V$. Quindi alla fine il condensatore risulta scarico e si è tornati nella situazione stabile. Non appena in ingresso al circuito si passa da \code{LOW} a \code{HIGH} il ciclo ricomincia.
+\newline
+\newline
+Il diodo svolge inoltre un ulteriore funzione: non permette al potenziale in ingresso del NAND3 di essere troppo negativo, evitando così il malfunzionamento di tale porta.
+
+
+\subsection{Linearità dell'impulso in uscita al circuito}
+Si è verificato che l'andamento dell'impulso in OUT-M in funzione della resistenza $R_1$ fosse lineare, come atteso in seguito alle osservazioni precedenti.
+Si sono provati altri $4$ valori per la resistenza $R_1$, oltre a quello impiegato già precedentemente, e si è eseguito un fit lineare con tutti e $5$ i valori. Si riportano dunque il grafico del fit e la tabella con le misure, rispettivamente \cref{fig:MONOfit,tab:MONOfit}.
+
+\begin{figure}[H]
+	\centering
+	\begin{minipage}{0.49\textwidth}
+		\centering
+		\includegraphics[width=\textwidth]{../grafici/FITmonostabile.pdf}
+		\caption{Grafico dell'impulso in OUT-M in funzione della resistenza $R_1$}
+		\label{fig:MONOfit}
+	\end{minipage}
+	\begin{minipage}{0.49\textwidth}
+		\centering
+		\resizebox{0.7\textwidth}{!}{
+			\input{../tabelle/tab_monostabileRes.txt}}
+		\captionof{table}{Resistenze utilizzate per verificare la linearità dell'impulso in OUT-M in funzione della resistenza $R_2$.}
+		\label{tab:MONOfit}
+	\end{minipage}
+\end{figure}
+
+Si riportano di seguito i parametri di fit:
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{cccc}
+		$\chi^2/ndof = 0.64/3$ & $m = \unit{ 0.110\pm0.006 }{\micro\second / \Omega}$ & $q = \unit{ 7\pm3 }{\micro\second}$ & $corr_{mq} = -0.97 $\\
+	\end{tabular}
+\end{table}
+
+Dove si è indicato con $m$ il coefficiente angolare, con $q$ l'intercetta e con $corr_{mq}$ il coefficiente di correlazione, che risulta prossimo a ~$-1$ come atteso per una retta. I risultati del fit sono in ottimo accordo con quanto atteso.
+% l'errore sui tempi è piccolo perchè mme prende solo la tacca dell'oscilloscopio che è palesemente una sottostima. Ci ho aggiunto il 3% di incertezza sistematica sui tempi, ed esce quello che c'è scritto in tabella tranne il chi2 che esce 18. Cosa metto?
+
+
 
 \section{Multivibratore ASTABILE}
 
@@ -155,7 +245,7 @@ Si è verificato che in uscita, OUT-A, la forma d'onda fosse un'onda quadra; si 
 \begin{table}[H]
 	\centering
 	\begin{tabular}{cc}
-		$\Delta T = \unit{210 \pm 1}{\micro\second}$ & $\delta = \unit{72.0 \pm 4}{\micro\second}$\\
+		$\Delta T = \unit{210 \pm 1}{\micro\second}$ (4760$\pm$25 Hz) & $\delta = \unit{72 \pm 4}{\micro\second}$ (34$\pm$2\%)\\
 	\end{tabular}
 \end{table}
 
@@ -164,7 +254,7 @@ Si riporta quindi la forma d'onda su OUT-A (azzurra) in \cref{fig:ASTosc}, assie
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.7\textwidth]{../grafici/astabileOSC.png}
-	\caption{Schema del circuito del multivibratore astabile}
+	\caption{Forme d'onda visualizzate tramite l'oscilloscopio nei punti OUT-A  (azzurra) e VC2 (gialla) della \cref{fig:AST}}
 	\label{fig:ASTosc}
 \end{figure}
 
@@ -188,14 +278,14 @@ Si sono provati altri $4$ valori per la resistenza $R_2$, oltre a quello impiega
 	\begin{minipage}{0.49\textwidth}
 		\centering
 		\includegraphics[width=\textwidth]{../grafici/FITastabile.pdf}
-		\caption{}
+		\caption{Grafico del periodo in funzione della resistenza $R_2$}
 		\label{fig:ASTfit}
 	\end{minipage}
 	\begin{minipage}{0.49\textwidth}
 		\centering
 		\resizebox{0.7\textwidth}{!}{
 			\input{../tabelle/tab_astabileRes.txt}}
-		\captionof{table}{}
+		\captionof{table}{Resistenze utilizzate per verificare la linearità del periodo in funzione di $R_2$.}
 		\label{tab:ASTfit}
 	\end{minipage}
 \end{figure}

@@ -28,6 +28,7 @@ andAO = OscilloscopeData(dir+"data\\andAO.csv")
 orAO = OscilloscopeData(dir+"data\\orAO.csv")
 xorAO = OscilloscopeData(dir+"data\\xorAO.csv")
 
+
 figure(1)
 fig,ax = subplots(1)
 
@@ -39,7 +40,7 @@ plot(andAO.T2, andAO.CH2, ",-", label="AND")
 ax.set_yticklabels([])
 ax.set_xticklabels([])
 legend(loc=6)
-
+grid()
 savefig(dir + "grafici\\ANDard.pdf")
 
 figure(2)
@@ -53,7 +54,7 @@ plot(orAO.T2, orAO.CH2, ",-", label="OR")
 ax.set_yticklabels([])
 ax.set_xticklabels([])
 legend(loc=6)
-
+grid()
 savefig(dir + "grafici\\ORard.pdf")
 
 figure(3)
@@ -67,7 +68,7 @@ plot(xorAO.T2, xorAO.CH2, ",-", label="XOR")
 ax.set_yticklabels([])
 ax.set_xticklabels([])
 legend(loc=6)
-
+grid()
 savefig(dir + "grafici\\XORard.pdf")
 
 figure(4)
@@ -85,6 +86,7 @@ legend(loc=6)
 
 savefig(dir + "grafici\\ADDERard.pdf")
 
+
 # show()
 close('all')
 
@@ -93,6 +95,7 @@ close('all')
 file = "astabileRes"
 data = load_data(dir,file)
 data_err = [mme(data[0], 'ohm'), mme(data[1], 'time', 'oscil')]
+# data_err = [mme(data[0], 'ohm'), sqrt(((mme(data[1], 'time', 'oscil'))**2)+(3*data[1]/100)**2)]
 tab=["$R_2$ [$\Omega$]","Period [s]"]
 
 latex_table(dir, file, data, data_err, tab)
@@ -106,7 +109,8 @@ x = linspace(min(data[0])*0.9, max(data[0])*1.05, 1000)
 y = line(x, m.nominal_value, q.nominal_value)
 
 chi2 = sum(((data[1] - line(data[0], m.nominal_value, q.nominal_value))/data_err[1])**2)
-
+print(chi2)
+print(cov[0,1]/(sqrt(cov[0,0]*cov[1,1])))
 errorbar(data[0], data[1], xerr=data_err[0], yerr=data_err[1], fmt=',')
 plot(x, y)
 
@@ -115,7 +119,7 @@ ylim(min(data[1])*0.88, max(data[1])*1.06)
 xlabel(tab[0], fontsize = 24)
 ylabel(tab[1], fontsize = 24)
 ticklabel_format(style='sci', axis='both', scilimits=(0,0))
-
+grid()
 savefig(dir + "./grafici/FITastabile.pdf")
 
 ########################################################################### parte astabile-stabile in serie...
@@ -167,7 +171,7 @@ def myprint(x):
     return str(x)
 
 
-def my_latex_table(directory, file_, data, tab):
+def my_latex_table(directory, file_, data, tab, verbose=True):
     """
         Parameters
         ----------    
@@ -177,7 +181,7 @@ def my_latex_table(directory, file_, data, tab):
 
     """
     with open(directory+"tabelle/tab_"+file_+".txt", "w") as text_file:
-        print(data)
+       # print(data)
         text_file.write("\\begin{tabular}{c")
         for z in range (1,len(tab)):
             text_file.write("|c")
@@ -195,6 +199,7 @@ def my_latex_table(directory, file_, data, tab):
             text_file.write("\\\\\n")
         text_file.write("\\end{tabular}")
         text_file.close()
+        
 
 
 
@@ -370,10 +375,4 @@ print("E' effettivamente lineare e non dipende da nulla...")
 
 
 #un approccio bidimensionale non ha troppo senso....
-
-
-
-
-
-
 
