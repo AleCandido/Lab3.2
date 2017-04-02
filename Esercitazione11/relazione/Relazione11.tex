@@ -310,5 +310,122 @@ Dove si è indicato con $m$ il coefficiente angolare, con $q$ l'intercetta e con
 	\label{fig:SQGEN}
 \end{figure}
 
+Si è dunque messo in serie i due circuiti, collegandoli attraverso un filtro passa-alto (un derivatore) con frequenza di taglio $1/\tau=1/RC=\unit{97 \pm 4}{\kilo\hertz}$
+Si è dunque osservato l'output della sezione di alimentazione, a valle del derivatore, e l'output del intero circuito. Come è ben visibile dal oscilloscopio \cref{fig:InMOutM} il multistabile è triggerato solo dal fronte d'onda positivo. 
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\textwidth]{../grafici/4InMOutM.png}
+	\caption{In blu l'output del multistabile (OUT-M), in arancione l'output del derivatore (IN-M)}
+	\label{fig:InMOutM}
+\end{figure}
+
+Si è dunque proceduto con la verifica della dipendenza dei due tempi caratteristici del circuito, il periodo e il duty-cycle, dalle resistenze $R_2$ e $R_1$ rispettivamente. Per prima cosa si è fittato, per diversi valori della resistenza $R_2$, la dipendenza del duty-cycle da $R_1$ aspettandoci una dipendenza lineare (in effetti si è svolto un fit affine $t_{duty}=mR_1+q$, anche se di fatto ci si aspetta una dipendenza lineare). I risultati di tali fit sono riassunti in \cref{tab:DutyFit} e nel \cref{FitsRighe} . 
+
+\begin{table}[H]
+\centering
+\begin{tabular}{c|c|c|c} 
+$R_2$ & $T/R$ & $T_0$ & $\chi^2$\\
+\hline
+673+/-6 & (9.15+/-0.22)e-08 & (-1.9+/-1.3)e-06 & 3.9\\
+986+/-9 & (1.102+/-0.029)e-07 & (-8.2+/-1.6)e-06 & 0.518948675843\\
+1459+/-13 & (1.212+/-0.023)e-07 & (-1.16+/-0.13)e-05 & 0.990073979354\\
+820+/-8 & (1.005+/-0.023)e-07 & (-4.4+/-1.3)e-06 & 1.42818643938\\
+1174+/-10 & (1.150+/-0.022)e-07 & (-1.11+/-0.13)e-05 & 2.13024874798\\
+\end{tabular}
+\caption{Diversi fit del duty-cicle in funzione della resistenza $R_1$ per diversi valori di $R_2$}
+\label{tab:DutyFit}
+\end{table}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\textwidth]{../grafici/FitsRighe.pdf}
+	\caption{Diversi fit del duty-cycle in funzione della resistenza $R_1$ per diversi valori di $R_2$}
+	\label{fig:FitsRighe}
+\end{figure}
+
+Si sono poi presi i diversi valori dei coefficienti angolari $m$ e se ne è trovata la media e la deviazione standard:\\
+
+
+\begin{table}[H]
+\centering
+\begin{tabular}{c|c} 
+qunatità & valore\\
+\hline
+$m$&$\unit{0.1076 \pm 0.0010}{\micro\second/\ohm}$ \\
+$q$&$\unit{-7.4 \pm 0.6}{\micro\second}$ \\
+$\chi^2_m$&$109.3$\\
+$\chi^2_q$&$41.3$\\
+$dof$&$3$\\
+\end{tabular}
+\end{table}
+
+Si sono anche plottati residui degli scarti in \cref{fig:FitRighe}. \'E chiaramente visibile un andamento sistematico, che con il $\chi^2$ improbabile mostrato sopra mostra che il duty-cycle è solamente approssimativamente.
+
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\textwidth]{../grafici/FitRighe.pdf}
+	\caption{Scarti normalizzati di m dalla media e scarti normalizzati di q dalla media}
+	\label{fig:FitRighe}
+\end{figure}
+
+
+
+Si è svolta la stessa procedura per verificare la linearità del periodo rispetto a $R_2$ e la sua indipendenza da $R_1$. Sono stati effettuati i con diversi valori di $R_1$ e sono stati riassunti in \cref{tab:FitsColonne} e nel \cref{fig:FitsColonne} 
+
+\begin{table}[H]
+\centering
+\begin{tabular}{c|c|c|c} 
+$R_1$ & $T/R$ & $T_0$ & $\chi^2$\\
+\hline
+386+/-4 & (1.973+/-0.035)e-07 & (1.55+/-0.34)e-05 & 0.490688242873\\
+820+/-8 & (1.99+/-0.07)e-07 & (1.4+/-0.8)e-05 & 0.234338459765\\
+327+/-4 & (1.973+/-0.035)e-07 & (1.55+/-0.34)e-05 & 0.490688242873\\
+986+/-9 & (1.97+/-0.04)e-07 & (1.55+/-0.34)e-05 & 0.49060691303\\
+475+/-5 & (1.96+/-0.05)e-07 & (1.7+/-0.5)e-05 & 0.338405660518\\
+674+/-6 & (1.96+/-0.05)e-07 & (1.6+/-0.5)e-05 & 0.0935217261963\\
+558+/-5 & (1.973+/-0.035)e-07 & (1.55+/-0.34)e-05 & 0.490688242873\\
+\end{tabular}
+\label{tab:FitsColonne}
+\end{table}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\textwidth]{../grafici/FitsColonne.pdf}
+	\caption{Diversi fit del duty-cycle in funzione della resistenza $R_1$ per diversi valori di $R_2$}
+	\label{fig:FitsColonne}
+\end{figure}
+
+
+Questa volta $m$ e $q$ sono molto più indipendenti dalla resistenza dalla quale non dovrebbero dipendere.
+
+\begin{table}[H]
+\centering
+\begin{tabular}{c|c} 
+qunatità & valore\\
+\hline
+$m$ & $\unit{0.1971 \pm 0.0016}{\micro\second/\ohm} $\\
+$q$ & ${15.6 \pm 1.5}{\micro\second}$\\
+$\chi^2_m$ & $0.15$\\
+$\chi^2_q$ & $0.12$\\
+$dof$ & $7$\\
+\end{tabular}
+\end{table}
+
+
+
+Il valore dei $\chi^2$ mostra come evidentemente gli errori mostrati in \cref{tab:FitsColonne} sono sovrastimati. Comunque si può concludere che il periodo è dato da una retta affine rispetto a $R_2$ e che nulla dipende da $R_1$. In figura gli scarti normalizzati...
+
+ 
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\textwidth]{../grafici/FitColonne.pdf}
+	\caption{Scarti normalizzati di m dalla media e scarti normalizzati di q dalla media}
+	\label{fig:FitColonne}
+\end{figure}
+
+
+
 
 \end{document}

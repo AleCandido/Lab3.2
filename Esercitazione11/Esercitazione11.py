@@ -19,6 +19,7 @@ dir= path + "Esercitazione11\\"
 
 from BuzzLightyear import * 
 from uncertainties import *
+import uncertainties
 ###########################################################################
 
 from Oscillografo import *
@@ -123,6 +124,21 @@ grid()
 savefig(dir + "./grafici/FITastabile.pdf")
 
 ########################################################################### parte astabile-stabile in serie...
+#preambolo
+
+C3 = ufloat(10.38e-9,mme(10.38e-9, "farad"))
+R3 = ufloat(990, mme(990, "ohm"))
+
+freq=1/(C3*R3)
+print("frequanza di taglio=", freq)
+
+
+
+
+
+
+
+
 
 #grafici...
 O1 = OscilloscopeData(dir+"data\\4OutM.csv")
@@ -222,6 +238,9 @@ dT2=np.ones(T2.shape)*1e-6
 print("Fit per righe...")
 
 figure(2)
+pylab.title("$R_1$ vs $T_{duty}$")
+pylab.xlabel("$R_1$ [ohm]")
+pylab.ylabel("$T_{duty}$ [sec]")
 
 
 se={}
@@ -232,6 +251,7 @@ for i,j in zip(R2, dR2):
 
 results=[]
 cond=[]
+legs=[]
 
 for i in se:
     mask=R2==i
@@ -245,7 +265,7 @@ for i in se:
     print(r1)
     par, cov = fit_linear(r1, t2, dx=dr1, dy=dt2)
     m, q = correlated_values(par, cov)
-    chisq = sum((t2-line(r1, *par))**2/(dr1**2+dt2**2))
+    chisq = sum((t2-line(r1, *par))**2/(par[0]**2*dr1**2+dt2**2))
     cond.append(ufloat(i, se[i]))
     results.append([par, cov, m, q, chisq])
     print("m={} , q={}".format(m, q))
@@ -253,13 +273,18 @@ for i in se:
     domain=np.linspace(np.min(r1), np.max(r1))
     pylab.plot(domain, line(domain, *par))
     pylab.errorbar(r1, t2, dt2, dr1)
+    legs.append("$R_2={}$".format(i))
     print("==============")
+
+pylab.legend(legs)
+pylab.savefig(dir + "./grafici/FitsRighe.pdf")
+
 
 results=np.array(results)
 ms=results[:,2]
 qs=results[:,3]
 chisqs=results[:,4]
-nomi=["R_2", "T/R", "T_0", "\\chi^2"]
+nomi=["$R_2$", "$T/R$", "$T_0$", "$\\chi^2$"]
 f=uncertainties.unumpy.nominal_values
 ff=uncertainties.unumpy.std_devs
 my_latex_table(dir, "fit per righe.txt", [cond, ms, qs, chisqs], nomi)
@@ -279,17 +304,21 @@ chifin2=sum((qfin-qnvs)**2/qstds**2)
 
 
 figure(3)
+pylab.title("$R_2$ vs m, $R_2$ vs q")
+pylab.xlabel("$R_2$ [Ohm]")
 pylab.subplot(311)
-pylab.plot(range(len(mnvs)),(mfin-mnvs)/mstds, 'b.')
+pylab.plot(list(se.keys()),(mfin-mnvs)/mstds, 'b.')
 pylab.subplot(312)
-pylab.plot(range(len(qnvs)), (qfin-qnvs)/qstds, 'b.')
-
+pylab.plot(list(se.keys()), (qfin-qnvs)/qstds, 'b.')
+pylab.savefig(dir + "./grafici/FitRighe.pdf")
 
 mfin=uncertainties.ufloat(mfin, varmfin**0.5)
 qfin=uncertainties.ufloat(qfin, varqfin**0.5)
 
-print("------>>>>   m={} , q={}, chisq1={},  chisq2={}".format(mfin, qfin, chifin1, chifin2))
+print("------>>>>   m={} , q={}, chisq1={},  chisq2={}, dof={}".format(mfin, qfin, chifin1, chifin2, len(mnvs)))
 print("c'è qualche problema...")
+
+
 
 
 print("=======================")
@@ -298,9 +327,13 @@ print("=======================")
 print("Fit per colonne...")
 
 figure(4)
+pylab.title("$R_2$ vs $T_{duty}$")
+pylab.xlabel("$R_2$ [ohm]")
+pylab.ylabel("$Periodo$ [sec]")
 
 results=[]
 cond=[]
+legs=[]
 
 se={}
 for i,j in zip(R1, dR1):
@@ -321,7 +354,7 @@ for i in se:
         print(r2)
         par, cov = fit_linear(r2, t1, dx=dr2, dy=dt1)
         m, q = correlated_values(par, cov)
-        chisq = sum((t1-line(r2, *par))**2/(dr2**2+dt1**2))
+        chisq = sum((t1-line(r2, *par))**2/(par[0]**2*dr2**2+dt1**2))
         cond.append(ufloat(i, se[i]))
         results.append([par, cov, m, q, chisq])
         print("m={} , q={}".format(m, q))
@@ -329,19 +362,22 @@ for i in se:
         domain=np.linspace(np.min(r2), np.max(r2))
         pylab.plot(domain, line(domain, *par))
         pylab.errorbar(r2, t1, dt1, dr2)
+        legs.append("$R_1={}$".format(i))
         print("==============")
 
 
+pylab.legend(legs)
+pylab.savefig(dir + "./grafici/FitsColonne.pdf")
 
 
 results=np.array(results)
 ms=results[:,2]
 qs=results[:,3]
 chisqs=results[:,4]
-nomi=["R_2", "T/R", "T_0", "\\chi^2"]
+nomi=["$R_1$", "$T/R$", "$T_0$", "$\\chi^2$"]
 f=uncertainties.unumpy.nominal_values
 ff=uncertainties.unumpy.std_devs
-my_latex_table(dir, "fit per righe.txt", [cond, ms, qs, chisqs], nomi)
+my_latex_table(dir, "fit per colonne.txt", [cond, ms, qs, chisqs], nomi)
 
 
 mnvs=uncertainties.unumpy.nominal_values(ms)
@@ -358,16 +394,19 @@ chifin2=sum((qfin-qnvs)**2/qstds**2)
 
 
 figure(5)
+pylab.title("$R_1$ vs m, $R_1$ vs q")
+pylab.xlabel("$R_1$ [Ohm]")
 pylab.subplot(511)
-pylab.plot(range(len(mnvs)),(mfin-mnvs)/mstds, 'b.')
+pylab.plot(f(np.array(cond)),(mfin-mnvs)/mstds, 'b.')
 pylab.subplot(512)
-pylab.plot(range(len(qnvs)), (qfin-qnvs)/qstds, 'b.')
+pylab.plot(f(np.array(cond)), (qfin-qnvs)/qstds, 'b.')
+pylab.savefig(dir + "./grafici/FitColonne.pdf")
 
 
 mfin=uncertainties.ufloat(mfin, varmfin**0.5)
 qfin=uncertainties.ufloat(qfin, varqfin**0.5)
 
-print("------>>>>   m={} , q={}, chisq1={},  chisq2={}".format(mfin, qfin, chifin1, chifin2))
+print("------>>>>   m={} , q={}, chisq1={},  chisq2={}, dof={}".format(mfin, qfin, chifin1, chifin2, len(mnvs)))
 print("E' effettivamente lineare e non dipende da nulla...")
 
 
