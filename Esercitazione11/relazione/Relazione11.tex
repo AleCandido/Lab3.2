@@ -310,6 +310,8 @@ Dove si è indicato con $m$ il coefficiente angolare, con $q$ l'intercetta e con
 	\label{fig:SQGEN}
 \end{figure}
 
+\subsection{Generatore di onda quadra b}
+
 Si è dunque messo in serie i due circuiti, collegandoli attraverso un filtro passa-alto (un derivatore) con frequenza di taglio $1/\tau=1/RC=\unit{97 \pm 4}{\kilo\hertz}$
 Si è dunque osservato l'output della sezione di alimentazione, a valle del derivatore, e l'output del intero circuito. Come è ben visibile dal oscilloscopio \cref{fig:InMOutM} il multistabile è triggerato solo dal fronte d'onda positivo. 
 
@@ -319,6 +321,9 @@ Si è dunque osservato l'output della sezione di alimentazione, a valle del deri
 	\caption{In blu l'output del multistabile (OUT-M), in arancione l'output del derivatore (IN-M)}
 	\label{fig:InMOutM}
 \end{figure}
+
+
+\subsection{Generatore di onda quadra c}
 
 Si è dunque proceduto con la verifica della dipendenza dei due tempi caratteristici del circuito, il periodo e il duty-cycle, dalle resistenze $R_2$ e $R_1$ rispettivamente. Per prima cosa si è fittato, per diversi valori della resistenza $R_2$, la dipendenza del duty-cycle da $R_1$ aspettandoci una dipendenza lineare (in effetti si è svolto un fit affine $t_{duty}=mR_1+q$, anche se di fatto ci si aspetta una dipendenza lineare). I risultati di tali fit sono riassunti in \cref{tab:DutyFit} e nel \cref{FitsRighe} . 
 
@@ -369,6 +374,7 @@ Si sono anche plottati residui degli scarti in \cref{fig:FitRighe}. \'E chiarame
 	\caption{Scarti normalizzati di m dalla media e scarti normalizzati di q dalla media}
 	\label{fig:FitRighe}
 \end{figure}
+
 
 
 
@@ -425,6 +431,20 @@ Il valore dei $\chi^2$ mostra come evidentemente gli errori mostrati in \cref{ta
 	\label{fig:FitColonne}
 \end{figure}
 
+\subsection{Generatore di onda quadra d}
+
+Si è dunque provato a trovare dei valori di resistenze $R_1$ e $R_2$ tali da avere un periodo di circa $\unit{100}{\micro\second}$ e un duty-cycle del 30 \%. Si è ottenuto il risultato voluto con $R_1=\unit{386 \pm 5}{\ohm}$ e  $R_1=\unit{434 \pm 5}{\ohm}$. In \cref{fig:410030}il risultato visto all'oscilloscopio. 
+
+
+ \begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\textwidth]{../grafici/410030.png}
+	\caption{In blu l'output del multistabile (OUT-M), in arancione l'output del derivatore (IN-M)}
+	\label{fig:410030}
+\end{figure}
+
+Come si può vedere dal grafico il periodo è di $\unit{100.0 \pm ?}{\micro\second}$ e il duty-cycle di $\unit{30.0 \pm ?}{\micro\second}$.
+Che bello...
 
 
 

@@ -170,6 +170,9 @@ def printufloat(X):
     return str(x)+" \\pm "+str(y) 
 
 myprint_dict[uncertainties.ufloat]=printufloat
+myprint_dict[uncertainties.core.AffineScalarFunc]=printufloat
+myprint_dict[uncertainties.core.Variable]=printufloat
+
 
 def printArray(x):
     s="array(["
@@ -181,6 +184,7 @@ myprint_dict[np.array]=printArray
 
 
 def myprint(x):
+    print(type(x), x, "<-----------")
     if type(x) in myprint_dict:
         print(type(x))
         return myprint_dict[type(x)](x)
