@@ -46,7 +46,7 @@ savefig(dir + "grafici\\ANDard.pdf")
 
 figure(2)
 fig,ax = subplots(1)
-
+grid()
 plot(AB.T1, AB.CH1, ",--", label="input1")
 plot(AB.T2, AB.CH2, ",--", label="input2")
 plot(orAO.T2, orAO.CH2, ",-", label="OR")
@@ -149,13 +149,12 @@ figure(123)
 
 plot(O1.T1, O1.CH1)
 plot(O1.T2, O1.CH2)
-
+grid()
 figure(1234)
 
 plot(O2.T1, O2.CH1)
 plot(O2.T2, O2.CH2)
-
-
+grid()
 
 #analisi tempi...
 
@@ -245,7 +244,7 @@ figure(2)
 # pylab.title("$R_1$ vs $T_{duty}$")
 pylab.xlabel("$R_1$ [ohm]")
 pylab.ylabel("$T_{duty}$ [sec]")
-
+grid()
 
 se={}
 for i,j in zip(R2, dR2):
@@ -334,7 +333,7 @@ figure(4)
 # pylab.title("$R_2$ vs $T_{duty}$")
 pylab.xlabel("$R_2$ [ohm]")
 pylab.ylabel("$Periodo$ [sec]")
-
+grid()
 results=[]
 cond=[]
 legs=[]
