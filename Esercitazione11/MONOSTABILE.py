@@ -18,7 +18,7 @@ sys.path = sys.path + [path]
 dir= path + "Esercitazione11/"
 
 from BuzzLightyear import * 
-import uncertainties
+from uncertainties import *
 ###########################################################################
 
 from Oscillografo import *
