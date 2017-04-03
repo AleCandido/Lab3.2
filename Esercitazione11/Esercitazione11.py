@@ -415,6 +415,13 @@ print("E' effettivamente lineare e non dipende da nulla...")
 
 
 
+#last
+
+R_2=ufloat(47.6+387, mme(47.6+387, "volt"))
+R_1=ufloat(386, mme(386, "volt"))
+
+print(R1, R2)
+
 
 
 #un approccio bidimensionale non ha troppo senso....
