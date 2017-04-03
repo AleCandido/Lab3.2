@@ -242,7 +242,7 @@ dT2=np.ones(T2.shape)*1e-6
 print("Fit per righe...")
 
 figure(2)
-pylab.title("$R_1$ vs $T_{duty}$")
+# pylab.title("$R_1$ vs $T_{duty}$")
 pylab.xlabel("$R_1$ [ohm]")
 pylab.ylabel("$T_{duty}$ [sec]")
 
@@ -308,13 +308,13 @@ chifin2=sum((qfin-qnvs)**2/qstds**2)
 
 
 figure(3)
-pylab.title("$R_2$ vs m, $R_2$ vs q")
+# pylab.title("$R_2$ vs m, $R_2$ vs q")
 pylab.xlabel("$R_2$ [Ohm]")
 pylab.subplot(311)
 pylab.plot(list(se.keys()),(mfin-mnvs)/mstds, 'b.')
 pylab.subplot(312)
 pylab.plot(list(se.keys()), (qfin-qnvs)/qstds, 'b.')
-pylab.savefig(dir + "./grafici/FitRighe.pdf")
+pylab.savefig(dir + "./grafici/FitRighe.pdf",bbox_inches='tight')
 
 mfin=uncertainties.ufloat(mfin, varmfin**0.5)
 qfin=uncertainties.ufloat(qfin, varqfin**0.5)
@@ -331,7 +331,7 @@ print("=======================")
 print("Fit per colonne...")
 
 figure(4)
-pylab.title("$R_2$ vs $T_{duty}$")
+# pylab.title("$R_2$ vs $T_{duty}$")
 pylab.xlabel("$R_2$ [ohm]")
 pylab.ylabel("$Periodo$ [sec]")
 
@@ -398,13 +398,13 @@ chifin2=sum((qfin-qnvs)**2/qstds**2)
 
 
 figure(5)
-pylab.title("$R_1$ vs m, $R_1$ vs q")
+# pylab.title("$R_1$ vs m, $R_1$ vs q")
 pylab.xlabel("$R_1$ [Ohm]")
 pylab.subplot(511)
 pylab.plot(f(np.array(cond)),(mfin-mnvs)/mstds, 'b.')
 pylab.subplot(512)
 pylab.plot(f(np.array(cond)), (qfin-qnvs)/qstds, 'b.')
-pylab.savefig(dir + "./grafici/FitColonne.pdf")
+pylab.savefig(dir + "./grafici/FitColonne.pdf",bbox_inches='tight')
 
 
 mfin=uncertainties.ufloat(mfin, varmfin**0.5)
