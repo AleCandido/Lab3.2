@@ -310,8 +310,12 @@ Dove si è indicato con $m$ il coefficiente angolare, con $q$ l'intercetta e con
 
 \subsection{Forma d'onda in uscita dal derivatore}
 
-In questa parte dell'esperienza si mettono in serie i due circuiti per fare un generatore di onde quadre a duty-cycle variabile, collegandoli monostabile e astabile attraverso un filtro passa-alto (un derivatore) con frequenza di taglio $1/\tau=1/RC=\unit{97 \pm 4}{\kilo\hertz}$.\\
+In questa parte dell'esperienza si mettono in serie i due circuiti per fare un generatore di onde quadre a duty-cycle variabile, collegando monostabile e astabile attraverso un filtro passa-alto (un derivatore) con frequenza di taglio $1/\tau=1/RC=\unit{97 \pm 4}{\kilo\hertz}$.\\
 Si è osservato l'output della sezione di alimentazione, a valle del derivatore, e l'output del intero circuito. Come è ben visibile dal oscilloscopio \cref{fig:InMOutM} il multivibratore monostabile è triggerato solo dal fronte d'onda positivo. 
+
+
+% io metterei una motivazione del perchè è triggerato solo sul fronte d'onda positivo.
+
 
 \begin{figure}[H]
 	\centering
@@ -323,7 +327,7 @@ Si è osservato l'output della sezione di alimentazione, a valle del derivatore,
 \pagebreak[1]
 \subsection{Forma d'onda all'uscita complessiva (OUT-M)}
 
-Ci si aspetta che i due tempi caratteristici del circuito, il periodo e $t_{duty}$\footnote{tempo durante il quale il circuito è HIGH in un periodo}, siano regolati indipendentemente dalle resistenze $R_2$ ed $R_1$. Questo è logico pensando il circuito come un generatore di forme d'onda quadre (l'astabile) che pilota il monostabile. Il pilotaggio avviene tramite il derivatore che trasforma l'onda quadra in un treno di impulsi. Ne risulta che il periodo dovrebbe essere il periodo dell'astabile, mentre il $t_{duty}$ dovrebbe essere il tempo caratteristico del monostabile. Tutto questo dovrebbe funzionare finché ci si limita a $t_{duty}$ alti rispetto al tempo caratteristico del derivatore ovvero $\unit{10.27 \pm 0.45}{\micro\second}$\footnote{Ci si è tenuti sempre sopra i $\unit{25}{\micro\second}$ dunque si esclude la possibilità che il transiente dato dal derivatore non fosse molto soppresso, dunque irrilevante}.\\
+Ci si aspetta che i due tempi caratteristici del circuito, il periodo e $t_{duty}$\footnote{tempo durante il quale il circuito è \code{HIGH} in un periodo}, siano regolati indipendentemente dalle resistenze $R_2$ ed $R_1$. Questo è logico pensando il circuito come un generatore di forme d'onda quadre (l'astabile) che pilota il monostabile. Il pilotaggio avviene tramite il derivatore che trasforma l'onda quadra in un treno di impulsi. Ne risulta che il periodo dovrebbe essere il periodo dell'astabile, mentre il $t_{duty}$ dovrebbe essere il tempo caratteristico del monostabile. Tutto questo dovrebbe funzionare finché ci si limita a $t_{duty}$ alti rispetto al tempo caratteristico del derivatore ovvero $\unit{10.27 \pm 0.45}{\micro\second}$\footnote{Ci si è tenuti sempre sopra i $\unit{25}{\micro\second}$ dunque si esclude la possibilità che il transiente dato dal derivatore non fosse molto soppresso, dunque irrilevante}.\\
 Si è proceduto con la verifica di queste affermazioni. Per prima cosa si è fittato, per diversi valori della resistenza $R_2$, la dipendenza del duty-cycle da $R_1$ aspettandoci un andamento lineare (in effetti si è svolto un fit affine $t_{duty}=mR_1+q$, anche se di fatto ci si aspetta una dipendenza lineare). I risultati di tali fit sono riassunti in \cref{tab:DutyFit} e nel \cref{fig:FitsRighe}. 
 
 \begin{table}[H]
@@ -350,7 +354,6 @@ $1174 \pm 10$ & $(1.150 \pm 0.022) e-07$ & $(-1.11 \pm 0.13) e-05$ & 2.1\\
 
 Si sono poi presi i diversi valori dei coefficienti angolari $m$ e se ne è trovata la media e la deviazione standard. \'E stato riportato anche il valore del $\chi^2$ sia per $m$ che per $q$.
 
-%\marginpar{\small{Che roba sono i due chiquadri?}}
 
 \begin{table}[H]
 \centering
@@ -404,12 +407,12 @@ $558 \pm 5$ & $(1.973 \pm 0.035)e-07 $& $(1.55 \pm 0.34)e-05 $& 0.49\\
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.8\textwidth]{../grafici/FitsColonne.pdf}
-	\caption{Diversi fit del duty-cycle in funzione della resistenza $R_1$ per diversi valori di $R_2$}
+	\caption{Diversi fit del duty-cycle in funzione della resistenza $R_2$ per diversi valori di $R_1$}
 	\label{fig:FitsColonne}
 \end{figure}
 
 
-Questa volta $m$ e $q$ sono molto più indipendenti dalla resistenza, cioè più vicino a quanto atteso.
+Questa volta $m$ e $q$ sono indipendenti dalla resistenza $R_1$ (si vede sia dalla tabella dei risultati che dal grafico, dove le rette con diverso $R_1$ si sovrappongono), cioè si ottiene proprio quanto atteso.
 
 \begin{table}[H]
 \centering
@@ -422,6 +425,7 @@ $\chi^2_m$ & $0.15$\\
 $\chi^2_q$ & $0.12$\\
 $dof$ & $7$\\
 \end{tabular}
+\label{tab:resColonna}
 \end{table}
 
 
