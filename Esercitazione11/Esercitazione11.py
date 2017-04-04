@@ -239,6 +239,10 @@ dT2=np.ones(T2.shape)*1e-6
 #approccio fit multipli...
 
 
+
+from itertools import cycle
+cycol = cycle('bgrcmk')
+
 print("Fit per righe...")
 
 figure(2)
@@ -256,6 +260,7 @@ for i,j in zip(R2, dR2):
 results=[]
 cond=[]
 legs=[]
+lines=[]
 
 for i in se:
     mask=R2==i
@@ -275,12 +280,15 @@ for i in se:
     print("m={} , q={}".format(m, q))
     print("chiq={} su {} dof".format(chisq, len(r1)))
     domain=np.linspace(np.min(r1), np.max(r1))
-    pylab.plot(domain, line(domain, *par))
-    pylab.errorbar(r1, t2, dt2, dr1)
+    color=next(cycol)
+    iline,=pylab.plot(domain, line(domain, *par), color=color, label="$R_2={}$".format(i))
+    lines.append(iline)
+    pylab.errorbar(r1, t2, dt2, dr1, ".", color=color)
+    #pylab.plot(domain, line(domain, *par), color=color)
     legs.append("$R_2={}$".format(i))
     print("==============")
 
-pylab.legend(legs)
+pylab.legend(legs, handles=lines)
 pylab.savefig(dir + "./grafici/FitsRighe.pdf")
 
 
@@ -338,6 +346,8 @@ pylab.ylabel("$Periodo$ [sec]")
 results=[]
 cond=[]
 legs=[]
+lines=[]
+
 
 se={}
 for i,j in zip(R1, dR1):
@@ -364,13 +374,15 @@ for i in se:
         print("m={} , q={}".format(m, q))
         print("chiq={} su {} dof".format(chisq, len(r2)))
         domain=np.linspace(np.min(r2), np.max(r2))
-        pylab.plot(domain, line(domain, *par))
-        pylab.errorbar(r2, t1, dt1, dr2)
+        color=next(cycol)
+        iline,=pylab.plot(domain, line(domain, *par), label="$R_1={}$".format(i), color=color)
+        lines.append(iline)
+        pylab.errorbar(r2, t1, dt1, dr2, ".", color=color)
         legs.append("$R_1={}$".format(i))
         print("==============")
 
 
-pylab.legend(legs)
+pylab.legend(legs, handles=lines)
 pylab.savefig(dir + "./grafici/FitsColonne.pdf")
 
 
@@ -420,9 +432,15 @@ print("E' effettivamente lineare e non dipende da nulla...")
 R_2=ufloat(47.6+387, mme(47.6+387, "volt"))
 R_1=ufloat(386, mme(386, "volt"))
 
+
+
+
+
 print(R1, R2)
 
 
-
+T__1=ufloat(100, 2.5)
+T__2=ufloat(30, 2.5)
+print(T__2/T__1)
 #un approccio bidimensionale non ha troppo senso....
 

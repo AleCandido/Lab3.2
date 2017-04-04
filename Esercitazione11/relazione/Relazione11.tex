@@ -122,7 +122,7 @@ Inoltre si è usato l'impulsatore per visualizzare il risultato sull'oscilloscop
 Negli schemi elettrici mostrati nelle \cref{fig:AND,fig:OR,fig:XOR,fig:ADDER} si può notare che per alcune porte NAND si è lasciato un ingresso flottante, quando si voleva usarle come porte NOT. Si è sfruttato infatti il fatto che gli ingressi flottanti delle porte corrispondono ad un valore \code{HIGH}, secondo la logica TTL.
 Tenendo conto di questo si ottiene infatti (\code{HIGH-HIGH} $\rightarrow$ \code{LOW}) e (\code{LOW-HIGH} $\rightarrow$ \code{HIGH}), cioè il comportamento richiesto per una porta NOT.
 
-Si sarebbe potuto connettere gli ingressi insieme, così da avere in uscita ancora una volta un NOT, infatti (\code{HIGH-HIGH} $\rightarrow$ \code{LOW}) e (\code{LOW-LOW} $\rightarrow$ \code{HIGH}) secondo la tabella di verità di una porta NAND, ed essere indipendenti dalla logica usata; si è preferito fare così solo per risparmiare qualche connessione sulla basetta e avere un po' più di ordine (fisico, e quindi anche concettuale).
+Si sarebbe potuto connettere gli ingressi insieme, così da avere in uscita ancora una volta un NOT, infatti (\code{HIGH-HIGH} $\rightarrow$ \code{LOW}) e (\code{LOW-LOW} $\rightarrow$ \code{HIGH}) secondo la tabella di verità di una porta NAND, ed essere indipendenti dalla logica usata; si è preferito fare così solo per risparmiare qualche connessione sulla basetta e avere un po' più di ordine (fisico).
 
 Si è applicato lo stesso metodo anche nei circuito successivi, anche se gli schemi dei circuiti mostrano gli input connessi insieme perché tratti dalla scheda (vedi \cref{fig:MONO,fig:AST,fig:SQGEN}).
 
@@ -310,8 +310,8 @@ Dove si è indicato con $m$ il coefficiente angolare, con $q$ l'intercetta e con
 
 \subsection{Forma d'onda in uscita dal derivatore}
 
-Si è dunque messo in serie i due circuiti, collegandoli attraverso un filtro passa-alto (un derivatore) con frequenza di taglio $1/\tau=1/RC=\unit{97 \pm 4}{\kilo\hertz}$
-Si è dunque osservato l'output della sezione di alimentazione, a valle del derivatore, e l'output del intero circuito. Come è ben visibile dal oscilloscopio \cref{fig:InMOutM} il multivibratore monostabile è triggerato solo dal fronte d'onda positivo. 
+In questa parte dell'esperienza si mettono in serie i due circuiti per fare un generatore di onde quadre a duty-cycle variabile, collegandoli monostabile e astabile attraverso un filtro passa-alto (un derivatore) con frequenza di taglio $1/\tau=1/RC=\unit{97 \pm 4}{\kilo\hertz}$.\\
+Si è osservato l'output della sezione di alimentazione, a valle del derivatore, e l'output del intero circuito. Come è ben visibile dal oscilloscopio \cref{fig:InMOutM} il multivibratore monostabile è triggerato solo dal fronte d'onda positivo. 
 
 \begin{figure}[H]
 	\centering
@@ -323,18 +323,19 @@ Si è dunque osservato l'output della sezione di alimentazione, a valle del deri
 \pagebreak[1]
 \subsection{Forma d'onda all'uscita complessiva (OUT-M)}
 
-Si è dunque proceduto con la verifica della dipendenza dei due tempi caratteristici del circuito, il periodo e il duty-cycle, dalle resistenze $R_2$ e $R_1$ rispettivamente. Per prima cosa si è fittato, per diversi valori della resistenza $R_2$, la dipendenza del duty-cycle da $R_1$ aspettandoci una dipendenza lineare (in effetti si è svolto un fit affine $t_{duty}=mR_1+q$, anche se di fatto ci si aspetta una dipendenza lineare). I risultati di tali fit sono riassunti in \cref{tab:DutyFit} e nel \cref{fig:FitsRighe}. 
+Ci si aspetta che i due tempi caratteristici del circuito, il periodo e $t_{duty}$\footnote{tempo durante il quale il circuito è HIGH in un periodo}, siano regolati indipendentemente dalle resistenze $R_2$ ed $R_1$. Questo è logico pensando il circuito come un generatore di forme d'onda quadre (l'astabile) che pilota il monostabile. Il pilotaggio avviene tramite il derivatore che trasforma l'onda quadra in un treno di impulsi. Ne risulta che il periodo dovrebbe essere il periodo dell'astabile, mentre il $t_{duty}$ dovrebbe essere il tempo caratteristico del monostabile. Tutto questo dovrebbe funzionare finché ci si limita a $t_{duty}$ alti rispetto al tempo caratteristico del derivatore ovvero $\unit{10.27 \pm 0.45}{\micro\second}$\footnote{Ci si è tenuti sempre sopra i $\unit{25}{\micro\second}$ dunque si esclude la possibilità che il transiente dato dal derivatore non fosse molto soppresso, dunque irrilevante}.\\
+Si è proceduto con la verifica di queste affermazioni. Per prima cosa si è fittato, per diversi valori della resistenza $R_2$, la dipendenza del duty-cycle da $R_1$ aspettandoci un andamento lineare (in effetti si è svolto un fit affine $t_{duty}=mR_1+q$, anche se di fatto ci si aspetta una dipendenza lineare). I risultati di tali fit sono riassunti in \cref{tab:DutyFit} e nel \cref{fig:FitsRighe}. 
 
 \begin{table}[H]
 \centering
 \begin{tabular}{c|c|c|c} 
-$R_2$ & $T/R$ & $T_0$ & $\chi^2$\\
+$R_2$ & $m [\second/\ohm]$ & $q [\ohm]$ & $\chi^2$\\
 \hline
-673+/-6 & (9.15+/-0.22)e-08 & (-1.9+/-1.3)e-06 & 3.9\\
-986+/-9 & (1.102+/-0.029)e-07 & (-8.2+/-1.6)e-06 & 0.518948675843\\
-1459+/-13 & (1.212+/-0.023)e-07 & (-1.16+/-0.13)e-05 & 0.990073979354\\
-820+/-8 & (1.005+/-0.023)e-07 & (-4.4+/-1.3)e-06 & 1.42818643938\\
-1174+/-10 & (1.150+/-0.022)e-07 & (-1.11+/-0.13)e-05 & 2.13024874798\\
+$673 \pm 6$ & $(9.15 \pm 0.22) e-08$ & $(-1.9 \pm 1.3) e-06$ & $3.9$\\
+$986\pm 9$ & $(1.102 \pm 0.029) e-07$ & $(-8.2\pm 1.6) e-06$ & $0.5$\\
+$1459 \pm 13$ & $(1.212\pm 0.023) e-07$ & $(-1.16 \pm 0.13) e-05$ & $1.0$\\
+$820 \pm 8$ & $(1.005 \pm 0.023) e-07$ & $(-4.4\pm 1.3) e-06$ & $1.4$\\
+$1174 \pm 10$ & $(1.150 \pm 0.022) e-07$ & $(-1.11 \pm 0.13) e-05$ & 2.1\\
 \end{tabular}
 \caption{Diversi fit del duty-cicle in funzione della resistenza $R_1$ per diversi valori di $R_2$}
 \label{tab:DutyFit}
@@ -347,9 +348,9 @@ $R_2$ & $T/R$ & $T_0$ & $\chi^2$\\
 	\label{fig:FitsRighe}
 \end{figure}
 
-Si sono poi presi i diversi valori dei coefficienti angolari $m$ e se ne è trovata la media e la deviazione standard:
+Si sono poi presi i diversi valori dei coefficienti angolari $m$ e se ne è trovata la media e la deviazione standard. \'E stato riportato anche il valore del $\chi^2$ sia per $m$ che per $q$.
 
-\marginpar{\small{Che roba sono i due chiquadri?}}
+%\marginpar{\small{Che roba sono i due chiquadri?}}
 
 \begin{table}[H]
 \centering
@@ -364,7 +365,12 @@ $dof$&$3$\\
 \end{tabular}
 \end{table}
 
-Si sono anche plottati residui degli scarti in \cref{fig:FitRighe}. \`E chiaramente visibile un andamento sistematico, che con il $\chi^2$ \underline{improbabile} mostrato sopra mostra che il duty-cycle è \underline{solamente approssimativamente}.
+
+I $\chi^2$ ottenuti sono molto alti, totalmente incompatibili con il numero dei gradi di libertà(4), sia per $q$ che per $m$. Ci si può chiedere se ciò sia dovuto alla sottostima dell'errore sugli $m$ e sui $q$ fittati o se il fit rigetti l'ipotesi. 
+Si sono plottati quindi gli scarti normalizzati, visibili in  \cref{fig:FitRighe}.
+Come si può vedere da quest'ultimo grafico c'è una deriva sistematica di entrambi i parametri in base alla resistenza $R_2$. Questo permette di concludere che l'indipendenza di $t_{duty}$ dalla resistenza dell'astabile è solo approssimativamente rispettata e, con gli strumenti a nostra disposizione si può notare questo scostamento. 
+
+%Si sono anche plottati residui degli scarti in \cref{fig:FitRighe}. \`E chiaramente visibile un andamento sistematico. In effetti..., che con il $\chi^2$ \underline{improbabile} mostrato sopra mostra che il duty-cycle è \underline{solamente approssimativamente}.
 
 
 \begin{figure}[H]
@@ -382,15 +388,15 @@ Si è svolta la stessa procedura per verificare la linearità del periodo rispet
 \begin{table}[H]
 \centering
 \begin{tabular}{c|c|c|c} 
-$R_1$ & $T/R$ & $T_0$ & $\chi^2$\\
+$R_1$ & $m [\second/\ohm]$ & $q [\ohm]$ & $\chi^2$\\
 \hline
-386+/-4 & (1.973+/-0.035)e-07 & (1.55+/-0.34)e-05 & 0.490688242873\\
-820+/-8 & (1.99+/-0.07)e-07 & (1.4+/-0.8)e-05 & 0.234338459765\\
-327+/-4 & (1.973+/-0.035)e-07 & (1.55+/-0.34)e-05 & 0.490688242873\\
-986+/-9 & (1.97+/-0.04)e-07 & (1.55+/-0.34)e-05 & 0.49060691303\\
-475+/-5 & (1.96+/-0.05)e-07 & (1.7+/-0.5)e-05 & 0.338405660518\\
-674+/-6 & (1.96+/-0.05)e-07 & (1.6+/-0.5)e-05 & 0.0935217261963\\
-558+/-5 & (1.973+/-0.035)e-07 & (1.55+/-0.34)e-05 & 0.490688242873\\
+$386 \pm 4$ & $(1.973 \pm 0.035)e-07$ & $(1.55 \pm 0.34)e-05 $& 0.49\\
+$820 \pm 8$ & $(1.99  \pm 0.07)e-07 $&  $(1.4  \pm 0.8)e-05 $& 0.23\\
+$327 \pm 4$ & $(1.973 \pm 0.035)e-07 $& $(1.55 \pm 0.34)e-05 $& 0.49\\
+$986 \pm 9$ & $(1.97  \pm  0.04)e-07 $& $(1.55 \pm 0.34)e-05 $& 0.49\\
+$475 \pm 5$ & $(1.96  \pm 0.05)e-07 $&  $(1.7  \pm 0.5)e-05 $& 0.34\\
+$674 \pm 6$ & $(1.96  \pm 0.05)e-07 $&  $(1.6  \pm 0.5)e-05 $& 0.09\\
+$558 \pm 5$ & $(1.973 \pm 0.035)e-07 $& $(1.55 \pm 0.34)e-05 $& 0.49\\
 \end{tabular}
 \label{tab:FitsColonne}
 \end{table}
@@ -420,7 +426,7 @@ $dof$ & $7$\\
 
 
 
-Il valore dei $\chi^2$ mostra che gli errori mostrati in \cref{tab:FitsColonne} sono probabilmente sovrastimati. Comunque si può concludere che il periodo è dato da una retta affine rispetto a $R_2$ e che nulla dipende da $R_1$. \underline{In figura gli scarti normalizzati...}
+Il valore dei $\chi^2$ mostra che gli errori mostrati in \cref{tab:FitsColonne} sono probabilmente sovrastimati. Comunque si può concludere che il periodo è dato da una retta affine rispetto a $R_2$ e che nulla dipende da $R_1$. Questo è ancora più evidente dal plot degli scarti normalizzati (\cref{fig:FitColonne}), che non mostra alcun segno di andamento sistematico.
 
  
 \begin{figure}[H]
@@ -432,7 +438,7 @@ Il valore dei $\chi^2$ mostra che gli errori mostrati in \cref{tab:FitsColonne} 
 
 \subsection{Modulazione periodo e duty-cycle}
 
-Si è dunque provato a trovare dei valori di resistenze $R_1$ e $R_2$ tali da avere un periodo di circa $\unit{100}{\micro\second}$ e un duty-cycle del 30 \%. Si è ottenuto il risultato voluto con $R_1=\unit{386 \pm 5}{\ohm}$ e  $R_1=\unit{434 \pm 5}{\ohm}$. In \cref{fig:410030} il risultato visto all'oscilloscopio. 
+In questa sezione dell'esperienza si provato a trovare dei valori di resistenze $R_1$ e $R_2$ tali da avere un periodo di circa $\unit{100}{\micro\second}$ e un duty-cycle del 30 \%. Si è ottenuto il risultato voluto con $R_1=\unit{386 \pm 5}{\ohm}$ e  $R_1=\unit{434 \pm 5}{\ohm}$. In \cref{fig:410030} il risultato visto all'oscilloscopio. 
 
 
  \begin{figure}[H]
@@ -442,9 +448,7 @@ Si è dunque provato a trovare dei valori di resistenze $R_1$ e $R_2$ tali da av
 	\label{fig:410030}
 \end{figure}
 
-Come si può vedere dal grafico il periodo è di $\unit{100.0 \pm ?}{\micro\second}$ e il duty-cycle di $\unit{30.0 \pm ?}{\micro\second}$.
-\underline{Che bello...}
-\marginpar{e gli errori?}
+Come si può osservare anche dal grafico il periodo è di $\unit{100.0 \pm 2.5}{\micro\second}$ e il duty-cycle di $\unit{30.0 \pm 2.5}{\micro\second}$ (questo, supponendo che gli errori sui tempi siano scorrelati, porta a un duty-cycle di $30 \pm 2.6 \% $, con una probabile sovrastima dell'errore).
 
 
 
