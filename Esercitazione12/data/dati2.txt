@@ -1,0 +1,24 @@
+Vcc=4.97
+
+
+1) flipflop
+
+ritardo=32ns
+
+RITARDO CLOCK - QX
+
+QA
+
+36 ns
+
+QB
+
+42 ns
+
+QC
+
+53 ns
+
+QD
+
+55 ns

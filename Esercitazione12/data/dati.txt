@@ -1,0 +1,7 @@
+Vcc=4.97
+
+
+1) flipflop
+
+ritardo=32ns
+
