@@ -15,7 +15,7 @@ except:
 
 
 sys.path = sys.path + [path]
-dir= path + "Esercitazione11\\"
+dir= path + "Esercitazione12\\"
 
 from BuzzLightyear import * 
 from uncertainties import *
@@ -23,72 +23,41 @@ import uncertainties
 ###########################################################################
 
 from Oscillografo import *
+from statistics import mean
 
-AB = OscilloscopeData(dir+"data\\AB.csv")
-andAO = OscilloscopeData(dir+"data\\andAO.csv")
-orAO = OscilloscopeData(dir+"data\\orAO.csv")
-xorAO = OscilloscopeData(dir+"data\\xorAO.csv")
-
+counter2 = OscilloscopeData(dir+"data\\counter2.csv")
+counter4 = OscilloscopeData(dir+"data\\counter4.csv")
+counter8 = OscilloscopeData(dir+"data\\counter8.csv")
+counter16 = OscilloscopeData(dir+"data\\counter16.csv")
+csv81 = OscilloscopeData(dir+"data\\81.csv")
 
 figure(1)
-fig,ax = subplots(1)
 
-plot(AB.T1, AB.CH1, ",--", label="input1")
-plot(AB.T2, AB.CH2, ",--", label="input2")
-plot(andAO.T2, andAO.CH2, ",-", label="AND")
+clockT = (counter2.T1 + counter4.T1 + counter8.T1 + counter16.T1)/4
+clockV =  (counter2.CH1 + counter4.CH1 + counter8.CH1 + counter16.CH1)/4
 
+plot(clockT, clockV, ",--", label="clock")
+plot(counter2.T2, counter2.CH2, ",--", label="divided by 2")
+plot(counter4.T2, counter4.CH2, ",--", label="divided by 4")
+plot(counter8.T2, counter8.CH2, ",--", label="divided by 8")
+plot(counter16.T2, counter16.CH2, ",--", label="divided by 16")
 
-ax.set_yticklabels([])
-ax.set_xticklabels([])
-legend(loc=6)
+legend(loc=2)
 grid()
-savefig(dir + "grafici\\ANDard.pdf")
+savefig(dir + "grafici\\counter.pdf")
+
 
 figure(2)
-fig,ax = subplots(1)
-grid()
-plot(AB.T1, AB.CH1, ",--", label="input1")
-plot(AB.T2, AB.CH2, ",--", label="input2")
-plot(orAO.T2, orAO.CH2, ",-", label="OR")
 
+plot(csv81.T1, csv81.CH1, ",--", label="bit 1-0")
+plot(csv81.T2, csv81.CH2, ",--", label="bit 8-0")
 
-ax.set_yticklabels([])
-ax.set_xticklabels([])
 legend(loc=6)
 grid()
-savefig(dir + "grafici\\ORard.pdf")
-
-figure(3)
-fig,ax = subplots(1)
-
-plot(AB.T1, AB.CH1, ",--", label="input1")
-plot(AB.T2, AB.CH2, ",--", label="input2")
-plot(xorAO.T2, xorAO.CH2, ",-", label="XOR")
+savefig(dir + "grafici\\counter10.pdf")
 
 
-ax.set_yticklabels([])
-ax.set_xticklabels([])
-legend(loc=6)
-grid()
-savefig(dir + "grafici\\XORard.pdf")
-
-figure(4)
-fig,ax = subplots(1)
-
-plot(AB.T1, AB.CH1, ",:", label="input1")
-plot(AB.T2, AB.CH2, ",:", label="input2")
-plot(xorAO.T2, xorAO.CH2, ",--", label="SUM")
-plot(andAO.T2, andAO.CH2, ",-", label="CARRY")
-
-
-ax.set_yticklabels([])
-ax.set_xticklabels([])
-legend(loc=6)
-
-savefig(dir + "grafici\\ADDERard.pdf")
-
-
-# show()
-close('all')
+show()
+# close('all')
 
 ###########################################################################
