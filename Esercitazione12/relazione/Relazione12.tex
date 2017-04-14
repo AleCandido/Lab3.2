@@ -62,6 +62,9 @@ La strumentazione è quella solitamente presente sul banco di lavoro, e inoltre 
 	\item 4 diodi LED.
 \end{itemize}
 
+
+
+
 \section{Flip-Flop D-Latch}
 
 \begin{figure}[H]
@@ -70,6 +73,43 @@ La strumentazione è quella solitamente presente sul banco di lavoro, e inoltre 
 	\caption{Schema del circuito del Flip-Flop di tipo D}
 	\label{fig:FFD}
 \end{figure}
+Si è montto il circuito in \cref{fig:FFD} e si è verificato il funzionamento del circuito inviando in $D$ il segnale proveniente dal generatore di funzioni. Si è ripetuto il procedimento diverse volte, accendendo e spegnendo l'enable $E$ (controllato con uno swich) per verificare che, come previsto:\\
+
+\begin{itemize}
+\item Se l'enable è \code{HIGH} il segnale $D$ venga semplicemente ripetuto in $Q$
+\item Se l'enable è \code{LOW} il segnale è stabile
+\item Il valore di $Q$ (e dunque di $Q$bar) vengono conservati una volta che il dispositivo è disabilitato.
+\end{itemize}
+
+Per supportare tali verifiche sono state prese le seguenti immagini:
+
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\textwidth]{../grafici/enableUp.png}
+	\caption{Q segue D se l'enable è \code{HIGH}}
+	\label{fig:FFD}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\textwidth]{../grafici/EnableDown0.png}
+	\caption{Q congelato su \code{HIGH} mentre l'enable è \code{LOW}}
+	\label{fig:FFD}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\textwidth]{../grafici/EnableDown1.png}
+	\caption{Q congelato su \code{LOW} mentre l'enable è \code{LOW}}
+	\label{fig:FFD}
+\end{figure}
+
+Come è mostrato nelle figure capita sia che $Q$ venga congelato nel suo valore \code{HIGH} che nel suo valore \code{LOW} in base allo stato logico dell'uscita quando l'enable viene diabilitato.\\
+Dalla prima immagine è invecie palese che l'uscita della porta si limita a seguire l'ingresso se l'enable è abilitato.\\
+Oltre alla mera verifica del funzionamento si è qunque misurato il ritardo fra l'ingresso e l'uscita, nella condizione %$E=$\code{HIGH}, di $V_{rit}=\unit{32\pm 2}{\Ohm}$
+
+
 
 \section{Divisori di frequenza}
 
