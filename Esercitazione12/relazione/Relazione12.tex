@@ -72,13 +72,68 @@ La strumentazione è quella solitamente presente sul banco di lavoro, e inoltre 
 \end{figure}
 
 \section{Divisori di frequenza}
+Si è montato il circuito in \cref{fig:counter} che rappresenta un divisore di frequenza binario.
+Il circuito è costituito da un contatore a 4 bit basato su FF JK. Le uscite di ogni FF JK sono collegate
+ciascuna ad un Led rosso e a delle resistenze di limitazione di corrente.
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.9\textwidth]{../grafici/counterScheme.png}
+	\includegraphics[width=0.7\textwidth]{../grafici/counterScheme.png}
 	\caption{Schema del circuito del contatore a 4 bit}
 	\label{fig:counter}
 \end{figure}
+
+
+Per il corretto funzionamento del circuito è necessario che almeno uno tra gli ingressi di Reset ($R_0 , R_1$)
+sia posto a terra. Infatti quando uno tra $R_0$ e $R_1$ è a terra, all'uscita del NAND1 si ha 1 e quindi J=K=1 (K è flottante, quindi è a 1) su ogni JK FF; così le loro uscite (Q e $\bar{Q}$) vengono complementate ad ogni colpo del proprio clock e il circuito funziona.
+\newline
+\newline
+Si è dunque inviato un clock ad una frequenza di circa 1Hz nel FF1 e si è verificato
+che il circuito agisse come un contatore osservando sui led la codifica binaria dei numeri da 0 
+a 15 (ci si mette a frequenza bassa per riuscire ad osservare i led che si accendono e si spengono).
+A questo punto, dopo aver verificato il corretto funzionamento del circuito, ci si è messi ad
+una frequenza di $(64.2 \pm 0.1)kHz$ e si sono guardate le uscite $Q_A,Q_B,Q_C,Q_D$ (le uscite Q di ogni JK FF). Il circuito è costruito in modo tale che $Q_A$ fa da clock al JK FF2, $Q_B$ al JK FF3 e $Q_C$ al JK FF4. Inoltre si può notare che $Q_A$ cambia stato ad ogni periodo del clock del JK FF1, $Q_B$ cambia stato ad ogni periodo del clock del JK FF2 ($Q_A$), ecc; quindi i semiperiodi dei clock dei JK FF2-3-4 sono rispettivamente 2-4-8 volte il periodo del clock1 e le uscite $Q_A,Q_B,Q_C,Q_D$ cambieranno con una frequenza pari a 1/2, 1/4, 1/8, 1/16 rispetto alla frequenza del  clock1. Tutto ciò si è verificato con l'oscilloscopio e le forme d'onda in uscita da $Q_A,Q_B,Q_C,Q_D$ sono riportate in \cref{fig:divisor}, in cui risulta evidente quanto appena detto\footnote{Le unità di misura sarebbero di potenziale sulle ordinate e di tempi sulle ascisse nel nostro caso, ma in generale per l'analisi degli stati logici di un circuito non servono le unità fisiche.}.
+
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\textwidth]{../grafici/counter.pdf}
+	\caption{Forme d'onda in uscita dai JK FF ($Q_A,Q_B,Q_C,Q_D$). Le unità di misura sugli assi sono arbitrarie.}
+	\label{fig:divisor}
+\end{figure}
+
+%siete d'accordo su come ho scritto la footnote sopra?
+
+
+Si è misurato il ritardo tra la transizione del clock1 e quella di $Q_A,Q_B,Q_C,Q_D$. I risultati sono riportati in \tablename{~\ref{tab:time}}.
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{cccc}
+\hline
+$Q_A$ & $Q_B$ & $Q_C$ & $Q_D$ \\
+36$\pm$2 ns & 42$\pm$2 ns & 53$\pm$4 ns & 55$\pm$4 ns \\
+\hline
+	\end{tabular}
+	\caption{Ritardo tra la transizione del clock1 e quella di $Q_A,Q_B,Q_C,Q_D$.}
+	\label{tab:time}
+\end{table}
+
+Come si può vedere dalla tabella il ritardo tra la transizione del clock1 e le varie uscite dei JK FF aumenta, in particolare il ritardo all'uscita dell'ultimo JK FF è maggiore di quello precedente e così via. Ciò è dovuto al fatto che il clock e il segnale in uscita ad un JK FF dipendono dai tempi di propagazione del segnale attraverso il JK FF precedente; questo fa si che si accumuli un ritardo sempre maggiore tra la transizione del primo clock e quella dei successivi. Inoltre si può notare che l'aumento di questo tempo di transizione è non lineare (come si può osservare dalla \cref{tab:time}); ciò è dovuto al fatto che i tempi di propagazione dei vari JK FF non sono tutti uguali, quindi non ci si aspetta un andamento preciso di questi tempi di transizione. 
+
+
+\subsection{Segnale a 1/10 della frequenza di clock}
+Si è costruito un circuito che resetti il contatore quando arriva a 10, in modo da avere un segnale di frequenza pari a 1/10 della frequenza del clock1.
+Si è scelto di costruirlo con un reset asincrono (cioè che agisce non appena si raggiunge il conteggio 10). Si è presa una porta AND (utilizzando sempre i NAND) in cui gli ingressi sono rispettivamente l'uscita del JK FF2 e l'uscita del JK FF4 (cioè $Q_B$ e $Q_D$); si è poi collegata l'uscita dell'AND agli ingressi J di ogni JK FF \footnote{Gli ingressi di reset $R_0$ e $R_1$ non servono più se non per resettare inizialmente il contatore manualmente, perché ora è l'uscita dell'AND che fa le veci del reset.}. In questo modo l'AND da' in uscita 1 solo quando sono alte le uscite $Q_B$ e $Q_D$ e così il circuito si resetta. In particolare ciò accade quando il contatore arriva a 10,12,14,16, poiché non si è effettuata nessuna restrizione sulle altre due uscite ($Q_A$ e $Q_C$). Questo tuttavia non è un problema: se il contatore partisse da zero all'inizio si resetterebbe la prima volta che $Q_B$ = $Q_D$ = 1, quindi quando si arriva a 10, e continuerebbe così; se invece inizialmente il contatore non fosse resettato ma partisse da un numero casuale (anche maggiore di 10), comunque non si avrebbero problemi perchè non appena $Q_B$ = $Q_D$ = 1 la prima volta il circuito si resetterebbe e da quel momento contererebbe sempre fino a 10. Per confermare quanto appena detto si sono visualizzate tramite l'oscilloscopio le forme d'onda in $Q_A$ e $Q_D$ (\cref{fig:81})che hanno un periodo rispettivamente pari al doppio e otto volte il periodo del clock1.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\textwidth]{../grafici/81.png}
+	\caption{Forme d'onda in $Q_A$(a frequenza minore) e $Q_D$(a frequenza maggiore) quando si è montato il circuito per ottenere un segnale a 1/10 della frequenza di clock.}
+	\label{fig:81}
+\end{figure}
+
+Come si può vedere dalla \cref{fig:81} ad un periodo in $Q_D$ corrispondono 5 periodi di $Q_A$, cioè 10 periodi del clock1, in accordo con quanto descritto sopra.
 
 \pagebreak
 
@@ -122,7 +177,7 @@ Si è osservato che il circuito compieva un loop di $15$ stati, evitando lo stat
 
 \paragraph{Resistenze di pull-up}A differenza del circuito precedente in un primo momento il circuito sembrava non funzionare correttamente: il ciclo precedentemente descritto era eseguito fino allo stato 9) (vedi sotto), mentre la transizione successiva lo riportava direttamente allo stato 1) (qualitativamente si notava anche una differenza nell'accensione/spegnimento dei LED rispetto alle altre transizioni).
 
-Si è dunque reinserito l'interruttore e si sono provate diverse configurazioni, individuando il problema nella transizione di U$2$a in poche configurazioni, si è dunque provato a inserire una resistenza di pull-up da $\sim \unit{1}{\kilo\ohm}$ tra il clear di questo Flip-Flop e Vcc. \marginpar{Confermate che era il clear?}
+Si è dunque reinserito l'interruttore e si sono provate diverse configurazioni, individuando il problema nella transizione di U$2$a in poche configurazioni, si è dunque provato a inserire una resistenza di pull-up da $\sim \unit{1}{\kilo\ohm}$ tra il clear di questo Flip-Flop e Vcc. \marginpar{Confermate che era il clear? Si, del terzo JK.}
 Questo ha infine risolto il problema, e il circuito si è comportato come atteso.
 
 \paragraph{Ciclo pseudo-casuale} Si riportano quindi in ordine gli stati osservati nel corso del ciclo completo:

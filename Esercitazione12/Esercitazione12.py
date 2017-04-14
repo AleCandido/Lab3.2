@@ -62,7 +62,7 @@ axes[4].set_xticks([])
 legend(loc=1)
     
 subplot(515)
-plot(counter16.T2, counter16.CH2, ",--", label="clock")
+plot(counter16.T2, counter16.CH2, ",--", label="clock1")
 # axes[5].locator_params(axis='y', tight=True, nbins=5)
 legend(loc=1)
 # grid()
