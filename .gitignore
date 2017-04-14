@@ -12,6 +12,8 @@
 *.loe
 *.ai
 !Documentazione Tecnica/*.pdf
+!Documentazione Tecnica/Strumentazione/*.pdf
+
 
 #!Documentazione Tecnica/*.pdf  # permette di aggiungere documentazione tecnica
 #! */Grafici/*.pdf #permette di condividere anche i grafici !!!
