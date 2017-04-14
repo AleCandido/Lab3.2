@@ -76,8 +76,9 @@ La strumentazione è quella solitamente presente sul banco di lavoro, e inoltre 
 Si è montato il circuito in \cref{fig:FFD} e si è verificato il funzionamento del circuito inviando in $D$ il segnale proveniente dal generatore di funzioni. Si è ripetuto il procedimento diverse volte, accendendo e spegnendo l'enable $E$ (controllato con uno switch) per verificare che, come previsto:\\
 
 \begin{itemize}
-\item Se l'enable è \code{HIGH} il segnale $D$ venga semplicemente ripetuto in $Q$.
-\item Se l'enable è \code{LOW} il segnale $D$ è stabile.
+\item Se l'enable è \code{HIGH} il segnale $D$ viene semplicemente ripetuto in $Q$.
+\item Se l'enable è \code{LOW} il segnale $D$ è mantenuto stabile in $Q$.
+%penso intendessi questo.
 \item Il valore di $Q$ (e dunque di $Q$bar) vengono conservati una volta che il dispositivo è disabilitato.
 \end{itemize}
 
@@ -94,24 +95,28 @@ Per supportare tali affermzioni sono state prese le seguenti immagini:
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.7\textwidth]{../grafici/EnableDown0.png}
-	\caption{Q congelato su \code{HIGH} mentre l'enable è \code{LOW}}
+	\caption{Q fisso su \code{HIGH} mentre l'enable è \code{LOW}}
 	\label{fig:FFD}
 \end{figure}
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.7\textwidth]{../grafici/EnableDown1.png}
-	\caption{Q congelato su \code{LOW} mentre l'enable è \code{LOW}}
+	\caption{Q fisso su \code{LOW} mentre l'enable è \code{LOW}}
 	\label{fig:FFD}
 \end{figure}
 
-Come è mostrato nelle figure capita sia che $Q$ venga congelato nel suo valore \code{HIGH} che nel suo valore \code{LOW} in base allo stato logico dell'uscita quando l'enable viene diabilitato.\\
+Come è mostrato nelle figure capita sia che $Q$ si mantenga fisso nel suo valore \code{HIGH} che nel suo valore \code{LOW} in base allo stato logico dell'uscita quando l'enable viene diabilitato.\\
 Dalla prima immagine è invecie chiaro che l'uscita della porta si limita a seguire l'ingresso se l'enable è abilitato.\\
-Oltre alla mera verifica del funzionamento si è dunque misurato il ritardo fra l'ingresso e l'uscita, nella condizione $EN=$\code{HIGH}, e si è trovato un valore di $T_{rit}=\unit{32.0\pm 0.25 }{\nano\second}$.
-
+Oltre alla mera verifica del funzionamento si è dunque misurato il ritardo fra l'ingresso e l'uscita, nella condizione $EN=$\code{HIGH}, e si è trovato un valore di $T_{rit}=\unit{32\pm 2 }{\nano\second}$.
+\newline 
+\newline
+% 32.0\pm 0.25 
 %Se ci sono cose da fare che mi sono sfuggite ditemelo!!!
-
+\emph{MANCANTE Qual e’ la funzione della porta NOT sull’ingresso? L’ingresso EN è attivo alto
+oppure attivo basso ?}
 %il manuale utente dice che si ha un accuratezza sui tempi di 50 ppm divisione dunque supponendo che sia stata usata la minima divisione (5 ns...) forse non è stata usata(tecnicamente era possibile...)?
+% non è c'è solo quello come errore da considerare, ma ci mettiamo anche quello sistematico ecc. In totale io metterei (per coerenza con quanto sta scritto nelle altre parti, un errore di 2ns).
 
 % ho creato una cartella con documentazione del nuovo oscilloscopio... bisognarebbe riempirla e farla diventare buona...
 
@@ -137,7 +142,7 @@ Si è dunque inviato un clock ad una frequenza di circa 1Hz nel FF1 e si è veri
 che il circuito agisse come un contatore osservando sui led la codifica binaria dei numeri da 0 
 a 15 (ci si mette a frequenza bassa per riuscire ad osservare i led che si accendono e si spengono).
 A questo punto, dopo aver verificato il corretto funzionamento del circuito, ci si è messi ad
-una frequenza di $(64.2 \pm 0.1)kHz$ e si sono guardate le uscite $Q_A,Q_B,Q_C,Q_D$ (le uscite Q di ogni JK FF). Il circuito è costruito in modo tale che $Q_A$ fa da clock al JK FF2, $Q_B$ al JK FF3 e $Q_C$ al JK FF4. Inoltre si può notare che $Q_A$ cambia stato ad ogni periodo del clock del JK FF1, $Q_B$ cambia stato ad ogni periodo del clock del JK FF2 ($Q_A$), ecc; quindi i semiperiodi dei clock dei JK FF2-3-4 sono rispettivamente 2-4-8 volte il periodo del clock1 e le uscite $Q_A,Q_B,Q_C,Q_D$ cambieranno con una frequenza pari a 1/2, 1/4, 1/8, 1/16 rispetto alla frequenza del  clock1. Tutto ciò si è verificato con l'oscilloscopio e le forme d'onda in uscita da $Q_A,Q_B,Q_C,Q_D$ sono riportate in \cref{fig:divisor}, in cui risulta evidente quanto appena detto\footnote{Le unità di misura sarebbero di potenziale sulle ordinate e di tempi sulle ascisse nel nostro caso, ma in generale per l'analisi degli stati logici di un circuito non servono le unità fisiche.}.
+una frequenza di $(64.2 \pm 0.1)kHz$ e si sono guardate le uscite $Q_A,Q_B,Q_C,Q_D$ (le uscite Q di ogni JK FF). Il circuito è costruito in modo tale che $Q_A$ fa da clock al JK FF2, $Q_B$ al JK FF3 e $Q_C$ al JK FF4. Inoltre si può notare che $Q_A$ cambia stato ad ogni periodo del clock del JK FF1, $Q_B$ cambia stato ad ogni periodo del clock del JK FF2 ($Q_A$), ecc; quindi i periodi dei clock dei JK FF2-3-4 sono rispettivamente 2-4-8 volte il periodo del clock1 e le uscite $Q_A,Q_B,Q_C,Q_D$ cambieranno con una frequenza pari a 1/2, 1/4, 1/8, 1/16 rispetto alla frequenza del  clock1. Tutto ciò si è verificato con l'oscilloscopio e le forme d'onda in uscita da $Q_A,Q_B,Q_C,Q_D$ sono riportate in \cref{fig:divisor}, in cui risulta evidente quanto appena detto\footnote{Le unità di misura sarebbero di potenziale sulle ordinate e di tempi sulle ascisse nel nostro caso, ma in generale per l'analisi degli stati logici di un circuito non sono necessarie le unità fisiche, quindi non sono state riportate nella \cref{fig:divisor}.}.
 
 
 \begin{figure}[H]
@@ -164,7 +169,7 @@ $Q_A$ & $Q_B$ & $Q_C$ & $Q_D$ \\
 	\label{tab:time}
 \end{table}
 
-Come si può vedere dalla tabella il ritardo tra la transizione del clock1 e le varie uscite dei JK FF aumenta, in particolare il ritardo all'uscita dell'ultimo JK FF è maggiore di quello precedente e così via. Ciò è dovuto al fatto che il clock e il segnale in uscita ad un JK FF dipendono dai tempi di propagazione del segnale attraverso il JK FF precedente; questo fa si che si accumuli un ritardo sempre maggiore tra la transizione del primo clock e quella dei successivi. Inoltre si può notare che l'aumento di questo tempo di transizione è non lineare (come si può osservare dalla \cref{tab:time}); ciò è dovuto al fatto che i tempi di propagazione dei vari JK FF non sono tutti uguali, quindi non ci si aspetta un andamento preciso di questi tempi di transizione. 
+Come si può vedere dalla tabella il ritardo tra la transizione del clock1 e le varie uscite dei JK FF aumenta, in particolare il ritardo all'uscita dell'ultimo JK FF è maggiore di quello precedente e così via. Ciò è dovuto al fatto che il clock e il segnale in uscita ad un JK FF dipendono dai tempi di propagazione del segnale attraverso il JK FF precedente; questo fa si che si accumuli un ritardo sempre maggiore tra la transizione del primo clock e quella dei successivi. Inoltre si può notare che l'aumento di questo tempo di transizione è non lineare (come si può osservare dalla \cref{tab:time}); ciò è dovuto al fatto che i tempi di propagazione dei vari JK FF non sono tutti uguali, quindi non ci si aspetta un particolare andamento per questi tempi di transizione. 
 
 
 \subsection{Segnale a 1/10 della frequenza di clock}
