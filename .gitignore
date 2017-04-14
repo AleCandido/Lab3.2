@@ -11,5 +11,12 @@
 *.fls
 *.loe
 *.ai
+!Documentazione Tecnica/*.pdf
+!Documentazione Tecnica/Strumenti/*.pdf
+
+
+#!Documentazione Tecnica/*.pdf  # permette di aggiungere documentazione tecnica
+#! */Grafici/*.pdf #permette di condividere anche i grafici !!!
+
 Makefile
 __pycache__/
