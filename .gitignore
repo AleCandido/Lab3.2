@@ -12,7 +12,7 @@
 *.loe
 *.ai
 !Documentazione Tecnica/*.pdf
-!Documentazione Tecnica/Strumentazione/*.pdf
+!Documentazione Tecnica/Strumenti/*.pdf
 
 
 #!Documentazione Tecnica/*.pdf  # permette di aggiungere documentazione tecnica
