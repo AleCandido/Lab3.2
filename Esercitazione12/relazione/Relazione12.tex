@@ -110,13 +110,17 @@ Come è mostrato nelle figure capita sia che $Q$ si mantenga fisso nel suo valor
 Dalla prima immagine è invecie chiaro che l'uscita della porta si limita a seguire l'ingresso se l'enable è abilitato.\\
 Oltre alla mera verifica del funzionamento si è dunque misurato il ritardo fra l'ingresso e l'uscita, nella condizione $EN=$\code{HIGH}, e si è trovato un valore di $T_{rit}=\unit{32\pm 2 }{\nano\second}$.
 \newline 
-\newline
-% 32.0\pm 0.25 
-%Se ci sono cose da fare che mi sono sfuggite ditemelo!!!
-\emph{MANCANTE Qual e’ la funzione della porta NOT sull’ingresso? L’ingresso EN è attivo alto
-oppure attivo basso ?}
-%il manuale utente dice che si ha un accuratezza sui tempi di 50 ppm divisione dunque supponendo che sia stata usata la minima divisione (5 ns...) forse non è stata usata(tecnicamente era possibile...)?
-% non è c'è solo quello come errore da considerare, ma ci mettiamo anche quello sistematico ecc. In totale io metterei (per coerenza con quanto sta scritto nelle altre parti, un errore di 2ns).
+La funzione del NOT è quella di fornire il valore $D$bar al circuito a valle che, in pratica, è un latch RS con enable. 
+Poiché questo latch è costruito con NAND allora il valore di $EN$ per il quale il successivo RS è abilitato è \code{HIGH}, in quanto in questa condizione le due porte NAND che implementano l'enable (U1a e U1d) non modificano $D$ e $D$bar, che vengono dati direttamente in input a R e a S. Quando invece $EN=$\code{LOW} le uscite delle due porte sono forzate a \code{LOW}, duenque il latch RS finale è in condizione di \code{HOLD}. Si nota come un latch costruito con porte NOR avrebbe gli stati logici dell'enable invertiti.
+
+
+
+%bhe in realtà sarebbe > 16 medie ±(1 intervallo di campionamento + 100 parti per milione ×
+%|lettura| + 0,4 ns) dovrebbe essere dunque 0.25 + .032+ 0.4=0.6 !}
+
+
+
+
 
 % ho creato una cartella con documentazione del nuovo oscilloscopio... bisognarebbe riempirla e farla diventare buona...
 
