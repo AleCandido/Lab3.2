@@ -5,7 +5,8 @@
 
 \documentclass[a4paper,10pt]{article}
 \usepackage[utf8]{inputenc}
-\usepackage[T1]{fontenc}	
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
 \usepackage[italian]{babel}
 
 \usepackage{amsmath}
@@ -76,10 +77,10 @@ La strumentazione è quella solitamente presente sul banco di lavoro, e inoltre 
 Si è montato il circuito in \cref{fig:FFD} e si è verificato il funzionamento del circuito inviando in $D$ il segnale proveniente dal generatore di funzioni. Si è ripetuto il procedimento diverse volte, accendendo e spegnendo l'enable $E$ (controllato con uno switch) per verificare che, come previsto:\\
 
 \begin{itemize}
-\item Se l'enable è \code{HIGH} il segnale $D$ viene semplicemente ripetuto in $Q$.
+\item Se l'enable è \code{HIGH} il segnale $D$ viene semplicemente riportato su $Q$.
 \item Se l'enable è \code{LOW} il segnale $D$ è mantenuto stabile in $Q$.
 %penso intendessi questo.
-\item Il valore di $Q$ (e dunque di $Q$bar) vengono conservati una volta che il dispositivo è disabilitato.
+\item Il valore di $Q$ (e dunque di $\bar{Q}$) vengono conservati una volta che il dispositivo è disabilitato.
 \end{itemize}
 
 Per supportare tali affermzioni sono state prese le seguenti immagini:
@@ -110,8 +111,12 @@ Come è mostrato nelle figure capita sia che $Q$ si mantenga fisso nel suo valor
 Dalla prima immagine è invecie chiaro che l'uscita della porta si limita a seguire l'ingresso se l'enable è abilitato.\\
 Oltre alla mera verifica del funzionamento si è dunque misurato il ritardo fra l'ingresso e l'uscita, nella condizione $EN=$\code{HIGH}, e si è trovato un valore di $T_{rit}=\unit{32\pm 2 }{\nano\second}$.
 \newline 
-La funzione del NOT è quella di fornire il valore $D$bar al circuito a valle che, in pratica, è un latch RS con enable. 
-Poiché questo latch è costruito con NAND allora il valore di $EN$ per il quale il successivo RS è abilitato è \code{HIGH}, in quanto in questa condizione le due porte NAND che implementano l'enable (U1a e U1d) non modificano $D$ e $D$bar, che vengono dati direttamente in input a R e a S. Quando invece $EN=$\code{LOW} le uscite delle due porte sono forzate a \code{LOW}, duenque il latch RS finale è in condizione di \code{HOLD}. Si nota come un latch costruito con porte NOR avrebbe gli stati logici dell'enable invertiti.
+
+La funzione del NOT è quella di fornire anche il valore $\bar{D}$ al circuito a valle che, in pratica, è un latch RS con enable, in modo che gli ingressi dei NAND U1a e U1d non connessi all'enable siano sempre opposti. Questo al livello del latch RS implica che non vi sia mai in ingresso \code{LOW}-\code{LOW}, e garantisce il regolare funzionamento del flip-flop.
+ 
+Poiché questo latch è costruito con NAND allora il valore di $EN$ per il quale il successivo RS è abilitato è \code{HIGH}, in quanto in questa condizione le due porte NAND che implementano l'enable (U1a e U1d) non modificano $D$ e $\bar{D}$, che vengono dati direttamente in input a R e a S. Quando invece $EN=$\code{LOW} le uscite delle due porte sono forzate a \code{LOW}, dunque il latch RS finale è in condizione di \code{HOLD}.
+
+Si nota come un latch costruito con porte NOR avrebbe gli stati logici dell'enable invertiti.
 
 
 
@@ -129,6 +134,10 @@ Poiché questo latch è costruito con NAND allora il valore di $EN$ per il quale
 Si è montato il circuito in \cref{fig:counter} che rappresenta un divisore di frequenza binario.
 Il circuito è costituito da un contatore a 4 bit basato su FF JK. Le uscite di ogni FF JK sono collegate
 ciascuna ad un Led rosso e a delle resistenze di limitazione di corrente.
+\newline
+
+Per il corretto funzionamento del circuito è necessario che almeno uno tra gli ingressi di Reset ($R_0 , R_1$)
+sia posto a terra. Infatti quando uno tra $R_0$ e $R_1$ è a terra, all'uscita del NAND1 si ha \code{HIGH} e quindi J=K=\code{HIGH} (K è flottante, quindi è \code{HIGH}) su ogni FF JK; così le loro uscite (Q e $\bar{Q}$) vengono complementate ad ogni colpo del proprio clock e il circuito funziona.
 
 \begin{figure}[H]
 	\centering
@@ -137,22 +146,16 @@ ciascuna ad un Led rosso e a delle resistenze di limitazione di corrente.
 	\label{fig:counter}
 \end{figure}
 
-
-Per il corretto funzionamento del circuito è necessario che almeno uno tra gli ingressi di Reset ($R_0 , R_1$)
-sia posto a terra. Infatti quando uno tra $R_0$ e $R_1$ è a terra, all'uscita del NAND1 si ha 1 e quindi J=K=1 (K è flottante, quindi è a 1) su ogni JK FF; così le loro uscite (Q e $\bar{Q}$) vengono complementate ad ogni colpo del proprio clock e il circuito funziona.
-\newline
-\newline
 Si è dunque inviato un clock ad una frequenza di circa 1Hz nel FF1 e si è verificato
-che il circuito agisse come un contatore osservando sui led la codifica binaria dei numeri da 0 
-a 15 (ci si mette a frequenza bassa per riuscire ad osservare i led che si accendono e si spengono).
-A questo punto, dopo aver verificato il corretto funzionamento del circuito, ci si è messi ad
-una frequenza di $(64.2 \pm 0.1)kHz$ e si sono guardate le uscite $Q_A,Q_B,Q_C,Q_D$ (le uscite Q di ogni JK FF). Il circuito è costruito in modo tale che $Q_A$ fa da clock al JK FF2, $Q_B$ al JK FF3 e $Q_C$ al JK FF4. Inoltre si può notare che $Q_A$ cambia stato ad ogni periodo del clock del JK FF1, $Q_B$ cambia stato ad ogni periodo del clock del JK FF2 ($Q_A$), ecc; quindi i periodi dei clock dei JK FF2-3-4 sono rispettivamente 2-4-8 volte il periodo del clock1 e le uscite $Q_A,Q_B,Q_C,Q_D$ cambieranno con una frequenza pari a 1/2, 1/4, 1/8, 1/16 rispetto alla frequenza del  clock1. Tutto ciò si è verificato con l'oscilloscopio e le forme d'onda in uscita da $Q_A,Q_B,Q_C,Q_D$ sono riportate in \cref{fig:divisor}, in cui risulta evidente quanto appena detto\footnote{Le unità di misura sarebbero di potenziale sulle ordinate e di tempi sulle ascisse nel nostro caso, ma in generale per l'analisi degli stati logici di un circuito non sono necessarie le unità fisiche, quindi non sono state riportate nella \cref{fig:divisor}.}.
+che il circuito agisse come un contatore osservando sui led la codifica binaria dei numeri da 0 a 15 (ci si mette a frequenza bassa per riuscire ad osservare i led che si accendono e si spengono).
+
+Dopo aver verificato il corretto funzionamento del circuito, si è quindi fissata una frequenza di $(64.2 \pm 0.1)kHz$ e si sono osservate le uscite $Q_A,Q_B,Q_C,Q_D$ (le uscite $Q$ di ogni FF). Il circuito è costruito in modo tale che $Q_A$ faccia da clock al FF2, $Q_B$ al FF3 e $Q_C$ al FF4. Inoltre si può notare che $Q_A$ cambia stato ad ogni periodo del clock del FF1, $Q_B$ cambia stato ad ogni periodo del clock del FF2 ($Q_A$), ecc; quindi i periodi dei clock dei FF2-3-4 sono rispettivamente 2-4-8 volte il periodo del clock esterno e le uscite $Q_A,Q_B,Q_C,Q_D$ cambieranno con una frequenza pari a 1/2, 1/4, 1/8, 1/16 rispetto alla frequenza del clock estern. Tutto ciò si è verificato con l'oscilloscopio e le forme d'onda in uscita da $Q_A,Q_B,Q_C,Q_D$ sono riportate in \cref{fig:divisor}, in cui risulta evidente quanto appena detto\footnote{Le unità di misura sarebbero di potenziale sulle ordinate e di tempi sulle ascisse nel nostro caso, ma in generale per l'analisi degli stati logici di un circuito non sono necessarie le unità fisiche, quindi non sono state riportate nella \cref{fig:divisor}.}.
 
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.7\textwidth]{../grafici/counter.pdf}
-	\caption{Forme d'onda in uscita dai JK FF ($Q_A,Q_B,Q_C,Q_D$). Le unità di misura sugli assi sono arbitrarie.}
+	\caption{Forme d'onda in uscita dai FF JK ($Q_A,Q_B,Q_C,Q_D$). Le unità di misura sugli assi sono arbitrarie.}
 	\label{fig:divisor}
 \end{figure}
 
@@ -173,12 +176,20 @@ $Q_A$ & $Q_B$ & $Q_C$ & $Q_D$ \\
 	\label{tab:time}
 \end{table}
 
-Come si può vedere dalla tabella il ritardo tra la transizione del clock1 e le varie uscite dei JK FF aumenta, in particolare il ritardo all'uscita dell'ultimo JK FF è maggiore di quello precedente e così via. Ciò è dovuto al fatto che il clock e il segnale in uscita ad un JK FF dipendono dai tempi di propagazione del segnale attraverso il JK FF precedente; questo fa si che si accumuli un ritardo sempre maggiore tra la transizione del primo clock e quella dei successivi. Inoltre si può notare che l'aumento di questo tempo di transizione è non lineare (come si può osservare dalla \cref{tab:time}); ciò è dovuto al fatto che i tempi di propagazione dei vari JK FF non sono tutti uguali, quindi non ci si aspetta un particolare andamento per questi tempi di transizione. 
+Come si può vedere dalla tabella il ritardo tra la transizione del clock esterno e le varie uscite dei FF aumenta, in particolare il ritardo all'uscita dell'ultimo FF è maggiore di quello precedente e così via. Ciò è dovuto al fatto che il clock e il segnale in uscita ad un FF dipendono dai tempi di propagazione del segnale attraverso il FF precedente; questo fa si che si accumuli un ritardo sempre maggiore tra la transizione del primo clock e quella dei successivi.
+
+Inoltre si può notare che l'aumento di questo tempo di transizione è non lineare (come si può osservare dalla \cref{tab:time}); ciò è dovuto al fatto che i tempi di propagazione dei vari FF non sono tutti uguali, quindi non ci si aspetta un particolare andamento per questi tempi di transizione. 
 
 
 \subsection{Segnale a 1/10 della frequenza di clock}
-Si è costruito un circuito che resetti il contatore quando arriva a 10, in modo da avere un segnale di frequenza pari a 1/10 della frequenza del clock1.
-Si è scelto di costruirlo con un reset asincrono (cioè che agisce non appena si raggiunge il conteggio 10). Si è presa una porta AND (utilizzando sempre i NAND) in cui gli ingressi sono rispettivamente l'uscita del JK FF2 e l'uscita del JK FF4 (cioè $Q_B$ e $Q_D$); si è poi collegata l'uscita dell'AND agli ingressi J di ogni JK FF \footnote{Gli ingressi di reset $R_0$ e $R_1$ non servono più se non per resettare inizialmente il contatore manualmente, perché ora è l'uscita dell'AND che fa le veci del reset.}. In questo modo l'AND da' in uscita 1 solo quando sono alte le uscite $Q_B$ e $Q_D$ e così il circuito si resetta. In particolare ciò accade quando il contatore arriva a 10,12,14,16, poiché non si è effettuata nessuna restrizione sulle altre due uscite ($Q_A$ e $Q_C$). Questo tuttavia non è un problema: se il contatore partisse da zero all'inizio si resetterebbe la prima volta che $Q_B$ = $Q_D$ = 1, quindi quando si arriva a 10, e continuerebbe così; se invece inizialmente il contatore non fosse resettato ma partisse da un numero casuale (anche maggiore di 10), comunque non si avrebbero problemi perchè non appena $Q_B$ = $Q_D$ = 1 la prima volta il circuito si resetterebbe e da quel momento contererebbe sempre fino a 10. Per confermare quanto appena detto si sono visualizzate tramite l'oscilloscopio le forme d'onda in $Q_A$ e $Q_D$ (\cref{fig:81})che hanno un periodo rispettivamente pari al doppio e otto volte il periodo del clock1.
+Si è costruito un circuito asincrono che resetti il contatore quando esso assuma il valore $10$ (ma poiché il reset è asincrono non lo assume mai stabilmente, quindi non viene visualizzato), in modo da avere un segnale di frequenza pari a 1/10 della frequenza del clock esterno. In seguito con contare \textit{fino a $10$} si intende da $0$ a $9$ ciclicamente.
+
+Si è utilizzata una porta AND (realizzata tramite NAND) i cui ingressi sono stati posti uno all'uscita del FF2 e l'altro all'uscita del FF4 (cioè $Q_B$ e $Q_D$); si è poi collegata l'uscita dell'AND a un ingresso del NAND1, lasciando flottante l'altro.
+
+In questo modo l'AND dà in uscita \code{HIGH} solo quando sono \code{HIGH} le uscite $Q_B$ e $Q_D$ e così il circuito si resetta.
+Ciò può accadere quando il contatore arriva a $10$,$12$,$14$,$16$, poiché non si è effettuata nessuna restrizione sulle altre due uscite ($Q_A$ e $Q_C$). Questo tuttavia non costituisce un problema per il funzionamento del circuito: se il contatore partisse da zero all'inizio si resetterebbe la prima volta che $Q_B$ = $Q_D$ = \code{HIGH}, quindi a $10$, e ripeterebbe ciclicamente la sequenza; se invece inizialmente il contatore non fosse resettato ma partisse da un numero casuale (anche maggiore di $10$), comunque non si avrebbero problemi a regime, poiché non appena $Q_B$ = $Q_D$ = \code{HIGH} il circuito si resetterebbe e da quel momento contererebbe sempre fino a $10$.
+
+Per confermare quanto appena detto si sono visualizzate tramite l'oscilloscopio le forme d'onda in $Q_A$ e $Q_D$ (\cref{fig:81})che hanno un periodo rispettivamente pari al doppio e sedici volte il periodo del clock esterno.
 
 \begin{figure}[H]
 	\centering
@@ -187,7 +198,7 @@ Si è scelto di costruirlo con un reset asincrono (cioè che agisce non appena s
 	\label{fig:81}
 \end{figure}
 
-Come si può vedere dalla \cref{fig:81} ad un periodo in $Q_D$ corrispondono 5 periodi di $Q_A$, cioè 10 periodi del clock1, in accordo con quanto descritto sopra.
+Si può vedere dalla \cref{fig:81} come ad un periodo in $Q_D$ corrispondano $5$ periodi di $Q_A$, cioè $10$ periodi del clock esterno, in accordo con quanto descritto sopra.
 
 \pagebreak
 
@@ -203,7 +214,7 @@ Come si può vedere dalla \cref{fig:81} ad un periodo in $Q_D$ corrispondono 5 p
 	\vspace{-40pt}
 \end{wrapfigure}
 
-Si è realizzato il circuito in \cref{fig:shift}, impiegando resistenza da $\sim \unit{330}{\ohm}$ e alimentando il tutto a $\sim \unit{5}{\volt}$.
+Si è realizzato il circuito in \cref{fig:shift}, impiegando resistenze da $\sim \unit{330}{\ohm}$ e alimentando il tutto a $\sim \unit{5}{\volt}$.
 
 In un primo momento si è provato a non inserire alcuna resistenza di pull-up, e si verificato che in un buon numero di casi lo shift register si comportava come atteso (e.g.: tutti i bit a 0 e un singolo 1 che "viaggia", oppure la situazione reciproca, funzionavano senza inconvenienti). 
 Per fare ciò si è impostato un clock a frequenza molto bassa, in modo da realizzare le configurazioni desiderate dello shift register agendo solo sull'interruttore sul DIP Switch, cioè inviando manualmente i dati al primo Flip-Flop del registro (U$1$a in \cref{fig:shift}).
@@ -231,10 +242,12 @@ Si è osservato che il circuito compieva un loop di $15$ stati, evitando lo stat
 
 \paragraph{Resistenze di pull-up}A differenza del circuito precedente in un primo momento il circuito sembrava non funzionare correttamente: il ciclo precedentemente descritto era eseguito fino allo stato 9) (vedi sotto), mentre la transizione successiva lo riportava direttamente allo stato 1) (qualitativamente si notava anche una differenza nell'accensione/spegnimento dei LED rispetto alle altre transizioni).
 
-Si è dunque reinserito l'interruttore e si sono provate diverse configurazioni, individuando il problema nella transizione di U$2$a in poche configurazioni, si è dunque provato a inserire una resistenza di pull-up da $\sim \unit{1}{\kilo\ohm}$ tra il clear di questo Flip-Flop e Vcc. \marginpar{Confermate che era il clear? Si, del terzo JK.}
+Si è dunque reinserito l'interruttore e si sono provate diverse configurazioni, individuando il problema nella transizione di U$2$a in poche configurazioni, si è dunque provato a inserire una resistenza di pull-up da $\sim \unit{1}{\kilo\ohm}$ tra il clear di questo Flip-Flop e Vcc.
 Questo ha infine risolto il problema, e il circuito si è comportato come atteso.
 
 \paragraph{Ciclo pseudo-casuale} Si riportano quindi in ordine gli stati osservati nel corso del ciclo completo:
+
+(con 1 si intende \code{HIGH}, mentre con 0 \code{LOW})
 
 \begin{equation*}
 \begin{matrix}
@@ -259,12 +272,12 @@ Questo ha infine risolto il problema, e il circuito si è comportato come atteso
 \end{matrix}
 \end{equation*}
 
-\paragraph{Altri "tap" possibili} Si è trovato in rete che qualunque scelta si faccia per la coppia che genera il "tap", si ottiene un ciclo su tutti i $15$ stati possibili\footnote{Cioè escluso quello stabile.}:
+\paragraph{Altri "tap" possibili} Si è trovato in rete che qualunque scelta si faccia per la coppia che genera il "tap", si ottiene un ciclo su tutti i $15$ stati possibili\footnote{Cioè tutti, escluso quello stabile.}~\footnote{Ovviamente l'uscita del tap deve essere posta sul primo bit del registro, se così non fosse esso sarebbe isolato, e quindi manterebbe il suo stato stabilmente, vietando metà degli stati possibili per il registro.}:
 \newline
-\newline
+
 \href{https://www.slideshare.net/azadajay/prbs-generation-using-s}{https://www.slideshare.net/azadajay/prbs-generation-using-s}
 \newline
-\newline
-Si nota che nel documento citato si fa uso di una porta XNOR, ma, a patto di scambiare lo stato iniziale da tutti \code{LOW} a tutti \code{HIGH}, è equivalente.
+
+\noindent Si nota che nel documento citato si fa uso di una porta XNOR, ma, a patto di scambiare lo stato iniziale da tutti \code{LOW} a tutti \code{HIGH}, è equivalente.
 
 \end{document}
