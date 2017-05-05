@@ -109,7 +109,7 @@ Per supportare tali affermzioni sono state prese le seguenti immagini:
 
 Come è mostrato nelle figure capita sia che $Q$ si mantenga fisso nel suo valore \code{HIGH} che nel suo valore \code{LOW} in base allo stato logico dell'uscita quando l'enable viene diabilitato.\\
 Dalla prima immagine è invecie chiaro che l'uscita della porta si limita a seguire l'ingresso se l'enable è abilitato.\\
-Oltre alla mera verifica del funzionamento si è dunque misurato il ritardo fra l'ingresso e l'uscita, nella condizione $EN=$\code{HIGH}, e si è trovato un valore di $T_{rit}=\unit{32\pm 2 }{\nano\second}$.
+Oltre alla mera verifica del funzionamento si è dunque misurato il ritardo fra l'ingresso e l'uscita, nella condizione $EN=$\code{HIGH}, e si è trovato un valore di $T_{rit}=\unit{32.0\pm 0.6 }{\nano\second}$.
 \newline 
 
 La funzione del NOT è quella di fornire anche il valore $\bar{D}$ al circuito a valle che, in pratica, è un latch RS con enable, in modo che gli ingressi dei NAND U1a e U1d non connessi all'enable siano sempre opposti. Questo al livello del latch RS implica che non vi sia mai in ingresso \code{LOW}-\code{LOW}, e garantisce il regolare funzionamento del flip-flop.
@@ -123,7 +123,7 @@ Si nota come un latch costruito con porte NOR avrebbe gli stati logici dell'enab
 %bhe in realtà sarebbe > 16 medie ±(1 intervallo di campionamento + 100 parti per milione ×
 %|lettura| + 0,4 ns) dovrebbe essere dunque 0.25 + .032+ 0.4=0.6 !}
 
-
+%metto questo per sicurezza e invio
 
 
 
@@ -169,7 +169,7 @@ Si è misurato il ritardo tra la transizione del clock1 e quella di $Q_A,Q_B,Q_C
 	\begin{tabular}{cccc}
 \hline
 $Q_A$ & $Q_B$ & $Q_C$ & $Q_D$ \\
-36$\pm$2 ns & 42$\pm$2 ns & 53$\pm$4 ns & 55$\pm$4 ns \\
+36.0$\pm$0.6 ns & 42.0$\pm$0.6 ns & 53.0$\pm$0.6 ns & 55.0$\pm$0.6 ns \\
 \hline
 	\end{tabular}
 	\caption{Ritardo tra la transizione del clock1 e quella di $Q_A,Q_B,Q_C,Q_D$.}
