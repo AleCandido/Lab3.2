@@ -1,0 +1,60 @@
+\documentclass[a4paper,10pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}	
+\usepackage[italian]{babel}
+
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+
+\usepackage{graphicx}
+\usepackage[dvipsnames]{xcolor}  %colori
+
+\usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
+\geometry{a4paper}
+
+\usepackage{verbatim}
+
+\usepackage{booktabs}
+\usepackage{subfig}
+\usepackage{float}
+
+\usepackage[colorlinks=true, linkcolor=black, urlcolor=blue, citecolor=darkgray, filecolor=darkgray]{hyperref}   %per gli hyperlink
+\usepackage[italian, sort, noabbrev, capitalise]{cleveref}
+\usepackage[bottom]{footmisc}
+
+\usepackage[cdot, thickqspace, squaren]{SIunits}
+% macro
+\def\code#1{\texttt{#1}}
+
+\title{Esercitazione 13: Macchine a Stati Finiti: semaforo}
+\author{Gruppo BL \\ Candido Alessandro, Luzio Andrea, Mazziotti Fabrizio}
+
+\begin{document}
+
+\maketitle
+
+\section{Scopo e Strumentazione}
+Lo scopo dell'esercitazione è la progettazione ed implementazione di un circuito che gestisce un semaforo come applicazione del concetto di una macchina a stati finiti (FSM).
+\newline
+
+\noindent La strumentazione è quella solitamente presente sul banco di lavoro, e inoltre si è usato:
+\begin{itemize}
+	\item 2 Integrati 7474 – 2 FF di tipo D;
+	\item 1 Integrato 7400 – 4 Porte NAND;
+	\item 1 Integrato 7408 – 4 Porte AND;
+	\item 1 Integrato 7432 – 4 Porte OR;
+	\item 3 LED: Verde, Rosso, Giallo;
+	\item 1 Switch 4 bit.
+\end{itemize}
+
+\section{Semaforo con circuiti integrati}
+
+\section{Semaforo nello stato abilitato}
+
+\section{Semaforo completo con lampeggiante}
+
+\section{FSM in Software}
+
+\end{document}
