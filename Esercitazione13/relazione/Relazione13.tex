@@ -101,16 +101,145 @@ Gli altri stati sono già stati indicati con le denominazioni relative alle usci
 Lo schema riprodotto in \cref{fig:wEN} è quasi del tutto generale, a meno di un dettaglio: non è rilevante che la transizine dallo stato proibito sia X$ \rightarrow $R, ma è sufficiente qualunque stato permesso.
 Quello riprodotto è quello che è stato scelto per il circuito implementato.
 
+\paragraph{Codifica degli stati} Si è scelto di applicare la seguente codifica:
+\begin{itemize}
+	\item $ 1-1 $ stato proibito;
+	\item $ 0-1 $ lo stato R;
+	\item $ 1-0 $ lo stato VG;
+	\item $ 0-0 $ lo stato V.
+\end{itemize}
+I motivi per la scelta della precedente codifica sono i seguenti:
+\begin{enumerate}
+	\item Invertire $ 1 $ e $ 0 $ in tutte le occorrenze è indifferente a livello di codifica, perché dai flip flop sono disponibili in uscita sia i valori memorizzati che gli stessi negati, per cui non c'è bisogno di ulteriori porte NOT in alcun caso;
+	\item I LED rosso e verde non sono mai accesi contemporaneamente: si è quindi scelto di identificare le due possibili uscite di un bit (il secondo) una con l'accensione del verde e l'altra con quella del rosso;
+	\item Il rosso è acceso in un solo stato durante il ciclo, quindi lo stato proibito deve coincidere con uno dei due in cui sia acceso il rosso;
+	\item Si identifica una delle uscite dell'altro bit con il giallo, in modo da minimizzare la logica che genera l'output (non essendoci è minima necessariamente), in questo modo gli stati dell'altro bit indicheranno se il LED giallo sia acceso o spento\footnote{\`E stato pensato in questo modo anche per facilitare la realizzazione dello stato DISABILITATO.}. A questo punto gli stati sono identificati quindi con i seguenti valori per le uscite:
+	\begin{itemize}
+		\item giallo acceso $ - $ rosso;
+		\item giallo spento $ - $ rosso;
+		\item giallo acceso $ - $ verde;
+		\item giallo spento $ - $ verde;
+	\end{itemize}
+\end{enumerate}
+Si è quindi scelto che i due bit siano quindi del tutto indipendenti, e la codifica dovrà soddisfare questi requisiti. Le scelte residue sono quindi solo $ 2 $: se attribuire al verde il valore $ 0 $ o $ 1 $ del secondo bit, e al giallo il valore $ 0 $ o $ 1 $ del primo.
+
+Per il punto $ 1 $ del precedente elenco l'unica cosa rilevante, a livello di uscite, è la codifica \textit{relativa} per cui la scelta fondamentale è se fissare lo stato VG\footnote{Si è detto al punto $ 4 $ che gli stati sono identificati con le uscite.} in uno stato in cui i due flip flop hanno lo stesso valore oppure diverso.
+
+\subparagraph{Osservazione} Si è detto che la codifica assoluta non è rilevante, e questo è vero in teoria, poiché negando i valori di tutti gli stati e tutte le uscite si ottiene esattamente lo stesso circuito, sostituendo però le porte AND con porte OR e viceversa. In laboratorio si avevano a disposizione tante porte AND quante OR, si avevano però porte NAND, ma non porte NOR.
+
+Per questo motivo la situazione è leggermente asimmetrica, e anche una delle due codifiche \textit{assolute} è facorita.
+
+\subsubsection{Tabelle di verità}
+Si sono realizzate le tabelle di verità del circuito rappresentato in \cref{fig:circuit}; nella \tablename{~\ref{tab:sem1}} sono rappresentate le transizioni di stato e le uscite in relazioni agli ingressi del circuito quando il semaforo è abilitato (Enable = 1).
+
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{c|cc|cc|ccc|ccc}
+		\hline
+		$Enable$ & $Q1_n$ &	$Q2_n$ & $Q1_{n+1}$ & $Q2_{n+1}$ & $V_n$ & $G_n$ & $R_n$ & $V_{n+1}$ & $G_{n+1}$ & $R_{n+1}$ \\
+		\hline
+		1 & 1 & 1 & 0 & X & X & X & X & X & X & X \\
+		\hline
+		1 & 0 & 1 & 0 & 0 & 0 & 0 & 1 & 1 & 0 & 0 \\
+		1 & 0 & 0 & 1 & 0 & 1 & 0 & 0 & 1 & 1 & 0 \\
+		1 & 1 & 0 & 0 & 1 & 1 & 1 & 0 & 0 & 0 & 1 \\
+		\hline
+	\end{tabular}
+	\caption[Semaforo Abilitato]{Tabella di verità del circuito in esame quando il semaforo è abilitato\footnotemark.}
+	\label{tab:sem1}
+\end{table}
+\footnotetext{Gli stati contrassegnati con le X sono stati Don't Care.}
+
+\begin{itemize}
+	\item Le variabili $Q1_n$, $Q2_n$ rappresentano gli stati n-esimi dei due FF;
+	\item le variabili $Q1_{n+1}$, $Q2_{n+1}$ sono gli stati (n+1)-esimi dei due FF;
+	\item gli stati $V_n$,$G_n$,$R_n$ rappresentano le uscite n-esime, visualizzate sui LED (rispettivamente il led Verde, Giallo, Rosso);
+	\item gli stati $V_{n+1}$,$G_{n+1}$,$R_{n+1}$ rappresentano le uscite (n+1)-esime, visualizzate sui LED;
+\end{itemize}
+Gli stati contrassegnati con una 'X' sono stati don't care, e sono posti in corrispondenza dello stato dei FF indesiderato, poiché per esso l'unica azione rilevante è la transizione su un altro stato, che p stata imposta fissato $ Q1_{n+1} = 0 $.
+
+Per come è stato costruito il circuito lo stato indesiderato ($Q1_n$ = $Q2_n$ = 1) porta a sostituire le X con quanto riportato in \tablename{~\ref{tab:inde}}, come affermato nella sezione precedente.
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{c|cc|cc|ccc|ccc}
+		\hline
+		$Enable$ & $Q1_n$ &	$Q2_n$ & $Q1_{n+1}$ & $Q2_{n+1}$ & $V_n$ & $G_n$ & $R_n$ & $V_{n+1}$ & $G_{n+1}$ & $R_{n+1}$ \\
+		\hline
+		1 & 1 & 1 & 0 & 1 & 0 &  1 & 1 & 0 & 0 & 1  \\
+		\hline
+	\end{tabular}
+	\caption{Tabella di verità per lo stato indesiderato quando il semaforo è abilitato.}
+	\label{tab:inde}
+\end{table}
+%
+%Quindi come si può vedere dalle due tabelle, se si capita (all'accensione del circuito) nello stato indesiderato, il led giallo e rosso sono accesi contemporaneamente. Al colpo successivo di clock le uscite dei FF cadono negli stati in corrispondenza dei quali solo il led Rosso è acceso. Da questo momento in poi si alternano gli stati Rosso, Verde, Verde-Giallo e non si può più ricadere nello stato indesiderato.
 
 \subsection{Semaforo completo con lampeggiante}
+
+Si è progettato il semaforo con enable seguendo i seguenti criteri:
+\begin{enumerate}
+	\item Nel caso precedente lo stato cui è associato il giallo è realizzato dipende da un singolo flip flop, per cui è sufficiente
+	\begin{itemize}
+		\item porre questo FF oscillante quando EN $ = 0 $;
+		\item imporre che quando  EN $ = 0 $ i LED verde e rosso siano spenti, a prescindere dallo stato dei registri.
+	\end{itemize}
+	\item si cerca di minimizzare il numero di transizioni da cambiare rispetto al caso precedente quando EN $ = 0 $.
+\end{enumerate}
 
 \begin{figure}[H]
 	\centering
 	\input{../grafici/FSMall.tex}
 	\caption{Macchine a stati finiti per i due casi: con e senza enable}
+	\label{fig:EN}
 \end{figure}
 
+Si sono quindi fissate le transizioni come mostrato in \cref{fig:EN}, in cui nello schema di destra sono rappresentate con una linea continua le transizioni per EN $ = 1 $ e con una linea tratteggiata quelle per EN $ = 0 $.
+\newline
+
+Si noti che per passare da un caso all'altro è stato sufficiente cambiare un'unica transizione, imponendo di fatto che ci siano due stati proibiti, e che i due stati permessi ciclino fra di loro (di cui ovviamente uno avrà il giallo acceso, VG, e l'altro spento).
+\newline
+
+Non si procede a illustrare una nuova codifica, perché da quanto si è affermato fin qui è evidente che si è scelto di mantenere la stessa codifica del caso precedente.
+
+\paragraph{Macchina di Mealy/Moore} Si è scelto di realizzare una macchina di Mealy, come mostrato in \cref{fig:circuit}; si nota che la realizzazione di una macchina di Moore prevederebbe la sola sincronizzazione dell'enable, ponendo un flip flop che riceva EN come dato e lo comunichi al resto del circuito attraverso la sua uscita Q, senza che sia necessaria l'aggiunta di ulteriore logica (in questo caso gli stati considerati sarebbero $ 8 $, dato che si inserirebbe un ulteriore bit, e quindi sarebbero in tutto $ 3 $, ma sostanzialmente coincide con quanto è stato fatto).
+
+\subsubsection{Tabelle di verità}
+
+Nella \tablename{~\ref{tab:lampe}} sono rappresentate le transizioni di stato e le uscite in relazioni agli ingressi del circuito quando il semaforo è disabilitato (Enable = 0). Le varie variabili utilizzate della tabella hanno la stessa definizione del caso del semaforo abilitato.
+ 
+ \begin{table}[H]
+	\centering
+	\begin{tabular}{c|cc|cc|ccc|ccc}
+	\hline
+	Enable & $Q1_n$ & $Q2_n$ & $Q1_{n+1}$ & $Q2_{n+1}$ & $V_n$ & $G_n$ & $R_n$ & $V_{n+1}$ & $G_{n+1}$ & $R_{n+1}$ \\
+	\hline
+	0 & 1 & 1 & 0 & 1 & 0 & 1 & 0 & 0 & 0 & 0 \\
+	0 & 0 & 1 & 1 & 0 & 0 & 0 & 0 & 0 & 1 & 0 \\
+	0 & 0 & 0 & 1 & 0 & 0 & 0 & 0 & 0 & 1 & 0 \\
+	0 & 1 & 0 & 0 & 1 & 0 & 1 & 0 & 0 & 0 & 0 \\
+	\hline
+		\end{tabular}
+	\caption{Tabella di verità del circuito in esame quando il semaforo è disabilitato.}
+	\label{tab:lampe}
+\end{table}
+
+Come si può vedere dalla tabella, qui non ci sono stati non permessi, poiché quando l'enable è 0, automaticamente il Led Rosso e Verde sono spenti per via delle due porte AND ai loro ingressi (vedere \cref{fig:circuit}). In ogni caso quindi il Led Giallo è acceso o spento e inverte il suo stato a ogni colpo di clock, come voluto.
+
+%c'è altro che si deve scrivere riguardo le tabelle di verità?
+
 \section{Implementazione}
+
+Si riporta in \cref{fig:circuit} il circuito realizzato.
+Relativamente ai flip flop: i pin inferiori rappresentano gli ingressi di PRESET e CLEAR, che sono stati collegati all'alimentazione per evitare reset o clear spurii.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\textwidth]{../grafici/circuito.png}
+	\caption{Circuito realizzato per il semaforo completo}
+	\label{fig:circuit}
+\end{figure}
 
 \section{FSM in Software}
 
