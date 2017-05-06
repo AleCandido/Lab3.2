@@ -176,6 +176,17 @@ Per come è stato costruito il circuito lo stato indesiderato ($Q1_n$ = $Q2_n$ =
 %
 %Quindi come si può vedere dalle due tabelle, se si capita (all'accensione del circuito) nello stato indesiderato, il led giallo e rosso sono accesi contemporaneamente. Al colpo successivo di clock le uscite dei FF cadono negli stati in corrispondenza dei quali solo il led Rosso è acceso. Da questo momento in poi si alternano gli stati Rosso, Verde, Verde-Giallo e non si può più ricadere nello stato indesiderato.
 
+\paragraph{Funzioni combinatorie}
+Qui di seguito si riportano l'espressione degli stati in uscita agli FF e le uscite del circuito in funzione di $Q1_n$, $Q2_n$ e dell'enable (EN) quando il semaforo è abilitato (al posto dei don't care, per definire le funzioni, è stata utilizzata la \cref{tab:inde})\footnote{In questo caso EN = 1 sempre, quindi l'Enable è superfluo ogni volta che è in un AND.}
+\begin{itemize}
+\item $Q1_{n+1}$ =$ EN \cdot \bar{Q1}_n \cdot \bar{Q2}_n $ = $\bar{Q1}_n \cdot \bar{Q2}_n $
+\item $Q2_{n+1}$ = $EN \cdot Q1_n$ = $Q1_n$ 
+\item $V_{n}$ = $EN \cdot \bar{Q2}_n$ = $\bar{Q2}_n$
+\item $G_{n}$ = $ EN \cdot Q1_n$ = $Q1_n$ 
+\item $R_{n}$ = $EN \cdot Q2_n$ = $Q2_n$ 
+\end{itemize}
+
+
 \subsection{Semaforo completo con lampeggiante}
 
 Si è progettato il semaforo con enable seguendo i seguenti criteri:
@@ -227,7 +238,15 @@ Nella \tablename{~\ref{tab:lampe}} sono rappresentate le transizioni di stato e 
 
 Come si può vedere dalla tabella, qui non ci sono stati non permessi, poiché quando l'enable è 0, automaticamente il Led Rosso e Verde sono spenti per via delle due porte AND ai loro ingressi (vedere \cref{fig:circuit}). In ogni caso quindi il Led Giallo è acceso o spento e inverte il suo stato a ogni colpo di clock, come voluto.
 
-%c'è altro che si deve scrivere riguardo le tabelle di verità?
+\paragraph{Funzioni combinatorie}
+Qui di seguito si riportano l'espressione degli stati in uscita agli FF e le uscite del circuito in funzione di $Q1_n$, $Q2_n$ e dell'enable (EN) quando il semaforo è disabilitato:
+\begin{itemize}
+\item $Q1_{n+1}$ = $\bar{EN} \cdot \bar{Q1_n} \cdot Q2_n + \bar{EN} \cdot \bar{Q1_n} \cdot \bar{Q2_n} = \bar{Q1_n}$
+\item $Q2_{n+1}$ = $\bar{EN} \cdot Q1_n$ = $Q1_n$
+\item $V_{n}$ = 0 (funzione nulla)
+\item $G_{n}$ = $\bar{EN} \cdot Q1_n$ = $Q1_n$
+\item $R_{n}$ = 0 (funzione nulla)
+\end{itemize}
 
 \section{Implementazione}
 
