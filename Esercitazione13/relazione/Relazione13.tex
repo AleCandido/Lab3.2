@@ -7,12 +7,13 @@
 \usepackage{amsmath}
 \usepackage{amsfonts}
 \usepackage{amssymb}
+\usepackage{bm}
 
 \usepackage{graphicx}
 \usepackage[dvipsnames]{xcolor}  %colori
 \usepackage{pgf}
 \usepackage{tikz}
-\usetikzlibrary{arrows,automata}	% Finite States Machine
+\usetikzlibrary{arrows,shapes,snakes,automata,backgrounds,petri}	% Finite States Machine
 
 \usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
 \geometry{a4paper}
@@ -52,11 +53,64 @@ Lo scopo dell'esercitazione è la progettazione ed implementazione di un circuit
 	\item 1 Switch 4 bit.
 \end{itemize}
 
-\section{Semaforo con circuiti integrati}
+\subsection{Specifiche}
 
-\section{Semaforo nello stato abilitato}
+Si riportano le specifiche del progetto:
+\newline
 
-\section{Semaforo completo con lampeggiante}
+\noindent Il semaforo può avere due modalità di funzionamento: “ABILITATO” o “DISABILITATO”.
+\begin{itemize}
+	\item 
+	Nella modalità ABILITATO la sequenza degli stati, ripetuta ciclicamente, deve essere:
+	
+	\qquad LED Verde acceso $ \bm{\longrightarrow} $ LED Verde e Giallo acceso $ \bm{\longrightarrow} $ LED Rosso acceso
+	
+	\item Nella modalità DISABILITATO i led Verde e Rosso sono spenti ed il led Giallo lampeggia.
+\end{itemize}
+Tutti gli stati devono durare 1 impulso di clock. La modalità di funzionamento viene determinata tramite un interruttore che genera il segale di abilitazione (“E”=enable).
+
+Si può scegliere se il segnale E sia attivo alto oppure attivo basso, ma fare attenzione ad essere consistenti nella definizione e nella analisi.
+
+\section{Progettazione}
+
+Si è scelto di implementare direttamente il semaforo con enable, in quanto è stato realizzato mantenendo la struttura fondamentale del caso abilitato (cioè apportando modifiche quanto più possibile leggere), la progettazione è avvenuta comunque in due fasi, che si procede ad illustrare.
+
+\subsection{Semaforo nello stato abilitato}
+
+In assenza di enable non ci sono ingressi, e il comportamento richiesto è la generazione in uscita di una sequenza di periodo $ 3 $, in cui ogni step duri un ciclo di clock.
+
+Non c'è allora differenza tra una macchina di Mealy e una di Moore, e le uscite saranno funzione dello stato. Si è quindi deciso di codificare i $ 3 $ stati necessari usando $ 2 $ bit (cioè due flip flop). 
+
+Si avrà quindi uno stato in eccesso, che non rientra nel ciclo. Per far sì che il circuito funzioni correttamente esso deve transire verso uno dei $ 3 $ stati permessi, in modo che in qualunque stato si trovi il flip flop all'accensione esso sia, già al secondo step, in uno dei tre stati permessi, e da lì continui a ciclare come stabilito.
+
+Si riporta quindi in \cref{fig:wEN} il comportamento descritto, dove lo stato proibito è rappresentato con X.
+
+\begin{figure}[H]
+	\centering
+	\input{../grafici/FSM.tex}
+	\caption{Macchina a stati finiti per il caso di semaforo abilitato}
+	\label{fig:wEN}
+\end{figure}
+
+Gli altri stati sono già stati indicati con le denominazioni relative alle uscite del circuito:
+\begin{itemize}
+	\item R è lo stato in cui l'uscita è costituita dal solo LED rosso acceso;
+	\item V è lo stato in cui l'uscita è costituita dal solo LED verde acceso;
+	\item VG è lo stato in cui l'uscita è costituita dal solo LED rosso spento, cioè i LED verde e giallo accesi contemporaneamente.
+\end{itemize}
+Lo schema riprodotto in \cref{fig:wEN} è quasi del tutto generale, a meno di un dettaglio: non è rilevante che la transizine dallo stato proibito sia X$ \rightarrow $R, ma è sufficiente qualunque stato permesso.
+Quello riprodotto è quello che è stato scelto per il circuito implementato.
+
+
+\subsection{Semaforo completo con lampeggiante}
+
+\begin{figure}[H]
+	\centering
+	\input{../grafici/FSMall.tex}
+	\caption{Macchine a stati finiti per i due casi: con e senza enable}
+\end{figure}
+
+\section{Implementazione}
 
 \section{FSM in Software}
 

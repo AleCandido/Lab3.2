@@ -1,0 +1,51 @@
+\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.8cm,
+thick]
+\tikzstyle{every state}=[fill=none,draw=black,text=black]
+
+\begin{scope}
+
+\node[state]		 (A)              {R};	%$0-1$
+\node[state]         (B) [below of=A] {V};	%$0-0$
+\node[state]         (C) [below of=B] {VG};	%$1-0$
+\node[state]         (D) [right of=B] {X};	%$1-1$
+
+\path 	
+(A) edge					node {}		(B)
+(B) edge					node {} 	(C)
+(C) edge [bend left]		node {} 	(A)
+(D) edge [bend right=60]	node {} 	(A);
+
+\end{scope}
+
+\begin{scope}[xshift=9cm]
+
+\node[state]		 (A')             	 	{R};	%$0-1$
+\node[state]         (B') [below of=A'] 	{V};	%$0-0$
+\node[state]         (C') [below of=B'] 	{VG};	%$1-0$
+\node[state]         (D') [right of=B'] 	{X};	%$1-1$
+
+\path 	
+(A') edge					node {}		(B')
+(B') edge					node {} 	(C')
+(C') edge [bend left]		node {} 	(A')
+(D') edge [bend right=60]	node {} 	(A');
+
+\path[dashed,draw=black!40]	
+(A') edge [bend left=70]		node {}		(C')
+(B') edge [bend left=50]		node {}		(C')
+(C') edge [bend left=70]		node {} 	(A')
+(D') edge [bend left]			node {} 	(A');
+
+\end{scope}
+
+\draw [-to,thick,snake=snake,segment amplitude=.4mm,segment length=2mm,line after snake=1mm,black!60]
+([xshift=1.3cm]D -| D) -- ([xshift=-2.7cm]B' -| A')
+node [above=1mm,midway,text width=3cm,text centered,black]
+{\Large Enable};
+
+%\begin{pgfonlayer}{background}
+%\filldraw [line width=0.15mm,join=round,white,draw=black,rounded corners]
+%([xshift=-1cm,yshift=2mm]A.north -| B.west) rectangle ([xshift=2mm,yshift=-2mm]C.south -| D.east)
+%([xshift=-1.7cm,yshift=2mm]A'.north -| B'.west) rectangle ([xshift=2mm,yshift=-2mm]C'.south -| D'.east);
+%\end{pgfonlayer}
+\end{tikzpicture}
