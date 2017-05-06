@@ -54,6 +54,68 @@ Lo scopo dell'esercitazione è la progettazione ed implementazione di un circuit
 \section{Semaforo nello stato abilitato}
 
 \section{Semaforo completo con lampeggiante}
+\subsection{Tabelle di verità}
+Si sono realizzate le tabelle di verità del circuito rappresentato in \cref{fig:??????}; nella \tablename{~\ref{tab:sem1}} sono rappresentate le transizioni di stato e le uscite in relazioni agli ingressi del circuito quando il semaforo è abilitato (Enable = 1).
+
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{ccccccccccc}
+\hline
+$Enable$ & $Q1_n$ &	$Q2_n$ & $Q1_{n+1}$ & $Q2_{n+1}$ & $V_n$ & $G_n$ & $R_n$ & $V_{n+1}$ & $G_{n+1}$ & $R_{n+1}$ \\
+\hline
+1 & 1 & 1 & X & X & X & X & X & X & X & X \\
+\hline
+1 & 0 & 1 & 0 & 0 & 0 & 0 & 1 & 1 & 0 & 0 \\
+1 & 0 & 0 & 1 & 0 & 1 & 0 & 0 & 1 & 1 & 0 \\
+1 & 1 & 0 & 0 & 1 & 1 & 1 & 0 & 0 & 0 & 1 \\
+\hline
+	\end{tabular}
+	\caption{Tabella di verità del circuito in esame quando il semaforo è abilitato. Gli stati contrassegnati con le X sono stati Don't Care.}
+	\label{tab:sem1}
+\end{table}
+
+
+Le variabili $Q1_n$,$Q2_n$ rappresentano gli stati n-esimi dei due FF, mentre $Q1_{n+1}$,$Q2_{n+1}$ sono gli stati (n+1)-esimi dei due FF. Stessa cosa vale per gli stati $V_n$,$G_n$,$R_n$ e gli stati $V_{n+1}$,$G_{n+1}$,$R_{n+1}$ che rappresentano gli stati n-esimi e (n+1)-esimi delle uscite (rispettivamente il led Verde, Giallo, Rosso).
+Gli stati contrassegnati con una 'X' sono stati don't care, che rappresentano i valori delle uscite dei led e dei FF indesiderate. Per come è stato costruito il circuito lo stato indesiderato ($Q1_n$ = $Q2_n$ = 1) porta a sostituire le X con quanto riportato in \tablename{~\ref{tab:inde}}.
+  
+\begin{table}[H]
+	\centering
+	\begin{tabular}{ccccccccccc}
+\hline
+$Enable$ & $Q1_n$ &	$Q2_n$ & $Q1_{n+1}$ & $Q2_{n+1}$ & $V_n$ & $G_n$ & $R_n$ & $V_{n+1}$ & $G_{n+1}$ & $R_{n+1}$ \\
+\hline
+1 & 1 & 1 & 0 & 1 & 0 &  1 & 1 & 0 & 0 & 1  \\
+\hline
+	\end{tabular}
+	\caption{Tabella di verità per lo stato indesiderato quando il semaforo è abilitato.}
+	\label{tab:inde}
+\end{table}
+
+Quindi come si può vedere dalle due tabelle, se si capita (all'accensione del circuito) nello stato indesiderato, il led giallo e rosso sono accesi contemporaneamente. Al colpo successivo di clock le uscite dei FF cadono negli stati in corrispondenza dei quali solo il led Rosso è acceso. Da questo momento in poi si alternano gli stati Rosso, Verde, Verde-Giallo e non si può più ricadere nello stato indesiderato.
+\newline
+
+Nella \tablename{~\ref{tab:lampe}} sono rappresentate le transizioni di stato e le uscite in relazioni agli ingressi del circuito quando il semaforo è disabilitato (Enable = 0). Le varie variabili utilizzate della tabella hanno la stessa definizione del caso del semaforo abilitato.
+ 
+ \begin{table}[H]
+	\centering
+	\begin{tabular}{ccccccccccc}
+\hline
+Enable & $Q1_n$ & $Q2_n$ & $Q1_{n+1}$ & $Q2_{n+1}$ & $V_n$ & $G_n$ & $R_n$ & $V_{n+1}$ & $G_{n+1}$ & $R_{n+1}$ \\
+\hline
+0 & 1 & 1 & 0 & 1 & 0 & 1 & 0 & 0 & 0 & 0 \\
+0 & 0 & 1 & 1 & 0 & 0 & 0 & 0 & 0 & 1 & 0 \\
+0 & 0 & 0 & 1 & 0 & 0 & 0 & 0 & 0 & 1 & 0 \\
+0 & 1 & 0 & 0 & 1 & 0 & 1 & 0 & 0 & 0 & 0 \\
+\hline
+	\end{tabular}
+	\caption{Tabella di verità del circuito in esame quando il semaforo è disabilitato.}
+	\label{tab:lampe}
+\end{table}
+
+Come si può vedere dalla tabella, qui non ci sono stati non permessi, poiché quando l'enable è 0, automaticamente il Led Rosso e Verde sono spenti per via delle due porte AND ai loro ingressi (vedere \cref{fig:???}). In ogni caso quindi il Led Giallo è acceso o spento e inverte il suo stato a ogni colpo di clock, come voluto.
+
+%c'è altro che si deve scrivere riguardo le tabelle di verità?
 
 \section{FSM in Software}
 
