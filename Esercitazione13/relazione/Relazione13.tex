@@ -176,6 +176,17 @@ Per come è stato costruito il circuito lo stato indesiderato ($Q1_n$ = $Q2_n$ =
 %
 %Quindi come si può vedere dalle due tabelle, se si capita (all'accensione del circuito) nello stato indesiderato, il led giallo e rosso sono accesi contemporaneamente. Al colpo successivo di clock le uscite dei FF cadono negli stati in corrispondenza dei quali solo il led Rosso è acceso. Da questo momento in poi si alternano gli stati Rosso, Verde, Verde-Giallo e non si può più ricadere nello stato indesiderato.
 
+\paragraph{Funzioni combinatorie}
+Qui di seguito si riportano l'espressione degli stati in uscita agli FF e le uscite del circuito in funzione di $Q1_n$, $Q2_n$ e dell'enable (EN) quando il semaforo è abilitato (al posto dei don't care, per definire le funzioni, è stata utilizzata la \cref{tab:inde})\footnote{In questo caso EN = 1 sempre, quindi l'Enable è superfluo ogni volta che è in un AND.}
+\begin{itemize}
+\item $Q1_{n+1}$ =$ EN \cdot \bar{Q1}_n \cdot \bar{Q2}_n $ = $\bar{Q1}_n \cdot \bar{Q2}_n $
+\item $Q2_{n+1}$ = $EN \cdot Q1_n$ = $Q1_n$ 
+\item $V_{n}$ = $EN \cdot \bar{Q2}_n$ = $\bar{Q2}_n$
+\item $G_{n}$ = $ EN \cdot Q1_n$ = $Q1_n$ 
+\item $R_{n}$ = $EN \cdot Q2_n$ = $Q2_n$ 
+\end{itemize}
+
+
 \subsection{Semaforo completo con lampeggiante}
 
 Si è progettato il semaforo con enable seguendo i seguenti criteri:
@@ -227,7 +238,15 @@ Nella \tablename{~\ref{tab:lampe}} sono rappresentate le transizioni di stato e 
 
 Come si può vedere dalla tabella, qui non ci sono stati non permessi, poiché quando l'enable è 0, automaticamente il Led Rosso e Verde sono spenti per via delle due porte AND ai loro ingressi (vedere \cref{fig:circuit}). In ogni caso quindi il Led Giallo è acceso o spento e inverte il suo stato a ogni colpo di clock, come voluto.
 
-%c'è altro che si deve scrivere riguardo le tabelle di verità?
+\paragraph{Funzioni combinatorie}
+Qui di seguito si riportano l'espressione degli stati in uscita agli FF e le uscite del circuito in funzione di $Q1_n$, $Q2_n$ e dell'enable (EN) quando il semaforo è disabilitato:
+\begin{itemize}
+\item $Q1_{n+1}$ = $\bar{EN} \cdot \bar{Q1_n} \cdot Q2_n + \bar{EN} \cdot \bar{Q1_n} \cdot \bar{Q2_n} = \bar{Q1_n}$
+\item $Q2_{n+1}$ = $\bar{EN} \cdot Q1_n$ = $Q1_n$
+\item $V_{n}$ = 0 (funzione nulla)
+\item $G_{n}$ = $\bar{EN} \cdot Q1_n$ = $Q1_n$
+\item $R_{n}$ = 0 (funzione nulla)
+\end{itemize}
 
 \section{Implementazione}
 
@@ -236,11 +255,101 @@ Relativamente ai flip flop: i pin inferiori rappresentano gli ingressi di PRESET
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.7\textwidth]{../grafici/circuito.png}
+	\includegraphics[width=0.7\textwidth]{../grafici/circuito1.png}
 	\caption{Circuito realizzato per il semaforo completo}
 	\label{fig:circuit}
 \end{figure}
 
+
+Si è cercato di ottimizzare la rete combinatoria cercando di minimizzare in primo luogo il numero di integrati da usare, in secondo luogo il numero di porte da adoperare. L'approccio logico adottato è abbastanza semplice: si sono individuate le due modalità di funzionamento (enabled=\code{HIGH} e enabled=\code{LOW}) e si sono ottimizzati i relativi circuiti. 
+I circuiti ottenuti sono disegnati in \cref{fig:enabled} e \cref{fig:disabled}.
+
+
+
+Come si può vedere in \cref{fig:disabled} la logica necessaria per le transizioni nello stato enabled=\code{LOW} è necessariamente la minima. Di fatto basta mandare l'uscita negata all'ingresso.
+
+
+Per lo stato enabled=\code{HIGH} si deve usare almeno una porta (un AND). 
+\'E una mera verifica la tabella di verità \cref{tab:sem1} (con i don't care sostituiti con 1).
+
+
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.4\textwidth]{../grafici/enabled1.png}
+	\caption{Idealizzazione delle funzione di trasferimento con circuito enabled=\code{HIGH}}
+	\label{fig:enabled}
+\end{figure}
+
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.4\textwidth]{../grafici/disabled1.png}
+	\caption{Idealizzazione delle funzione di trasferimento con circuito enabled=\code{LOW}}
+	\label{fig:disabled}
+\end{figure}
+
+A questo punto la sfida è fare in modo che l'enable permetta la transizione fra le due modalità di funzionamento, e, nello stesso tempo, impedisca che i segnali presenti sul secondo flip-flop vengano mandati ai led Rosso e Verde (che devono stare spenti quando il dispositivo è disabilitato).
+
+Per quanto riguarda la logica di trasferimento si può fare riferimento a \cref{fig:solologica}: si è interposta prima della AND1 un NAND (NAND1) (con il segnale di ENABLE). Questo, quando il dispositivo è abilitato, si comporta come un mero NOT. E' dunque stato sufficiente collegare l'altro ingresso del NAND con $\bar{Q}$ per ristabilire il corretto funzionamento della rete di transizione quando enabled=\code{HIGH}.
+
+Si nota che quando ENABLED è invece \code{LOW} l'output della NAND è \code{HIGH} quindi anche il comportamento nella configurazione disabilitata è quello corretto.
+
+Per quanto riguarda i led si è dovuti ricorrere a due AND con il segnale ENABLE: l'AND è l'unica porta fra quelle date a disposizione che nella modalità forzata ha l'uscita \code{LOW} (ovvero che possa essere forzata \code{LOW} da uno solo dei due ingressi, indipendentemente dall'altro\footnote{Sia il NAND che l'OR possono essere forzati \code{HIGH}, cosa inutile per il funzionamento del semaforo.}).
+
+Non si sono cercate ulteriori ottimizzazioni poiché proprio quest'ultimo fatto forza ad usare almeno un AND. Chiaramente non è possibile costruire l'intero circuito utilizzando solamente AND \footnote{Si ricorda che la logica della AND è associativa, dunque l'unica scelta possibile rimanente sarebbe stata quali (non in che ordine) ingressi scegliere per la nostra porta fra Q1, Q2 (o i rispettivi negati) ed EN. Ma nessuna delle alternative porta alla funzione di trasmissione richiesta, dunque è necessario almeno un NAND.} 
+
+\'E necessario spendere due parole per quanto riguarda quello che succede proprio quando EN cambia stato (il che, essendo esso asincorno, avverrà all' interno di un ciclo di clock). Se EN passa da \code{HIGH} a \code{LOW} non avviene nulla di dannoso: gli AND che controllano i led rosso e verde impediranno che essi siano accesi e il giallo continuerà a essere nello stato che aveva prima che EN fosse commutato. Poi inizierà la sua usuale oscillazione.
+
+Se invece  EN passa dallo stato \code{LOW} a \code{HIGH} ci si può chiedere se sia visibile la condizione "vietata" 11, che sarebbe particolarmente fastidiosa in quanto permetterebbe al led rosso di essere acceso contemporaneamente al led giallo. Questo in effetti non accade perché quando EN era \code{LOW} lo stato del secondo bit è sempre opposto a quello del primo bit. Dunque se il primo bit è 1 il secondo è 0 e la configurazione "vietata" 11 è salta.
+
+
+
+
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.4\textwidth]{../grafici/solologica1.png}
+	\caption{Idealizzazione delle funzione di trasferimento con entrambi i valori di ENABLED. Per chiarezza si sono indicati i valori logici fondamentali nel caso ENABLED = \code{HIGH}}
+	\label{fig:solologica}
+\end{figure}
+
+
+Infine si può notare che per rendere sincrono il dispositivo sarebbe bastato mettere un altro D letch nel canale del ENABLE. 
+
+
+\section{Verifica del funzionamento}
+
+Montato il circuito si è dunque verificato l'opportuno funzionamento dello stesso. Per fare ciò il clock è stato portato a qualche centinaio di Hz e si sono visualizzate le tracce con l'oscilloscopio.
+
+Si sono ottenute le seguenti tracce:
+
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.4\textwidth]{../grafici/verde_giallo.png}
+	\caption{Output del verde e del giallo con ENABLE = \code{HIGH} (modalità tre colori)}
+	\label{fig:VGE}
+\end{figure}
+
+Come si vede in \cref{VGE} dapprima sia il segnale per il verde che quello per il giallo sono entrambi \code{LOW}, dopo un terzo del periodo (che dura tre cicli di clock) il verde diventa \code{HIGH} mentre il giallo rimane \code{LOW}, per l'ultimo terzo sono entrambi \code{HIGH}.
+
+
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.4\textwidth]{../grafici/verde_gialloELOW.png}
+	\caption{Output del verde (traccia azzurra) e del giallo con ENABLE=\code{LOW} (modalità due colori)}
+	\label{fig:VGELOW}
+\end{figure}
+
+Come si vede in \cref{ELOW} anche in modalità lampeggiante il giallo è il verde negato. Qui il ciclo completo dura solo due clock.
+
+
 \section{FSM in Software}
+
+Si è semplicemente caricato il programma e verificato il funzionamento. Non aveva alcun senso fare altro per un semplice semaforo. E' un po come sparare col cannone su un coniglio...
+
+
 
 \end{document}
