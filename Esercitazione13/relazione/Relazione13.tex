@@ -262,11 +262,13 @@ Relativamente ai flip flop: i pin inferiori rappresentano gli ingressi di PRESET
 	\label{fig:circuit}
 \end{figure}
 
-%manca il numero 1 e 2 sui flip flop!!
+%manca il numero 1 e 2 sui flip flop per distinguerli in modo consono in quanto scritto nella parte tabelle di verità!!
 
-Si è cercato di ottimizzare la rete combinatoria cercando di minimizzare in primo luogo il numero di integrati da usare, in secondo luogo il numero di porte da adoperare. L'approccio logico adottato è abbastanza semplice: si sono individuate le due modalità di funzionamento (enabled=\code{HIGH} e enabled=\code{LOW}) e si sono ottimizzati i relativi circuiti. 
-I circuiti ottenuti sono disegnati in \cref{fig:enabled} e \cref{fig:disabled}.
+Si è cercato di ottimizzare la rete combinatoria cercando di minimizzare in primo luogo il numero di integrati da usare, in secondo luogo il numero di porte da adoperare.
 
+L'approccio logico adottato è abbastanza semplice ed è già stato delineato nei punti precedenti: si sono individuate le due modalità di funzionamento (enabled=\code{HIGH} e enabled=\code{LOW}) e si sono ottimizzati i relativi circuiti. 
+Gli schemi logici dei suddetti circuiti sono disegnati in \cref{fig:enabled} e \cref{fig:disabled}.
+\newline
 
 
 Come si può vedere in \cref{fig:disabled} la logica necessaria per le transizioni nello stato enabled=\code{LOW} è necessariamente la minima. Di fatto basta mandare l'uscita negata all'ingresso.
@@ -279,7 +281,7 @@ Per lo stato enabled=\code{HIGH} si deve usare almeno una porta (un AND).
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.4\textwidth]{../grafici/enabled1.png}
+	\includegraphics[width=0.3\textwidth]{../grafici/enabled.png}
 	\caption{Idealizzazione delle funzione di trasferimento con circuito enabled=\code{HIGH}}
 	\label{fig:enabled}
 \end{figure}
@@ -298,27 +300,32 @@ Per quanto riguarda la logica di trasferimento si può fare riferimento a \cref{
 Si nota che quando ENABLE è invece \code{LOW} l'output della NAND è \code{HIGH} quindi anche il comportamento nella configurazione disabilitata è quello corretto.
 \newline
 
-Per quanto riguarda i led si è dovuti ricorrere a due AND con il segnale ENABLE: l'AND è l'unica porta fra quelle date a disposizione che nella modalità forzata ha l'uscita \code{LOW} (ovvero che possa essere forzata \code{LOW} da uno solo dei due ingressi, indipendentemente dall'altro\footnote{Sia il NAND che l'OR possono essere forzati \code{HIGH}, cosa inutile per il funzionamento del semaforo.}).
+Per quanto riguarda questo secondo punto facciamo notare che è spontaneo utilizzare una logica positiva per il segnale di enable e dunque almeno una porta AND. Essa infatti è l'unica fra le porte date capace di essere forzata \code{LOW} tramite uno solo dei due segnali di ingresso. 
 
-Non si sono cercate ulteriori ottimizzazioni poiché proprio quest'ultimo fatto forza ad usare almeno un AND. Chiaramente non è possibile costruire l'intero circuito utilizzando solamente AND. \footnote{Si ricorda che la logica della AND è associativa, dunque l'unica scelta possibile rimanente sarebbe stata quali (non in che ordine) ingressi scegliere per la nostra porta fra Q1, Q2 (o i rispettivi negati) ed EN. Ma nessuna delle alternative porta alla funzione di trasmissione richiesta, dunque è necessario almeno un NAND.} 
+Sia una porta OR che una porta NAND sarebbero potute essere forzate \code{HIGH}, cosa che avrebbe richiesto almeno altre due porte NAND usata come NOT. In sostanza si sarebbero dovuti adoperare almeno due chip solo per la gestione degli output da mandare ai led. Si può anche comprendere come, con la codifica usata, non sia possibile usare solamente porte AND per la logica di transizione.
 \newline
-
-\'E necessario spendere due parole per quanto riguarda quello che succede proprio quando EN cambia stato (il che, essendo esso asincrono, avverrà all' interno di un ciclo di clock). Se EN passa da \code{HIGH} a \code{LOW} non avviene nulla di dannoso: gli AND che controllano i led rosso e verde impediranno che essi siano accesi e il giallo continuerà a essere nello stato che aveva prima che EN fosse commutato. Poi inizierà la sua usuale oscillazione.
-
-Se invece  EN passa dallo stato \code{LOW} a \code{HIGH} ci si può chiedere se sia visibile la condizione proibita (Q1 = Q2 =1), che sarebbe particolarmente fastidiosa in quanto permetterebbe al led rosso di essere acceso contemporaneamente al led giallo. Questo in effetti non accade perché quando EN era \code{LOW} lo stato del secondo bit è sempre opposto a quello del primo bit. Dunque se il primo bit è 1 il secondo è 0 e la configurazione non può essere raggiunta.
-
-
-
+  
+Per quanto riguarda la logica di trasferimento si può dunque fare riferimento a \cref{fig:solologica}: si è interposta prima della AND1 un NAND (NAND1) (con il segnale di enable). 
 
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.4\textwidth]{../grafici/solologica1.png}
-	\caption{Idealizzazione delle funzione di trasferimento con entrambi i valori di ENABLE. Per chiarezza si sono indicati i valori logici fondamentali nel caso ENABLE = \code{HIGH}}
+	\caption{Idealizzazione delle funzione di trasferimento con circuito (in pratica tutto il circuito omettendo la gestione degli output).}
 	\label{fig:solologica}
 \end{figure}
 
 %figura un po' contorta e non molto chiara...
+
+
+\'E necessario spendere due parole per quanto riguarda quello che succede proprio quando EN cambia stato (il che, essendo esso asincorno, avverrà all' interno di un ciclo di clock). Se EN passa da \code{HIGH} a \code{LOW} non avviene nulla di dannoso: gli AND che controllano i led rosso e verde impediranno che essi siano accesi e il giallo continuerà a essere nello stato che aveva prima che EN fosse commutato. Poi inizierà la sua usuale oscillazione.
+
+Se invece  EN passa dallo stato \code{LOW} a \code{HIGH} ci si può chiedere se sia visibile la condizione proibita (Q1 = Q2 = 1), che sarebbe particolarmente fastidiosa in quanto permetterebbe al led rosso di essere acceso contemporaneamente al led giallo. 
+
+Questo in effetti non accade perché quando EN era \code{LOW} lo stato del secondo bit è sempre opposto a quello del primo bit. Dunque se il primo bit è 1 il secondo è 0 e la configurazione proibita non può essere raggiunta.
+
+Tutto ciò è d'altronde logico se si nota che il dispositivo, tenendo conto anche del secondo bit anche nella condizione di enable=\code{LOW}, implementa la tabella di verità \cref{tab:lampe}, dunque in generale la macchina a stati finiti riassunta nella \cref{fig:EN}.
+
 
 
 \section{Verifica del funzionamento}
@@ -350,8 +357,13 @@ Come si puà vedere in \cref{fig:VGELOW} anche in modalità lampeggiante il gial
 
 \section{FSM in Software}
 
-Si è semplicemente caricato il programma e verificato il funzionamento. Non aveva alcun senso fare altro per un semplice semaforo. E' un po come sparare col cannone su un coniglio...
+Si è semplicemente caricato il programma e verificato il funzionamento. Si è letto poi il codice del programma, ci si è alzati dalla sedia, si è andati in bagno, e si è rigettato il contenuto dello stomaco. Ritornati in lab si è riscritto il codice e si è ricaricato sulla scheda(questo non si è fatto davvero, lo si è fatto solo a casa...). 
 
+A parte gli scherzi...ho riscritto un po' il robetto cercando di mantenere uno standar di pulizia un po' più elevato...ovviamente il codice viene piccolo piccolo così, non so se sia il caso di aggiungerlo alla rel dato che non è stato testato... (anche se non dovrebbe essere cambiato nulla...)
+Lo trovate in Semaforo...
+----------
 
+Se vuoi metterlo va bene, dato che non si sa che scrivere in questa parte, almeno si riempie il vuoto. Al massimo si potrebbe scrivere la tabella di verità del programma usato come plus.. comunque leggi anche i commenti che ho lasciato in giro
+Ah, ho fatto casini con la tua parte e i merge, spero di non aver spasticciato troppo, magari rileggila non si sa mai...
 
 \end{document}
