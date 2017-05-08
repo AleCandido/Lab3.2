@@ -1,7 +1,7 @@
 /* 
  *  Create a traffic light with FSM on arduino
  */
-#define SERIALE 0 //se la trasmissione seriale degli stati è abilitata
+#define SERIALE 1 //se la trasmissione seriale degli stati è abilitata
 #define ENABLE_LOGICAL_HIGH HIGH //per chi volesse invertire la logica dell'enable
 
 //definizione degli stati...non vengono mai usati esplicitamente
