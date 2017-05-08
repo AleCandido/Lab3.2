@@ -12,8 +12,8 @@ const int timeVG = 1500; //time of verde giallo (ms)
 const int timeR = 2000; //time of rosso (ms)
 const int timeG =  1500; // time del lampeggiante
 
-const int times[4];
-const int outputs[4][3]=[[HIGH, LOW, LOW],[HIGH, HIGH, LOW],[LOW, LOW, HIGH],[LOW, LOW, LOW] , [LOW, HIGH, LOW]]; //tabella degli output in funzione dello stato corrente!!!
+int times[4];
+int outputs[5][3]={{HIGH, LOW, LOW},{HIGH, HIGH, LOW},{LOW, LOW, HIGH},{LOW, LOW, LOW} , {LOW, HIGH, LOW}}; //tabella degli output in funzione dello stato corrente!!!
 
 #define SERIALE 0
 #define LVstate 0
@@ -57,7 +57,7 @@ void loop() {
   //2.
   setOutput(outputs[thisState]);
   //3.
-  if(isEnable) nextState=(thisState+1)%3; //loop fra gli stati 0, 1, 2. se trova 3 va in 1, se trova 4 va in 2
+  if(inEnable) nextState=(thisState+1)%3; //loop fra gli stati 0, 1, 2. se trova 3 va in 1, se trova 4 va in 2
   else nextState=3+ thisState % 2; //loop fra gli stati 3-4. se trova 0 o 2 va in 3, se trova 1 va in 4
   //4.
   delay(stateWait);
@@ -71,7 +71,7 @@ bool readEnable(){
   return ( val == HIGH);
 }
 
-int setOutput(int ordine[3]) {
+int setOutput(int* ordine) {
   int LV=ordine[0];
   int LG=ordine[1];
   int LR=ordine[2];
