@@ -1,6 +1,14 @@
 /* 
  *  Create a traffic light with FSM on arduino
  */
+#define SERIALE 0 //se la trasmissione seriale degli stati è abilitata
+
+#define LVstate 0
+#define LVGstate 1
+#define LRstate 2
+#define LOFFstate 3
+#define LGstate 4
+
 
 const int LVpin = 9; // led verde
 const int LGpin = 10; // led giallo
@@ -15,12 +23,6 @@ const int timeG =  1500; // time del lampeggiante
 int times[4];
 int outputs[5][3]={{HIGH, LOW, LOW},{HIGH, HIGH, LOW},{LOW, LOW, HIGH},{LOW, LOW, LOW} , {LOW, HIGH, LOW}}; //tabella degli output in funzione dello stato corrente!!!
 
-#define SERIALE 0
-#define LVstate 0
-#define LVGstate 1
-#define LRstate 2
-#define LOFFstate 3
-#define LGstate 4
 
 int thisState = LOFFstate; // this state
 int nextState = LOFFstate; // next state
@@ -48,7 +50,7 @@ void loop() {
   // 3. calculate the next state
   // 4. wait for this state to complete
   //1.
-  inEnable = readEnable();
+  inEnable = (digitalRead(ENpin)==HIGH);
  #if SERIALE 
   Serial.println(thisState);
   Serial.println(inEnable);
@@ -64,12 +66,6 @@ void loop() {
   thisState = nextState;
 }
 
-bool readEnable(){
-  // read the value of the enable pin
-  int val;
-  val = digitalRead(ENpin);
-  return ( val == HIGH);
-}
 
 int setOutput(int* ordine) {
   int LV=ordine[0];
