@@ -10,7 +10,8 @@
 \usepackage{bm}
 
 \usepackage{graphicx}
-\usepackage[dvipsnames]{xcolor}  %colori
+%\usepackage[dvipsnames]{xcolor}  %colori
+\usepackage[usenames]{color}
 \usepackage{pgf}
 \usepackage{tikz}
 \usetikzlibrary{arrows,shapes,snakes,automata,backgrounds,petri}	% Finite States Machine
@@ -29,6 +30,10 @@
 \usepackage[bottom]{footmisc}
 
 \usepackage[cdot, thickqspace, squaren]{SIunits}
+
+\usepackage{listings}
+\lstloadlanguages{c}
+
 % macro
 \def\code#1{\texttt{#1}}
 
@@ -268,7 +273,7 @@ Gli schemi logici dei suddetti circuiti sono disegnati in \cref{fig:enabled} e \
 \newline
 
 
-Come si può vedere in \cref{fig:disabled} la logica necessaria per le transizioni nello stato enabled=\code{LOW} è necessariamente la minima. Di fatto basta mandare l'uscita negata all'ingresso.
+Come si può vedere in \cref{fig:disabled} la logica necessaria per le transizioni nello stato enabled=\code{LOW} è necessariamente la minima. Di fatto basta mandare l'uscita negata del primo bit all'ingresso del primo bit. Quello che fa il secondo bit è a questo punto inessenziale, anche se verrà ripreso dopo per la sottile questione del cambio di modalità durante un ciclo di clock. \footnote{Anche se dovesse verificarsi che durante la modalità disabilitata il sistema vada nello stato "11" ciò non sarebbe un dramma. Così come è costruito, però, il circuito segue proprio le transizioni descritte nel linguaggio delle macchine a stati finiti nei punti precedenti, come verrà fatto notare a breve.}
 
 
 Per lo stato enabled=\code{HIGH} si deve usare almeno una porta (un AND). 
@@ -352,7 +357,7 @@ Si sono ottenute le seguenti tracce:
 	\label{fig:VGE}
 \end{figure}
 
-Come si vede in \cref{VGE} dapprima sia il segnale per il verde che quello per il giallo sono entrambi \code{LOW}, dopo un terzo del periodo (che dura tre cicli di clock) il verde diventa \code{HIGH} mentre il giallo rimane \code{LOW}, per l'ultimo terzo sono entrambi \code{HIGH}.
+Come si vede in \cref{fig:VGE} dapprima sia il segnale per il verde che quello per il giallo sono entrambi \code{LOW}, dopo un terzo del periodo (che dura tre cicli di clock) il verde diventa \code{HIGH} mentre il giallo rimane \code{LOW}, per l'ultimo terzo sono entrambi \code{HIGH}.
 
 
 
@@ -363,16 +368,104 @@ Come si vede in \cref{VGE} dapprima sia il segnale per il verde che quello per i
 	\label{fig:VGELOW}
 \end{figure}
 
-Come si vede in \cref{ELOW} anche in modalità lampeggiante il giallo è il verde negato. Qui il ciclo completo dura solo due clock.
+Come si vede in \cref{fig:ELOW} anche in modalità lampeggiante il giallo è il verde negato. Qui il ciclo completo dura solo due clock.
 
 
 \section{FSM in Software}
 
-Si è semplicemente caricato il programma e verificato il funzionamento. Si è letto poi il codice del programma, ci si è alzati dalla sedia, si è andati in bagno, e si è rigettato il contenuto dello stomaco. Ritornati in lab si è riscritto il codice e si è ricaricato sulla scheda(questo non si è fatto davvero, lo si è fatto solo a casa...). 
+Si è semplicemente caricato il programma e verificato il funzionamento. Si è poi provato a snellire un po' il codice che, sebbene fosse molto modulare, non è bello. Si è riscritto con piacere la parte con lo switch, costrutto che personalmente detesto.
 
-A parte gli scherzi...ho riscritto un po' il robetto cercando di mantenere uno standar di pulizia un po' più elevato...ovviamente il codice viene piccolo piccolo così, non so se sia il caso di aggiungerlo alla rel dato che non è stato testato... (anche se non dovrebbe essere cambiato nulla...)
-Lo trovate in Semaforo...
 
+
+%\begin{frame}[fragile]
+%\frametitle{Inserting source code without setting typewriter}
+\lstset{language=C++,
+                keywordstyle=\color{blue},
+                stringstyle=\color{red},
+                commentstyle=\color{green},
+                breaklines= true, 
+                morecomment=[l][\color{magenta}]{\#}
+}
+
+%\end{frame}
+
+\begin{lstlisting}
+/* 
+ *  Create a traffic light with FSM on arduino
+ */
+#define 
+#define ENABLE_LOGICAL_HIGH HIGH //per chi volesse invertire la logica dell'enable
+
+//definizione degli stati...non vengono mai usati esplicitamente
+#define LVstate 0
+#define LVGstate 1
+#define LRstate 2
+#define LOFFstate 3
+#define LGstate 4
+
+#define LVpin  9 // led verde
+#define LGpin  10 // led giallo
+#define LRpin  11 // led rosso
+#define ENpin 8 // input pin for enable
+
+#define timeV  4000 //time of greeen (ms)
+#define timeVG  1500 //time of verde giallo (ms)
+#define timeR  2000 //time of rosso (ms)
+#define timeG   1500 // time del lampeggiante
+
+int pins[4]={LVpin, LGpin, LRpin, ENpin};
+int times[4]={timeV, timeVG, timeR, timeG};
+int outputs[5][3]={{HIGH, LOW, LOW},{HIGH, HIGH, LOW},{LOW, LOW, HIGH},{LOW, LOW, LOW} , {LOW, HIGH, LOW}}; //tabella degli output in funzione dello stato corrente!!!
+
+
+int thisState = LOFFstate; // this state
+int nextState = LOFFstate; // next state
+int stateWait = timeG; // state wait
+bool inEnable = false; // enable bit
+
+
+void setup() {
+  pinMode(LVpin, OUTPUT);
+  Serial.begin(9600);
+  pinMode(LGpin, OUTPUT);
+  pinMode(LRpin, OUTPUT);
+  pinMode(ENpin, INPUT_PULLUP);
+}
+
+void loop() {
+  //1. read the input
+  inEnable = (digitalRead(ENpin)==ENABLE_LOGICAL_HIGH);
+ #if SERIALE 
+  Serial.println(thisState);
+  Serial.println(inEnable);
+ #endif 
+  stateWait=times[thisState];
+  //2.generate the output
+  setOutput(outputs[thisState]);
+  //3.calculate the next state
+  thisState=UpDate(thisState, inEnable);
+  //4. wait for this state to complete
+  delay(stateWait);
+}
+
+
+int UpDate(int state, int enable){ //  dato lo stato corrente e il valore di enable da lo stato successivo
+  if(inEnable) return (thisState+1)%3; //loop fra gli stati 0, 1, 2. se trova 3 va in 1, se trova 4 va in 2
+  else  return 3+ thisState % 2; //loop fra gli stati 3-4. se trova 0 o 2 va in 3, se trova 1 va in 4
+}
+
+int setOutput(int* ordine) {
+ #if SERIALE 
+  Serial.println("setOutput");
+  for(int i=0; i<3; i++)
+    Serial.println(ordine[i]);
+ #endif 
+ for(int i=0; i<3; i++)
+    digitalWrite(pins[i] , ordine[i]);
+}
+
+
+\end{lstlisting}
 
 
 
