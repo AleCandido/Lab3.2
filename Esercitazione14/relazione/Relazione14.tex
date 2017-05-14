@@ -105,6 +105,9 @@ Si riporta il segnale in tensione acquisito in \cref{fig:LED}.
 	\label{fig:LED}
 \end{figure}
 
+% Scrivere da qualche parte cosa si manda in ingresso!: In S1 collegare un segnale sinusoidale di frequenza 1 kHz ed ampiezza 6 VPP prelevato dal generatore di funzioni. Comunque ho messo la foto e lo ho scritto nella parte dello sfasatore, eventualmente si deve poi togliere da li
+
+
 \subsection{Preamplificatore}
 
 \begin{wrapfigure}{R}{0.5\textwidth}
@@ -166,16 +169,68 @@ Si è misurata l'uscita $ S_6 $ ponendo alcune piastrine, e si riporta in \cref{
 Si è inoltre valutato qualitativamente l'effetto del rumore: la componente prevalente di esso era dovuta alla luce ambientale, tolta questa il rumore residuo era confrontabile con l'errore dell'oscilloscopio.
 Per eliminare l'effetto della luce ambientale (la quale produceva oscillazioni anche a bassa frequenza) è stato sufficiente porre un contenitore sopra la parte di circuito che comprende LED e fotodiodo: da quanto osservato questo ha eliminato la maggior parte del rumore presente.
 
-\subsection{Sfasatore di $90^\circ$}
+\subsection{Sfasatore di $90^\circ$ e Sfasatore a fase variabile}
+
+A questo punto sono stati montati i circuiti Sfasatore di $90^\circ$ e sfasatore a fase variabile, mostrati in \cref{fig:deph}. In $S_1$ è stato inviato sempre lo stesso segnale sinusoidale (\cref{fig:s1}, con frequenza di (1.015$\pm$0.002) kHz e ampiezza picco-picco di $(5.92\pm0.3)V$) prelevato dal generatore di funzioni che era stato precedentemente inviato anche nell'amplificatore di potenza.
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=\textwidth]{../grafici/Dephaser.png}
+	\includegraphics[width=0.5\textwidth]{../grafici/Dephaser.png}
 	\caption{Schema del circuito: sfasatore di $90^\circ$ e sfasatore a fase variabile.}
 	\label{fig:deph}
 \end{figure}
 
-\subsection{Sfasatore a fase variabile}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.5\textwidth]{../grafici/s1.png}
+	\caption{Onda sinusoidale inviata in S1.}
+	\label{fig:s1}
+\end{figure}
+
+\paragraph{Sfasatore di $90^\circ$} 
+
+Lo sfasatore di $90^\circ$ è schematizzato nella prima parte del circuito in \cref{fig:deph} (prima del deviatore). \newline
+Modificando la resistenza sull'ingresso non invertente dell'opamp tramite il trimmer $P_1$ si modifica la fase tra l'onda in uscita di esso ($S_2$) e l'onda in ingresso $S_1$. Questo è dovuto principalmente alla presenza del
+condensatore $C_4$: se si risolve il circuito, grazie al condensatore $C_4$, si ottiene che l'uscita $S_2$ acquista una componente immaginaria oltre a una reale, ed entrambe dipendono dal trimmer $P_1$. In questo modo cambiando la resistenza all'ingresso non invertente dell'opamp si può fare in modo che $S_2$ sia sfasato di $90^\circ$ rispetto ad $S_1$. Per la precisione ciò che si è ottenuto ruotando $P_1$ è che la differenza di fase in $S_2$ è di $\Delta \phi = 1.53\pm0.04$ rad, da confrontare con il valore nominale pari a $1.57$ rad $(90^\circ)$.
+
+\paragraph{Sfasatore a fase variabile}
+
+La seconda parte del circuito è molto simile alla prima, con l'aggiunta di:
+\begin{itemize}
+
+\item un trimmer $P_3$ collegato tra l'alimentazione a -5 V , la terra e, attraverso una resistenza $R_8$, all'ingresso invertente dell'opamp.
+
+\item un transistor Q2 BC182 con l'emettitore a massa, il collettore a +5 V e la base collegata all'uscita dell'opamp.
+\end{itemize}
+
+Il trimmer permette di modificare l'offset dell'onda all'ingresso invertente dell'opamp e quindi dell'onda in uscita di esso; in questo modo il transistor, che ha la funzione di interruttore (quindi passa da interdizione e saturazione), cambia il suo stato di "aperto" o "chiuso" per un tempo che dipende direttamente dal trimmer $P_3$. Quindi modificando questo trimmer si agisce direttamente sul duty cicle dell'onda (quadra) in uscita in $S_3$. Si è quindi fatto in modo che quest'onda sia perfettamente simmetrica (duty cycle 50\%), come si può vedere dalla
+\cref{fig:3_devposB}.
+
+Come si può vedere dalla \cref{fig:deph} il deviatore permette di decidere se mandare
+all'ingresso della seconda parte del circuito l'onda $S_1$ o l'onda $S_2$. 
+Si è verificato che agendo sul deviatore si varia la fase di uscita di $S_3$ di
+$90^\circ$ rispetto ad $S_1$, come si può osservare confrontando le \cref{fig:3_devposA,fig:3_devposB} con la \cref{fig:s1} (si è verificato esplicitamente tramite l'oscilloscopio che la differenza di fase fosse effettivamente di $90^\circ$, cioè pari a quella ottenuta in $S_2$).
+
+\begin{figure}[H]
+\begin{minipage}{0.49\textwidth}
+	\centering
+	\includegraphics[width=0.8\textwidth]{../grafici/s3_devposA.png}
+	\caption{Uscita $S_3$ quando il deviatore è collegato direttamente con $S_1$.}
+	\label{fig:3_devposA}
+\end{minipage}
+\begin{minipage}{0.49\textwidth}
+	\centering
+	\includegraphics[width=0.8\textwidth]{../grafici/s3_devposB.png}
+	\caption{Uscita $S_3$ quando il deviatore è per l'altra posizione del deviatore.}
+	\label{fig:3_devposB}
+\end{minipage}
+\end{figure}
+
+Anche il trimmer $P_2$ modifica lo sfasamento tra l'onda in $S_3$ e $S_1$. Si sono quindi esplorati i limiti sullo sfasamento dettati da questo trimmer, ottenendo che esso può sfasare l'onda di al più $2.70\pm0.08 rad$, cioè di circa $180^\circ$. 
+
+
+
+%devo scrivere i valori delle componenti circuitali? io scriverei tutte le specifiche all'inizio nella sezione scopo e strumentazione.
 
 \subsection{Squadratore e campionatore}
 
