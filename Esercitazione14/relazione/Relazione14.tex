@@ -1,0 +1,251 @@
+\documentclass[a4paper,10pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}	
+\usepackage[italian]{babel}
+
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+
+\usepackage{graphicx}
+\usepackage[dvipsnames]{xcolor}  %colori
+
+\usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
+\geometry{a4paper}
+
+\usepackage{verbatim}
+\usepackage{lipsum}
+
+\usepackage{booktabs}
+\usepackage{subfig}
+\usepackage{float}
+\usepackage{wrapfig}
+
+\usepackage[colorlinks=true, linkcolor=black, urlcolor=blue, citecolor=darkgray, filecolor=darkgray]{hyperref}   %per gli hyperlink
+\usepackage[italian, sort, noabbrev, capitalise]{cleveref}
+\usepackage[bottom]{footmisc}
+
+\usepackage[cdot, thickqspace, squaren]{SIunits}
+% macro
+\def\code#1{\texttt{#1}}
+
+\title{Esercitazione 14: Misura della costante di assorbimento del mylar\\ usando un
+	amplificatore lock-in}
+\author{Gruppo BL \\ Candido Alessandro, Luzio Andrea, Mazziotti Fabrizio}
+
+\begin{document}
+
+\maketitle
+
+\section{Scopo e Strumentazione}
+In questa esercitazione si vuole effettuare una misura di assorbimento della luce di uno spessore di mylar facendo uso di un amplificatore sincrono sensibile alla fase, o lock-in.
+\newline
+
+\noindent La strumentazione è quella solitamente presente sul banco di lavoro, e inoltre si è usato:
+\begin{itemize}
+	\item TL082: JFET input dual op-amp (x1);
+	\item TL081: JFET input op-amp (x4);
+	\item SN7400: quad NAND gates;
+	\item DG441: quad CMOS analog switch;
+	\item 2N1711, BC182: NPN transistors;
+	\item LED rosso; fotodiodo.
+\end{itemize}
+
+\subsubsection*{Schema complessivo}
+
+Lo schema a blocchi del circuito è riportato in \cref{fig:blocks}.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\textwidth]{../grafici/Blocks.png}
+	\vspace*{10pt}
+	\caption{Schema a blocchi del circuito complessivo.}
+	\label{fig:blocks}
+\end{figure}
+
+\pagebreak
+
+\section{Implementazione dei blocchi di circuito}
+
+\subsection{Amplificatore di potenza}
+
+\begin{wrapfigure}{L}{0.5\textwidth}
+	\vspace{-10pt}
+	\centering
+	\includegraphics[width=0.5\textwidth]{../grafici/PowerAmp.png}
+	\vspace{-12pt}
+	\caption{Schema del circuito: amplificatore di potenza.}
+	\label{fig:powamp}
+	\vspace{-12pt}
+\end{wrapfigure}
+
+L'amplificatore di potenza, il cui circuito è mostrato in \cref{fig:powamp}, consiste a sua volta di due parti molto semplici:
+
+\begin{itemize}
+	\item un partitore di tensione, formato dalle resistenze $ R_1 $ e $ R_2 $;
+	\item il circuito polarizzatore del transistor $ Q_1 $.
+\end{itemize}
+
+Il primo è un semplice partitore che riduce di quasi un fattore $ 10 $ la tensione in arrivo da $ S_1 $.
+Nel secondo il ruolo di circuito polarizzatore è svolto interamente dalla parte superiore in \cref{fig:powamp}, cioè dalla resistenza $ R_3 $ e le connessioni a $ + \unit{5}{V} $ (e ovviamente dal collegamento a terra all'emettitore), mentre la resistenza $ R_4 $ serve principalmente a proteggere il LED.
+
+Il condensatore interposto fra i due sottocircuiti ha lo scopo di evitare che le componenti in continua della polarizzazione del transistor fluiscano nell'altro, e allo stesso tempo lascia passare i segnali oscillanti in input.
+
+Il transistor, montato in configurazione ad emettitore comune, viene qui usato come amplificatore di potenza per alimentare il LED.
+\newline
+
+Una volta montato questo sottocircuito si è verificato che il LED fosse acceso, come indicato.
+Si riporta il segnale in tensione acquisito in \cref{fig:LED}.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.5\textwidth]{../grafici/ledr4.png}
+	\caption{Acquisizione del segnale all'uscita del LED.}
+	\label{fig:LED}
+\end{figure}
+
+\subsection{Preamplificatore}
+
+\begin{wrapfigure}{R}{0.5\textwidth}
+	\vspace{-10pt}
+	\centering
+	\includegraphics[width=0.5\textwidth]{../grafici/PreAmp.png}
+	\vspace{-12pt}
+	\caption{Schema del circuito: preamplificatore.}
+	\label{fig:preamp}
+	\vspace{-12pt}
+\end{wrapfigure}
+
+Il preamplificatore è anch'esso costituito di tre parti:
+\begin{itemize}
+	\item un primo operazionale ha lo scopo di amplificare la piccola differenza di potenziale che si genera ai capi del fotodiodo;
+	\item un filtro passa-alto elimina tutte le componenti del segnale con frequenza superiore a quella con cui è alimentato il diodo;
+	\item un secondo operaionale, montato in configurazione di amplificatore non invertente.
+\end{itemize}
+
+Il primo operazionale è montato nella configurazione di amplificatore invertente: a causa del feedback negativo si può applicare il metodo del cortocircuito virtuale, e porre $ v_- \simeq v_+ = 0 $.
+La corrente che scorre dentro il fotodiodo sarà la stessa che scorre nella resistenza $ R_5 $, a causa dell'altissima impedenza di ingresso dell'OpAmp, per cui il valore dell'uscita è determinato da questa corrente e il valore della resistenza $ R_5 $.
+In questo modo per mezzo dell'OpAmp il fotodiodo non è direttamente caricato con gli step successivi del circuito, i quali preleveranno corrente dall'operazionale, e non direttamente dal fotodiodo.
+
+Il filtro è dimensionato in modo tale da avere una frequenza di taglio prossima a $ \unit{1}{\kilo\hertz} $, data dai valori dei componenti $ C_2 $ e $ R_9 $.
+
+Il secondo OpAmp, come si è detto, costituisce assieme alle resistenze $ R_6 $ e $ R_7 $ un amplificatore non invertente, la cui amplificazione è data dal rapporto $ R_6/R_7 $ (più esattamente è $ 1 + R_6/R_7 $).
+\newline
+
+Si è osservato il segnale sull'uscita $ S_6 $ (riportato in \cref{fig:s6}) e si è misurata per esso un'ampiezza pari a $ \unit{3.54 \pm 0.11}{\volt} $.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.5\textwidth]{../grafici/s6.png}
+	\vspace{-10pt}
+	\caption{Segnale sull'uscita $ S_6 $.}
+	\label{fig:s6}
+\end{figure}
+
+\subsubsection*{Misure e rumore}
+
+Si è misurata l'uscita $ S_6 $ ponendo alcune piastrine, e si riporta in \cref{tab:s6} i risultati ottenuti.
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{cc}
+		$ S_6 (V)$ & $ N^\circ sheets $\\
+		\hline
+		$ 2.76 \pm 0.09$	& 1\\
+		$ 2.26 \pm 0.07$	& 2\\
+		$ 1.84 \pm 0.06$	& 3\\
+		$ 1.48 \pm 0.05$	& 4\\
+		$ 1.22 \pm 0.04$	& 5\\
+		$ 1.02 \pm 0.03$	& 6\\		
+	\end{tabular}
+\caption{Misure della tensione sull'uscita $ S_6 $ in funzione del numero di piastrine.}
+\label{tab:s6}
+\end{table}
+
+Si è inoltre valutato qualitativamente l'effetto del rumore: la componente prevalente di esso era dovuta alla luce ambientale, tolta questa il rumore residuo era confrontabile con l'errore dell'oscilloscopio.
+Per eliminare l'effetto della luce ambientale (la quale produceva oscillazioni anche a bassa frequenza) è stato sufficiente porre un contenitore sopra la parte di circuito che comprende LED e fotodiodo: da quanto osservato questo ha eliminato la maggior parte del rumore presente.
+
+\subsection{Sfasatore di $90^\circ$}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\textwidth]{../grafici/Dephaser.png}
+	\caption{Schema del circuito: sfasatore di $90^\circ$ e sfasatore a fase variabile.}
+	\label{fig:deph}
+\end{figure}
+
+\subsection{Sfasatore a fase variabile}
+
+\subsection{Squadratore e campionatore}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\textwidth]{../grafici/SqSamp.png}
+	\caption{Schema del circuito: squadratore e campionatore.}
+	\label{fig:sqsamp}
+\end{figure}
+
+Il circuito mostrato in \cref{fig:sqsamp} è diviso in due sottocircuiti:
+\begin{itemize}
+	\item uno identificabile con le tre porte NAND $ U_1, U_2 $ e $ U_3 $;
+	\item l'altro costituito dagli interruttori dell'integrato DG$ 441 $.
+\end{itemize}
+
+Il primo sottocircuito è molto semplice, e l'effetto delle porte NAND (usate in questo caso come dei NOT) è quello di forzare l'uscita ad assumere come valori i livelli logici \code{HIGH} e \code{LOW} fissati dalle porte.
+In questo modo si è ottenuto uno squadratore, la cui uscita è $ S_4 $.
+
+\begin{wrapfigure}{L}{0.5\textwidth}
+	\vspace{-10pt}
+	\centering
+	\includegraphics[width=0.4\textwidth]{../grafici/s4s5.png}
+	\vspace{-12pt}
+	\caption{Uscite $ S_4 $ e $ S_5 $.}
+	\label{fig:s4s5}
+	\vspace{-12pt}
+\end{wrapfigure}
+
+\noindent L'effetto dell'ultimo NAND, $ U_3 $, è quello di ottenere un'altra onda quadra sull'uscita $ S_5 $, in opposizione di fase rispetto a quella su $ S_4 $.
+
+Le due forme d'onda sono mostrate in \cref{fig:s4s5}.
+\newline
+
+Il secondo sottocircuito è anch'esso semplice: esso è costituito da quattro interruttori, due dei quali connessi a terra a un'estremità, e gli altri due connessi all'ingresso $ S_6 $.
+I quattro interruttori sono controllati in tensione dalle uscite dello squadratore, cioè $ S_4 $ e $ S_5 $, con l'effetto di averne due attivi e due spenti a ogni semiperiodo, e nella configurazione invertita nei semiperiodi adiacenti.
+Le estremità libere degli interruttori sono connesse alle uscite $ S_7 $ e $ S_8 $.
+\newline
+
+Il risultato ottenuto per queste ultime uscite è mostrato nelle \cref{fig:s7s8,fig:s7s8a90}.
+
+Ciò che accade è che per un semiperiodo una delle due uscite viene connessa a terra, mentre l'altra è connessa direttamente a $ S_6 $, mentre al semiperiodo successivo le onde quadre commutano, e fanno commutare lo stato di tutti gli interruttori, invertendo il ruolo delle due uscite rispetto al semiperiodo precedente.
+
+\begin{figure}[H]
+\begin{minipage}{0.49\textwidth}
+	\centering
+	\includegraphics[width=0.8\textwidth]{../grafici/s7s8fasegiusta.png}
+	\caption{Uscite $ S_7 $ e $ S_8 $.}
+	\label{fig:s7s8}
+\end{minipage}
+\begin{minipage}{0.49\textwidth}
+	\centering
+	\includegraphics[width=0.8\textwidth]{../grafici/s7s8fasegiusta90gradi.png}
+	\caption{Uscite $ S_7 $ e $ S_8 $, altra posizione del deviatore.}
+	\label{fig:s7s8a90}
+\end{minipage}
+\end{figure}
+
+\subsection{Amplificatore differenziale}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\textwidth]{../grafici/DiffAmpAv.png}
+	\caption{Schema del circuito: amplificatore differenziale e mediatore.}
+	\label{fig:diffav}
+\end{figure}
+
+
+\subsection{Mediatore}
+
+\section{Misure di assorbimento}
+
+\end{document}
