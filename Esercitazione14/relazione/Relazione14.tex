@@ -243,9 +243,161 @@ Ciò che accade è che per un semiperiodo una delle due uscite viene connessa a 
 	\label{fig:diffav}
 \end{figure}
 
+Bhe...è un amplificatore differenziale. Se i valori riportati in figura fossero corretti e l'op-amp fosse ideale, allora l'amplificazione differenziale dovrebbe essere $R_B/R_A$\footnote{Posti $R_B=22, 24$ e $R_A=R23, R26$}
+
+Se si considera che le resistenze non sono perfette l-output dell'amplificatore diventa:
+
+$V_{out}=V_0\frac{R23+R22}{R26+R24}\frac{R24}{R23}-V_1\frac{R22}{R23}$
+
+Per cui l'amplificazione di modo comune e l'amplificazione differenziale valgono rispettivamente:
+
+$A_{cm}=\unit{0.007\pm 0.006}{}$ \\
+$A_{diff}=\unit{1.160 \pm 0.014}{}$ %tranquilli, metterò l'errore una volta che avrò fatto funzionare lab con il nuovo comp
 
 \subsection{Mediatore}
 
+Domani lo faccio...
+
+
+
 \section{Misure di assorbimento}
+
+
+Sono stati fatti in totale tre test misure di assorbimento. I tre test sono stati svolti con tre distanze distanze led-fotodiodo diverse: quelle con distanze minori impediscono di avere un numero cospiquo di lastrine, quelle con distanza maggiore sono più affette a rumore. 
+Prima di procedere con le misure sono state fatte delle misure ripetute del valore della tensione con lo switch nell'altra posizione "zero". La tensione in questo caso non è zero ma fluttua attorno a quel valore. Si è dunque provveduto a stimare l'errore quadratico medio, che risulta circa di $20 mV$.
+
+Questo si è fatto misurando con i cursori dell'oscilloscopio lo spessore della banda di tensioni, e prendendone il 68\%.   
+
+
+Questo si è somato in quadratura al'errore strumentale del multimetro, che è sempre trascurabile. 
+
+Si è dunque fittata la formula $V=V_0e^{-n/b}+c$. Si noti che la costante serve per colpa di un piccolo offset non eliminabile con il multimetro e difficilmente stimabile. Si sono ottenuti i seguenti dati:
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{cccc}
+		$ N_0 $ & Run 1 [V]& Run 2 [V]& Run 3[V]\\
+		\hline
+		0 & 1.740+/-0.017 & 2.290+/-0.021 & 1.490+/-0.016\\
+		1 & 1.400+/-0.016 & 1.840+/-0.017 & 1.151+/-0.015\\
+		2 & 1.180+/-0.015 & 1.500+/-0.016 & 0.930+/-0.015\\
+		3 & 0.994+/-0.015 & 1.230+/-0.015 & 0.753+/-0.015\\
+		4 & 0.840+/-0.015 & 1.020+/-0.015 & 0.618+/-0.015\\
+		5 & 0.715+/-0.015 & 0.810+/-0.015 & 0.510+/-0.014\\
+		6 & 0.600+/-0.014 & 0.680+/-0.015 & 0.436+/-0.014\\
+		7 & 0.501+/-0.014 & None & 0.358+/-0.014\\
+		8 & 0.425+/-0.014 & None & 0.303+/-0.014\\
+		9 & None & None & 0.255+/-0.014\\
+		10 & None & None & 0.225+/-0.014\\
+		11 & None & None & 0.188+/-0.014\\
+		12 & None & None & 0.148+/-0.014\\
+		13 & None & None & 0.125+/-0.014\\	
+	\end{tabular}
+\caption{Misure della tensione sull'uscita $ S_6 $ in funzione del numero di piastrine.}
+\label{tab:s6}
+\end{table}
+
+E sono stati fatti i seguenti fit:
+
+$\chi^2/d.o.f.=6.67670880055/6$ \\
+$P(\chi^2>\chi^2_{dati})=0.351782036336$\\ 
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\textwidth]{../grafici/fit1.pdf}
+	\caption{Fit del primo run di dati}
+	\label{fig:RUN1}
+\end{figure}
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{cccc}
+	Nome	&	$ V_0 $[V] &  b          & a [V]\\
+	Valore  & 1.96   & 4.9  & 0.10\\ 
+	Errore  & 0.03 & 0.3 & 0.05\\
+	\hline
+	$V_0$ [V] & 0.00115473  & 0.00675163  & -0.00130441\\
+	b  	    & 0.00675163  & 0.0947997   & -0.01453302\\
+	a [V]   & -0.00130441 & -0.01453302 & 0.00236345\\
+\end{tabular}
+\caption{Risultati del fit sul primo set di dati. Sotto la sbarra la matrice di covarianza stimata.}
+\label{tab:s6}
+\end{table}
+
+
+$\chi^2/d.o.f.= 2.8/4$ \\
+$P(\chi^2>\chi^2_{dati})= 0.59$\\
+ 
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\textwidth]{../grafici/fit2.pdf}
+	\caption{Fit del secondo run di dati}
+	\label{fig:RUN2}
+\end{figure} 
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{cccc}
+	Nome	&	$ V_0 $[V] &  b      & a [V]\\
+	Valore  &   2.73 & 4.58  & 0.08\\
+	Errore	& 0.04   & 0.25  & 0.06\\ 
+\hline 
+	$V_0$ & 0.00198996 & 0.00880121  &-0.00255638\\
+ 	b     & 0.00880121 & 0.06458724  &-0.01631311\\
+ 	a     &-0.00255638 & -0.01631311 & 0.00428632\\
+\end{tabular}
+\caption{Risultati del fit sul secondo set di dati. Sotto la sbarra la matrice di covarianza stimata.}
+\label{tab:s6}
+\end{table}
+
+$\chi^2/d.o.f.= 13.7/11$ \\
+$P(\chi^2>\chi^2_{dati})= 0.25$\\
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\textwidth]{../grafici/fit3.pdf}
+	\caption{Fit del terzo run di dati}
+	\label{fig:RUN3}
+\end{figure} 
+
+
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{cccc}
+	Nome	&	$ V_0 $[V] &  b      & a [V]\\
+	Valore  &  1.75  & 4.26 & 0.081\\
+	Errore	& 0.02 & 0.14 & 0.014\\ 
+\hline 
+	$V_0$ & 4.80334423e-04 & -1.29715106e-03  & 1.92105673e-05\\
+ 	b     & -1.29715106e-03 &  1.99359641e-02 & -1.78714278e-03\\
+ 	a     &  1.92105673e-05 & -1.78714278e-03 &  2.02730982e-04\\
+\end{tabular}
+\caption{Risultati del fit sul terzo set di dati. Sotto la sbarra la matrice di covarianza stimata.}
+\label{tab:s6}
+\end{table}
+
+%Mo' mediare i risultati non ha senso...quindi non lo faccio...dovrei infatti pesare la cosa con il x^2...
+
+Si riportano dunque i valori così ottenuti:
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{cccc}
+    - & Run 1 & Run 2 & Run 3\\
+Valore & 4.9 & 4.58 & 4.26\\
+Errore & 0.3& 0.25 & 0.14\\
+$P(\chi^2)$ & 0.35 & 0.59 & 0.25\\
+\end{tabular}
+\caption{Risultati}
+\label{tab:s6}
+\end{table}
+
+Si nota che sebbene i risultati del test del $\chi^2$ siano positivi, i valori ottenuti dalle tre misure non sono in accordo alla interno degli errori sperimentali. Si presume dunque che gli errori siano stati sovrastimati e il test passi sebbene non il modello non sia perfettamente attinente ai dati. 
+
+La non correttezza del modello può essere dovuta a diversi fattori. In primis si può pensare a una possibile non linearità del fotodiodo rispetto alla luce assorbita. 
+
+Di fatto la noncorrettezza del modello può essere anche notata dalla visibile forma ottenuta in tutti e tre i grafici degli scarti normalizzati.
+
 
 \end{document}
