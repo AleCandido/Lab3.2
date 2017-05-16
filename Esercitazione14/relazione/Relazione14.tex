@@ -298,36 +298,36 @@ Ciò che accade è che per un semiperiodo una delle due uscite viene connessa a 
 	\label{fig:diffav}
 \end{figure}
 
-Bhe...è un amplificatore differenziale. Se i valori riportati in figura fossero corretti e l'op-amp fosse ideale, allora l'amplificazione differenziale dovrebbe essere $R_B/R_A$\footnote{Posti $R_B=22, 24$ e $R_A=R23, R26$}
+Se i valori riportati in figura fossero corretti e l'op-amp fosse ideale\footnote{Dunque le tensioni ai capi dei due ingressi fossero perfettamente uguali}, allora l'amplificazione differenziale dovrebbe essere $R_B/R_A$\footnote{Posti $R_B=22, 24$ e $R_A=R23, R26$}
 
-Se si considera che le resistenze non sono perfette l-output dell'amplificatore diventa:
+Se si considera che le resistenze non sono perfette (ma si continua a considerare l'op-amp come ideale) l-output dell'amplificatore diventa:
 
 $V_{out}=V_0\frac{R23+R22}{R26+R24}\frac{R24}{R23}-V_1\frac{R22}{R23}$
 
 Per cui l'amplificazione di modo comune e l'amplificazione differenziale valgono rispettivamente:
 
-$A_{cm}=\unit{0.007\pm 0.006}{}$ \\
+$A_{cm}=\unit{0.007\pm 0.006}{}$
+
 $A_{diff}=\unit{1.160 \pm 0.014}{}$ 
 
 \subsection{Mediatore}
 
-Il mediatore si può intendere come un unico circuito, oppure come un passa basso messo in serie a un altro circuito. Se si adotta questo schema è però opportuno non trascurare la resistenza di ingresso del secondo circuito, che sebbene sia alta, è comunque comparabile con quella della prima parte del circuito. \footnote{Per C5 e C6 si intende i rispettivi valori di dimpedenza complessa, ovvero $-i/\omega C5$ e $-i/\omega C6$}
+Il mediatore si può intendere come un unico circuito, oppure come un passa basso messo in serie a un altro circuito. Se si adotta questo schema è però opportuno non trascurare la resistenza di ingresso del secondo circuito, che sebbene sia alta, è comunque comparabile con quella della prima parte del circuito. \footnote{Per C5 e C6 si intende i rispettivi valori dell'impedenza complessa, ovvero $-i/\omega C5$ e $-i/\omega C6$}
 
 
 $R_{in}=\frac{R18//(R20+C6)}{1-A(\omega)}$
 
 Dove $A(\omega)$ è l'amplificazione della seconda parte del circuito.
-L'amplificazione di questa parte è chiaramente non dipende dalla presenza o meno del loop $R18$, che ha il solo scopo di diminuire la resistenza di ingresso del circuito.
+L'amplificazione di questa parte è chiaramente non dipende dalla presenza o meno del loop $R18$, che ha il solo scopo di diminuire la resistenza di ingresso del circuito (in \cref{fig:MEDFR} indicata con $Z(\omega)$).
 
 $A(\omega)=-C6/R20$ dunque $R_{in}=\frac{R18//(R20+C6)}{1+C6/R20}=\frac{R18//(R20+C6)}{1+C6/R20}=\frac{R02*R18(R20-\frac{i}{\omega C6})}{(R18+R20-\frac{i}{\omega C6})(R20-\frac{i}{\omega C6})}$
 
 Facendo i conti con la resistenza di ingresso si ottiene dunque...
 
-$V_in'=\frac{C5//R_{in}}{R21+C5//R_{in}}$ e $V_{out}=A(\omega)V_{in}'=-\frac{C6}{R20}\frac{C5//R_{in}}{R21+C5//R_{in}}=-\frac{C6}{R20}\frac{C5//\frac{R18//(R20+C6)}{1+R20/C6}}{R21+C5//\frac{R18//(R20+C6)}{1+R20/C6}}=delirio$\\
+$V_in'=\frac{C5//R_{in}}{R21+C5//R_{in}}$ e $V_{out}=A(\omega)V_{in}'=-\frac{C6}{R20}\frac{C5//R_{in}}{R21+C5//R_{in}}=-\frac{C6}{R20}\frac{C5//\frac{R18//(R20+C6)}{1+R20/C6}}{R21+C5//\frac{R18//(R20+C6)}{1+R20/C6}}$\\
 
-Si dovrebbe poter ottenere il caso in corrente continua come limite del caso precedente, comunque se ne fornirà una analisi molto più breve di segiuto: di fatto in DC i condensatori sono interruzioni del circuito, quindi il mediatore non è altro che un amplificatore invertente, dunque $V_{out}=-\frac{R18}{R21}V_{in}$.
 
-Dato che le cose dette adesso sono un delirio, si è preferito plottare in \cref{fig:MEDFR} come dovrebbe comportarsi il circuito in frequenza. Questi plot dobrebbero convincere il lettore che l'oggetto si comporta effettivamente come un mediatore sopra frequenze dell'ordine del Hz, mentre lascia passare fluttuazioni a frequenza più bassa (permettendo all'apparecchio di avere prontezza finita).
+Dato che questo risultato è abbastanza complicato, si è preferito plottare in \cref{fig:MEDFR} come dovrebbe comportarsi il circuito in frequenza. Questi plot dobrebbero convincere il lettore che l'oggetto si comporta effettivamente come un mediatore sopra frequenze dell'ordine del Hz, mentre lascia passare fluttuazioni a frequenza più bassa (permettendo all'apparecchio di avere prontezza finita).
 
 \begin{figure}[H]
 	\centering
@@ -336,21 +336,29 @@ Dato che le cose dette adesso sono un delirio, si è preferito plottare in \cref
 	\label{fig:MEDFR}
 \end{figure}
 
+Praticamente la resistenza $R18$ ha anche la funzione di impedire il raggiungumento della saturazione del op-amp. Se non ci fosse questa resistenza, infatti, il circuito sarebbe più un integratore ideale che un mediatore, e andrebbe presto in saturazione, rendendo inutilizzabile l'apparecchio.
+
+
+Si può notare inoltre da \cref{fig:MEDFR} che per $\omega \rightarrow 0$ l'amplificazione tende ad $1$, dunque il circuito tende a fornire una media non distorta del segnale.
 
 
 
 \section{Misure di assorbimento}
 
 
-Sono stati fatti in totale tre test misure di assorbimento. I tre test sono stati svolti con tre distanze distanze led-fotodiodo diverse: quelle con distanze minori impediscono di avere un numero cospiquo di lastrine, quelle con distanza maggiore sono più affette a rumore. 
-Prima di procedere con le misure sono state fatte delle misure ripetute del valore della tensione con lo switch nell'altra posizione "zero". La tensione in questo caso non è zero ma fluttua attorno a quel valore. Si è dunque provveduto a stimare l'errore quadratico medio, che risulta circa di $20 mV$.
+Sono stati fatti in totale tre misure di assorbimento. I tre test sono stati svolti con tre distanze distanze led-fotodiodo diverse: quelle con distanze minori impediscono di avere un numero cospiquo di lastrine, quelle con distanza maggiore sono più affette a rumore. 
 
-Questo si è fatto misurando con i cursori dell'oscilloscopio lo spessore della banda di tensioni, e prendendone il 68\%.   
+
+Prima di procedere con le misure sono state fatte delle misure ripetute del valore della tensione con lo switch nell'altra posizione ("zero"). La tensione in questo caso non è zero ma fluttua attorno a quel valore. Si è dunque provveduto a stimare l'errore quadratico medio, che risulta circa di $20 mV$.
+
+Questo si è fatto misurando con i cursori dell'oscilloscopio lo spessore della banda di tensioni, e prendendone il 68\%. %non è vero, ma mi permette di non dover giustificare il non aver stimato l'offset e aver lascito far questo al fit  
 
 
 Questo si è somato in quadratura al'errore strumentale del multimetro, che è sempre trascurabile. 
 
-Si è dunque fittata la formula $V=V_0e^{-n/b}+c$. Si noti che la costante serve per colpa di un piccolo offset non eliminabile con il multimetro e difficilmente stimabile. Si sono ottenuti i seguenti dati:
+Si è dunque fittata la formula $V=V_0e^{-n/b}+c$. Si noti che la costante serve per colpa di un piccolo offset non eliminabile con il multimetro e difficilmente stimabile. L'aggiunta di questo parametro permette di far tornare il test del $\chi^2$. 
+
+Si sono ottenuti i seguenti dati:
 
 \begin{table}[H]
 	\centering
@@ -378,6 +386,8 @@ Si è dunque fittata la formula $V=V_0e^{-n/b}+c$. Si noti che la costante serve
 
 E sono stati fatti i seguenti fit:
 
+\subsection{Run 1}
+
 $\chi^2/d.o.f.=6.67670880055/6$ \\
 $P(\chi^2>\chi^2_{dati})=0.351782036336$\\ 
 
@@ -400,9 +410,10 @@ $P(\chi^2>\chi^2_{dati})=0.351782036336$\\
 	a [V]   & -0.00130441 & -0.01453302 & 0.00236345\\
 \end{tabular}
 \caption{Risultati del fit sul primo set di dati. Sotto la sbarra la matrice di covarianza stimata.}
-\label{tab:s6}
+\label{tab:Run1}
 \end{table}
 
+\subsection{Run 2}
 
 $\chi^2/d.o.f.= 2.8/4$ \\
 $P(\chi^2>\chi^2_{dati})= 0.59$\\
@@ -426,8 +437,10 @@ $P(\chi^2>\chi^2_{dati})= 0.59$\\
  	a     &-0.00255638 & -0.01631311 & 0.00428632\\
 \end{tabular}
 \caption{Risultati del fit sul secondo set di dati. Sotto la sbarra la matrice di covarianza stimata.}
-\label{tab:s6}
+\label{tab:Run2}
 \end{table}
+
+\subsection{Run 3}
 
 $\chi^2/d.o.f.= 13.7/11$ \\
 $P(\chi^2>\chi^2_{dati})= 0.25$\\
@@ -453,10 +466,10 @@ $P(\chi^2>\chi^2_{dati})= 0.25$\\
  	a     &  1.92105673e-05 & -1.78714278e-03 &  2.02730982e-04\\
 \end{tabular}
 \caption{Risultati del fit sul terzo set di dati. Sotto la sbarra la matrice di covarianza stimata.}
-\label{tab:s6}
+\label{tab:Run3}
 \end{table}
 
-%Mo' mediare i risultati non ha senso...quindi non lo faccio...dovrei infatti pesare la cosa con il x^2...
+\subsection{Conclusioni}
 
 Si riportano dunque i valori così ottenuti:
 
@@ -469,14 +482,18 @@ Errore & 0.3& 0.25 & 0.14\\
 $P(\chi^2)$ & 0.35 & 0.59 & 0.25\\
 \end{tabular}
 \caption{Risultati}
-\label{tab:s6}
+\label{tab:Results}
 \end{table}
 
 Si nota che sebbene i risultati del test del $\chi^2$ siano positivi, i valori ottenuti dalle tre misure non sono in accordo alla interno degli errori sperimentali. Si presume dunque che gli errori siano stati sovrastimati e il test passi sebbene non il modello non sia perfettamente attinente ai dati. 
 
-La non correttezza del modello può essere dovuta a diversi fattori. In primis si può pensare a una possibile non linearità del fotodiodo rispetto alla luce assorbita. 
+La non correttezza del modello può essere dovuta a diversi fattori. Si può ad esempio pensare a una possibile non linearità del fotodiodo rispetto alla luce assorbita. 
 
-Di fatto la noncorrettezza del modello può essere anche notata dalla visibile forma ottenuta in tutti e tre i grafici degli scarti normalizzati.
+Di fatto la noncorrettezza del modello può essere anche notata dalla visibile forma ottenuta in tutti e tre i grafici degli scarti normalizzati, che è frotemente correlata fra i diversi esperimenti indipendenti, dunque non può essere una fluttuazione non sistematica.
 
+Di fatto la migliore sitma del coefficente di attenuazione è:
+
+$b_{best}=4.43 \pm 0.11$ lastre.%Mo' mediare i risultati non ha senso...quindi non lo faccio...dovrei infatti pesare la cosa con il x^2...alla fine l'ho fatto lo stesso...
+A questo risultato è meglio abbinare anche la semidispersione (stima dell'errore massimo, e utile in quanto il modello non riproduce perfettamente i dati), $\Delta b=0.32$ lastre. 
 
 \end{document}

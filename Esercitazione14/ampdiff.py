@@ -56,6 +56,9 @@ R20=mymme(1.232e6,"ohm")
 R21=mymme(1.521e6,"ohm")
 C6=mymme(221e-9, "farad")
 
+print(R18/R21)
+
+
 domain=np.logspace(-4, 4, 1000)
 
 C6 = 45.6e-9 

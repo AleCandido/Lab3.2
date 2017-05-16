@@ -34,6 +34,8 @@ dir = dir + "data/"
 
 YS=[]
 XS=[]
+Bs=[]
+ErrBs=[]
 
 # for i in range(1, 4):
 #     print("=====run{}======".format(i))
@@ -129,7 +131,9 @@ for i in range(1, 4):
     savefig(dir_grph+"fit{}.pdf".format(i))
     print(par,"\n",cov)
     print([cov[j,j]**0.5 for j in range(3)])
-
+    
+    Bs.append(par[1])
+    ErrBs.append(cov[1, 1]**0.5)
 
 for i in range(max(len(XS[0]), len(XS[1]), len(XS[2]))):
     top=[i, "None", "None", "None"]
@@ -145,6 +149,11 @@ for i in range(max(len(XS[0]), len(XS[1]), len(XS[2]))):
 
 
 show()
+
+
+final_result=lab.fit_const_yerr(Bs,ErrBs)
+print(final_result[0], final_result[1]**0.5)
+
 ###########################################################################
 
 
