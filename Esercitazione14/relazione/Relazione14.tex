@@ -307,11 +307,35 @@ $V_{out}=V_0\frac{R23+R22}{R26+R24}\frac{R24}{R23}-V_1\frac{R22}{R23}$
 Per cui l'amplificazione di modo comune e l'amplificazione differenziale valgono rispettivamente:
 
 $A_{cm}=\unit{0.007\pm 0.006}{}$ \\
-$A_{diff}=\unit{1.160 \pm 0.014}{}$ %tranquilli, metterò l'errore una volta che avrò fatto funzionare lab con il nuovo comp
+$A_{diff}=\unit{1.160 \pm 0.014}{}$ 
 
 \subsection{Mediatore}
 
-Domani lo faccio...
+Il mediatore si può intendere come un unico circuito, oppure come un passa basso messo in serie a un altro circuito. Se si adotta questo schema è però opportuno non trascurare la resistenza di ingresso del secondo circuito, che sebbene sia alta, è comunque comparabile con quella della prima parte del circuito. \footnote{Per C5 e C6 si intende i rispettivi valori di dimpedenza complessa, ovvero $-i/\omega C5$ e $-i/\omega C6$}
+
+
+$R_{in}=\frac{R18//(R20+C6)}{1-A(\omega)}$
+
+Dove $A(\omega)$ è l'amplificazione della seconda parte del circuito.
+L'amplificazione di questa parte è chiaramente non dipende dalla presenza o meno del loop $R18$, che ha il solo scopo di diminuire la resistenza di ingresso del circuito.
+
+$A(\omega)=-C6/R20$ dunque $R_{in}=\frac{R18//(R20+C6)}{1+C6/R20}=\frac{R18//(R20+C6)}{1+C6/R20}=\frac{R02*R18(R20-\frac{i}{\omega C6})}{(R18+R20-\frac{i}{\omega C6})(R20-\frac{i}{\omega C6})}$
+
+Facendo i conti con la resistenza di ingresso si ottiene dunque...
+
+$V_in'=\frac{C5//R_{in}}{R21+C5//R_{in}}$ e $V_{out}=A(\omega)V_{in}'=-\frac{C6}{R20}\frac{C5//R_{in}}{R21+C5//R_{in}}=-\frac{C6}{R20}\frac{C5//\frac{R18//(R20+C6)}{1+R20/C6}}{R21+C5//\frac{R18//(R20+C6)}{1+R20/C6}}=delirio$\\
+
+Si dovrebbe poter ottenere il caso in corrente continua come limite del caso precedente, comunque se ne fornirà una analisi molto più breve di segiuto: di fatto in DC i condensatori sono interruzioni del circuito, quindi il mediatore non è altro che un amplificatore invertente, dunque $V_{out}=-\frac{R18}{R21}V_{in}$.
+
+Dato che le cose dette adesso sono un delirio, si è preferito plottare in \cref{fig:MEDFR} come dovrebbe comportarsi il circuito in frequenza. Questi plot dobrebbero convincere il lettore che l'oggetto si comporta effettivamente come un mediatore sopra frequenze dell'ordine del Hz, mentre lascia passare fluttuazioni a frequenza più bassa (permettendo all'apparecchio di avere prontezza finita).
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\textwidth]{../grafici/mediatorefr.pdf}
+	\caption{Risposta in frequenza del mediatore. Il comportamento dell'op-amp è stato supposto ideale nel fare questi conti.}
+	\label{fig:MEDFR}
+\end{figure}
+
 
 
 
