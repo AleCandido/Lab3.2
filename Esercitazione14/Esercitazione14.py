@@ -1,3 +1,4 @@
+import sys
 from pylab import *
 from scipy.optimize import curve_fit
 from scipy.stats import chisqprob
@@ -26,7 +27,9 @@ import uncertainties
 import uncertainties.unumpy
 ###########################################################################
 
-close("all")
+
+
+#close("all")
 dir_grph=dir+"grafici/"
 dir = dir + "data/"
 

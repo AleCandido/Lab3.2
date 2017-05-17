@@ -1,6 +1,6 @@
 #calibrazione rms converter
 
-
+import sys
 import pylab
 from scipy.optimize import curve_fit
 from scipy.stats import chisqprob
@@ -31,11 +31,13 @@ import uncertainties
 import uncertainties.unumpy
 ###########################################################################
 
+print("================Calibrazione RMS=========")
+
+pylab.figure(figsnum)
+figsnum+=1
 
 
-
-
-close("all")
+#pylab.close("all")
 dir_grph=dir+"grafici/"
 dir = dir + "data/"
 
@@ -52,11 +54,17 @@ pend=lambda x, a, b: a
 p0=(1, 0)
 
 pars, covs=lab.fit_generic_xyerr(line, pend, voscil, vchip, dvoscil, dvchip, p0)
+a, b=uncertainties.correlated_values(pars, covs)
+
 
 domain=np.linspace(min(voscil), max(voscil), 1000)
 pylab.plot(domain, line(domain, *pars))
+pylab.savefig(dir_grph+"calibrazione.pdf")
 
 chisq=np.sum((vchip-line(voscil, *pars))**2/(dvchip**2+(dvoscil*pend(voscil, *pars))**2))
 print(chisq, dof, chisqprob(chisq,dof))
 
 pylab.show()
+
+A4=a
+

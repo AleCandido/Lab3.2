@@ -1,3 +1,4 @@
+import sys
 import pylab
 from scipy.optimize import curve_fit
 from scipy.stats import chisqprob
@@ -27,10 +28,14 @@ import uncertainties.unumpy
 ###########################################################################
 
 
+print("===========PASSABANDA==============")
 
 
+pylab.figure(figsnum)
+figsnum+=1
 
-close("all")
+
+#pylab.close("all")
 dir_grph=dir+"grafici/"
 dir = dir + "data/"
 
@@ -53,9 +58,13 @@ g=lambda w, A, Q, w0: A*w/((w**2-w0**2)**2+w**2*w0**2/Q)**0.5
 p0=(185, 10, 6.1e3)
 dof=len(f)-3
 pars, covs=lab.curve_fit(g, f, amp,p0, damp, maxfev=10000)
+A, Q, w0=uncertainties.correlated_values(pars, covs)
+
+
 
 domain = pylab.logspace(math.log10(min(f)),math.log10(max(f)), 1000)
 pylab.plot(domain, g(domain, *pars))
+pylab.savefig(dir_grph+"passabanda.pdf")
 pylab.show()
 
 for i, j in enumerate(pars):
@@ -66,3 +75,12 @@ print(chisq, dof, chisqprob(chisq,dof))
 
 A, Q, w0=uncertainties.correlated_values(pars, covs)
 print("guadagno centro banda=", g(w0, A, Q, w0))
+
+Dw=w0/Q
+AMPE=g(w0, A, Q, w0)**2*(2*np.pi)**2*Dw
+
+print("Risultati A={} Q={} w0={} Dw={} f0={} Df={} AMPE={}".format(A, Q, w0, Dw, 2*np.pi*w0, 2*np.pi*Dw, AMPE))
+
+A3=g(w0, A, Q, w0)
+
+EPB=(2*np.pi)**2*Dw

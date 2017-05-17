@@ -300,7 +300,7 @@ Ciò che accade è che per un semiperiodo una delle due uscite viene connessa a 
 
 Se i valori riportati in figura fossero corretti e l'op-amp fosse ideale\footnote{Dunque le tensioni ai capi dei due ingressi fossero perfettamente uguali}, allora l'amplificazione differenziale dovrebbe essere $R_B/R_A$\footnote{Posti $R_B=22, 24$ e $R_A=R23, R26$}
 
-Se si considera che le resistenze non sono perfette (ma si continua a considerare l'op-amp come ideale) l-output dell'amplificatore diventa:
+Se si considera che le resistenze non sono perfette (ma si continua a considerare l'op-amp come ideale) l'output dell'amplificatore diventa:
 
 $V_{out}=V_0\frac{R23+R22}{R26+R24}\frac{R24}{R23}-V_1\frac{R22}{R23}$
 
@@ -324,7 +324,7 @@ $A(\omega)=-C6/R20$ dunque $R_{in}=\frac{R18//(R20+C6)}{1+C6/R20}=\frac{R18//(R2
 
 Facendo i conti con la resistenza di ingresso si ottiene dunque...
 
-$V_in'=\frac{C5//R_{in}}{R21+C5//R_{in}}$ e $V_{out}=A(\omega)V_{in}'=-\frac{C6}{R20}\frac{C5//R_{in}}{R21+C5//R_{in}}=-\frac{C6}{R20}\frac{C5//\frac{R18//(R20+C6)}{1+R20/C6}}{R21+C5//\frac{R18//(R20+C6)}{1+R20/C6}}$\\
+$V_{in}'=\frac{C5//R_{in}}{R21+C5//R_{in}}$ e $V_{out}=A(\omega)V_{in}'=-\frac{C6}{R20}\frac{C5//R_{in}}{R21+C5//R_{in}}=-\frac{C6}{R20}\frac{C5//\frac{R18//(R20+C6)}{1+R20/C6}}{R21+C5//\frac{R18//(R20+C6)}{1+R20/C6}}$\\
 
 
 Dato che questo risultato è abbastanza complicato, si è preferito plottare in \cref{fig:MEDFR} come dovrebbe comportarsi il circuito in frequenza. Questi plot dobrebbero convincere il lettore che l'oggetto si comporta effettivamente come un mediatore sopra frequenze dell'ordine del Hz, mentre lascia passare fluttuazioni a frequenza più bassa (permettendo all'apparecchio di avere prontezza finita).
@@ -336,7 +336,7 @@ Dato che questo risultato è abbastanza complicato, si è preferito plottare in 
 	\label{fig:MEDFR}
 \end{figure}
 
-Praticamente la resistenza $R18$ ha anche la funzione di impedire il raggiungumento della saturazione del op-amp. Se non ci fosse questa resistenza, infatti, il circuito sarebbe più un integratore ideale che un mediatore, e andrebbe presto in saturazione, rendendo inutilizzabile l'apparecchio.
+Praticamente la resistenza $R18$ ha anche la funzione di impedire il raggiungumento della saturazione dell' op-amp. Se non ci fosse questa resistenza, infatti, il circuito sarebbe più un integratore ideale che un mediatore, e andrebbe presto in saturazione, rendendo inutilizzabile l'apparecchio.
 
 
 Si può notare inoltre da \cref{fig:MEDFR} che per $\omega \rightarrow 0$ l'amplificazione tende ad $1$, dunque il circuito tende a fornire una media non distorta del segnale.
@@ -346,10 +346,10 @@ Si può notare inoltre da \cref{fig:MEDFR} che per $\omega \rightarrow 0$ l'ampl
 \section{Misure di assorbimento}
 
 
-Sono stati fatti in totale tre misure di assorbimento. I tre test sono stati svolti con tre distanze distanze led-fotodiodo diverse: quelle con distanze minori impediscono di avere un numero cospiquo di lastrine, quelle con distanza maggiore sono più affette a rumore. 
+Sono stati fatte in totale tre misure di assorbimento. I tre test sono stati svolti con tre distanze distanze led-fotodiodo diverse: quelle con distanze minori impediscono di avere un numero cospiquo di lastrine, quelle con distanza maggiore sono più affette da rumore. 
 
 
-Prima di procedere con le misure sono state fatte delle misure ripetute del valore della tensione con lo switch nell'altra posizione ("zero"). La tensione in questo caso non è zero ma fluttua attorno a quel valore. Si è dunque provveduto a stimare l'errore quadratico medio, che risulta circa di $20 mV$.
+Prima di procedere con le misure sono state effettuate delle misure ripetute del valore della tensione con lo switch nell'altra posizione ("zero"). La tensione in questo caso non è zero ma fluttua attorno a quel valore. Si è dunque provveduto a stimare l'errore quadratico medio, che risulta circa di $20 mV$.
 
 Questo si è fatto misurando con i cursori dell'oscilloscopio lo spessore della banda di tensioni, e prendendone il 68\%. %non è vero, ma mi permette di non dover giustificare il non aver stimato l'offset e aver lascito far questo al fit  
 
@@ -384,12 +384,12 @@ Si sono ottenuti i seguenti dati:
 \label{tab:misurine}
 \end{table}
 
-E sono stati fatti i seguenti fit:
+E sono stati eseguiti i seguenti fit:
 
 \subsection{Run 1}
 
-$\chi^2/d.o.f.=6.67670880055/6$ \\
-$P(\chi^2>\chi^2_{dati})=0.351782036336$\\ 
+$\chi^2/d.o.f.=6.7/6$ \\
+$P(\chi^2>\chi^2_{dati})=0.35$\\ 
 
 \begin{figure}[H]
 	\centering
@@ -489,7 +489,7 @@ Si nota che sebbene i risultati del test del $\chi^2$ siano positivi, i valori o
 
 La non correttezza del modello può essere dovuta a diversi fattori. Si può ad esempio pensare a una possibile non linearità del fotodiodo rispetto alla luce assorbita. 
 
-Di fatto la noncorrettezza del modello può essere anche notata dalla visibile forma ottenuta in tutti e tre i grafici degli scarti normalizzati, che è frotemente correlata fra i diversi esperimenti indipendenti, dunque non può essere una fluttuazione non sistematica.
+Di fatto la non-correttezza del modello può essere anche notata dalla visibile forma ottenuta in tutti e tre i grafici degli scarti normalizzati, che è fortemente correlata fra i diversi esperimenti indipendenti, dunque non può essere una fluttuazione non sistematica.
 
 Di fatto la migliore sitma del coefficente di attenuazione è:
 
