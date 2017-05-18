@@ -58,10 +58,10 @@ dir_grph=dir+"grafici/"
 dir = dir + "data/"
 
 
-file="lastfit.txt"
+file="lastfit1.txt"
 data = np.loadtxt(dir+file,unpack=True)
 R=data[0]
-VS=data[1:]
+VS=data[1:]*1e-3
 Vmedio=np.mean(VS, 0)
 N=np.shape(VS)[0]
 M=np.shape(VS)[1]
@@ -75,14 +75,19 @@ p0=(2, r_rum, r_rum_par) #dati iniziali dati dal datasheet, se sono interpretati
 pars, covs=curve_fit(foo, R, Vmedio, sigma=VStd)
 V0, RT, RS=uncertainties.correlated_values(pars, covs)
 
+print("risutati: {} {} {}".format(V0, RT, RS))
 
 
 pylab.errorbar(R, Vmedio, VStd/N, fmt=".")
 domain=np.linspace(min(R), max(R), 1000)
-pylab.plot(domain, foo(domain,*p0))
+pylab.plot(domain, foo(domain,*pars))
 pylab.savefig(dir_grph+"lastfit.pdf")
 
 pylab.show()
+
+chisq=np.sum((Vmedio-foo(R, *pars))**2/(VStd)**2)
+print("chisq={} /{}".format(chisq, len(R)-3))
+
 print("non fitta manco per il cazzo...evidentemente abbiamo sbagliato qualcosa in lab...forse andava in saturazione anche con resistenze più piccole, ma non in tutto il periodo, quindi non ce ne siamo accorti?\n\n\n")
 
 
@@ -93,9 +98,9 @@ print("A1={} A2={} A3={} A4={}".format(A1, A2, A3, A4))
 
 Df=2*np.pi*Dw
 print("Df={}".format(Df))
-T=uncertainties.ufloat(300, 5)
+T=uncertainties.ufloat(273+28, 5)
 
-k_b=V0**2/(4*T*Atot**2*Df) 
+k_b=V0**2/(4*T*Atot**2*Df*RT) 
 
 print("K_b={} vs K_b_exp=1.380e-23".format(k_b))
 

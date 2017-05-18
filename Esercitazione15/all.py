@@ -36,7 +36,6 @@ figsnum=0
 for i in todos:
     file=open(mydir+i)
     exec(file.read())
-    pylab.close("all")
     print("\n\n\n\n")
     
 
