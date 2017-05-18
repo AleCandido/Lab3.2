@@ -28,7 +28,7 @@ sys.path = sys.path + [path]
 mydir= path + "Esercitazione15/"
 
 
-todos=["postpreamp.py", "prepreamp.py", "passabanda.py", "calibrazioneRMS.py", "lastfit.py"]
+todos=["postpreamp.py", "prepreamp.py", "passabanda.py", "calibrazioneRMS.py","amp_alternativa.py","lastfit.py"]
 Results=[]
 
 figsnum=0
@@ -37,6 +37,10 @@ for i in todos:
     file=open(mydir+i)
     exec(file.read())
     print("\n\n\n\n")
+    
+
+
+print("\n\n\n\n Grazie a tutti per la magnifica scoperta!!!")
     
 
 

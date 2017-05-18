@@ -68,6 +68,10 @@ M=np.shape(VS)[1]
 Vmediop=as_strided(Vmedio, (N, M), (Vmedio.strides[0],0))
 VStd=np.sqrt(np.sum((VS-Vmedio)**2, 0)/(N-1))
 
+Vmedio=Vmedio[R<20000]
+VStd=VStd[R<20000]
+R=R[R<20000]
+
 
 foo=lambda R, V0, RT, RS: V0*np.sqrt(1+R/RT+(R/RS)**2)
 p0=(2, r_rum, r_rum_par) #dati iniziali dati dal datasheet, se sono interpretati bene (sono a iKH, ma che ci posso fare?)
@@ -86,10 +90,14 @@ pylab.savefig(dir_grph+"lastfit.pdf")
 pylab.show()
 
 chisq=np.sum((Vmedio-foo(R, *pars))**2/(VStd)**2)
-print("chisq={} /{}".format(chisq, len(R)-3))
+prob=chisqprob(chisq,dof)
+chisq1=np.sum((Vmedio-foo(R, *pars))**2/(VStd/N)**2)
+print("chisq={} {} {}/{}".format(chisq, prob,chisq1,len(R)-3))
 
 print("non fitta manco per il cazzo...evidentemente abbiamo sbagliato qualcosa in lab...forse andava in saturazione anche con resistenze più piccole, ma non in tutto il periodo, quindi non ce ne siamo accorti?\n\n\n")
 
+
+print("#####risultati con il prodotto dei guadagni...")
 
 Atot=A1*A2*A3*A4
 print("Atot={}".format(Atot))
@@ -101,6 +109,24 @@ print("Df={}".format(Df))
 T=uncertainties.ufloat(273+28, 5)
 
 k_b=V0**2/(4*T*Atot**2*Df*RT) 
+
+
+print('########risultati con il guadagno totale stimato con il partitore 1000:1...')
+
+Atot=A_supp*A4
+print("Atot={}".format(Atot))
+print("A1={} A2={} A3={} A4={}".format(A1, A2, A3, A4))
+
+
+Df=2*np.pi*Dw_supp
+print("Df={}".format(Df))
+T=uncertainties.ufloat(273+28, 5)
+
+k_b=V0**2/(4*T*Atot**2*Df*RT) 
+
+
+
+
 
 print("K_b={} vs K_b_exp=1.380e-23".format(k_b))
 

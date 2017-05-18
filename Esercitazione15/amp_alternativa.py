@@ -36,14 +36,11 @@ print("===============Stima strna=================")
 
 
 
-#####stima paramretri....
+#####partitore....
 
 R1=uncertainties.ufloat(9.91e3, mme(9.91e3, "ohm"))
 R2=uncertainties.ufloat(10.1, mme(10.1, "ohm"))
 
-
-
-#####stimati dal datasheet dell'ina...
 
 
 pylab.figure(figsnum)
@@ -65,8 +62,37 @@ UVin=uncertainties.unumpy.uarray(Vin, dVin)*R2/(R1+R2)
 UVout=uncertainties.unumpy.uarray(Vout, dVout)
 Uamp=UVout/UVin
 
-pylab.errorbar(f, uncertainties.unumpy.nominal_values(Uamp), uncertainties.unumpy.std_devs(Uamp), fmt='.')
+amp=uncertainties.unumpy.nominal_values(Uamp)
+damp=uncertainties.unumpy.std_devs(Uamp)
+
+
+pylab.errorbar(f, amp, damp, fmt='.')
+
+
+g=lambda w, A, Q, w0: A*w/((w**2-w0**2)**2+w**2*w0**2/Q)**0.5
+
+p0=(1e8, 10, 6.5e3)
+dof=len(f)-3
+pars, covs=lab.curve_fit(g, f, amp,p0, damp, maxfev=10000)
+A, Q, w0=uncertainties.correlated_values(pars, covs)
+print("A= {} \n Q={}\n w0={}\n".format(A, Q, w0))
+
+domain=np.linspace(min(f), max(f), 1000)
+pylab.plot(domain, g(domain, *pars))
+pylab.savefig(dir_grph+"lastfit.pdf")
+
+
+
+A_supp=g(w0, A, Q, w0)
+Dw_supp=w0/Q
+
+
+
+
 pylab.show()
+
+
+
 
 
 
