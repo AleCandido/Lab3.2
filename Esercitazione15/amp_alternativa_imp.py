@@ -69,24 +69,24 @@ pylab.loglog()
 pylab.errorbar(f, amp, damp, fmt='.')
 
 #modello come se fosse un unico passabanda amplificato, con amplificatori ideali (con frequenza di taglio costante...)
-g=lambda w, A, Q, w0: A*w/((w**2-w0**2)**2+w**2*w0**2/Q)**0.5
+g=lambda w, A, Q, w0, wt:1/(1+w/wt)*A*w/((w**2-w0**2)**2+w**2*w0**2/Q)**0.5
 
-p0=(1e8, 10, 6.5e3)
+p0=(1e8, 10, 6.5e3, 1e4)
 dof=len(f)-3
 pars, covs=lab.curve_fit(g, f, amp,p0, damp, maxfev=10000)
-A, Q, w0=uncertainties.correlated_values(pars, covs)
-print("A= {} \n Q={}\n w0={}\n".format(A, Q, w0))
+A, Q, w0, wt=uncertainties.correlated_values(pars, covs)
+print("A= {} \n Q={}\n w0={}\n wt={}".format(A, Q, w0, wt))
 
 domain=np.linspace(min(f), max(f), 1000)
 pylab.plot(domain, g(domain, *pars))
-pylab.savefig(dir_grph+"amp_alternativa.pdf")
+pylab.savefig(dir_grph+"amp_altnativa_imp.pdf")
 
 
 chisq=np.sum((amp-g(f, *pars))**2/damp**2)
 print(chisq, dof, chisqprob(chisq,dof))
 
 
-A_supp=g(w0, A, Q, w0)
+A_supp=g(w0, A, Q, w0, wt)
 Dw_supp=w0/Q
 
 
