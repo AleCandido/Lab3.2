@@ -69,7 +69,7 @@ pylab.loglog()
 pylab.errorbar(f, amp, damp, fmt='.')
 
 #modello come se fosse un unico passabanda amplificato, con amplificatori ideali (con frequenza di taglio costante...)
-g=lambda w, A, Q, w0, wt:1/(1+w/wt)*A*w/((w**2-w0**2)**2+w**2*w0**2/Q)**0.5
+g=lambda w, A, Q, w0, wt:1/(1+(w/wt)**2)**0.5*A*w/((w**2-w0**2)**2+w**2*w0**2/Q)**0.5
 
 p0=(1e8, 10, 6.5e3, 1e4)
 dof=len(f)-3

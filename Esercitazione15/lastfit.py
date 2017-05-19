@@ -110,6 +110,7 @@ T=uncertainties.ufloat(273+28, 5)
 
 k_b=V0**2/(4*T*Atot**2*Df*RT) 
 
+print("K_b={} vs K_b_exp=1.380e-23".format(k_b))
 
 print('########risultati con il guadagno totale stimato con il partitore 1000:1...')
 

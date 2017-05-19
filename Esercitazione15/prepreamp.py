@@ -35,9 +35,10 @@ print("==============PRE PRE AMP===========")
 
 pylab.figure(figsnum)
 figsnum+=1
+pylab.title("pre-pre-amp")
 
 
-pylab.close("all")
+#pylab.close("all")
 dir_grph=dir+"grafici/"
 dir = dir + "data/"
 
@@ -55,7 +56,7 @@ pylab.loglog()
 pylab.errorbar(f, amp, damp, fmt=".")
 
 
-low_pass=lambda w, A0, w0: A0/(1+w/w0)
+low_pass=lambda w, A0, w0: A0/(1+(w/w0)**2)**0.5
 p0=(14.4, 27e3)
 dof=len(f)-2
 pars, covs=lab.curve_fit(low_pass, f, amp,p0, damp)
