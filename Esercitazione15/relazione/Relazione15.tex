@@ -1,7 +1,7 @@
 \documentclass[a4paper,10pt]{article}
 \usepackage[utf8]{inputenc}
+\usepackage{lmodern}
 \usepackage[T1]{fontenc}
-\usepackage{lmodern}	
 \usepackage[italian]{babel}
 
 \usepackage{amsmath}
@@ -60,31 +60,50 @@ Lo schema a blocchi del circuito è riportato in \cref{fig:blocks}.
 
 \begin{figure}[H]
 	\centering
-%	\includegraphics[width=\textwidth]{../grafici/Blocks.png}
+	\includegraphics[width=\textwidth]{../grafici/Blocks.png}
 	\vspace*{10pt}
 	\caption{Schema a blocchi del circuito complessivo.}
 	\label{fig:blocks}
 \end{figure}
 
+\begin{wrapfigure}{L}{0.35\textwidth}
+	\vspace{-10pt}
+	\centering
+	\includegraphics[width=0.35\textwidth]{../grafici/Filter.png}
+	\vspace{-6pt}
+	\caption{Schema di filtraggio per le alimentazioni.}
+	\label{fig:powamp}
+	\vspace{-12pt}
+\end{wrapfigure}
+
+\lipsum[1-2]
+
+\pagebreak
+
 \section{Implementazione dei blocchi di circuito}
 
 \subsection{Pre-amplificatore}
 
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=\textwidth]{../grafici/preamp.png}
-	\vspace*{10pt}
-	\caption{Schema del Preamplificatore.}
-	\label{fig:preamp}
-\end{figure}
-
-
-Si è montato il circuito in \cref{fig:preamp} costituito da due amplificatori: il primo è l'integrato INA114 il cui guadagno atteso è pari a $A_0 = (1+ 50k\Pmega/R_1) = 51.6 \pm 0.5$; %, dove la resistenza da 50 k$\Omega$ è il stata presa nominale poichè risultato delle resistenze interne all'integrato.
+Si è montato il circuito in \cref{fig:preamp} costituito da due amplificatori: il primo è l'integrato INA114 il cui guadagno atteso è pari a $A_0 = (1+ 50k\Omega/R_1) = 51.6 \pm 0.5$; %, dove la resistenza da 50 k$\Omega$ è il stata presa nominale poichè risultato delle resistenze interne all'integrato.
 
 
 % la resistenza da 1k l'abbiamo misurata, quella da 50k sarà il risultato delle resistenze che stanno dentro all'integrato, che mettiamo nominale?
 
  il secondo è costituito da un opamp con feedback sull'ingresso invertente. Il guadagno atteso di questa seconda parte di circuito è dato da $A_1 = R_3/R_2 = 14.4 \pm 0.2 $.
+
+\begin{wrapfigure}{L}{0.6\textwidth}
+	\vspace{-10pt}
+	\centering
+	\includegraphics[width=0.6\textwidth]{../grafici/PreAmp.png}
+	\vspace{-12pt}
+	\caption{Schema del circuito: pre-amplificatore.}
+	\label{fig:preamp}
+	\vspace{-6pt}
+\end{wrapfigure}
+
+\lipsum[2-3]
+
+
 Le resistenze utilizzate sono riportate in \cref{tab:resistenze}.
 
 \begin{table}[H]
@@ -100,30 +119,104 @@ Le resistenze utilizzate sono riportate in \cref{tab:resistenze}.
 	\label{tab:resistenze}
 \end{table}
 
+
+
+
+\subsubsection*{Amplificazione e risposta in frequenza}
+
+\lipsum[4]
+
+
 In primo luogo si è misurata la risposta in frequenza del solo amplificatore INA staccando la seconda parte del circuito e mandando al suo ingresso un'onda sinusoidale dal generatore di funzioni%con ampiezza picco-picco di $V_pp = 9.4\pm 0.2 mV$.
-TABELLA FORSE?
 FIT + IMMAGINE
 Dal fit si ottengono come risultati $A_0 = $, $f_t,0 = $, $\chi^2/DOF = /$. Il guadagno è in buon accordo con quanto atteso. 
 CHI2
 
 In secondo luogo si è mandata un'onda sinusoidale all'ingresso della seconda parte del circuito (prima della resistenza $R_2$) e si è studiata la sua risposta in frequenza.
-TABELLA FORSE?
 FIT + IMMAGINE
 Dal fit si ottengono come risultati $A_1 = $, $f_t,1 = $, $\chi^2/DOF = /$. Il guadagno è in buon accordo con quanto atteso. 
+CHI2
 
 Inoltre affinché il circuito amplifichi il segnale al massimo possibile (quindi con l'amplificazione ricavata), è necessario che le frequenze di taglio ottenute nei due casi risultino maggiori della frequenza di risonanza del filtro passabanda (vedi prossima sezione), che è attesa essere $\sim$ 6-7 kHz. In entrambi i casi ciò è rispettato.
 
 
 
 
-\subsection{Filtro passabanda e post amplificatore}
+
+
+\subsection{Filtro passabanda e post-amplificatore}
+
+\begin{wrapfigure}{R}{0.5\textwidth}
+	\vspace{-10pt}
+	\centering
+	\includegraphics[width=0.5\textwidth]{../grafici/Bandpass.png}
+	\vspace{-12pt}
+	\caption{Schema del circuito: filtro passabanda.}
+	\label{fig:powamp}
+	\vspace{-6pt}
+\end{wrapfigure}
+
+\lipsum[4-5]
+
+\begin{wrapfigure}{L}{0.6\textwidth}
+	\vspace{-10pt}
+	\centering
+	\includegraphics[width=0.6\textwidth]{../grafici/PostAmp.png}
+	\vspace{-12pt}
+	\caption{Schema del circuito: post-amplificatore.}
+	\label{fig:powamp}
+	\vspace{-6pt}
+\end{wrapfigure}
+
+\lipsum[6-7]
+
+
+\subsubsection*{Amplificazione e risposta in frequenza}
+
+\lipsum[4]
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\textwidth]{../grafici/passabanda.pdf}
+	\vspace*{10pt}
+	\caption{Amplificazione e risposta in frequenza degli stadi passabanda e post-amplificatore in serie.}
+	\label{fig:blocks}
+\end{figure}
 
 \subsection{Convertitore RMS}
 
-\section{Misura della costante di Boltzmann} 
+\begin{wrapfigure}{L}{0.4\textwidth}
+	\vspace{-10pt}
+	\centering
+	\includegraphics[width=0.4\textwidth]{../grafici/RMSconverter.png}
+	\vspace{-12pt}
+	\caption{Schema del circuito: convertitore RMS.}
+	\label{fig:powamp}
+	\vspace{-6pt}
+\end{wrapfigure}
+
+\lipsum[2-5]
+
+\subsubsection*{Calibrazione}
+
+\lipsum[4]
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\textwidth]{../grafici/calibrazione.pdf}
+	\vspace*{10pt}
+	\caption{Fit della calibrazione del convertitore RMS.}
+	\label{fig:blocks}
+\end{figure}
+
+\section{Misura della costante di Boltzmann}
 
 \subsection{Stima diretta dell'amplificazione \\e risposta in frequenza del circuito complessivo}
 
+\lipsum[8]
+
 \subsection{Risultati finali}
+
+\lipsum[9]
 
 \end{document}
