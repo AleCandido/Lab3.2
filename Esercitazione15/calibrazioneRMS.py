@@ -10,7 +10,8 @@ users={"candi": "C:\\Users\\candi\\Documents\\GitHub\\Lab3.2\\",
 "silvanamorreale":"C:\\Users\\silvanamorreale\\Documents\\GitHub\\Lab3.2\\" ,
 "Studenti": "C:\\Users\\Studenti\\Desktop\\Lab3\\",
 "User":"C:\\Users\\User\\Documents\\GitHub\\Lab3.2\\",
-"andrea": "/home/andrea/Documenti/Da salvare 12-5-2017/Documenti/GitHub/Lab3.2/"
+"andrea": "/home/andrea/Documenti/Da salvare 12-5-2017/Documenti/GitHub/Lab3.2/",
+"viviana": "C:\\Users\\viviana\\Documents\\GitHub\\Lab3.2\\"
 }
 try:
     user=getpass.getuser()

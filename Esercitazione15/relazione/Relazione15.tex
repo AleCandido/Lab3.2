@@ -66,19 +66,20 @@ Lo schema a blocchi del circuito è riportato in \cref{fig:blocks}.
 	\label{fig:blocks}
 \end{figure}
 
-\begin{wrapfigure}{L}{0.35\textwidth}
+\begin{wrapfigure}[11]{R}{0.4\textwidth}
 	\vspace{-10pt}
 	\centering
-	\includegraphics[width=0.35\textwidth]{../grafici/Filter.png}
+	\includegraphics[width=0.4\textwidth]{../grafici/Filter.png}
 	\vspace{-6pt}
 	\caption{Schema di filtraggio per le alimentazioni.}
-	\label{fig:powamp}
+	\label{fig:powfilter}
 	\vspace{-12pt}
 \end{wrapfigure}
 
-\lipsum[1-2]
+Si sono fissate le alimentazioni a $\sim \unit{5}{\volt}$ e si è montatp fra esse lo shcema di filtraggio riportato in  \cref{fig:powfilter}.
 
-\pagebreak
+Si è proceduto con il montaggio dei singoli blocchi di circuito, che verranno illustrati individualmente nella prossima sezione.
+
 
 \section{Implementazione dei blocchi di circuito}
 
@@ -128,14 +129,22 @@ Lo schema a blocchi del circuito è riportato in \cref{fig:blocks}.
 
 \subsubsection*{Amplificazione e risposta in frequenza}
 
-\lipsum[4]
+Si è misurata l'amplificazione e la risposta in frequenza dei due circuiti congiuntamente. Naturalmente il contributo maggiore alla risposta in frequenza sarà quello del passabanda, poiché gli op-amp del post-amplificatore hann un comportamento ideale fino a frequenze abbastanza elevate (molto maggiori dei $\sim 6 \kilo\hertz $ della frequenza centrale).
+
+Si riportano in \cref{fig:bandpass} i dati presi per la risposta in frequenza e il fit che si è fatto di essi (il grafico su cui sono mostrati è bilogaritmico).
+La funzione di cui stato eseguito il fit è:
+\[ A(f) = A_2^\star \frac{f}{\sqrt{(f^2-f_0^2)^2 + \left(\frac{f_0 f}{Q}\right)^2}} \]
+
+e i parametri trovati dal fit sono:
+\[ A_2^\star=(1.495 \pm 0.012)\cdot10^5 \qquad Q=57.6 \pm 1.9 \qquad f_0=6.084 \pm 0.007 \kilo\hertz  \]
+da cui si può dedurre il valore dell'amplificazione di centro banda $ A_{2,0} $ e la larghezza di banda $ \Delta f $:
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.7\textwidth]{../grafici/passabanda.pdf}
 	\vspace*{10pt}
 	\caption{Amplificazione e risposta in frequenza degli stadi passabanda e post-amplificatore in serie.}
-	\label{fig:blocks}
+	\label{fig:bandpass}
 \end{figure}
 
 \subsection{Convertitore RMS}
