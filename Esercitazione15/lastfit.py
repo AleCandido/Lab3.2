@@ -98,8 +98,8 @@ print("risutati: {} {} {}".format(V0, RT, RS))
 
 ######plot....
 
-pylab.title("Fit finale")
-pylab.xlabel("R[\Ohm]")
+pylab.title("Misura della costante di Boltzmann")
+pylab.xlabel("R[$\Omega$]")
 pylab.ylabel("RMS[V]")
 pylab.errorbar(R, Vmedio, VStd, DR,fmt=".")
 domain=np.linspace(min(R), max(R), 1000)
@@ -110,8 +110,12 @@ pylab.savefig(dir_grph+"lastfit.pdf")
 chisq=np.sum((Vmedio-foo(R, *pars))**2/(VStd)**2) #versione senza errori sulle x
 chisq=np.sum((Vmedio-foo(R, *pars))**2/((VStd)**2+dfoo(R, *pars)**2*DR**2)) #versione con errori sulle x, in pratica non cambia nulla..
 prob=chisqprob(chisq,dof)
-chisq1=np.sum((Vmedio-foo(R, *pars))**2/(VStd/N)**2) #versione senza erroris sulle x
-chisq1=np.sum((Vmedio-foo(R, *pars))**2/((VStd/N)**2+DR**2*dfoo(R, *pars)**2)) #versione con errori sulle x, quì cambia parecchio!!!!
+# chisq1=np.sum((Vmedio-foo(R, *pars))**2/(VStd/N)**2) #versione senza erroris sulle x
+# chisq1=np.sum((Vmedio-foo(R, *pars))**2/((VStd/N)**2+DR**2*dfoo(R, *pars)**2)) #versione con errori sulle x, quì cambia parecchio!!!!
+
+chisq1=np.sum((Vmedio-foo(R, *pars))**2/(VStd/sqrt(N))**2) #versione senza erroris sulle x
+chisq1=np.sum((Vmedio-foo(R, *pars))**2/((VStd/sqrt(N))**2+DR**2*dfoo(R, *pars)**2)) #versione con errori sulle x, quì cambia parecchio!!!!
+
 
 print("Gi errori dovrebbero essere quelli sulla media, non quelli delle parent dei dati, quindi il chiq corretto dovrebbe essere il secondo, non il primo. Di fatto il primo torna, il secondo no: qualcuno ha idea del perché il primo portrebbe essere meglio del sencodo?")
 print("chisq={} prob={} chiq2/dof={}/{}".format(chisq, prob,chisq1,len(R)-3))

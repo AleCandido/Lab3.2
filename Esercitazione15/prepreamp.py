@@ -37,7 +37,7 @@ print("==============PRE PRE AMP===========")
 pylab.figure(figsnum)
 figsnum+=1
 pylab.title("Amplificazione INA")
-pylab.xlabel("frequanza [Hz]")
+pylab.xlabel("frequenza [Hz]")
 pylab.ylabel("A")
 
 
@@ -73,7 +73,7 @@ dof=len(f)-2
 pars, covs=lab.fit_generic_xyerr(low_pass,dlow_pass, f, amp,df,damp, p0)
 A0, w0=uncertainties.correlated_values(pars, covs)
 print("Risultati: A_0={}  w_0={}".format(A0, w0))
-
+print("\n\n")
 
 #######plot...
 

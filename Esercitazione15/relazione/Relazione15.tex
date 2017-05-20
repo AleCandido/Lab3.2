@@ -85,21 +85,65 @@ Si è proceduto con il montaggio dei singoli blocchi di circuito, che verranno i
 
 \subsection{Pre-amplificatore}
 
+Si è montato il circuito in \cref{fig:preamp} costituito da due amplificatori: il primo è l'integrato INA114 il cui guadagno atteso è pari a $A_0 = (1+ 50k\Omega/R_1) = 51.6 \pm 0.5$; %, dove la resistenza da 50 k$\Omega$ è il stata presa nominale poichè risultato delle resistenze interne all'integrato.
+
+
+% la resistenza da 1k l'abbiamo misurata, quella da 50k sarà il risultato delle resistenze che stanno dentro all'integrato, che mettiamo nominale?
+
+ il secondo è costituito da un opamp con feedback sull'ingresso invertente. Il guadagno atteso di questa seconda parte di circuito è dato da $A_1 = R_3/R_2 = 14.4 \pm 0.2 $.
+
 \begin{wrapfigure}{L}{0.6\textwidth}
 	\vspace{-10pt}
 	\centering
 	\includegraphics[width=0.6\textwidth]{../grafici/PreAmp.png}
 	\vspace{-12pt}
 	\caption{Schema del circuito: pre-amplificatore.}
-	\label{fig:powamp}
+	\label{fig:preamp}
 	\vspace{-6pt}
 \end{wrapfigure}
 
 \lipsum[2-3]
 
+
+Le resistenze utilizzate sono riportate in \cref{tab:resistenze}.
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{ccc}
+		\hline
+		$R_1[\Omega]$ & $R_2[k\Omega]$ & $R_3[k\Omega]$\\
+		\hline
+		$989\pm9$ & $4.71\pm0.05$ & $67.9\pm0.6$\\
+		\hline
+	\end{tabular}
+	\caption{Resistenze utilizzate nel circuito in \cref{fig:preamp}.}
+	\label{tab:resistenze}
+\end{table}
+
+
+
+
 \subsubsection*{Amplificazione e risposta in frequenza}
 
 \lipsum[4]
+
+
+In primo luogo si è misurata la risposta in frequenza del solo amplificatore INA staccando la seconda parte del circuito e mandando al suo ingresso un'onda sinusoidale dal generatore di funzioni%con ampiezza picco-picco di $V_pp = 9.4\pm 0.2 mV$.
+FIT + IMMAGINE
+Dal fit si ottengono come risultati $A_0 = $, $f_t,0 = $, $\chi^2/DOF = /$. Il guadagno è in buon accordo con quanto atteso. 
+CHI2
+
+In secondo luogo si è mandata un'onda sinusoidale all'ingresso della seconda parte del circuito (prima della resistenza $R_2$) e si è studiata la sua risposta in frequenza.
+FIT + IMMAGINE
+Dal fit si ottengono come risultati $A_1 = $, $f_t,1 = $, $\chi^2/DOF = /$. Il guadagno è in buon accordo con quanto atteso. 
+CHI2
+
+Inoltre affinché il circuito amplifichi il segnale al massimo possibile (quindi con l'amplificazione ricavata), è necessario che le frequenze di taglio ottenute nei due casi risultino maggiori della frequenza di risonanza del filtro passabanda (vedi prossima sezione), che è attesa essere $\sim$ 6-7 kHz. In entrambi i casi ciò è rispettato.
+
+
+
+
+
 
 \subsection{Filtro passabanda e post-amplificatore}
 
@@ -126,6 +170,7 @@ Si è proceduto con il montaggio dei singoli blocchi di circuito, che verranno i
 \end{wrapfigure}
 
 \lipsum[6-7]
+
 
 \subsubsection*{Amplificazione e risposta in frequenza}
 
@@ -173,7 +218,7 @@ da cui si può dedurre il valore dell'amplificazione di centro banda $ A_{2,0} $
 	\label{fig:blocks}
 \end{figure}
 
-\section{Analisi complessiva} % questo nome si può anche cambiare, non è che mi piaccia un granché
+\section{Misura della costante di Boltzmann}
 
 \subsection{Stima diretta dell'amplificazione \\e risposta in frequenza del circuito complessivo}
 
