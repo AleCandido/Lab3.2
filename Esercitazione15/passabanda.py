@@ -30,12 +30,14 @@ import uncertainties.unumpy
 
 print("===========PASSABANDA==============")
 
-
 pylab.figure(figsnum)
+# fig = pylab.figure(figsnum)
+# ax1 = fig.add_subplot(111)
 figsnum+=1
 pylab.title("amplificazione passa-banda")
 pylab.xlabel("frequenza [Hz]")
-pylab.ylabel("A(\f)")
+pylab.ylabel("A($f$)")
+# ax1.yaxis.set_major_formatter(FormatStrFormatter('%.2f'))
 
 ###############Acquisizione dati
 
@@ -59,7 +61,7 @@ damp=((dvout/vout)**2+(dvin/vin)**2)**0.5
 g=lambda w, A, Q, w0: A*w/((w**2-w0**2)**2+w**2*w0**2/Q)**0.5
 p0=(185, 10, 6.1e3)
 dof=len(f)-3
-pars, covs=lab.curve_fit(g, f, amp,p0, damp, maxfev=10000)
+pars, covs = curve_fit(g, f, amp,p0, damp, maxfev=10000)
 A, Q, w0=uncertainties.correlated_values(pars, covs)
 
 
@@ -67,7 +69,13 @@ A, Q, w0=uncertainties.correlated_values(pars, covs)
 pylab.loglog()
 pylab.errorbar(f, amp, damp,Df,fmt=".")
 domain = pylab.logspace(math.log10(min(f)),math.log10(max(f)), 1000)
-pylab.plot(domain, g(domain, *pars))
+gdomain = g(domain, *pars)
+pylab.plot(domain, gdomain)
+pylab.xlim(min(domain)*0.9,max(domain)*1.1)
+vint = pylab.vectorize(int)
+pylab.xticks(vint((pylab.logspace(log10(min(domain)*0.9),log10(max(domain)*1.1), 5)//100)*100),vint((pylab.logspace(log10(min(domain)*0.9),log10(max(domain)*1.1), 5)//100)*100))
+pylab.ylim(min(gdomain)*0.9, max(gdomain)*1.1)
+pylab.yticks(vint((pylab.logspace(log10(min(gdomain)*0.9),log10(max(gdomain)*1.1), 5)//10)*10),vint((pylab.logspace(log10(min(gdomain)*0.9),log10(max(gdomain)*1.1), 5)//10)*10))
 pylab.savefig(dir_grph+"passabanda.pdf")
 
 

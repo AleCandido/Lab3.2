@@ -73,7 +73,7 @@ g=lambda w, A, Q, w0, wt:1/(1+(w/wt)**2)**0.5*A*w/((w**2-w0**2)**2+w**2*w0**2/Q)
 
 p0=(1e8, 10, 6.5e3, 1e4)
 dof=len(f)-3
-pars, covs=lab.curve_fit(g, f, amp,p0, damp, maxfev=10000)
+pars, covs = curve_fit(g, f, amp,p0, damp, maxfev=10000)
 A, Q, w0, wt=uncertainties.correlated_values(pars, covs)
 print("A= {} \n Q={}\n w0={}\n wt={}".format(A, Q, w0, wt))
 

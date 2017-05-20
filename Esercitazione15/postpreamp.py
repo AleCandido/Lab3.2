@@ -63,7 +63,7 @@ df=51/1e6*f #±51 ppm inclusi tutti gli errori di riferimento della frequenza e 
 low_pass=lambda w, A0, w0: A0/(1+(w/w0)**2)**0.5
 p0=(14.4, 27e3)
 dof=len(f)-2
-pars, covs=lab.curve_fit(low_pass, f, amp,p0, damp)
+pars, covs = curve_fit(low_pass, f, amp,p0, damp)
 A0, w0=uncertainties.correlated_values(pars, covs)
 print("Risultati: A_0={}  w_0={}".format(A0, w0))
 
