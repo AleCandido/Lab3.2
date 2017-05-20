@@ -34,44 +34,58 @@ import math
 print("============POST PRE AMP========================")
 
 
+
+
 pylab.figure(figsnum)
 figsnum+=1
-pylab.title("post-pre-amp")
+pylab.title("Amplificazione secondo amplificatore")
+pylab.xlabel("frequanza [Hz]")
+pylab.ylabel("A")
 
-#pylab.close("all")
+
+
+
 dir_grph=dir+"grafici/"
 dir = dir + "data/"
 
-
+#######preparazione dati
 file="postpreamp.txt"
-f, vin, vout = np.loadtxt(dir+file,unpack=True)
-
-
+f, vin, vout = loadtxt(dir+file,unpack=True)
 amp=vout/vin
 dvout=mme(vout, "volt", "oscil")
 dvin=mme(vin, "volt", "oscil")
 damp=((dvout/vout)**2+(dvin/vin)**2)**0.5
+df=51/1e6*f #±51 ppm inclusi tutti gli errori di riferimento della frequenza e ±1  errori di conteggio
 
-pylab.loglog()
-pylab.errorbar(f, amp, damp, fmt=".")
 
+#######fit...
 
 low_pass=lambda w, A0, w0: A0/(1+(w/w0)**2)**0.5
 p0=(14.4, 27e3)
 dof=len(f)-2
 pars, covs=lab.curve_fit(low_pass, f, amp,p0, damp)
 A0, w0=uncertainties.correlated_values(pars, covs)
+print("Risultati: A_0={}  w_0={}".format(A0, w0))
+
+#######fit...
+
+dlow_pass=lambda w, A0, w0: -0.5*(2*w/w0**2)*A0/(1+(w/w0)**2)**1.5
+p0=(14.4, 27e3)
+dof=len(f)-2
+pars, covs=lab.fit_generic_xyerr(low_pass,dlow_pass, f, amp,df,damp, p0)
+A0, w0=uncertainties.correlated_values(pars, covs)
+print("Risultati: A_0={}  w_0={}".format(A0, w0))
 
 
-pylab.plot()
+#######plot...
 
-
-
+pylab.loglog()
+pylab.errorbar(f, amp, damp, df, fmt=".")
 domain = pylab.logspace(math.log10(min(f)),math.log10(max(f)), 1000)
 pylab.plot(domain, low_pass(domain, *pars))
-pylab.savefig(dir_grph+"postpreamp.pdf")
-pylab.show()
+pylab.savefig(dir_grph+"prepreamp.pdf")
 
+##############################################
 
 
 
@@ -87,6 +101,9 @@ for i, j in enumerate(pars):
 chisq=np.sum((amp-low_pass(f, *pars))**2/damp**2)
 prob=chisqprob(chisq,dof)
 print(chisq, dof, prob)
+
+
+#####################stima autonoma
 
 
 primi=amp[f<8e3]

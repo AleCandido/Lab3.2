@@ -35,9 +35,11 @@ print("================Calibrazione RMS=========")
 
 pylab.figure(figsnum)
 figsnum+=1
+pylab.title("RMS-oscilloscopio vs RMS-true RMS converter")
+pylab.xlabel("RMS oscilloscopio [V]")
+pylab.ylabel("RMS true RMS converter")
 
 
-#pylab.close("all")
 dir_grph=dir+"grafici/"
 dir = dir + "data/"
 
@@ -64,7 +66,6 @@ pylab.savefig(dir_grph+"calibrazione.pdf")
 chisq=np.sum((vchip-line(voscil, *pars))**2/(dvchip**2+(dvoscil*pend(voscil, *pars))**2))
 print(chisq, dof, chisqprob(chisq,dof))
 
-pylab.show()
 
 A4=a
 

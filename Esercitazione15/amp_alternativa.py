@@ -32,10 +32,16 @@ import uncertainties.unumpy
 ###########################################################################
 
 
-print("===============Stima strna=================")
+print("===============Amplificazione alternativa=================")
 
+pylab.figure(figsnum)
+figsnum+=1
+pylab.title("f vs amplificazione totale")
+pylab.xlabel("frequenza [Hz]")
+pylab.ylabel("A(f)")
 
-
+dir_grph=dir+"grafici/"
+dir = dir + "data/"
 #####partitore....
 
 R1=uncertainties.ufloat(9.91e3, mme(9.91e3, "ohm"))
@@ -43,17 +49,11 @@ R2=uncertainties.ufloat(10.1, mme(10.1, "ohm"))
 
 
 
-pylab.figure(figsnum)
-figsnum+=1
-
-
-#pylab.close("all")
-dir_grph=dir+"grafici/"
-dir = dir + "data/"
-
+####dati...
 
 file="totamp.txt"
 f, Vin, Vout, Vrms = np.loadtxt(dir+file,unpack=True)
+df=51/1e6*f
 Vin=Vin*1e-3
 dVin=mme(Vin, "volt", "oscil")
 dVout=mme(Vout, "volt", "oscil")
@@ -65,8 +65,9 @@ Uamp=UVout/UVin
 amp=uncertainties.unumpy.nominal_values(Uamp)
 damp=uncertainties.unumpy.std_devs(Uamp)
 
-pylab.loglog()
-pylab.errorbar(f, amp, damp, fmt='.')
+#######fit...
+
+
 
 #modello come se fosse un unico passabanda amplificato, con amplificatori ideali (con frequenza di taglio costante...)
 g=lambda w, A, Q, w0: A*w/((w**2-w0**2)**2+w**2*w0**2/Q)**0.5
@@ -77,11 +78,16 @@ pars, covs=lab.curve_fit(g, f, amp,p0, damp, maxfev=10000)
 A, Q, w0=uncertainties.correlated_values(pars, covs)
 print("A= {} \n Q={}\n w0={}\n".format(A, Q, w0))
 
+######plot...
+pylab.loglog()
+pylab.errorbar(f, amp, damp,df, fmt='.')
 domain=np.linspace(min(f), max(f), 1000)
 pylab.plot(domain, g(domain, *pars))
 pylab.savefig(dir_grph+"amp_alternativa.pdf")
 
 
+
+######chisq
 chisq=np.sum((amp-g(f, *pars))**2/damp**2)
 print(chisq, dof, chisqprob(chisq,dof))
 
@@ -89,10 +95,6 @@ print(chisq, dof, chisqprob(chisq,dof))
 A_supp=g(w0, A, Q, w0)
 Dw_supp=w0/Q
 
-
-
-
-pylab.show()
 
 
 

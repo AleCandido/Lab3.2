@@ -28,16 +28,20 @@ sys.path = sys.path + [path]
 mydir= path + "Esercitazione15/"
 
 
-todos=["postpreamp.py", "prepreamp.py", "passabanda.py", "calibrazioneRMS.py","amp_alternativa.py","lastfit.py"]
-Results=[]
+todos=["postpreamp.py", "prepreamp.py", "passabanda.py", "calibrazioneRMS.py","amp_alternativa_imp.py","lastfit.py"] 
+#scegliere se usare amp_alternativa_imp o amp_alternativa ...il primo fitta, ma da un valore un pelo fuori della costante k_b, il secondo non fitta bene, ma da un valore piu corretto...
 
+
+pylab.close("all")
 figsnum=0
+
 
 for i in todos:
     file=open(mydir+i)
     exec(file.read())
     print("\n\n\n\n")
-    
+
+pylab.show()
 
 
 print("\n\n\n\n Grazie a tutti per la magnifica scoperta!!!")

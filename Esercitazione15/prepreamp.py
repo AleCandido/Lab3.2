@@ -35,46 +35,57 @@ print("==============PRE PRE AMP===========")
 
 pylab.figure(figsnum)
 figsnum+=1
-pylab.title("pre-pre-amp")
+pylab.title("Amplificazione INA")
+pylab.xlabel("frequanza [Hz]")
+pylab.ylabel("A")
 
 
-#pylab.close("all")
+
+
 dir_grph=dir+"grafici/"
 dir = dir + "data/"
 
-
+#######preparazione dati
 file="prepreamp.txt"
 f, vin, vout = loadtxt(dir+file,unpack=True)
-
-
 amp=vout/vin
 dvout=mme(vout, "volt", "oscil")
 dvin=mme(vin, "volt", "oscil")
 damp=((dvout/vout)**2+(dvin/vin)**2)**0.5
+df=51/1e6*f #±51 ppm inclusi tutti gli errori di riferimento della frequenza e ±1  errori di conteggio
 
-pylab.loglog()
-pylab.errorbar(f, amp, damp, fmt=".")
 
+#######fit...
 
 low_pass=lambda w, A0, w0: A0/(1+(w/w0)**2)**0.5
 p0=(14.4, 27e3)
 dof=len(f)-2
 pars, covs=lab.curve_fit(low_pass, f, amp,p0, damp)
 A0, w0=uncertainties.correlated_values(pars, covs)
+print("Risultati: A_0={}  w_0={}".format(A0, w0))
+
+#######fit...
+
+dlow_pass=lambda w, A0, w0: -0.5*(2*w/w0**2)*A0/(1+(w/w0)**2)**1.5
+p0=(14.4, 27e3)
+dof=len(f)-2
+pars, covs=lab.fit_generic_xyerr(low_pass,dlow_pass, f, amp,df,damp, p0)
+A0, w0=uncertainties.correlated_values(pars, covs)
+print("Risultati: A_0={}  w_0={}".format(A0, w0))
 
 
+#######plot...
 
-
+pylab.loglog()
+pylab.errorbar(f, amp, damp, df, fmt=".")
 domain = pylab.logspace(math.log10(min(f)),math.log10(max(f)), 1000)
 pylab.plot(domain, low_pass(domain, *pars))
 pylab.savefig(dir_grph+"prepreamp.pdf")
-pylab.show()
 
 
 
-
+######risultati...
 R1=uncertainties.ufloat(989, mme(989, "ohm"))
-
 amp_exp=1+50e3/R1
 print("exp_amp=", amp_exp)
 
@@ -94,14 +105,9 @@ primi=amp[f<8e3]
 dprimi=damp[f<8e3]
 NN=len(primi)
 
-
 amp_mean=np.sum(primi/dprimi)/np.sum(1/dprimi)
 amp_var=np.sqrt(np.sum((primi-amp_mean)**2/dprimi**2)/np.sum(1/dprimi**2))
 
 print("fit fino a 8 KHz= ", amp_mean, amp_var)
 
 A2=A0
-
-#ergo il chiq non torna manco per il cazzo!!!....
-
-#pylab.errorbar()

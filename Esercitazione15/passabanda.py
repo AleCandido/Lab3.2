@@ -33,17 +33,19 @@ print("===========PASSABANDA==============")
 
 pylab.figure(figsnum)
 figsnum+=1
+pylab.title("amplificazione passa-banda")
+pylab.xlabel("frequenza [Hz]")
+pylab.ylabel("A(\f)")
 
+###############Acquisizione dati
 
-#pylab.close("all")
 dir_grph=dir+"grafici/"
 dir = dir + "data/"
 
-
 file="passabanda.txt"
 f, vin, vout = loadtxt(dir+file,unpack=True)
-
 f=f*1e3
+Df=51/1e6*f
 
 amp=vout/vin
 dvout=mme(vout, "volt", "oscil")
@@ -51,23 +53,25 @@ dvin=mme(vout, "volt", "oscil")
 damp=((dvout/vout)**2+(dvin/vin)**2)**0.5
 
 
-pylab.loglog()
 
-pylab.errorbar(f, amp, damp, fmt=".")
+##############Fit...
 
 g=lambda w, A, Q, w0: A*w/((w**2-w0**2)**2+w**2*w0**2/Q)**0.5
-
 p0=(185, 10, 6.1e3)
 dof=len(f)-3
 pars, covs=lab.curve_fit(g, f, amp,p0, damp, maxfev=10000)
 A, Q, w0=uncertainties.correlated_values(pars, covs)
 
 
-
+#############plot...
+pylab.loglog()
+pylab.errorbar(f, amp, damp,Df,fmt=".")
 domain = pylab.logspace(math.log10(min(f)),math.log10(max(f)), 1000)
 pylab.plot(domain, g(domain, *pars))
 pylab.savefig(dir_grph+"passabanda.pdf")
-pylab.show()
+
+
+############output parametri...
 
 for i, j in enumerate(pars):
     print(i, pars[i], covs[i, i]**0.5)
@@ -78,11 +82,12 @@ print("chisq=", chisq, dof, chisqprob(chisq,dof))
 A, Q, w0=uncertainties.correlated_values(pars, covs)
 print("guadagno centro banda=", g(w0, A, Q, w0))
 
-Dw=w0/Q
+Dw=w0/Q #larghezza di banda...
+
 AMPE=g(w0, A, Q, w0)**2*(2*np.pi)**2*Dw
 
 print("Risultati A={} Q={} w0={}  Dw={} f0={} Df={} AMPE={}".format(A, Q, w0, Dw, 2*np.pi*w0, 2*np.pi*Dw, AMPE))
 
-A3=g(w0, A, Q, w0)
+A3=g(w0, A, Q, w0) #amplificazione di centrobanda (con errori...)
 
 EPB=(2*np.pi)**2*Dw
