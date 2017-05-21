@@ -76,7 +76,7 @@ p0=(1e8, 10, 6.5e3, 1e4)
 dof=len(f)-3
 pars, covs = curve_fit(g, f, amp,p0, damp, maxfev=10000)
 A, Q, w0, wt=uncertainties.correlated_values(pars, covs)
-print("A= {} \n Q={}\n w0={}\n wt={}".format(A, Q, w0, wt))
+print("A= {} \n Q={}\n w0={}\n wt={}".format(A, Q**0.5, w0, wt))
 
 ######plot...
 pylab.loglog()
@@ -88,18 +88,25 @@ pylab.plot(domain, gdomain)
 # ylim(6000,80000)
 vint = pylab.vectorize(int)
 pylab.xlim(min(domain)*0.9,max(domain)*1.1)
-pylab.xticks(vint((pylab.logspace(log10(min(domain)*0.9),log10(max(domain)*1.1), 5)//100)*100),vint((pylab.logspace(log10(min(domain)*0.9),log10(max(domain)*1.1), 5)//100)*100))
+#pylab.xticks(vint((pylab.logspace(log10(min(domain)*0.9),log10(max(domain)*1.1), 5)//100)*100),vint((pylab.logspace(log10(min(domain)*0.9),log10(max(domain)*1.1), 5)//100)*100))
 pylab.ylim(min(gdomain)*0.9, max(gdomain)*1.1)
-pylab.yticks(vint((pylab.logspace(log10(min(gdomain)*0.9),log10(max(gdomain)*1.1), 5)//10)*10),vint((pylab.logspace(log10(min(gdomain)*0.9),log10(max(gdomain)*1.1), 5)//10)*10))
+#pylab.yticks(vint((pylab.logspace(log10(min(gdomain)*0.9),log10(max(gdomain)*1.1), 5)//10)*10),vint((pylab.logspace(log10(min(gdomain)*0.9),log10(max(gdomain)*1.1), 5)//10)*10))
 pylab.savefig(dir_grph+"amp_alternativa_imp.pdf")
 
 
 chisq=np.sum((amp-g(f, *pars))**2/damp**2)
 print(chisq, dof, chisqprob(chisq,dof))
 
+Dw_supp=w0/Q**0.5
+
+
+print("2**0.5  - g(w0, A, Q, w0, wt)/g(w0+Dw/2, A, Q, w0, wt) =  ",sqrt(2)-g(w0, A, Q, w0, wt)/g(w0+Dw_supp/2, A, Q, w0, wt))
+
+print("2**0.5  - g(w0, A, Q, w0, wt)/g(w0-Dw/2, A, Q, w0, wt) =  ",sqrt(2)-g(w0, A, Q, w0, wt)/g(w0-Dw_supp/2, A, Q, w0, wt))
+
 
 A_supp=g(w0, A, Q, w0, wt)
-Dw_supp=w0/Q
+#Dw_supp=w0/Q**0.5
 
 
 

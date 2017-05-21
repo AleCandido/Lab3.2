@@ -129,8 +129,10 @@ Atot=A1*A2*A3*A4
 print("Atot={}".format(Atot))
 print("A1={} A2={} A3={} A4={}".format(A1, A2, A3, A4))
 
-Df=2*np.pi*Dw
+Df=np.pi*Dw/2 #larghezza equivalente  
 print("Df={}".format(Df))
+
+
 
 T=uncertainties.ufloat(273+28, 5)
 k_b=V0**2/(4*T*Atot**2*Df*RT) 
@@ -142,7 +144,7 @@ Atot=A_supp*A4
 print("Atot={}".format(Atot))
 
 
-Df=2*np.pi*Dw_supp
+Df=np.pi*Dw_supp/2
 print("Df={}".format(Df))
 
 T=uncertainties.ufloat(273+28, 5)
