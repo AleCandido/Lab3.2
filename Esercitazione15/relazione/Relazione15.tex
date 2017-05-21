@@ -118,27 +118,30 @@ Le resistenze utilizzate sono riportate in \cref{tab:resistenze}.
 \end{figure}
 
 \subsubsection*{Amplificazione e risposta in frequenza}
-
+\vspace*{-5pt}
 In primo luogo si è misurata la risposta in frequenza del solo amplificatore INA staccando la seconda parte del circuito e mandando al suo ingresso un'onda sinusoidale dal generatore di funzioni.
  
 Come funzione modello si è scelto di prendere quella per un generico passa-basso:
+\vspace*{-5pt}
 \begin{equation}
 \frac{A_0}{\sqrt[]{1+(\frac{f}{f_{t,0}})^2}}
 \end{equation}
+\vspace*{-5pt}
 Le misure prese ed il fit sono riportati rispettivamente in \cref{tab:prepreamp} e in \cref{fig:prepreamp}.
 
-\vspace*{-10pt}
+\vspace*{-8pt}
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.65\textwidth]{../grafici/prepreamp.pdf}
+	\includegraphics[width=0.6\textwidth]{../grafici/prepreamp.pdf}
 	\vspace*{-10pt}
 	\caption{Risposta in frequenza dell'amplificatore INA.}
 	\label{fig:prepreamp}
 \end{figure}
 \vspace*{-10pt}
 
-Dal fit si ottengono come risultati $A_0 = $, $f_t,0 = $, $\chi^2/DOF = /$. Il guadagno è in buon accordo con quanto atteso. 
-\marginpar{CHI2}
+Dal fit si ottengono come risultati $A_0 = 49.805 \pm 0.004$, $f_{t,0} = 25.000 \pm 0.013~\kilo\hertz$. Il fit non è particolarmente in accordo con i dati, come risulta dal calcolo del $ \chi^2 $: osservando la \cref{fig:prepreamp} si ha che ciò è dovuto principalmente alle misure ad alta frequenza.
+\footnote{Anche se meno di quello che appare in \cref{fig:prepreamp}, poiché l'asse delle ordinate è logaritmico.}
+Il fit della regione a basse frequenze comunque resistuisce un valore del guadagno piuttosto preciso e in accordo con quanto atteso, mentre per la frequenza di taglio è più importante l'ordine di grandezza che la misura in sè: lo scopo è che sia nettamente esclusa dalla banda di frequenze selezionata dal filtro passabanda (vedi \cref{sec:bandpass}).
 
 In secondo luogo si è mandata un'onda sinusoidale all'ingresso della seconda parte del circuito (prima della resistenza $R_2$) e si è studiata la sua risposta in frequenza.
 Anche in questo caso come funzione modello si è scelto di prendere quella per un generico passa-basso:
@@ -148,23 +151,23 @@ Anche in questo caso come funzione modello si è scelto di prendere quella per u
 \end{equation}
 \vspace*{-5pt}
  Le misure prese ed il fit sono riportati rispettivamente in \cref{tab:postpreamp} e in \cref{fig:postpreamp}.
-
-\vspace*{-5pt}
+ 
+\vspace*{-8pt}
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.65\textwidth]{../grafici/postpreamp.pdf}
+	\includegraphics[width=0.6\textwidth]{../grafici/postpreamp.pdf}
 	\vspace*{-10pt}
 	\caption{Risposta in frequenza del secondo amplificatore.}
 	\label{fig:postpreamp}
 \end{figure}
 \vspace*{-10pt}
 
-Dal fit si ottengono come risultati $A_1 = $, $f_t,1 = $, $\chi^2/DOF = /$. Il guadagno è in buon accordo con quanto atteso. 
-\marginpar{CHI2}
+Dal fit si ottengono come risultati $A_1 = 14.431+/-0.003$, $f_{t,1} = 37.58+/-0.05 \kilo\hertz$.
 
-Inoltre affinché il circuito amplifichi il segnale al massimo possibile (quindi con l'amplificazione ricavata), è necessario che le frequenze di taglio ottenute nei due casi risultino maggiori della frequenza di risonanza del filtro passabanda (vedi prossima sezione), che è attesa essere $\sim$ 6-7 kHz. In entrambi i casi ciò è rispettato.
+Come nel caso precedente il fit non è ottimo, ma i parametri trovati hanno le stesse proprietà: il guadagno dipende principalmente dalla parte a bassa frequenza (in ottimo accordo con una costante, come mostrato in \cref{fig:postpreamp}), mentre la frequenza di taglio è nettamente al di fuori della regione selezionata dal filtro passabanda (mostrata in \cref{fig:FITbandpass}).
 
 \subsection{Filtro passabanda e post-amplificatore}
+\label{sec:bandpass}
 
 \begin{wrapfigure}[18]{R}{0.55\textwidth}
 	\vspace{-10pt}
@@ -198,7 +201,7 @@ Il circuito usato per post-amplificatore è suddiviso in due stadi, di cui il pr
 
 Si è misurata l'amplificazione e la risposta in frequenza dei due circuiti congiuntamente. Naturalmente il contributo maggiore alla risposta in frequenza sarà quello del passabanda, poiché gli op-amp del post-amplificatore hann un comportamento ideale fino a frequenze abbastanza elevate (molto maggiori dei $\sim 6 \kilo\hertz $ della frequenza centrale).
 
-Si riportano in \cref{fig:bandpass} i dati presi per la risposta in frequenza e il fit che si è fatto di essi (il grafico su cui sono mostrati è bilogaritmico).
+Si riportano in \cref{fig:FITbandpass} i dati presi per la risposta in frequenza e il fit che si è fatto di essi (il grafico su cui sono mostrati è bilogaritmico).
 La funzione di cui stato eseguito il fit è:
 \[ A(f) = A_2^\star \frac{f}{\sqrt{(f^2-f_0^2)^2 + \left(\frac{f_0 f}{Q}\right)^2}} \]
 
@@ -206,44 +209,50 @@ e i parametri trovati dal fit sono:
 \[ A_2^\star=(1.495 \pm 0.012)\cdot10^5 \qquad Q=57.6 \pm 1.9 \qquad f_0=6.084 \pm 0.007~\kilo\hertz  \]
 da cui si può dedurre il valore dell'amplificazione di centro banda $ A_{2,0} $ e la larghezza di banda $ \Delta f $:
 \[ A_{2,0} = 186.5 \pm 2.2	\qquad	\Delta f \]
-
+\vspace*{-30pt}
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.7\textwidth]{../grafici/passabanda.pdf}
-	\vspace*{10pt}
+	\vspace*{-5pt}
 	\caption{Amplificazione e risposta in frequenza degli stadi passabanda e post-amplificatore in serie.}
-	\label{fig:bandpass}
+	\label{fig:FITbandpass}
 \end{figure}
 
 \subsection{Convertitore RMS}
-
-\begin{wrapfigure}[5]{L}{0.4\textwidth}
-	\vspace{-10pt}
-	\centering
-	\includegraphics[width=0.4\textwidth]{../grafici/RMSconverter.png}
-	\vspace{-12pt}
-	\caption{Schema del circuito: convertitore RMS.}
-	\label{fig:RMSconv}
-	\vspace{-6pt}
-\end{wrapfigure}
-
-Il convertitore RMS è stato realizzato tramite un apposito integrato (AD736), montato nella configurazione mostrata in \cref{fig:RMSconv}.
-
-\subsubsection*{Calibrazione}
-
-Ciao
-
+\vspace*{-30pt}
 \begin{figure}[H]
-	\centering
-	\includegraphics[width=0.7\textwidth]{../grafici/calibrazione.pdf}
-	\vspace*{10pt}
-	\caption{Fit della calibrazione del convertitore RMS.}
-	\label{fig:blocks}
+	\begin{minipage}{0.34\textwidth}
+		\vspace{-10pt}
+		\centering
+		\includegraphics[width=\textwidth]{../grafici/RMSconverter.png}
+		\vspace{-12pt}
+		\caption{Schema del circuito: convertitore RMS.}
+		\label{fig:RMSconv}
+		\vspace{-6pt}
+	\end{minipage}
+	\begin{minipage}{0.64\textwidth}
+		\centering
+		\includegraphics[width=\textwidth]{../grafici/calibrazione.pdf}
+		\vspace*{-20pt}
+		\caption{Fit della calibrazione del convertitore RMS.}
+		\label{fig:FitRMS}
+	\end{minipage}
 \end{figure}
 
-\section{Misura della costante di Boltzmann}
-Si sono montati i vari circuiti tutti insieme, come schematizzato dalla \cref{fig:blocks}. Si è misurato il valore $V_{RMS}$ in uscita al circuito al variare della resistenza in ingresso. Per ogni resistenza sono stati presi più valori di $V_{RMS}$ poiché la misura oscillava molto. Si è poi effettuata una media dei valori presi. I dati ottenuti sono riportati in \cref{tab:lastfitav}.
+Il convertitore RMS è stato realizzato tramite un apposito integrato (AD736), montato nella configurazione mostrata in \cref{fig:RMSconv}.
+\vspace*{-8pt}
+\subsubsection*{Calibrazione}
 
+Si è eseguita la calibrazione della lettura data in uscita dal circuito in \cref{fig:RMSconv}, confrontando la lettura del multimetro di questa tensione con il valore RMS calcolato dall'apposita funzione dell'oscilloscopio.
+Il risultato del fit è riportato in \cref{fig:FitRMS}, mentre i valori ottenuti sono:
+\[ m = 0.870 \pm 0.005	\qquad	q = -(1.38+/-0.10) \milli\volt	\qquad	\chi^2/DOF = 15.72 / 16 \]
+dove $ m $ è il coefficiente angolare della retta e $ q $ la sua intercetta.
+
+
+\section{Misura della costante di Boltzmann}
+\vspace*{-5pt}
+Si sono montati i vari circuiti tutti insieme, come schematizzato dalla \cref{fig:blocks}. Si è misurato il valore $V_{RMS}$ in uscita al circuito al variare della resistenza in ingresso. Per ogni resistenza sono stati presi più valori di $V_{RMS}$ poiché la misura oscillava molto. Si è poi effettuata una media dei valori presi. I dati ottenuti sono riportati in \cref{tab:lastfitav}.
+\vspace*{-10pt}
 \begin{table}[H]
 	\centering
 	\begin{tabular}{cccc}
@@ -269,36 +278,35 @@ Si sono montati i vari circuiti tutti insieme, come schematizzato dalla \cref{fi
 	\caption{Valori delle resistenze utilizzate e del potenziale all'uscita del circuito.}
 	\label{tab:lastfitav}
 \end{table}
-
+\vspace*{-5pt}
 Le relazioni attese che legano $V_{RMS}$, le resistenze utilizzate, i guadagni ottenuti e la costante di Boltzmann $k_b$ sono le seguenti:
-
+\vspace*{-8pt}
 \begin{equation}
 V_{RMS} = V_{0n} \sqrt[]{1+\frac{R}{R_T}+\frac{R^2}{R_n ^2}}
 \label{fitt}
 \end{equation}
 dove R è la resistenza in ingresso, $R_T, V_0n e R_n$ sono parametri che si otterranno dal fit a questa funzione.
-
 \begin{equation}
 V_0n = A V_n
 \label{resnull}
 \end{equation}
- che rappresenta il rumore in uscita a resistenza nulla. Il Guadagno $A$ è quello complessivo di tutto il circuito, cioè $A = A_0 A_1 A_2 A_3 = (1.17\pm0.02)e+05 $.
- 
- \begin{equation}
- R_T = \frac{V_n^2}{4k_b T \Delta f} = \frac{V_0n^2}{4k_b A_0 T \Delta f}
- \label{kb}
- \end{equation}
-  che è la resistenza equivalente del rumore serie dell'amplificatore riferito all'ingresso.
+che rappresenta il rumore in uscita a resistenza nulla. Il Guadagno $A$ è quello complessivo di tutto il circuito, cioè $A = A_0 A_1 A_2 A_3 = (1.17\pm0.02)e+05 $.
+\vspace*{-10pt}
+\begin{equation}
+R_T = \frac{V_n^2}{4k_b T \Delta f} = \frac{V_0n^2}{4k_b A_0 T \Delta f}
+\label{kb}
+\end{equation}
+che è la resistenza equivalente del rumore serie dell'amplificatore riferito all'ingresso.
 
 Si è quindi effettuato un fit alla $\eqref{fitt}$ ottenendo come risultati $V_0n = 0.0329\pm0.0007 V$ , $R_T = (7\pm1)e+03 \Omega $, $R_n = (1.5\pm 0.2)e+04 \Omega$, $\chi ^2 /DOF$ = 93/11. Il $\chi ^2$ risulta essere leggermente alto; si ritiene che ciò sia dovuto ad una sottostima degli errori.
 %... lascio così come commento? chi2 senza media = 17.
 
 Il grafico è mostrato in \cref{fig:lastfit}.
-
-
+\vspace*{-10pt}
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.7\textwidth]{../grafici/lastfit.pdf}
+	\vspace*{-15pt}
 	\caption{Fit di $V_{RMS}$ in funzione di R.}
 	\label{fig:lastfit}
 \end{figure}
@@ -342,6 +350,8 @@ I valori ottenuti per l'amplificazione totale e per la banda passante sono rispe
 \subsection{Risultati finali}
 A questo punto, utilizzando la \eqref{resnull} e la \eqref{kb} si è ricavata la costante di Boltzmann con entrambi i metodi sopra descritti. Si sono ottenuti come risultati rispettivamente $k_b = (1.44\pm0.19)e-23 J/K$ e $k_{b,1000:1} = (1.17\pm0.16)e-23~J/K $. Il valore atteso per la costante di Boltzmann è $k_b$ = 1.380e-23 J/K. I risultati ottenuti sono entrambi compatibili con il valore atteso. 
 
+\pagebreak
+
 \section{Appendice: Dati Acquisiti}
 Si riportano qui le tabelle dei dati usati per i fit e i grafici.
 
@@ -352,7 +362,7 @@ Si riportano qui le tabelle dei dati usati per i fit e i grafici.
 	\label{tab:prepreamp}
 \end{table}
 
-\begin{table}
+\begin{table}[H]
 	\centering
 	\input{../tabelle/tab_postpreamp.txt}
 	\caption{.}

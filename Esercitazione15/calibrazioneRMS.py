@@ -59,13 +59,15 @@ p0=(1, 0)
 pars, covs=lab.fit_generic_xyerr(line, pend, voscil, vchip, dvoscil, dvchip, p0)
 a, b=uncertainties.correlated_values(pars, covs)
 
+print("I parametri trovati nel fit sono \n\t coefficiente angolare: m = {} \n\t intercetta: q = {}\n".format(a,b))
 
 domain=np.linspace(min(voscil), max(voscil), 1000)
 pylab.plot(domain, line(domain, *pars))
 pylab.savefig(dir_grph+"calibrazione.pdf")
 
 chisq=np.sum((vchip-line(voscil, *pars))**2/(dvchip**2+(dvoscil*pend(voscil, *pars))**2))
-print(chisq, dof, chisqprob(chisq,dof))
+print("Dal calcolo del chi2 si è trovato \n\t chi2 = {} \n\t DOF = {} \n\t p-value = {} \n".format
+(chisq, dof, chisqprob(chisq,dof)))
 
 
 A4=a
