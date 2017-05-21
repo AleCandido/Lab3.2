@@ -83,6 +83,8 @@ pylab.loglog()
 pylab.errorbar(f, amp, damp,df, fmt='.')
 domain=np.linspace(min(f), max(f), 1000)
 pylab.plot(domain, g(domain, *pars))
+xlim(0,17000)
+ylim(6000,80000)
 pylab.savefig(dir_grph+"amp_alternativa_imp.pdf")
 
 
