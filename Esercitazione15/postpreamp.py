@@ -84,7 +84,7 @@ pylab.loglog()
 pylab.errorbar(f, amp, damp, df, fmt=".")
 domain = pylab.logspace(math.log10(min(f)),math.log10(max(f)), 1000)
 pylab.plot(domain, low_pass(domain, *pars))
-pylab.savefig(dir_grph+"prepreamp.pdf")
+pylab.savefig(dir_grph+"postpreamp.pdf")
 
 ##############################################
 
