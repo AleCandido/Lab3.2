@@ -122,44 +122,48 @@ Le resistenze utilizzate sono riportate in \cref{tab:resistenze}.
 	\end{minipage}
 \end{figure}
 
-\subsubsection*{Amplificazione \\e risposta in frequenza}
+\subsubsection*{Amplificazione e risposta in frequenza}
 
 In primo luogo si è misurata la risposta in frequenza del solo amplificatore INA staccando la seconda parte del circuito e mandando al suo ingresso un'onda sinusoidale dal generatore di funzioni%con ampiezza picco-picco di $V_pp = 9.4\pm 0.2 mV$. 
 Come funzione modello si è scelto di prendere quella per un generico passa-basso:
 \begin{equation}
 \frac{A_0}{\sqrt[]{1+(\frac{f}{f_{t,0}})^2}}
 \end{equation}
-Le misure prese ed il fit sono riportati rispettivamente in \cref{??} e in \cref{fig:prepreamp}.
+Le misure prese ed il fit sono riportati rispettivamente in \cref{tab:prepreamp} e in \cref{fig:prepreamp}.
 
-TABELLA
+\marginpar{TABELLA}
 
-
+\vspace*{-10pt}
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.7\textwidth]{../grafici/prepreamp.pdf}
+	\includegraphics[width=0.65\textwidth]{../grafici/prepreamp.pdf}
+	\vspace*{-10pt}
 	\caption{Risposta in frequenza dell'amplificatore INA.}
 	\label{fig:prepreamp}
 \end{figure}
+\vspace*{-10pt}
 
 Dal fit si ottengono come risultati $A_0 = $, $f_t,0 = $, $\chi^2/DOF = /$. Il guadagno è in buon accordo con quanto atteso. 
-CHI2
+\marginpar{CHI2}
 
 In secondo luogo si è mandata un'onda sinusoidale all'ingresso della seconda parte del circuito (prima della resistenza $R_2$) e si è studiata la sua risposta in frequenza.
 Anche in questo caso come funzione modello si è scelto di prendere quella per un generico passa-basso:
+\vspace*{-5pt}
 \begin{equation}
 \frac{A_1}{\sqrt[]{1+(\frac{f}{f_{t,1}})^2}}
 \end{equation}
- Le misure prese ed il fit sono riportati rispettivamente in \cref{??} e in \cref{fig:postpreamp}.
+\vspace*{-5pt}
+ Le misure prese ed il fit sono riportati rispettivamente in \cref{tab:postpreamp} e in \cref{fig:postpreamp}.
 
-TABELLA
-
-
+\vspace*{-5pt}
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.7\textwidth]{../grafici/postpreamp.pdf}
+	\includegraphics[width=0.65\textwidth]{../grafici/postpreamp.pdf}
+	\vspace*{-10pt}
 	\caption{Risposta in frequenza del secondo amplificatore.}
 	\label{fig:postpreamp}
 \end{figure}
+\vspace*{-10pt}
 
 Dal fit si ottengono come risultati $A_1 = $, $f_t,1 = $, $\chi^2/DOF = /$. Il guadagno è in buon accordo con quanto atteso. 
 CHI2
@@ -168,32 +172,33 @@ Inoltre affinché il circuito amplifichi il segnale al massimo possibile (quindi
 
 \subsection{Filtro passabanda e post-amplificatore}
 
-\begin{wrapfigure}{R}{0.5\textwidth}
+\begin{wrapfigure}[18]{R}{0.55\textwidth}
 	\vspace{-10pt}
 	\centering
-	\includegraphics[width=0.5\textwidth]{../grafici/Bandpass.png}
+	\includegraphics[width=0.55\textwidth]{../grafici/Bandpass.png}
 	\vspace{-12pt}
 	\caption{Schema del circuito: filtro passabanda.}
-	\label{fig:powamp}
+	\label{fig:bandpass}
 	\vspace{-6pt}
 \end{wrapfigure}
 
-\lipsum[4-5]
+Il circuito usato per la realizzazione del filtro passabanda è stato esaminato a lezione. Non si ripetono quindi i calcoli fatti, ma si farà uso dei concetti di \textit{frequenza centrale}, \textit{larghezza di banda} e \textit{Q-valore} enunciati in tale sede.
 
-\begin{wrapfigure}{L}{0.6\textwidth}
+La funzione del passabanda è quella di selezionare una banda di frequenza in modo compatibile con la definizione data nella formula di Nyquist: in assenza di un tale riferimento la banda di frequenza ci sarebbe ugualmente, dovuta alle frequenza di taglio degli op-amp e alle capacità residue dei vari elementi circuitali, ma non sarebbe ben definita.
+Inoltre posizionando la frequenza centrale in modo tale che la regione selezionata non si avvicini alle frequenze di taglio dei altri elementi circuitali si riduce il problema della non idealità dei componenti, poiché nella zona d'interesse il loro comportamento approssima molto bene quello ideale.
+\newline
+
+Il circuito usato per post-amplificatore è suddiviso in due stadi, di cui il primo è costituito da un op-amp montato in configurazione di amplificatore non invertente, e il secondo è semplicemente un op-amp con feedback che ripete in uscita ciò che arriva in ingresso, in questo modo sconnette i sottocircuiti successivi da ciò che lo precede, cosicché essi non costituiscano un carico per i vari stadi di amplificazione. 
+
+\begin{figure}[H]
 	\vspace{-10pt}
 	\centering
-	\includegraphics[width=0.6\textwidth]{../grafici/PostAmp.png}
+	\includegraphics[width=0.7\textwidth]{../grafici/PostAmp.png}
 	\vspace{-12pt}
 	\caption{Schema del circuito: post-amplificatore.}
-	\label{fig:powamp}
+	\label{fig:postamp}
 	\vspace{-6pt}
-\end{wrapfigure}
-
-Il circuito usato per post-amplificatore è suddiviso in due stadi, di cui il primo è costituito da un op-amp montato in configurazione di amplificatore non invertente, e il secondo è semplicemente un op-amp con feedback che ripete in uscita ciò che arriva in ingresso, in questo modo i sottocircuiti successivi non vanno a caricare tutto 
-
-\lipsum[6-7]
-
+\end{figure}
 
 \subsubsection*{Amplificazione e risposta in frequenza}
 
@@ -206,6 +211,7 @@ La funzione di cui stato eseguito il fit è:
 e i parametri trovati dal fit sono:
 \[ A_2^\star=(1.495 \pm 0.012)\cdot10^5 \qquad Q=57.6 \pm 1.9 \qquad f_0=6.084 \pm 0.007~\kilo\hertz  \]
 da cui si può dedurre il valore dell'amplificazione di centro banda $ A_{2,0} $ e la larghezza di banda $ \Delta f $:
+\[ A_{2,0} = 186.5 \pm 2.2	\qquad	\Delta f \]
 
 \begin{figure}[H]
 	\centering
@@ -242,32 +248,32 @@ da cui si può dedurre il valore dell'amplificazione di centro banda $ A_{2,0} $
 \end{figure}
 
 \section{Misura della costante di Boltzmann}
-Si sono montati i vari circuiti tutti insieme, come schematizzato dalla \cref{fig:blocks}. Si è misurato il valore $V_{RMS}$ in uscita al circuito al variare della resistenza in ingresso. Per ogni resistenza sono stati presi più valori di $V_{RMS}$ poiché la misura oscillava molto. Si è poi effettuata una media dei valori presi. I dati ottenuti sono riportati in \cref{tab:lastfit}.
+Si sono montati i vari circuiti tutti insieme, come schematizzato dalla \cref{fig:blocks}. Si è misurato il valore $V_{RMS}$ in uscita al circuito al variare della resistenza in ingresso. Per ogni resistenza sono stati presi più valori di $V_{RMS}$ poiché la misura oscillava molto. Si è poi effettuata una media dei valori presi. I dati ottenuti sono riportati in \cref{tab:lastfitav}.
 
 \begin{table}[H]
 	\centering
 	\begin{tabular}{cccc}
 		\hline
-R[k$\Omega$] & $\delta$ R [k$\Omega$] & $V_{RMS}[mV]$  & $\delta$ $V_{RMS}[mV]$ \\
-\hline
-0.985 & 0.009 & 35 & 1 \\
-1.18 & 0.01 & 36.1 & 0.5 \\
-1.48 & 0.01 & 36.7 & 0.8 \\
-2.14 & 0.03 & 37.5 & 0.6 \\
-3.26 & 0.04 & 38.9 & 0.7 \\
-3.83 & 0.04 & 41.3 & 0.9 \\
-4.68 & 0.05 & 43.9 & 0.9 \\
-5.59 & 0.05 & 46.7 & 0.8 \\
-6.71 & 0.06 & 50.3 & 0.8 \\
-8.11 & 0.07 & 51.1 & 0.8 \\
-9.91 & 0.09 & 54 & 1 \\
-9.97 & 0.08 & 58 & 2 \\
-11.8 & 0.1 & 62 & 2 \\
-17.9 & 0.2 & 72 & 2 \\
+		R[k$\Omega$] & $\delta$ R [k$\Omega$] & $V_{RMS}[mV]$  & $\delta$ $V_{RMS}[mV]$ \\
+		\hline
+		0.985 & 0.009 & 35 & 1 \\
+		1.18 & 0.01 & 36.1 & 0.5 \\
+		1.48 & 0.01 & 36.7 & 0.8 \\
+		2.14 & 0.03 & 37.5 & 0.6 \\
+		3.26 & 0.04 & 38.9 & 0.7 \\
+		3.83 & 0.04 & 41.3 & 0.9 \\
+		4.68 & 0.05 & 43.9 & 0.9 \\
+		5.59 & 0.05 & 46.7 & 0.8 \\
+		6.71 & 0.06 & 50.3 & 0.8 \\
+		8.11 & 0.07 & 51.1 & 0.8 \\
+		9.91 & 0.09 & 54 & 1 \\
+		9.97 & 0.08 & 58 & 2 \\
+		11.8 & 0.1 & 62 & 2 \\
+		17.9 & 0.2 & 72 & 2 \\
 		\hline
 	\end{tabular}
 	\caption{Valori delle resistenze utilizzate e del potenziale all'uscita del circuito.}
-	\label{tab:lastfit}
+	\label{tab:lastfitav}
 \end{table}
 
 Le relazioni attese che legano $V_{RMS}$, le resistenze utilizzate, i guadagni ottenuti e la costante di Boltzmann $k_b$ sono le seguenti:
@@ -336,11 +342,10 @@ Questa stima potrebbe ulteriormente essere migliorata utilizzando come modello i
 
 \begin{table}[H]
 	\centering
-	\begin{tabular}{ccccc}
-		\hline
-A & Q & $f_0[Hz]$ & $f_t[Hz]$ & $\chi^2/DOF$ \\
-(1.57$\pm$0.06)e+08 & 9.0$\pm$0.4 & 6794$\pm$35 & (9.1$\pm$0.8)e+03 & 16/19 \\
-\hline
+	\begin{tabular}{c|c|c|c|c}
+	A & Q & $f_0[Hz]$ & $f_t[Hz]$ & $\chi^2/DOF$ \\
+	\hline
+	(1.57$\pm$0.06)e+08 & 9.0$\pm$0.4 & 6794$\pm$35 & (9.1$\pm$0.8)e+03 & 16/19 \\
 	\end{tabular}
 	\caption{Risultati del fit per valutare l'amplificazione complessiva del circuito e la sua risposta in frequenza.}
 	\label{tab:risult}
@@ -354,5 +359,66 @@ I valori ottenuti per l'amplificazione totale e per la banda passante sono rispe
 \subsection{Risultati finali}
 A questo punto, utilizzando la \eqref{resnull} e la \eqref{kb} si è ricavata la costante di Boltzmann con entrambi i metodi sopra descritti. Si sono ottenuti come risultati rispettivamente $k_b = (1.44\pm0.19)e-23 J/K$ e $k_{b,1000:1} = (1.17\pm0.16)e-23 J/K $. Il valore atteso per la costante di Boltzmann è $k_b$ = 1.380e-23 J/K. I risultati ottenuti sono entrambi compatibili con il valore atteso. 
 
+\section{Appendice: Dati Acquisiti}
+Si riportano qui le tabelle dei dati usati per i fit e i grafici.
+
+\begin{table}[H]
+	\centering
+	\input{../tabelle/tab_prepreamp.txt}
+	\caption{.}
+	\label{tab:prepreamp}
+\end{table}
+
+\begin{table}
+	\centering
+	\input{../tabelle/tab_postpreamp.txt}
+	\caption{.}
+	\label{tab:postpreamp}
+\end{table}
+
+\begin{figure}
+	\begin{minipage}{0.64\textwidth}
+		\begin{table}[H]
+			\centering
+			\input{../tabelle/tab_passabanda.txt}
+			\caption{.}
+			\label{tab:bandpass}
+		\end{table}
+	\end{minipage}
+	\begin{minipage}{0.34\textwidth}
+		\begin{table}[H]
+			\centering
+			\input{../tabelle/tab_calibrazioneRMS.txt}
+			\caption{.}
+			\label{tab:RMScal}
+		\end{table}
+	\end{minipage}
+\end{figure}
+
+\begin{table}[H]
+	\centering
+	\input{../tabelle/tab_totamp.txt}
+	\caption{.}
+	\label{tab:totamp}
+\end{table}
+
+\pagebreak
+
+L'errore sulle tensioni nelle prossime due tabelle è stato ottenuto considerando l'errore di calibrazione dello strumento, che naturalmente non è stato considerato come errore statistico\footnote{Perché non lo è.} nei fit eseguiti.
+L'errore non di calibrazione corrisponde per tutte le tensioni trovate all'ultimo digit sulla lettura.
+
+\begin{table}[H]
+	\centering
+	\input{../tabelle/tab_lastfit.txt}
+	\caption{.}
+	\label{tab:lastfit}
+\end{table}
+
+\begin{table}[H]
+	\centering
+	\input{../tabelle/tab_lastfit1.txt}
+	\caption{.}
+	\label{tab:lastfit1}
+\end{table}
 
 \end{document}

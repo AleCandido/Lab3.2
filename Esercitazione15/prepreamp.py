@@ -38,7 +38,7 @@ pylab.figure(figsnum)
 figsnum+=1
 pylab.title("Amplificazione INA")
 pylab.xlabel("frequenza [Hz]")
-pylab.ylabel("A")
+pylab.ylabel("A($f$)")
 
 
 
