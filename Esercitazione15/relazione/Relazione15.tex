@@ -27,6 +27,7 @@
 \usepackage{subfig}
 \usepackage{float}
 \usepackage{wrapfig}
+\usepackage{caption}
 
 \usepackage[colorlinks=true, linkcolor=black, urlcolor=blue, citecolor=darkgray, filecolor=darkgray]{hyperref}   %per gli hyperlink
 \usepackage[italian, sort, noabbrev, capitalise]{cleveref}
@@ -42,6 +43,8 @@
 \begin{document}
 
 \maketitle
+
+\vspace*{-20pt}
 
 \section{Scopo e Strumentazione}
 In questa esercitazione si vuole effettuare una misura della costante di Boltzmann attraverso la
@@ -61,15 +64,15 @@ Lo schema a blocchi del circuito è riportato in \cref{fig:blocks}.
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=\textwidth]{../grafici/Blocks.png}
-	\vspace*{10pt}
+	\vspace*{-15pt}
 	\caption{Schema a blocchi del circuito complessivo.}
 	\label{fig:blocks}
 \end{figure}
 
-\begin{wrapfigure}[11]{R}{0.4\textwidth}
+\begin{wrapfigure}[11]{R}{0.35\textwidth}
 	\vspace{-10pt}
 	\centering
-	\includegraphics[width=0.4\textwidth]{../grafici/Filter.png}
+	\includegraphics[width=0.35\textwidth]{../grafici/Filter.png}
 	\vspace{-6pt}
 	\caption{Schema di filtraggio per le alimentazioni.}
 	\label{fig:powfilter}
@@ -80,6 +83,7 @@ Si sono fissate le alimentazioni a $\sim \unit{5}{\volt}$ e si è montatp fra es
 
 Si è proceduto con il montaggio dei singoli blocchi di circuito, che verranno illustrati individualmente nella prossima sezione.
 
+\vspace*{-10pt}
 
 \section{Implementazione dei blocchi di circuito}
 
@@ -92,41 +96,33 @@ Si è montato il circuito in \cref{fig:preamp} costituito da due amplificatori: 
 
  il secondo è costituito da un opamp con feedback sull'ingresso invertente. Il guadagno atteso di questa seconda parte di circuito è dato da $A_1 = R_3/R_2 = 14.4 \pm 0.2 $.
 
-\begin{wrapfigure}{L}{0.6\textwidth}
-	\vspace{-10pt}
-	\centering
-	\includegraphics[width=0.6\textwidth]{../grafici/PreAmp.png}
-	\vspace{-12pt}
-	\caption{Schema del circuito: pre-amplificatore.}
-	\label{fig:preamp}
-	\vspace{-6pt}
-\end{wrapfigure}
-
-\lipsum[2-3]
-
-
 Le resistenze utilizzate sono riportate in \cref{tab:resistenze}.
 
-\begin{table}[H]
-	\centering
-	\begin{tabular}{ccc}
-		\hline
-		$R_1[\Omega]$ & $R_2[k\Omega]$ & $R_3[k\Omega]$\\
-		\hline
-		$989\pm9$ & $4.71\pm0.05$ & $67.9\pm0.6$\\
-		\hline
-	\end{tabular}
-	\caption{Resistenze utilizzate nel circuito in \cref{fig:preamp}.}
-	\label{tab:resistenze}
-\end{table}
+\vspace*{-10pt}
 
-
-
+\begin{figure}[H]
+	\begin{minipage}{0.59\textwidth}
+		\centering
+		\includegraphics[width=\textwidth]{../grafici/PreAmp.png}
+		\vspace{-12pt}
+		\caption{Schema del circuito: pre-amplificatore.}
+		\label{fig:preamp}
+	\end{minipage}
+	\begin{minipage}{0.39\textwidth}
+		\centering
+		\begin{tabular}{ccc}
+			\hline
+			$R_1[\Omega]$ & $R_2[k\Omega]$ & $R_3[k\Omega]$\\
+			\hline
+			$989\pm9$ & $4.71\pm0.05$ & $67.9\pm0.6$\\
+			\hline
+		\end{tabular}
+		\captionof{table}{Resistenze utilizzate nel circuito in \cref{fig:preamp}.}
+		\label{tab:resistenze}
+	\end{minipage}
+\end{figure}
 
 \subsubsection*{Amplificazione e risposta in frequenza}
-
-\lipsum[4]
-
 
 In primo luogo si è misurata la risposta in frequenza del solo amplificatore INA staccando la seconda parte del circuito e mandando al suo ingresso un'onda sinusoidale dal generatore di funzioni%con ampiezza picco-picco di $V_pp = 9.4\pm 0.2 mV$.
 FIT + IMMAGINE
@@ -139,11 +135,6 @@ Dal fit si ottengono come risultati $A_1 = $, $f_t,1 = $, $\chi^2/DOF = /$. Il g
 CHI2
 
 Inoltre affinché il circuito amplifichi il segnale al massimo possibile (quindi con l'amplificazione ricavata), è necessario che le frequenze di taglio ottenute nei due casi risultino maggiori della frequenza di risonanza del filtro passabanda (vedi prossima sezione), che è attesa essere $\sim$ 6-7 kHz. In entrambi i casi ciò è rispettato.
-
-
-
-
-
 
 \subsection{Filtro passabanda e post-amplificatore}
 
@@ -169,6 +160,8 @@ Inoltre affinché il circuito amplifichi il segnale al massimo possibile (quindi
 	\vspace{-6pt}
 \end{wrapfigure}
 
+Il circuito usato per post-amplificatore è suddiviso in due stadi, di cui il primo è costituito da un op-amp montato in configurazione di amplificatore non invertente, e il secondo è semplicemente un op-amp con feedback che ripete in uscita ciò che arriva in ingresso, in questo modo i sottocircuiti successivi non vanno a caricare tutto 
+
 \lipsum[6-7]
 
 
@@ -181,7 +174,7 @@ La funzione di cui stato eseguito il fit è:
 \[ A(f) = A_2^\star \frac{f}{\sqrt{(f^2-f_0^2)^2 + \left(\frac{f_0 f}{Q}\right)^2}} \]
 
 e i parametri trovati dal fit sono:
-\[ A_2^\star=(1.495 \pm 0.012)\cdot10^5 \qquad Q=57.6 \pm 1.9 \qquad f_0=6.084 \pm 0.007 \kilo\hertz  \]
+\[ A_2^\star=(1.495 \pm 0.012)\cdot10^5 \qquad Q=57.6 \pm 1.9 \qquad f_0=6.084 \pm 0.007~\kilo\hertz  \]
 da cui si può dedurre il valore dell'amplificazione di centro banda $ A_{2,0} $ e la larghezza di banda $ \Delta f $:
 
 \begin{figure}[H]
