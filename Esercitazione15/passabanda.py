@@ -32,6 +32,33 @@ import uncertainties.unumpy
 
 print("===========PASSABANDA==============")
 
+print("valori attesi...")
+
+def myres(r):
+    return uncertainties.ufloat(r, mme(r, "ohm"))
+
+R2=myres(119.1)
+C1=10.78e-9
+C2=10.67e-9
+R1=myres(2.68e3)
+R3=myres(46.6e3)
+
+Rp=R1*R2/(R1+R2)
+C=C1
+w0_exp=(1/(C*(Rp*R3)**0.5))/(2*np.pi)
+Q_exp=0.5*(R3/Rp)**0.5
+
+Dw_exp=w0_exp/Q_exp
+
+R1p=myres(9.90e3) #questa resistenza è sbagliata... non so se è grave o meno, ma si spiega perchè la nostra amplificazione è minore...è compatibile con quanto ottenuto dal fit
+R2p=myres(33.2e3)
+R3p=myres(3.91e3)
+
+g00=1/(R1*C*Dw_exp)*R2p/R1p
+
+print("w0_exp={}    Q_exp={}    g00={}".format(w0_exp, Q_exp, g00))
+
+
 pylab.figure(figsnum)
 
 
@@ -96,6 +123,7 @@ Dw=w0/Q**0.5 #larghezza di banda (si chiama w, ma è una frequenza...)...
 
 
 #controllo sui parametri
+print("controllo di essere davvero a -3dB")
 
 print("2**0.5  - g(w0, A, Q, w0)/g(w0+Dw/2, A, Q, w0) =  ",sqrt(2)-g(w0, A, Q, w0)/g(w0+Dw/2, A, Q, w0))
 
@@ -107,5 +135,7 @@ A3=g(w0, A, Q, w0) #amplificazione di centrobanda (con errori...)
 print("guadagno centro banda=", g(w0, A, Q, w0))
 
 
-print("Risultati A={} Q={} w0={}  Dw={}".format(A, Q, w0, Dw))
+print("Risultati A={} Q={} w0={}  Dw={}".format(A, Q**0.5, w0, Dw))
+
+print("Il Q value non è compatibile con quanto atteso...")
 

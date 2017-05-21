@@ -99,6 +99,7 @@ print(chisq, dof, chisqprob(chisq,dof))
 
 Dw_supp=w0/Q**0.5
 
+print("controllo di essere davvero a -3dB")
 
 print("2**0.5  - g(w0, A, Q, w0, wt)/g(w0+Dw/2, A, Q, w0, wt) =  ",sqrt(2)-g(w0, A, Q, w0, wt)/g(w0+Dw_supp/2, A, Q, w0, wt))
 
@@ -106,6 +107,8 @@ print("2**0.5  - g(w0, A, Q, w0, wt)/g(w0-Dw/2, A, Q, w0, wt) =  ",sqrt(2)-g(w0,
 
 
 A_supp=g(w0, A, Q, w0, wt)
+
+print("A_centrobanda={} \n ampiezza_banda={}".format(A_supp, Dw_supp))
 #Dw_supp=w0/Q**0.5
 
 
