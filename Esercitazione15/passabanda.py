@@ -2,7 +2,7 @@ import sys
 import pylab
 from scipy.optimize import curve_fit
 from scipy.stats import chisqprob
-
+import numpy as np
 import getpass
 users={"candi": "C:\\Users\\candi\\Documents\\GitHub\\Lab3.2\\",
 "silvanamorreale":"C:\\Users\\silvanamorreale\\Documents\\GitHub\\Lab3.2\\" ,
