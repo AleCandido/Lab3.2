@@ -125,14 +125,14 @@ print("#####risultati con il prodotto dei guadagni...")
 
 
 
-Atot=A1*A2*A3*A4
+Atot=A1*A2*A3*a + b # la calibrazione è una retta affine, non è strettamente lineare
 print("Atot={}".format(Atot))
 print("A1={} A2={} A3={} A4={}".format(A1, A2, A3, A4))
 
 Df=np.pi*Dw/2 #larghezza equivalente  
 print("Df={}".format(Df))
 
-
+# Df = Dw
 
 T=uncertainties.ufloat(273+28, 5)
 k_b=V0**2/(4*T*Atot**2*Df*RT) 
@@ -140,7 +140,7 @@ print("K_b={} vs K_b_exp=1.380e-23".format(k_b))
 
 print('########risultati con il guadagno totale stimato con il partitore 1000:1...')
 
-Atot=A_supp*A4
+Atot=A_supp*a + b # la calibrazione è una retta affine, non è strettamente lineare
 print("Atot={}".format(Atot))
 
 
@@ -148,8 +148,14 @@ Df=np.pi*Dw_supp/2
 print("Df={}".format(Df))
 
 T=uncertainties.ufloat(273+28, 5)
-k_b=V0**2/(4*T*Atot**2*Df*RT) 
+k_b=V0**2/(4*T*Atot**2*Df*RT) #Df_true è concettualmente più giusto...ma risulta essere più sbagliato...se si voule essere più onesti sostituire Df--->Df_true...
 print("K_b={} vs K_b_exp=1.380e-23".format(k_b))
 
 
+############piccola analisi....
+
+print("\n---------NON TORNA UN ACCIDENTI----------")
+print("rapporto A0=", A1*A2*A3*A4/Atot)
+print("rapporto Df=", Dw/Dw_supp)
+print("rapporto K=", (A1*A2*A3*A4/Atot)**2*Dw/Dw_supp)
 #fit non torna manco per nulla...domani prendo delle misure sere...

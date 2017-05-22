@@ -79,7 +79,7 @@ Lo schema a blocchi del circuito è riportato in \cref{fig:blocks}.
 	\vspace{-12pt}
 \end{wrapfigure}
 
-Si sono fissate le alimentazioni a $\sim \unit{5}{\volt}$ e si è montatp fra esse lo shcema di filtraggio riportato in  \cref{fig:powfilter}.
+Si sono fissate le alimentazioni a $\sim \unit{5}{\volt}$ e si è montato fra esse lo schema di filtraggio riportato in  \cref{fig:powfilter}.
 
 Si è proceduto con il montaggio dei singoli blocchi di circuito, che verranno illustrati individualmente nella prossima sezione.
 
@@ -162,7 +162,7 @@ Anche in questo caso come funzione modello si è scelto di prendere quella per u
 \end{figure}
 \vspace*{-10pt}
 
-Dal fit si ottengono come risultati $A_1 = 14.431+/-0.003$, $f_{t,1} = 37.58+/-0.05 \kilo\hertz$.
+Dal fit si ottengono come risultati $A_1 = 14.431\pm0.003$, $f_{t,1} = 37.58\pm0.05 \kilo\hertz$.
 
 Come nel caso precedente il fit non è ottimo, ma i parametri trovati hanno le stesse proprietà: il guadagno dipende principalmente dalla parte a bassa frequenza (in ottimo accordo con una costante, come mostrato in \cref{fig:postpreamp}), mentre la frequenza di taglio è nettamente al di fuori della regione selezionata dal filtro passabanda (mostrata in \cref{fig:FITbandpass}).
 
@@ -182,7 +182,7 @@ Come nel caso precedente il fit non è ottimo, ma i parametri trovati hanno le s
 Il circuito usato per la realizzazione del filtro passabanda è stato esaminato a lezione. Non si ripetono quindi i calcoli fatti, ma si farà uso dei concetti di \textit{frequenza centrale}, \textit{larghezza di banda} e \textit{Q-valore} enunciati in tale sede.
 
 La funzione del passabanda è quella di selezionare una banda di frequenza in modo compatibile con la definizione data nella formula di Nyquist: in assenza di un tale riferimento la banda di frequenza ci sarebbe ugualmente, dovuta alle frequenza di taglio degli op-amp e alle capacità residue dei vari elementi circuitali, ma non sarebbe ben definita.
-Inoltre posizionando la frequenza centrale in modo tale che la regione selezionata non si avvicini alle frequenze di taglio dei altri elementi circuitali si riduce il problema della non idealità dei componenti, poiché nella zona d'interesse il loro comportamento approssima molto bene quello ideale.
+Inoltre posizionando la frequenza centrale in modo tale che la regione selezionata non si avvicini alle frequenze di taglio degli altri elementi circuitali si riduce il problema della non idealità dei componenti, poiché nella zona d'interesse il loro comportamento approssima molto bene quello ideale.
 \newline
 
 Il circuito usato per post-amplificatore è suddiviso in due stadi, di cui il primo è costituito da un op-amp montato in configurazione di amplificatore non invertente, e il secondo è semplicemente un op-amp con feedback che ripete in uscita ciò che arriva in ingresso, in questo modo sconnette i sottocircuiti successivi da ciò che lo precede, cosicché essi non costituiscano un carico per i vari stadi di amplificazione. 
@@ -199,16 +199,18 @@ Il circuito usato per post-amplificatore è suddiviso in due stadi, di cui il pr
 
 \subsubsection*{Amplificazione e risposta in frequenza}
 
-Si è misurata l'amplificazione e la risposta in frequenza dei due circuiti congiuntamente. Naturalmente il contributo maggiore alla risposta in frequenza sarà quello del passabanda, poiché gli op-amp del post-amplificatore hann un comportamento ideale fino a frequenze abbastanza elevate (molto maggiori dei $\sim 6 \kilo\hertz $ della frequenza centrale).
+Si è misurata l'amplificazione e la risposta in frequenza dei due circuiti congiuntamente. Naturalmente il contributo maggiore alla risposta in frequenza sarà quello del passabanda, poiché gli op-amp del post-amplificatore hanno un comportamento ideale fino a frequenze abbastanza elevate (molto maggiori dei $\sim 6 \kilo\hertz $ della frequenza centrale).
 
-Si riportano in \cref{fig:FITbandpass} i dati presi per la risposta in frequenza e il fit che si è fatto di essi (il grafico su cui sono mostrati è bilogaritmico).
+Si riportano in \cref{fig:FITbandpass} i dati presi per la risposta in frequenza e il fit che si è fatto di essi (il grafico su cui sono mostrati è bilogaritmico). I dati sono riportati in \cref{tab:bandpass}.
 La funzione di cui stato eseguito il fit è:
 \[ A(f) = A_2^\star \frac{f}{\sqrt{(f^2-f_0^2)^2 + \left(\frac{f_0 f}{Q}\right)^2}} \]
 
 e i parametri trovati dal fit sono:
-\[ A_2^\star=(1.495 \pm 0.012)\cdot10^5 \qquad Q=57.6 \pm 1.9 \qquad f_0=6.084 \pm 0.007~\kilo\hertz  \]
+\[ A_2^\star=(1.504 \pm 0.013)\cdot10^5 \qquad Q=7.54 \pm 0.12 \qquad f_0=6.089 \pm 0.006~\kilo\hertz  \]
+
+
 da cui si può dedurre il valore dell'amplificazione di centro banda $ A_{2,0} $ e la larghezza di banda $ \Delta f $:
-\[ A_{2,0} = 186.5 \pm 2.2	\qquad	\Delta f \]
+\[ A_{2,0} = 186 \pm 2	\qquad	\Delta f = 808 \pm 13 Hz \]
 \vspace*{-30pt}
 \begin{figure}[H]
 	\centering
@@ -244,20 +246,20 @@ Il convertitore RMS è stato realizzato tramite un apposito integrato (AD736), m
 \subsubsection*{Calibrazione}
 
 Si è eseguita la calibrazione della lettura data in uscita dal circuito in \cref{fig:RMSconv}, confrontando la lettura del multimetro di questa tensione con il valore RMS calcolato dall'apposita funzione dell'oscilloscopio.
-Il risultato del fit è riportato in \cref{fig:FitRMS}, mentre i valori ottenuti sono:
-\[ m = 0.870 \pm 0.005	\qquad	q = -(1.38+/-0.10) \milli\volt	\qquad	\chi^2/DOF = 15.72 / 16 \]
+Il risultato del fit è riportato in \cref{fig:FitRMS}, i dati utilizzati in \cref{tab:RMScal}, e i valori ottenuti sono:
+\[ m = 0.870 \pm 0.005	\qquad	q = -(1.38\pm0.10) \milli\volt	\qquad	\chi^2/DOF = 15.72 / 16 \]
 dove $ m $ è il coefficiente angolare della retta e $ q $ la sua intercetta.
 
 
 \section{Misura della costante di Boltzmann}
 \vspace*{-5pt}
-Si sono montati i vari circuiti tutti insieme, come schematizzato dalla \cref{fig:blocks}. Si è misurato il valore $V_{RMS}$ in uscita al circuito al variare della resistenza in ingresso. Per ogni resistenza sono stati presi più valori di $V_{RMS}$ poiché la misura oscillava molto. Si è poi effettuata una media dei valori presi. I dati ottenuti sono riportati in \cref{tab:lastfitav}.
+Si sono montati i vari circuiti tutti insieme, come schematizzato dalla \cref{fig:blocks}. Si è misurato il valore $V_{RMS}$ in uscita al circuito al variare della resistenza in ingresso. Per ogni resistenza sono stati presi più valori di $V_{RMS}$ poiché la misura oscillava molto. Si è poi effettuata una media dei valori presi. I dati ottenuti sono riportati in \cref{tab:lastfitav}.\footnote{I valori $V_{RMS}$ in tabella sono la media dei valori realmente acquisiti, poiché la misura fluttuava molto. I dati completi acquisiti sono riportati in \cref{tab:lastfit,tab:lastfit1}.}
 \vspace*{-10pt}
 \begin{table}[H]
 	\centering
 	\begin{tabular}{cccc}
 		\hline
-		R[k$\Omega$] & $\delta$R [k$\Omega$] & $V_{RMS}[mV]$  & $\delta$$V_{RMS}[mV]$ \\
+		R[k$\Omega$] & dR [k$\Omega$] & $V_{RMS}[mV]$  & $dV_{RMS}$[mV] \\
 		\hline
 		0.985 & 0.009 & 35 & 1 \\
 		1.18 & 0.01 & 36.1 & 0.5 \\
@@ -275,7 +277,7 @@ Si sono montati i vari circuiti tutti insieme, come schematizzato dalla \cref{fi
 		17.9 & 0.2 & 72 & 2 \\
 		\hline
 	\end{tabular}
-	\caption{Valori delle resistenze utilizzate e del potenziale all'uscita del circuito.}
+	\caption{Valori delle resistenze utilizzate e del potenziale(media dei valori acquisiti)all'uscita del circuito.}
 	\label{tab:lastfitav}
 \end{table}
 \vspace*{-5pt}
@@ -313,16 +315,20 @@ Il grafico è mostrato in \cref{fig:lastfit}.
 
 
 
-\subsection{Stima diretta dell'amplificazione \\e risposta in frequenza del circuito complessivo}
-Si è misurata direttamente l'amplificazione e la risposta in frequenza del circuito complessivo mandando segnali molti piccoli in ingresso utilizzando un partitore 1000:1 (si sono utilizzate a tal proposito le resistenze $R_1 = 9.91\pm0.09 k\Omega $ e $R_2 = 10.1\pm0.4 \Omega$).
+\subsection{Stima diretta dell'amplificazione%
+	\\e risposta in frequenza del circuito complessivo}
+Poiché col procedimento suggerito, cioè l'analisi individuale dei blocchi di circuito, sono stati riscontrati dei problemi in fase di presa dati (ad esempio l'amplificazione massima ottenuta dal passabanda è piuttosto diversa da quella attesa) si è deciso di effettuare la misura del comportamento complessivo dell'intero circuito.
+
+Si è dunque misurata direttamente l'amplificazione e la risposta in frequenza  complessive mandando segnali molti piccoli in ingresso utilizzando un partitore 1000:1 (si sono utilizzate a tal proposito le resistenze $R_1 = (9.91\pm0.09) k\Omega $ e $R_2 = (10.1\pm0.4) \Omega$).
 I dati raccolti sono mostrati in \cref{tab:totamp}.
 
 Si è effettuato un fit su questi dati per trovare l'amplificazione complessiva del circuito. Si è modellizzato tutto il circuito come se fosse un unico passabanda amplificato, con amplificatori ideali (con frequenza di taglio costante). La funzione di fit è la seguente:
 \begin{equation}
+\label{eq:fittot}
 \frac{1}{\sqrt{1+(\frac{f}{f_t})^2}} \frac{A^\star f}{\sqrt{(f - f_0)^2+ \frac{f^2 f_0^2}{Q} )}}
 \end{equation}
 
-Questa stima potrebbe ulteriormente essere migliorata utilizzando come modello il prodotto tra le varie funzioni di trasferimento degli amplificatori (tutti con frequenze di taglio diverse) e il passabanda, ma come si può notare dal fit e dai suoi risultati, anche il modello utilizzato è fitta bene i dati. Il grafico è mostrato in \cref{fig:ampltot} e i risultati in \cref{tab:risult}.
+Questa stima potrebbe ulteriormente essere migliorata utilizzando come modello il prodotto tra le varie funzioni di trasferimento degli amplificatori (tutti con frequenze di taglio diverse) e il passabanda, ma come si può notare dal fit e dai suoi risultati, anche il modello utilizzato fitta bene i dati. Il grafico è mostrato in \cref{fig:ampltot} e i risultati in \cref{tab:risult}.
 
 \begin{figure}[H]
 	\centering
@@ -334,21 +340,35 @@ Questa stima potrebbe ulteriormente essere migliorata utilizzando come modello i
 \begin{table}[H]
 	\centering
 	\begin{tabular}{c|c|c|c|c}
-	$A^\star$ & Q & $f_0[Hz]$ & $f_t[Hz]$ & $\chi^2/DOF$ \\
+	$A^\star$ & Q & $f_0[kHz]$ & $f_t[kHz]$ & $\chi^2/DOF$ \\
 	\hline
-	(1.57$\pm$0.06)e+08 & 9.0$\pm$0.4 & 6794$\pm$35 & (9.1$\pm$0.8)e+03 & 16/19 \\
+	(1.57$\pm$0.06)e+08 & 3.00$\pm$0.07 & 6.80$\pm$0.04 & 9.1$\pm$0.8 & 16/19 \\
 	\end{tabular}
 	\caption{Risultati del fit per valutare l'amplificazione complessiva del circuito e la sua risposta in frequenza.}
 	\label{tab:risult}
 \end{table}
 
-I valori ottenuti per l'amplificazione totale e per la banda passante sono rispettivamente A = (4.84$\pm$0.08)e+04 e $\Delta f$ = (4.75$\pm$0.23)e+03 Hz.
+I valori ottenuti per l'amplificazione totale e per la banda passante sono rispettivamente
+\[  A = (4.84\pm0.08)e+04 \qquad \Delta f = 3.56\pm0.09~kHz. \]
 
-%non sono sicuro dei risultati che ho messo soprattutto delta f che esce 3 ordini di grandezza diversa, per piacere controllate ed aggiustate.
+%non sono sicuro dei risultati che ho messo soprattutto delta f che esce 1 ordine di grandezza diversa, inoltre Q è anche incompatibile.
 
 
 \subsection{Risultati finali}
-A questo punto, utilizzando la \eqref{resnull} e la \eqref{kb} si è ricavata la costante di Boltzmann con entrambi i metodi sopra descritti. Si sono ottenuti come risultati rispettivamente $k_b = (1.44\pm0.19)e-23 J/K$ e $k_{b,1000:1} = (1.17\pm0.16)e-23~J/K $. Il valore atteso per la costante di Boltzmann è $k_b$ = 1.380e-23 J/K. I risultati ottenuti sono entrambi compatibili con il valore atteso. 
+A questo punto, utilizzando la \eqref{resnull} e la \eqref{kb} si è ricavata la costante di Boltzmann con entrambi i metodi sopra descritti. Si sono ottenuti come risultati rispettivamente $k_b = (0.8\pm0.1)e-23~J/K$ e $k_{b,1000:1} = (1.56\pm0.21)e-23~J/K $. Il valore atteso per la costante di Boltzmann è $k_b = 1.380e-23~J/K$.
+\newline
+
+I risultati trovati non sono compatbili tra loro. Questo era atteso dall'osservazione dei dati riportati in \cref{fig:FITbandpass,fig:ampltot}, in cui è chiaro che la banda passante non è la stessa nei due casi.
+
+Poiché il comportamento del circuito è quello ottenuto dall'analisi complessiva, è naturale che la migliore misura della costante di Boltzmann è quella ottenuta in questo caso, che risulta essere compatibile con il valore noto.
+
+Nell'altro caso il problema è riscontrato per l'andamento in frequenza, quindi probabilmente è dovuto all'alterazione della figura prodotta dal passabanda a causa delle altre frequenze di taglio introdotte dai vari amplificatori.
+Osservando la \cref{fig:ampltot} infatti si nota che la campana mostrata in \cref{fig:FITbandpass} è deformata nel seguente modo:
+\begin{itemize}
+	\item per frequenze inferiori al centro banda l'amplificazione decresce con una pendenza minore di quella che si ha per frequenze superiori al centro banda;
+	\item la larghezza di banda appare maggiore.
+\end{itemize}
+Questo porta a ipotizzare che il comportamento distorto sia dovuto all'effetto di filtri passa-basso, come quelli con cui viene modellizzata la risposta in frequenza dell'amplificatore; questa interpretazione è coerente con la formula utilizzata (\cref{eq:fittot}) per il fit nel caso complessivo.
 
 \pagebreak
 
@@ -358,14 +378,14 @@ Si riportano qui le tabelle dei dati usati per i fit e i grafici.
 \begin{table}[H]
 	\centering
 	\input{../tabelle/tab_prepreamp.txt}
-	\caption{.}
+	\caption{Dati acquisiti per la risposta in frequenza della prima parte del preamplificatore.}
 	\label{tab:prepreamp}
 \end{table}
 
 \begin{table}[H]
 	\centering
 	\input{../tabelle/tab_postpreamp.txt}
-	\caption{.}
+	\caption{Dati acquisiti per la risposta in frequenza della seconda parte del preamplificatore.}
 	\label{tab:postpreamp}
 \end{table}
 
@@ -374,7 +394,7 @@ Si riportano qui le tabelle dei dati usati per i fit e i grafici.
 		\begin{table}[H]
 			\centering
 			\input{../tabelle/tab_passabanda.txt}
-			\caption{.}
+			\caption{Dati acquisiti per la risposta in frequenza del passabanda.}
 			\label{tab:bandpass}
 		\end{table}
 	\end{minipage}
@@ -382,7 +402,7 @@ Si riportano qui le tabelle dei dati usati per i fit e i grafici.
 		\begin{table}[H]
 			\centering
 			\input{../tabelle/tab_calibrazioneRMS.txt}
-			\caption{.}
+			\caption{Valori dei potenziali RMS all'uscita del Convertitore RMS e mediante la funzione dell'oscilloscopio}
 			\label{tab:RMScal}
 		\end{table}
 	\end{minipage}
@@ -403,14 +423,14 @@ L'errore non di calibrazione corrisponde per tutte le tensioni trovate all'ultim
 \begin{table}[H]
 	\centering
 	\input{../tabelle/tab_lastfit.txt}
-	\caption{.}
+	\caption{Valori delle resistenze utilizzate e del potenziale all'uscita del circuito.}
 	\label{tab:lastfit}
 \end{table}
 
 \begin{table}[H]
 	\centering
 	\input{../tabelle/tab_lastfit1.txt}
-	\caption{.}
+	\caption{Valori delle resistenze utilizzate e del potenziale all'uscita del circuito.}
 	\label{tab:lastfit1}
 \end{table}
 
