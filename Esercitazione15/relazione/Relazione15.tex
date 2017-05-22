@@ -205,10 +205,10 @@ Si riportano in \cref{fig:FITbandpass} i dati presi per la risposta in frequenza
 La funzione di cui stato eseguito il fit è:
 \[ A(f) = A_2^\star \frac{f}{\sqrt{(f^2-f_0^2)^2 + \left(\frac{f_0 f}{Q}\right)^2}} \]
 
-e i parametri trovati dal fit sono:
+e i parametri trovati dal fit sono:\marginpar{NUMERI DA AGGIORNARE}
 \[ A_2^\star=(1.504 \pm 0.013)\cdot10^5 \qquad Q=7.54 \pm 0.12 \qquad f_0=6.089 \pm 0.006~\kilo\hertz  \]
 
-da cui si può dedurre il valore dell'amplificazione di centro banda $ A_{2,0} $ e la larghezza di banda $ \Delta f $:
+da cui si può dedurre il valore dell'amplificazione di centro banda $ A_{2,0} $ e la larghezza di banda $ \Delta f $:\marginpar{NUMERI DA AGGIORNARE}
 \[ A_{2,0} = 186 \pm 2	\qquad	\Delta f = 808 \pm 13 Hz \]
 \vspace*{-30pt}
 \begin{figure}[H]
@@ -291,7 +291,7 @@ dove R è la resistenza in ingresso, $R_T, V_0n e R_n$ sono parametri che si ott
 V_0n = A V_n
 \label{resnull}
 \end{equation}
-che rappresenta il rumore in uscita a resistenza nulla. Il Guadagno $A$ è quello complessivo di tutto il circuito, cioè $A = A_0 A_1 A_2 A_3 = (1.17\pm0.02)e+05 $.
+che rappresenta il rumore in uscita a resistenza nulla.\marginpar{NUMERI DA AGGIORNARE} Il Guadagno $A$ è quello complessivo di tutto il circuito, cioè $A = A_0 A_1 A_2 A_3 = (1.17\pm0.02)e+05 $.
 \vspace*{-10pt}
 \begin{equation}
 R_T = \frac{V_n^2}{4k_b T \Delta f} = \frac{V_0n^2}{4k_b A_0 T \Delta f}
@@ -299,6 +299,7 @@ R_T = \frac{V_n^2}{4k_b T \Delta f} = \frac{V_0n^2}{4k_b A_0 T \Delta f}
 \end{equation}
 che è la resistenza equivalente del rumore serie dell'amplificatore riferito all'ingresso.
 
+\marginpar{NUMERI DA AGGIORNARE}
 Si è quindi effettuato un fit alla $\eqref{fitt}$ ottenendo come risultati $V_0n = 0.0329\pm0.0007 V$ , $R_T = (7\pm1)e+03 \Omega $, $R_n = (1.5\pm 0.2)e+04 \Omega$, $\chi ^2 /DOF$ = 93/11. Il $\chi ^2$ risulta essere leggermente alto; si ritiene che ciò sia dovuto ad una sottostima degli errori.
 %... lascio così come commento? chi2 senza media = 17.
 
@@ -314,12 +315,16 @@ Il grafico è mostrato in \cref{fig:lastfit}.
 
 
 
-\subsection{Stima diretta dell'amplificazione \\e risposta in frequenza del circuito complessivo}
-Si è misurata direttamente l'amplificazione e la risposta in frequenza del circuito complessivo mandando segnali molti piccoli in ingresso utilizzando un partitore 1000:1 (si sono utilizzate a tal proposito le resistenze $R_1 = (9.91\pm0.09) k\Omega $ e $R_2 = (10.1\pm0.4) \Omega$).
+\subsection{Stima diretta dell'amplificazione%
+	\\e risposta in frequenza del circuito complessivo}
+Poiché col procedimento suggerito, cioè l'analisi individuale dei blocchi di circuito, sono stati riscontrati dei problemi in fase di presa dati (ad esempio l'amplificazione massima ottenuta dal passabanda è piuttosto diversa da quella attesa) si è deciso di effettuare la misura del comportamento complessivo dell'intero circuito.
+
+Si è dunque misurata direttamente l'amplificazione e la risposta in frequenza  complessive mandando segnali molti piccoli in ingresso utilizzando un partitore 1000:1 (si sono utilizzate a tal proposito le resistenze $R_1 = (9.91\pm0.09) k\Omega $ e $R_2 = (10.1\pm0.4) \Omega$).
 I dati raccolti sono mostrati in \cref{tab:totamp}.
 
 Si è effettuato un fit su questi dati per trovare l'amplificazione complessiva del circuito. Si è modellizzato tutto il circuito come se fosse un unico passabanda amplificato, con amplificatori ideali (con frequenza di taglio costante). La funzione di fit è la seguente:
 \begin{equation}
+\label{eq:fittot}
 \frac{1}{\sqrt{1+(\frac{f}{f_t})^2}} \frac{A^\star f}{\sqrt{(f - f_0)^2+ \frac{f^2 f_0^2}{Q} )}}
 \end{equation}
 
@@ -332,6 +337,7 @@ Questa stima potrebbe ulteriormente essere migliorata utilizzando come modello i
 	\label{fig:ampltot}
 \end{figure}
 
+\marginpar{NUMERI DA AGGIORNARE}
 \begin{table}[H]
 	\centering
 	\begin{tabular}{c|c|c|c|c}
@@ -343,13 +349,27 @@ Questa stima potrebbe ulteriormente essere migliorata utilizzando come modello i
 	\label{tab:risult}
 \end{table}
 
-I valori ottenuti per l'amplificazione totale e per la banda passante sono rispettivamente A = (4.84$\pm$0.08)e+04 e $\Delta f$ = (3.56$\pm$0.09)e+03 Hz.
+I valori ottenuti per l'amplificazione totale e per la banda passante sono rispettivamente:\marginpar{NUMERI DA AGGIORNARE}
+\[  A = (4.84\pm0.08)e+04 \qquad \Delta f = (3.56\pm0.09)e+03 Hz. \]
 
 %non sono sicuro dei risultati che ho messo soprattutto delta f che esce 1 ordine di grandezza diversa, inoltre Q è anche incompatibile.
 
 
 \subsection{Risultati finali}
-A questo punto, utilizzando la \eqref{resnull} e la \eqref{kb} si è ricavata la costante di Boltzmann con entrambi i metodi sopra descritti. Si sono ottenuti come risultati rispettivamente $k_b = (1.18\pm0.16)e-23~J/K$ e $k_{b,1000:1} = (1.56\pm0.21)e-23~J/K $. Il valore atteso per la costante di Boltzmann è $k_b = 1.380e-23~J/K$. I risultati ottenuti sono entrambi compatibili con il valore atteso. 
+A questo punto, utilizzando la \eqref{resnull} e la \eqref{kb} si è ricavata la costante di Boltzmann con entrambi i metodi sopra descritti.\marginpar{NUMERI DA AGGIORNARE} Si sono ottenuti come risultati rispettivamente $k_b = (1.18\pm0.16)e-23~J/K$ e $k_{b,1000:1} = (1.56\pm0.21)e-23~J/K $. Il valore atteso per la costante di Boltzmann è $k_b = 1.380e-23~J/K$.
+\newline
+
+I risultati trovati non sono compatbili tra loro. Questo era atteso dall'osservazione dei dati riportati in \cref{fig:FITbandpass,fig:ampltot}, in cui è chiaro che la banda passante non è la stessa nei due casi.
+
+Poiché il comportamento del circuito è quello ottenuto dall'analisi complessiva, è naturale che la migliore misura della costante di Boltzmann è quella ottenuta in questo caso, che risulta essere compatibile con il valore noto.
+
+Nell'altro caso il problema è riscontrato per l'andamento in frequenza, quindi probabilmente è dovuto all'alterazione della figura prodotta dal passabanda a causa delle altre frequenze di taglio introdotte dai vari amplificatori.
+Osservando la \cref{fig:ampltot} infatti si nota che la campana mostrata in \cref{fig:FITbandpass} è deformata nel seguente modo:
+\begin{itemize}
+	\item per frequenze inferiori al centro banda l'amplificazione decresce con una pendenza minore di quella che si ha per frequenze superiori al centro banda;
+	\item la larghezza di banda appare maggiore.
+\end{itemize}
+Questo porta a ipotizzare che il comportamento distorto sia dovuto all'effetto di filtri passa-basso, come quelli con cui viene modellizzata la risposta in frequenza dell'amplificatore; questa interpretazione è coerente con la formula utilizzata (\cref{eq:fittot}) per il fit nel caso complessivo.
 
 \pagebreak
 
