@@ -45,18 +45,21 @@ R3=myres(46.6e3)
 
 Rp=R1*R2/(R1+R2)
 C=C1
-w0_exp=(1/(C*(Rp*R3)**0.5))/(2*np.pi)
+w0_exp=(1/(C*(Rp*R3)**0.5))#/(2*np.pi)
+f0_exp=(1/(C*(Rp*R3)**0.5))/(2*np.pi)
+
 Q_exp=0.5*(R3/Rp)**0.5
-
 Dw_exp=w0_exp/Q_exp
+Df_exp=f0_exp/Q_exp
 
-R1p=myres(9.90e3) #questa resistenza è sbagliata... non so se è grave o meno, ma si spiega perchè la nostra amplificazione è minore...è compatibile con quanto ottenuto dal fit
+
+R1p=myres(9.92e2) #questa resistenza è sbagliata... non so se è grave o meno, ma si spiega perchè la nostra amplificazione è minore...è compatibile con quanto ottenuto dal fit
 R2p=myres(33.2e3)
 R3p=myres(3.91e3)
 
-g00=1/(R1*C*Dw_exp)*R2p/R1p
+g00=1/(R1*C*Dw_exp)*(R2p/R1p+1)
 
-print("w0_exp={}    Q_exp={}    g00={}".format(w0_exp, Q_exp, g00))
+print("f0_exp={}    Q_exp={}    g00={}".format(f0_exp, Q_exp, g00))
 
 
 pylab.figure(figsnum)
@@ -138,4 +141,13 @@ print("guadagno centro banda=", g(w0, A, Q, w0))
 print("Risultati A={} Q={} w0={}  Dw={}".format(A, Q**0.5, w0, Dw))
 
 print("Il Q value non è compatibile con quanto atteso...")
+
+
+
+dom=np.linspace(min(f), max(f), 1000)
+integrale=np.sum(g(dom, A, Q, w0)**2)*(max(f)-min(f))/1000/A3**2
+print("-----------", integrale, np.pi/2*Dw)
+
+Df_true=integrale
+
 

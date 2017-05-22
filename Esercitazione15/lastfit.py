@@ -148,8 +148,13 @@ Df=np.pi*Dw_supp/2
 print("Df={}".format(Df))
 
 T=uncertainties.ufloat(273+28, 5)
-k_b=V0**2/(4*T*Atot**2*Df*RT) 
+k_b=V0**2/(4*T*Atot**2*Df*RT) #Df_true è concettualmente più giusto...ma risulta essere più sbagliato...se si voule essere più onesti sostituire Df--->Df_true...
 print("K_b={} vs K_b_exp=1.380e-23".format(k_b))
 
 
+############piccola analisi....
+
+print("rapporto A0=", A1*A2*A3*A4/Atot)
+print(Dw/Dw_supp)
+print("rapporto K=", (A1*A2*A3*A4/Atot)**2*Dw/Dw_supp)
 #fit non torna manco per nulla...domani prendo delle misure sere...

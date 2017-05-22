@@ -113,7 +113,11 @@ print("A_centrobanda={} \n ampiezza_banda={}".format(A_supp, Dw_supp))
 
 
 
+dom=np.linspace(min(f), max(f), 1000)
+integrale=np.sum(g(dom, A, Q, w0, wt)**2)*(max(f)-min(f))/1000/A_supp**2
+print("-----------", integrale, np.pi/2*Dw_supp)
 
+Df_true_2=integrale
 
 
 
