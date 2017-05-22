@@ -205,10 +205,10 @@ La funzione di cui stato eseguito il fit è:
 \[ A(f) = A_2^\star \frac{f}{\sqrt{(f^2-f_0^2)^2 + \left(\frac{f_0 f}{Q}\right)^2}} \]
 
 e i parametri trovati dal fit sono:
-\[ A_2^\star=(1.504 \pm 0.013)\cdot10^5 \qquad Q=7.54 \pm 0.12 \qquad f_0=6.089 \pm 0.006~\kilo\hertz  \]
+\[ A_2^\star=(1.504 \pm 0.013)\cdot10^5 \hertz \qquad Q=7.54 \pm 0.12 \qquad f_0=6.089 \pm 0.006~\kilo\hertz  \]
 
 
-da cui si può dedurre il valore dell'amplificazione di centro banda $ A_{2,0} $ e la larghezza di banda $ \Delta f $:
+da cui si può dedurre il valore dell'amplificazione di centro banda $ A_{2,0} $\footnote{$A_2^\star$ della formula precedente è dimensionale ($\hertz$) mentre $ A_{2,0} $, essendo la vera amplificazione in cerntrobanda, è adimensionale. Questa nomenclatura è un po'irritante, ma si è adottata in quanto consistente con gli appunti delle lezioni} e la larghezza di banda $ \Delta f $:
 \[ A_{2,0} = 186 \pm 2	\qquad	\Delta f = 808 \pm 13 ~\hertz \]
 \vspace*{-30pt}
 \begin{figure}[H]
@@ -343,11 +343,11 @@ Questa stima potrebbe ulteriormente essere migliorata utilizzando come modello i
 \begin{table}[H]
 	\centering
 	\begin{tabular}{c|c|c|c|c}
-	$A^\star$ & Q & $f_0[kHz]$ & $f_t[kHz]$ & $\chi^2/DOF$ \\
+	$A^\star [\hertz]$ & Q & $f_0[kHz]$ & $f_t[kHz]$ & $\chi^2/DOF$ \\
 	\hline
 	(1.57$\pm$0.06)$\cdot 10^8$ & 3.00$\pm$0.07 & 6.80$\pm$0.04 & 9.1$\pm$0.8 & 16/19 \\
 	\end{tabular}
-	\caption{Risultati del fit per valutare l'amplificazione complessiva del circuito e la sua risposta in frequenza.}
+	\caption{Risultati del fit per valutare l'amplificazione complessiva del circuito e la sua risposta in frequenza. Come già nel fit relativo al passabanda il parametro $A^\star$ è dimensionale e non è l'amplificazione in centrobanda.}
 	\label{tab:risult}
 \end{table}
 
