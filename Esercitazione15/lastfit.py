@@ -125,7 +125,7 @@ print("#####risultati con il prodotto dei guadagni...")
 
 
 
-Atot=A1*A2*A3*A4
+Atot=A1*A2*A3*a + b # la calibrazione è una retta affine, non è strettamente lineare
 print("Atot={}".format(Atot))
 print("A1={} A2={} A3={} A4={}".format(A1, A2, A3, A4))
 
@@ -140,7 +140,7 @@ print("K_b={} vs K_b_exp=1.380e-23".format(k_b))
 
 print('########risultati con il guadagno totale stimato con il partitore 1000:1...')
 
-Atot=A_supp*A4
+Atot=A_supp*a + b # la calibrazione è una retta affine, non è strettamente lineare
 print("Atot={}".format(Atot))
 
 
@@ -154,7 +154,8 @@ print("K_b={} vs K_b_exp=1.380e-23".format(k_b))
 
 ############piccola analisi....
 
+print("\n---------NON TORNA UN ACCIDENTI----------")
 print("rapporto A0=", A1*A2*A3*A4/Atot)
-print(Dw/Dw_supp)
+print("rapporto Df=", Dw/Dw_supp)
 print("rapporto K=", (A1*A2*A3*A4/Atot)**2*Dw/Dw_supp)
 #fit non torna manco per nulla...domani prendo delle misure sere...

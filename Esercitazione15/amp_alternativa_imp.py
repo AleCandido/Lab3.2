@@ -88,9 +88,9 @@ pylab.plot(domain, gdomain)
 # ylim(6000,80000)
 vint = pylab.vectorize(int)
 pylab.xlim(min(domain)*0.9,max(domain)*1.1)
-#pylab.xticks(vint((pylab.logspace(log10(min(domain)*0.9),log10(max(domain)*1.1), 5)//100)*100),vint((pylab.logspace(log10(min(domain)*0.9),log10(max(domain)*1.1), 5)//100)*100))
+pylab.xticks(vint((pylab.logspace(log10(min(domain)*0.9),log10(max(domain)*1.1), 5)//100)*100),vint((pylab.logspace(log10(min(domain)*0.9),log10(max(domain)*1.1), 5)//100)*100))
 pylab.ylim(min(gdomain)*0.9, max(gdomain)*1.1)
-#pylab.yticks(vint((pylab.logspace(log10(min(gdomain)*0.9),log10(max(gdomain)*1.1), 5)//10)*10),vint((pylab.logspace(log10(min(gdomain)*0.9),log10(max(gdomain)*1.1), 5)//10)*10))
+pylab.yticks(vint((pylab.logspace(log10(min(gdomain)*0.9),log10(max(gdomain)*1.1), 5)//10)*10),vint((pylab.logspace(log10(min(gdomain)*0.9),log10(max(gdomain)*1.1), 5)//10)*10))
 pylab.savefig(dir_grph+"amp_alternativa_imp.pdf")
 
 
