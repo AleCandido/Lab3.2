@@ -139,9 +139,8 @@ Le misure prese ed il fit sono riportati rispettivamente in \cref{tab:prepreamp}
 \end{figure}
 \vspace*{-10pt}
 
-Dal fit si ottengono come risultati $A_0 = 49.805 \pm 0.004$, $f_{t,0} = 25.000 \pm 0.013~\kilo\hertz$. Il fit non è particolarmente in accordo con i dati, come risulta dal calcolo del $ \chi^2 $: osservando la \cref{fig:prepreamp} si ha che ciò è dovuto principalmente alle misure ad alta frequenza.
-\footnote{Anche se meno di quello che appare in \cref{fig:prepreamp}, poiché l'asse delle ordinate è logaritmico.}
-Il fit della regione a basse frequenze comunque resistuisce un valore del guadagno piuttosto preciso e in accordo con quanto atteso, mentre per la frequenza di taglio è più importante l'ordine di grandezza che la misura in sè: lo scopo è che sia nettamente esclusa dalla banda di frequenze selezionata dal filtro passabanda (vedi \cref{sec:bandpass}).
+Dal fit si ottengono come risultati $A_0 = 49.805 \pm 0.004$, $f_{t,0} = 25.000 \pm 0.013~\kilo\hertz$. Il fit non è particolarmente in accordo con i dati, come risulta dal calcolo del $ \chi^2 $: osservando la \cref{fig:prepreamp} si ha che ciò è dovuto principalmente alle misure ad alta frequenza\footnote{Anche se meno di quanto appaia in \cref{fig:prepreamp}, poiché l'asse delle ordinate è logaritmico.}.
+Il fit della regione a basse frequenze comunque resistuisce un valore del guadagno piuttosto preciso e in accordo con quanto atteso, mentre per la frequenza di taglio è più importante l'ordine di grandezza che la misura in sè: lo scopo è che sia nettamente esclusa dalla banda di frequenze selezionata dal filtro passabanda (vedi \cref{sec:bandpass,sec:totamp}).
 
 In secondo luogo si è mandata un'onda sinusoidale all'ingresso della seconda parte del circuito (prima della resistenza $R_2$) e si è studiata la sua risposta in frequenza.
 Anche in questo caso come funzione modello si è scelto di prendere quella per un generico passa-basso:
@@ -210,7 +209,7 @@ e i parametri trovati dal fit sono:
 
 
 da cui si può dedurre il valore dell'amplificazione di centro banda $ A_{2,0} $ e la larghezza di banda $ \Delta f $:
-\[ A_{2,0} = 186 \pm 2	\qquad	\Delta f = 808 \pm 13 Hz \]
+\[ A_{2,0} = 186 \pm 2	\qquad	\Delta f = 808 \pm 13 ~\hertz \]
 \vspace*{-30pt}
 \begin{figure}[H]
 	\centering
@@ -253,7 +252,7 @@ dove $ m $ è il coefficiente angolare della retta e $ q $ la sua intercetta.
 
 \section{Misura della costante di Boltzmann}
 \vspace*{-5pt}
-Si sono montati i vari circuiti tutti insieme, come schematizzato dalla \cref{fig:blocks}. Si è misurato il valore $V_{RMS}$ in uscita al circuito al variare della resistenza in ingresso. Per ogni resistenza sono stati presi più valori di $V_{RMS}$ poiché la misura oscillava molto. Si è poi effettuata una media dei valori presi. I dati ottenuti sono riportati in \cref{tab:lastfitav}.\footnote{I valori $V_{RMS}$ in tabella sono la media dei valori realmente acquisiti, poiché la misura fluttuava molto. I dati completi acquisiti sono riportati in \cref{tab:lastfit,tab:lastfit1}.}
+Si sono montati i vari circuiti tutti insieme, come schematizzato dalla \cref{fig:blocks}. Si è misurato il valore $V_{RMS}$ in uscita al circuito al variare della resistenza in ingresso. Per ogni resistenza sono stati presi più valori di $V_{RMS}$ poiché la misura oscillava molto. Si è poi effettuata una media dei valori presi. I dati ottenuti sono riportati in \cref{tab:lastfitav}.\footnote{I valori $V_{RMS}$ in tabella sono la media dei valori realmente acquisiti, poiché la misura fluttuava molto. Gli errori sono stati stimati come la varianza del campione (il suo estimatore). I dati completi acquisiti sono riportati in \cref{tab:lastfit,tab:lastfit1}.}
 \vspace*{-10pt}
 \begin{table}[H]
 	\centering
@@ -277,37 +276,40 @@ Si sono montati i vari circuiti tutti insieme, come schematizzato dalla \cref{fi
 		17.9 & 0.2 & 72 & 2 \\
 		\hline
 	\end{tabular}
+	\vspace*{-5pt}
 	\caption{Valori delle resistenze utilizzate e del potenziale(media dei valori acquisiti)all'uscita del circuito.}
 	\label{tab:lastfitav}
 \end{table}
-\vspace*{-5pt}
+\vspace*{-8pt}
 Le relazioni attese che legano $V_{RMS}$, le resistenze utilizzate, i guadagni ottenuti e la costante di Boltzmann $k_b$ sono le seguenti:
 \vspace*{-8pt}
 \begin{equation}
 V_{RMS} = V_{0n} \sqrt[]{1+\frac{R}{R_T}+\frac{R^2}{R_n ^2}}
-\label{fitt}
+\label{eq:fitt}
 \end{equation}
-dove R è la resistenza in ingresso, $R_T, V_0n e R_n$ sono parametri che si otterranno dal fit a questa funzione.
+dove R è la resistenza in ingresso, $R_T, V_{0n} e R_n$ sono parametri che si otterranno dal fit a questa funzione.
+\vspace*{-3pt}
 \begin{equation}
-V_0n = A V_n
-\label{resnull}
+V_{0n} = A V_n
+\label{eq:resnull}
+\vspace*{-3pt}
 \end{equation}
-che rappresenta il rumore in uscita a resistenza nulla. Il Guadagno $A$ è quello complessivo di tutto il circuito, cioè $A = A_0 A_1 A_2 A_3 = (1.17\pm0.02)e+05 $.
+che rappresenta il rumore in uscita a resistenza nulla. Il Guadagno $A$ è quello complessivo di tutto il circuito, cioè $A = A_0 A_1 A_2 A_3 = (1.17\pm0.02)\cdot 10^5 $.
 \vspace*{-10pt}
 \begin{equation}
 R_T = \frac{V_n^2}{4k_b T \Delta f} = \frac{V_0n^2}{4k_b A_0 T \Delta f}
-\label{kb}
+\label{eq:kb}
 \end{equation}
 che è la resistenza equivalente del rumore serie dell'amplificatore riferito all'ingresso.
 
-Si è quindi effettuato un fit alla $\eqref{fitt}$ ottenendo come risultati $V_0n = 0.0329\pm0.0007 V$ , $R_T = (7\pm1)e+03 \Omega $, $R_n = (1.5\pm 0.2)e+04 \Omega$, $\chi ^2 /DOF$ = 93/11. Il $\chi ^2$ risulta essere leggermente alto; si ritiene che ciò sia dovuto ad una sottostima degli errori.
+Si è quindi effettuato un fit all'\cref{eq:fitt} ottenendo come risultati $V_0n = 0.0329\pm0.0007 V$ , $R_T = (7\pm1) \kilo\ohm $, $R_n = (15\pm 2) \kilo\ohm$, $\chi ^2 /DOF$ = 93/11. Il $\chi ^2$ risulta essere piuttosto alto; si ritiene che ciò sia dovuto ad una sottostima degli errori.
 %... lascio così come commento? chi2 senza media = 17.
 
 Il grafico è mostrato in \cref{fig:lastfit}.
-\vspace*{-10pt}
+\vspace*{-13pt}
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.7\textwidth]{../grafici/lastfit.pdf}
+	\includegraphics[width=0.69\textwidth]{../grafici/lastfit.pdf}
 	\vspace*{-15pt}
 	\caption{Fit di $V_{RMS}$ in funzione di R.}
 	\label{fig:lastfit}
@@ -317,6 +319,7 @@ Il grafico è mostrato in \cref{fig:lastfit}.
 
 \subsection{Stima diretta dell'amplificazione%
 	\\e risposta in frequenza del circuito complessivo}
+\label{sec:totamp}
 Poiché col procedimento suggerito, cioè l'analisi individuale dei blocchi di circuito, sono stati riscontrati dei problemi in fase di presa dati (ad esempio l'amplificazione massima ottenuta dal passabanda è piuttosto diversa da quella attesa) si è deciso di effettuare la misura del comportamento complessivo dell'intero circuito.
 
 Si è dunque misurata direttamente l'amplificazione e la risposta in frequenza  complessive mandando segnali molti piccoli in ingresso utilizzando un partitore 1000:1 (si sono utilizzate a tal proposito le resistenze $R_1 = (9.91\pm0.09) k\Omega $ e $R_2 = (10.1\pm0.4) \Omega$).
@@ -342,20 +345,20 @@ Questa stima potrebbe ulteriormente essere migliorata utilizzando come modello i
 	\begin{tabular}{c|c|c|c|c}
 	$A^\star$ & Q & $f_0[kHz]$ & $f_t[kHz]$ & $\chi^2/DOF$ \\
 	\hline
-	(1.57$\pm$0.06)e+08 & 3.00$\pm$0.07 & 6.80$\pm$0.04 & 9.1$\pm$0.8 & 16/19 \\
+	(1.57$\pm$0.06)$\cdot 10^8$ & 3.00$\pm$0.07 & 6.80$\pm$0.04 & 9.1$\pm$0.8 & 16/19 \\
 	\end{tabular}
 	\caption{Risultati del fit per valutare l'amplificazione complessiva del circuito e la sua risposta in frequenza.}
 	\label{tab:risult}
 \end{table}
 
 I valori ottenuti per l'amplificazione totale e per la banda passante sono rispettivamente
-\[  A = (4.84\pm0.08)e+04 \qquad \Delta f = 3.56\pm0.09~kHz. \]
+\[  A = (4.84\pm0.08)\cdot 10^4 \qquad \Delta f = 3.56\pm0.09~kHz. \]
 
 %non sono sicuro dei risultati che ho messo soprattutto delta f che esce 1 ordine di grandezza diversa, inoltre Q è anche incompatibile.
 
 
 \subsection{Risultati finali}
-A questo punto, utilizzando la \eqref{resnull} e la \eqref{kb} si è ricavata la costante di Boltzmann con entrambi i metodi sopra descritti. Si sono ottenuti come risultati rispettivamente $k_b = (0.8\pm0.1)e-23~J/K$ e $k_{b,1000:1} = (1.56\pm0.21)e-23~J/K $. Il valore atteso per la costante di Boltzmann è $k_b = 1.380e-23~J/K$.
+A questo punto, utilizzando le \cref{eq:resnull,eq:kb} si è ricavata la costante di Boltzmann con entrambi i metodi sopra descritti. Si sono ottenuti come risultati rispettivamente $k_b = (0.8\pm0.1)\cdot 10^{-23}~\text{J/K}$ e $k_{b,1000:1} = (1.56\pm0.21)\cdot 10^{-23}~\text{J/K} $. Il valore atteso per la costante di Boltzmann è $k_b = 1.380\cdot 10^{-23}~\text{J/K}$.
 \newline
 
 I risultati trovati non sono compatbili tra loro. Questo era atteso dall'osservazione dei dati riportati in \cref{fig:FITbandpass,fig:ampltot}, in cui è chiaro che la banda passante non è la stessa nei due casi.
@@ -423,14 +426,16 @@ L'errore non di calibrazione corrisponde per tutte le tensioni trovate all'ultim
 \begin{table}[H]
 	\centering
 	\input{../tabelle/tab_lastfit.txt}
-	\caption{Valori delle resistenze utilizzate e del potenziale all'uscita del circuito.}
+	\caption{Valori delle resistenze utilizzate e del potenziale all'uscita del circuito (analisi preliminare).}
 	\label{tab:lastfit}
 \end{table}
+
+Si è preso in un secondo momento un'altra serie di misure su un range più ampio di resistenze, e scelte in modo tale da non portare mai in saturazione i vari step di amplificazione (problema parzialmente riscontrato per alcune delle resistenze più grosse nella precedente tabella).
 
 \begin{table}[H]
 	\centering
 	\input{../tabelle/tab_lastfit1.txt}
-	\caption{Valori delle resistenze utilizzate e del potenziale all'uscita del circuito.}
+	\caption{Valori delle resistenze utilizzate e del potenziale all'uscita del circuito (valori definitivi).}
 	\label{tab:lastfit1}
 \end{table}
 
