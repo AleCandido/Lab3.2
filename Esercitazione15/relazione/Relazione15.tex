@@ -201,14 +201,15 @@ Il circuito usato per post-amplificatore è suddiviso in due stadi, di cui il pr
 
 Si è misurata l'amplificazione e la risposta in frequenza dei due circuiti congiuntamente. Naturalmente il contributo maggiore alla risposta in frequenza sarà quello del passabanda, poiché gli op-amp del post-amplificatore hanno un comportamento ideale fino a frequenze abbastanza elevate (molto maggiori dei $\sim 6 \kilo\hertz $ della frequenza centrale).
 
-Si riportano in \cref{fig:FITbandpass} i dati presi per la risposta in frequenza e il fit che si è fatto di essi (il grafico su cui sono mostrati è bilogaritmico).
+Si riportano in \cref{fig:FITbandpass} i dati presi per la risposta in frequenza e il fit che si è fatto di essi (il grafico su cui sono mostrati è bilogaritmico). I dati sono riportati in \cref{tab:bandpass}.
 La funzione di cui stato eseguito il fit è:
 \[ A(f) = A_2^\star \frac{f}{\sqrt{(f^2-f_0^2)^2 + \left(\frac{f_0 f}{Q}\right)^2}} \]
 
-e i parametri trovati dal fit sono:\marginpar{NUMERI DA AGGIORNARE}
+e i parametri trovati dal fit sono:
 \[ A_2^\star=(1.504 \pm 0.013)\cdot10^5 \qquad Q=7.54 \pm 0.12 \qquad f_0=6.089 \pm 0.006~\kilo\hertz  \]
 
-da cui si può dedurre il valore dell'amplificazione di centro banda $ A_{2,0} $ e la larghezza di banda $ \Delta f $:\marginpar{NUMERI DA AGGIORNARE}
+
+da cui si può dedurre il valore dell'amplificazione di centro banda $ A_{2,0} $ e la larghezza di banda $ \Delta f $:
 \[ A_{2,0} = 186 \pm 2	\qquad	\Delta f = 808 \pm 13 Hz \]
 \vspace*{-30pt}
 \begin{figure}[H]
@@ -245,14 +246,14 @@ Il convertitore RMS è stato realizzato tramite un apposito integrato (AD736), m
 \subsubsection*{Calibrazione}
 
 Si è eseguita la calibrazione della lettura data in uscita dal circuito in \cref{fig:RMSconv}, confrontando la lettura del multimetro di questa tensione con il valore RMS calcolato dall'apposita funzione dell'oscilloscopio.
-Il risultato del fit è riportato in \cref{fig:FitRMS}, mentre i valori ottenuti sono:
+Il risultato del fit è riportato in \cref{fig:FitRMS}, i dati utilizzati in \cref{tab:RMScal}, e i valori ottenuti sono:
 \[ m = 0.870 \pm 0.005	\qquad	q = -(1.38\pm0.10) \milli\volt	\qquad	\chi^2/DOF = 15.72 / 16 \]
 dove $ m $ è il coefficiente angolare della retta e $ q $ la sua intercetta.
 
 
 \section{Misura della costante di Boltzmann}
 \vspace*{-5pt}
-Si sono montati i vari circuiti tutti insieme, come schematizzato dalla \cref{fig:blocks}. Si è misurato il valore $V_{RMS}$ in uscita al circuito al variare della resistenza in ingresso. Per ogni resistenza sono stati presi più valori di $V_{RMS}$ poiché la misura oscillava molto. Si è poi effettuata una media dei valori presi. I dati ottenuti sono riportati in \cref{tab:lastfitav}.
+Si sono montati i vari circuiti tutti insieme, come schematizzato dalla \cref{fig:blocks}. Si è misurato il valore $V_{RMS}$ in uscita al circuito al variare della resistenza in ingresso. Per ogni resistenza sono stati presi più valori di $V_{RMS}$ poiché la misura oscillava molto. Si è poi effettuata una media dei valori presi. I dati ottenuti sono riportati in \cref{tab:lastfitav}.\footnote{I valori $V_{RMS}$ in tabella sono la media dei valori realmente acquisiti, poiché la misura fluttuava molto. I dati completi acquisiti sono riportati in \cref{tab:lastfit,tab:lastfit1}.}
 \vspace*{-10pt}
 \begin{table}[H]
 	\centering
@@ -291,7 +292,7 @@ dove R è la resistenza in ingresso, $R_T, V_0n e R_n$ sono parametri che si ott
 V_0n = A V_n
 \label{resnull}
 \end{equation}
-che rappresenta il rumore in uscita a resistenza nulla.\marginpar{NUMERI DA AGGIORNARE} Il Guadagno $A$ è quello complessivo di tutto il circuito, cioè $A = A_0 A_1 A_2 A_3 = (1.17\pm0.02)e+05 $.
+che rappresenta il rumore in uscita a resistenza nulla. Il Guadagno $A$ è quello complessivo di tutto il circuito, cioè $A = A_0 A_1 A_2 A_3 = (1.17\pm0.02)e+05 $.
 \vspace*{-10pt}
 \begin{equation}
 R_T = \frac{V_n^2}{4k_b T \Delta f} = \frac{V_0n^2}{4k_b A_0 T \Delta f}
@@ -299,7 +300,6 @@ R_T = \frac{V_n^2}{4k_b T \Delta f} = \frac{V_0n^2}{4k_b A_0 T \Delta f}
 \end{equation}
 che è la resistenza equivalente del rumore serie dell'amplificatore riferito all'ingresso.
 
-\marginpar{NUMERI DA AGGIORNARE}
 Si è quindi effettuato un fit alla $\eqref{fitt}$ ottenendo come risultati $V_0n = 0.0329\pm0.0007 V$ , $R_T = (7\pm1)e+03 \Omega $, $R_n = (1.5\pm 0.2)e+04 \Omega$, $\chi ^2 /DOF$ = 93/11. Il $\chi ^2$ risulta essere leggermente alto; si ritiene che ciò sia dovuto ad una sottostima degli errori.
 %... lascio così come commento? chi2 senza media = 17.
 
@@ -337,26 +337,25 @@ Questa stima potrebbe ulteriormente essere migliorata utilizzando come modello i
 	\label{fig:ampltot}
 \end{figure}
 
-\marginpar{NUMERI DA AGGIORNARE}
 \begin{table}[H]
 	\centering
 	\begin{tabular}{c|c|c|c|c}
-	$A^\star$ & Q & $f_0[Hz]$ & $f_t[Hz]$ & $\chi^2/DOF$ \\
+	$A^\star$ & Q & $f_0[kHz]$ & $f_t[kHz]$ & $\chi^2/DOF$ \\
 	\hline
-	(1.57$\pm$0.06)e+08 & 3.00$\pm$0.07 & 6794$\pm$35 & (9.1$\pm$0.8)e+03 & 16/19 \\
+	(1.57$\pm$0.06)e+08 & 3.00$\pm$0.07 & 6.80$\pm$0.04 & 9.1$\pm$0.8 & 16/19 \\
 	\end{tabular}
 	\caption{Risultati del fit per valutare l'amplificazione complessiva del circuito e la sua risposta in frequenza.}
 	\label{tab:risult}
 \end{table}
 
-I valori ottenuti per l'amplificazione totale e per la banda passante sono rispettivamente:\marginpar{NUMERI DA AGGIORNARE}
-\[  A = (4.84\pm0.08)e+04 \qquad \Delta f = (3.56\pm0.09)e+03 Hz. \]
+I valori ottenuti per l'amplificazione totale e per la banda passante sono rispettivamente
+\[  A = (4.84\pm0.08)e+04 \qquad \Delta f = 3.56\pm0.09~kHz. \]
 
 %non sono sicuro dei risultati che ho messo soprattutto delta f che esce 1 ordine di grandezza diversa, inoltre Q è anche incompatibile.
 
 
 \subsection{Risultati finali}
-A questo punto, utilizzando la \eqref{resnull} e la \eqref{kb} si è ricavata la costante di Boltzmann con entrambi i metodi sopra descritti.\marginpar{NUMERI DA AGGIORNARE} Si sono ottenuti come risultati rispettivamente $k_b = (1.18\pm0.16)e-23~J/K$ e $k_{b,1000:1} = (1.56\pm0.21)e-23~J/K $. Il valore atteso per la costante di Boltzmann è $k_b = 1.380e-23~J/K$.
+A questo punto, utilizzando la \eqref{resnull} e la \eqref{kb} si è ricavata la costante di Boltzmann con entrambi i metodi sopra descritti. Si sono ottenuti come risultati rispettivamente $k_b = (0.8\pm0.1)e-23~J/K$ e $k_{b,1000:1} = (1.56\pm0.21)e-23~J/K $. Il valore atteso per la costante di Boltzmann è $k_b = 1.380e-23~J/K$.
 \newline
 
 I risultati trovati non sono compatbili tra loro. Questo era atteso dall'osservazione dei dati riportati in \cref{fig:FITbandpass,fig:ampltot}, in cui è chiaro che la banda passante non è la stessa nei due casi.
