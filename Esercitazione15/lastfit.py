@@ -132,7 +132,7 @@ print("A1={} A2={} A3={} A4={}".format(A1, A2, A3, A4))
 Df=np.pi*Dw/2 #larghezza equivalente  
 print("Df={}".format(Df))
 
-
+# Df = Dw
 
 T=uncertainties.ufloat(273+28, 5)
 k_b=V0**2/(4*T*Atot**2*Df*RT) 
